@@ -4,7 +4,7 @@
 ###### A web application of a digital academic library for both students and teachers. 
 ----------------------------
 ## Expected Timeline:
-[Gantt chart](https://github.com/cse-250-2018/G08-Library-Management-System/blob/a7be7e623959ee783aee9848a717235f0ffd5679/gantt_chart.jpg)
+#### [Gantt chart](https://github.com/cse-250-2018/G08-Library-Management-System/blob/a7be7e623959ee783aee9848a717235f0ffd5679/gantt_chart.jpg)
 --------------
 ## Feature Description:
 ### 1. Students and teachers - the users:
