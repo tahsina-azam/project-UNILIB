@@ -15,7 +15,7 @@
 * Users will get notified of recently added books.
 * Users can upload notes, books, research papers, or any other soft copies for fellow students. Others may download them.
 * Users can post about their academic problems. Others can comment, vote or report the posts. It’ll be free of the admin’s supervision.
-### Admins:
+### 2. Admins:
 * They will conduct the whole system.
 * They can look into other users, create accounts for teachers, delete certain user accounts, respond to other users’ problems and solve them, look into reports of the users.
 * They can update and categorize the database(removing or adding a book, changing the status of a book). 
