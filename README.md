@@ -20,10 +20,7 @@
 * They can look into other users, create accounts for teachers, delete certain user accounts, respond to other users’ problems and solve them, look into reports of the users.
 * They can update and categorize the database(removing or adding a book, changing the status of a book). 
 * They can notify users about their requested books, deadlines, and how to pay for the fine.
-## Report on Learning Pre-requisites
-----------------------------------
-
-
+## Report on Learning Pre-requisites:
 SL | Learning Task | Description | Status | Comment |
 :-:|:--------------|:------------|:------:|---------|
 1| Web Basics    | Vanilla Javascript, React, Node | ![ ](https://img.shields.io/badge/Vanilla%20Javascript-Learned-success) ![](https://img.shields.io/badge/React-June%201-critical) ![](https://img.shields.io/badge/Node-June%2015-critical)
