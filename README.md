@@ -25,5 +25,5 @@ SL | Learning Task | Description | Status | Comment |
 :-:|:--------------|:------------|:------:|---------|
 1| Web Basics    | Vanilla Javascript, React, Node | ![ ](https://img.shields.io/badge/Vanilla%20Javascript-Learned-success) ![](https://img.shields.io/badge/React-June%201-critical) ![](https://img.shields.io/badge/Node-June%2015-critical)
 2| UI library and frameworks | Ant Design for React, Next.js | ![](https://img.shields.io/badge/Ant-July%201-inactive) ![](https://img.shields.io/badge/Express-June%2015-inactive)
-3| Database | MySQL | ![](https://img.shields.io/badge/%20MySQL-Dcember%201-critical) | Operations- add, delete, search and update
-4| Notifications | EmailJS | ![](https://img.shields.io/badge/%20EmailJS-September%2020-important)
+3| Database | MySQL | ![](https://img.shields.io/badge/%20MySQL-December%201-critical) 
+4| Notifications | Mailgun, Socket.io | ![](https://img.shields.io/badge/%Mailgun-September%2020-important) ![](https://img.shields.io/badge/%20Socket-November%2020-inactive) | <ul><li>Mailgun-2018331022</li><li>Socket.io- 2018331072</li></ul>
