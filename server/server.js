@@ -46,6 +46,33 @@ app.post('/register', async (req, res) => {
     res.send(data)
 })
 
+app.post('/login', async (req, res) => {
+    const user = await User.findOne({email: req.body.email})
+    console.log(req.body);
+    if (!user) {
+        return res.status(404).send({
+            message: 'user not found'
+        })
+    }
+
+    if (!await bcrypt.compare(req.body.password, user.password)) {
+        return res.status(400).send({
+            message: 'invalid credentials'
+        })
+    }
+     console.log("success");
+    const token = jwt.sign({_id: user._id}, "secret")
+
+    res.cookie('jwt', token, {
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000 // 1 day
+    })
+
+    res.send({
+        message: 'success'
+    })
+})
+
 
 app.listen(4000,()=>{
     console.log('running on port 4000');
