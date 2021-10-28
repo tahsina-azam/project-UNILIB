@@ -72,7 +72,8 @@ const Form = ({onSubmit}) => {
         };
         onSubmit(data);
         axios.post('http://localhost:4000/login',{
-        data
+          email: emailRef.current.value,
+          password: passwordRef.current.value
       });
     };
     return (
