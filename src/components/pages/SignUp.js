@@ -76,8 +76,13 @@ const Form = ({onSubmit}) => {
             password: passwordRef.current.value
         };
         onSubmit(data);
-       axios.post('http://localhost:4000/addUser',{
-        data
+       axios.post('http://localhost:4000/register',{
+        name: nameRef.current.value,
+        email: emailRef.current.value,
+        registration: registrationNumRef.current.value,
+        department: departmentRef.current.value,
+        session: sessionRef.current.value,
+        password: passwordRef.current.value
       });
     };
     return (
@@ -86,7 +91,7 @@ const Form = ({onSubmit}) => {
         <Field ref={emailRef} label="Email:" type="email" />
         <Field ref={registrationNumRef} label="Registration Number:" type="number"/>
         <Field ref={departmentRef} label="Department:" type="text"/>
-        <Field ref={sessionRef} label="Session:" type="number"/>
+        <Field ref={sessionRef} label="Session:" type="varchar"/>
         <Field ref={passwordRef} label="Password:" type="password" />
         <div>
           <button style={submitStyle} type="submit">Submit</button>

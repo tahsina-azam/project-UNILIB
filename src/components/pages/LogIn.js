@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../App.css';
+import axios from 'axios';
 
 const appStyle = { 
     display: 'flex',
@@ -61,19 +62,22 @@ const Field = React.forwardRef(({label, type}, ref) => {
 });
 
 const Form = ({onSubmit}) => {
-    const usernameRef = React.useRef();
+    const emailRef = React.useRef();
     const passwordRef = React.useRef();
     const handleSubmit = e => {
         e.preventDefault();
         const data = {
-            username: usernameRef.current.value,
+            email: emailRef.current.value,
             password: passwordRef.current.value
         };
         onSubmit(data);
+        axios.post('http://localhost:4000/login',{
+        data
+      });
     };
     return (
       <form style={formStyle} onSubmit={handleSubmit} >
-        <Field ref={usernameRef} label="Username:" type="text" />
+        <Field ref={emailRef} label="Email:" type="text" />
         <Field ref={passwordRef} label="Password:" type="password" />
         <div>
           <button style={submitStyle} type="submit">Submit</button>
