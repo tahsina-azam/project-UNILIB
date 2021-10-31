@@ -8,6 +8,9 @@ const connectDB = require('./db/db_user')
 const User = require('./model/model_user')
 const path = require('path');
 const dotenv = require('dotenv').config({ path: path.resolve(__dirname, './config.env') })
+const mailgun = require("mailgun-js");
+const DOMAIN = 'sandbox789f2766fe984c6a9bfa9978ecc7d9f7.mailgun.org';
+const mg = mailgun({apiKey: process.env.MAILGUN_APIKEY, domain: DOMAIN});
 
 
 const app = express();
@@ -38,12 +41,40 @@ app.post('/register', async (req, res) => {
         session:req.body.session,
         password: hashedPassword,
     })
+   
+
+    const token = jwt.sign({_id: user._id},process.env.JWT_ACC_ACTIVATE,{expiresIn:'20m'});
+
+    res.cookie('jwt', token, {
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000 // 1 day
+    });
+
+    const dataMail = {
+        from: 'Noreply@Unilib.com',
+        to: req.body.email,
+        subject: 'UNILIB ACCOUNT ACTIVATION',
+        html:`
+        <h2>Please click on this link to activate your account</h2>
+        <p>${process.env.CLIENT_URL}/authentication/activation/${token}</p>
+        `
+    };
+    mg.messages().send(dataMail, function (error, body) {
+        if(error) {
+            return res.json({
+                message:err.message
+            })
+        }
+        else
+        return res.json({message: 'Email has been sent, kindly activate your account'})
+        //console.log(body);
+    });
 
     const result = await user.save()
 
     const {password, ...data} = await result.toJSON()
 
-    res.send(data)
+   {/* res.send(data)*/}
 })
 
 app.post('/login', async (req, res) => {
@@ -60,8 +91,8 @@ app.post('/login', async (req, res) => {
             message: 'invalid credentials'
         })
     }
-     console.log("success");
-    const token = jwt.sign({_id: user._id}, "secret")
+     
+   const token = jwt.sign({_id: user._id}, "secret")
 
     res.cookie('jwt', token, {
         httpOnly: true,
@@ -71,8 +102,41 @@ app.post('/login', async (req, res) => {
     res.send({
         message: 'success'
     })
+  
 })
 
+{/*app.get('/user', async (req, res) => {
+    try {
+        const cookie = req.cookies['jwt']
+
+        const claims = jwt.verify(cookie, 'secret')
+
+        if (!claims) {
+            return res.status(401).send({
+                message: 'unauthenticated'
+            })
+        }
+        
+        
+        const user = await User.findOne({_id: claims._id})
+
+        const {password, ...data} = await user.toJSON()
+
+        res.send(data)
+    } catch (e) {
+        return res.status(401).send({
+            message: 'unauthenticated'
+        })
+    }
+})
+
+app.post('/logout', (req, res) => {
+    res.cookie('jwt', '', {maxAge: 0})
+
+    res.send({
+        message: 'success'
+    })
+})*/}
 
 app.listen(4000,()=>{
     console.log('running on port 4000');
