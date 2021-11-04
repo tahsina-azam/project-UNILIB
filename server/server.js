@@ -33,7 +33,7 @@ app.post('/register', async (req, res) => {
     const salt = await bcrypt.genSalt(10)
     const hashedPassword = await bcrypt.hash(req.body.password, salt)
 
-    const user = new User({
+   const user = new User({
         name: req.body.name,
         email: req.body.email,
         registration: req.body.registration,
@@ -42,13 +42,9 @@ app.post('/register', async (req, res) => {
         password: hashedPassword,
     })
    
-
-    const token = jwt.sign({_id: user._id},process.env.JWT_ACC_ACTIVATE,{expiresIn:'20m'});
-
-    res.cookie('jwt', token, {
-        httpOnly: true,
-        maxAge: 24 * 60 * 60 * 1000 // 1 day
-    });
+    
+    const token = jwt.sign({name:user.name,email:user.email,registration:user.registration,department:user.department,session:user.session,password:user.password},process.env.JWT_ACC_ACTIVATE,{expiresIn:'200m'});
+    console.log(token);
 
     const dataMail = {
         from: 'Noreply@Unilib.com',
@@ -70,11 +66,39 @@ app.post('/register', async (req, res) => {
         //console.log(body);
     });
 
-    const result = await user.save()
+   // const result = await user.save()
 
-    const {password, ...data} = await result.toJSON()
+   // const {password, ...data} = await result.toJSON()
 
    {/* res.send(data)*/}
+})
+
+app.post('/activateAccount',async(req,res) =>{
+    const token = req.body;
+    console.log(token);
+    if(token) {
+        jwt.verify(token,process.env.JWT_ACC_ACTIVATE,function(err, decodedToken){
+           if(err) {
+               return res.status(400).json({error: 'Incorrect or Expired link'})
+           } 
+           const {name,email,registration,department,session,password} = decodedToken;
+           User.findOne({email}).exec((err,user)=>{
+               if(user) {
+                   return res.status(400).json({error: "User with this email already exists"});
+               }
+               let newUser = new User ({name,email,registration,department,session,password});
+               newUser.save((err,success)=> {
+                   if(err){
+                       console.log("Error in signup: ",err);
+                       return res.status(400).json({error: err})
+                   }
+                   res.json({
+                       message: "Signup success!"
+                   })
+               })
+           });
+        })
+    }
 })
 
 app.post('/login', async (req, res) => {
