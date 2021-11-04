@@ -74,7 +74,7 @@ app.post('/register', async (req, res) => {
 })
 
 app.post('/activateAccount',async(req,res) =>{
-    const token = req.body;
+    const {token} = req.body;
     console.log(token);
     if(token) {
         jwt.verify(token,process.env.JWT_ACC_ACTIVATE,function(err, decodedToken){
