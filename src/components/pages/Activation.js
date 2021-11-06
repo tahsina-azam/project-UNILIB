@@ -2,12 +2,17 @@ import axios from 'axios';
 import React from 'react'
 import {Button} from 'react-bootstrap'
 
- function clickMe () {
+
+
+
+ function clickMe ()  {
    alert('you clicked me!');
-  const token = window.location.pathname.token;
-  console.log(token);
+  const path = window.location.pathname;
+  const words = path.split('/');
+  console.log(words[3]);
+  const token =words[3];
   axios.post('http://localhost:4000/activateAccount',{
-    token
+    token   
   });
 
 }
