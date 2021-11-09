@@ -6,7 +6,7 @@ import {Button} from 'react-bootstrap'
 
 
  function clickMe ()  {
-   alert('you clicked me!');
+   //alert('you clicked me!');
   const path = window.location.pathname;
   const words = path.split('/');
   console.log(words[3]);
