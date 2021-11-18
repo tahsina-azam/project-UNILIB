@@ -9,6 +9,7 @@ import SignUp from "./components/pages/SignUp";
 import Activation from "./components/pages/Activation";
 import Forum from "./components/pages/Forum";
 import { ApolloProvider } from "@apollo/client";
+import "bootstrap/dist/css/bootstrap.min.css";
 import client from "./config/graphql";
 
 function App() {
