@@ -1,0 +1,22 @@
+.icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 0.25cm;
+}
+.paddin {
+  padding-left: 1%;
+  padding-top: 1%;
+}
+.borderrr {
+  border-top: 0ch;
+  border-right: 0ch;
+  border-bottom: 0ch;
+  border-color: black;
+  border-style: groove;
+}
+.show_time {
+  font-size: x-small;
+  font-style: italic;
+  color: gray;
+}

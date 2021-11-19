@@ -1,0 +1,22 @@
+.fnt {
+  font-family: "Montserrat";
+  font-size: 20px;
+  font-weight: lighter;
+}
+.fnt-abhaya {
+  font-family: "Abhaya Libre";
+  font-size: xx-large;
+}
+.fnt-alegre {
+  font-family: "Alegreya SC";
+  text-align: left;
+  font-weight: 800;
+  font-size: large;
+}
+.fnt-calistoga {
+  font-family: "Calistoga";
+  text-align: left;
+  font-size: x-large;
+  margin-top: 0%;
+  padding-top: 0%;
+}
