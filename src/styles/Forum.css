@@ -20,3 +20,13 @@
   font-style: italic;
   color: gray;
 }
+.flexing {
+  flex-shrink: 5;
+  flex-grow: 5;
+  flex-basis: 100%;
+}
+.animated {
+  -webkit-transition: height 0.2s;
+  -moz-transition: height 0.2s;
+  transition: height 0.2s;
+}
