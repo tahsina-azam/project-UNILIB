@@ -13,6 +13,7 @@ const DOMAIN = 'sandbox789f2766fe984c6a9bfa9978ecc7d9f7.mailgun.org';
 const mg = mailgun({apiKey: process.env.MAILGUN_APIKEY, domain: DOMAIN});
 
 
+
 const app = express();
 
 connectDB();
@@ -44,7 +45,7 @@ app.post('/register', async (req, res) => {
    
     
     const token = jwt.sign({name:user.name,email:user.email,registration:user.registration,department:user.department,session:user.session,password:user.password},process.env.JWT_ACC_ACTIVATE,{expiresIn:'200m'});
-    console.log(token);
+    //console.log(token);
 
     const dataMail = {
         from: 'Noreply@Unilib.com',
@@ -63,14 +64,10 @@ app.post('/register', async (req, res) => {
         }
         else
         return res.json({message: 'Email has been sent, kindly activate your account'})
-        //console.log(body);
+        
     });
 
-   // const result = await user.save()
-
-   // const {password, ...data} = await result.toJSON()
-
-   {/* res.send(data)*/}
+   
 })
 
 app.post('/activateAccount',async(req,res) =>{
@@ -92,6 +89,9 @@ app.post('/activateAccount',async(req,res) =>{
                        console.log("Error in signup: ",err);
                        return res.status(400).json({error: err})
                    }
+                   var id = email.split('@');
+                   console.log(id);
+                   console.log(id[0]);
                    res.json({
                        message: "Signup success!"
                    })
@@ -101,35 +101,60 @@ app.post('/activateAccount',async(req,res) =>{
     }
 })
 
-app.post('/login', async (req, res) => {
-    const user = await User.findOne({email: req.body.email})
-    console.log(req.body);
+const checkTokenMiddleware = (req, res, next) => {
+    const { headers } = req;
+    const token = req.headers['authorization'];
+    console.log({token});
+    // const { token } = req.headers;
+    try{
+        const data = jwt.verify(token, 'secret');
+        req.user = data;
+        next();
+    }catch(err){
+        res.status(401).json({
+            message: 'invalid token'
+        })
+    }
+}
+
+app.post('/login' , async (req, res) => {
+    const { email } = req.body;
+    const user = await User.findOne({email})
+    
+    console.log(user);
     if (!user) {
         return res.status(404).send({
             message: 'user not found'
         })
+        
     }
 
     if (!await bcrypt.compare(req.body.password, user.password)) {
         return res.status(400).send({
             message: 'invalid credentials'
         })
+      
     }
      
-   const token = jwt.sign({_id: user._id}, "secret")
+   const token = jwt.sign({_id: user._id, email }, "secret")
 
+   
     res.cookie('jwt', token, {
         httpOnly: true,
         maxAge: 24 * 60 * 60 * 1000 // 1 day
     })
-
-    res.send({
-        message: 'success'
-    })
+   
+    
+    res.json({token: token});   
   
 })
 
-{/*app.get('/user', async (req, res) => {
+app.get('/user', checkTokenMiddleware,async (req, res) => {
+    console.log({user: req.user});
+    console.log(hello);
+    const data = await User.findOne({_id: req.user._id});
+    
+    res.json({message: 'successful', data});
     try {
         const cookie = req.cookies['jwt']
 
@@ -154,16 +179,25 @@ app.post('/login', async (req, res) => {
     }
 })
 
+app.get('/user/:email',async(req,res)=>{
+    const {email} = req.params.email;
+    const user = await User.findOne({email});
+     res.status(200).json(user);
+})
+
 app.post('/logout', (req, res) => {
     res.cookie('jwt', '', {maxAge: 0})
 
     res.send({
         message: 'success'
     })
-})*/}
+})
 
 app.listen(4000,()=>{
     console.log('running on port 4000');
 })
 
 module.exports = app;
+
+
+//  {"message":"success","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MThhMjc0YjcxNWVjYmFkOWFjN2RhZWEiLCJlbWFpbCI6InRhaHNpbmE3MkBzdHVkZW50LnN1c3QuZWR1IiwiaWF0IjoxNjM2ODcyMjc2fQ.TT3oFQ8DZ20LFWJkrAnrAJUSOLb0WC1n2MVGfTYBFHY"}
