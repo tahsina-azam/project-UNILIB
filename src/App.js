@@ -17,18 +17,20 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <Navbar />
-        <Switch>
-          <Route path="/forum" exact component={Forum} />
-          <Route path="/" exact component={Home} />
-          <Route path="/services" exact component={Services} />
-          <Route path="/log-in" exact component={LogIn} />
-          <Route path="/sign-up" exact component={SignUp} />
-          <Route
-            path="/authentication/activation/:token"
-            exact
-            component={Activation}
-          />
-        </Switch>
+        <div className="pt-5">
+          <Switch>
+            <Route path="/forum" exact component={Forum} />
+            <Route path="/" exact component={Home} />
+            <Route path="/services" exact component={Services} />
+            <Route path="/log-in" exact component={LogIn} />
+            <Route path="/sign-up" exact component={SignUp} />
+            <Route
+              path="/authentication/activation/:token"
+              exact
+              component={Activation}
+            />
+          </Switch>
+        </div>
       </Router>
     </ApolloProvider> //will keep all the routers here.
   );

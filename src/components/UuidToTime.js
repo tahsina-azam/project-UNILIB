@@ -1,6 +1,7 @@
-export const Time = ({ time }, caption) => {
+export const Time = ({ time, caption }) => {
   const date = new Date(time);
   console.log(time);
+  console.log({ caption });
   const print_time =
     caption +
     " " +
