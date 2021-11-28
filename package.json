@@ -3,31 +3,41 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@apollo/client": "^3.4.17",
+    "@fontsource/abhaya-libre": "^4.5.0",
+    "@fontsource/alegreya-sc": "^4.5.0",
+    "@fontsource/calistoga": "^4.5.0",
+    "@fontsource/open-sans": "^4.5.2",
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
     "@fortawesome/free-regular-svg-icons": "^5.15.3",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
-    "@fortawesome/react-fontawesome": "^0.1.14",
+    "@fortawesome/react-fontawesome": "^0.1.16",
     "@sendgrid/mail": "^7.5.0",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.22.0",
-    "boostrap": "^2.0.0",
     "bootstrap": "^5.1.3",
+    "firebase": "8.8.1",
+    "graphql": "^16.0.1",
     "mailgun-js": "^0.22.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.2",
     "react-dom": "^17.0.2",
+    "react-input-files": "^1.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "typeface-open-sans": "^1.1.13",
+    "typeface-roboto": "^1.1.13",
     "web-vitals": "^1.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "prettier --write ./src/**/*.{js,jsx}"
   },
   "eslintConfig": {
     "extends": [
@@ -46,5 +56,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prettier": "^2.4.1"
   }
 }
