@@ -6,11 +6,16 @@ import "../styles/Comment.css";
 //show comment
 const Comment = ({ replier, reply, commented_at }) => {
   return (
-    <div className="mb-3">
+    <div className="mb-5">
       <h5 className="text-capitalize">
         {replier} <Time time={commented_at} caption="commented at: " />
       </h5>
-      <p class="d-flex comment-text container-fluid">{reply}</p>
+      <p
+        className="d-flex container-fluid "
+        style={{ color: "black", fontSize: "15px" }}
+      >
+        {reply}
+      </p>
     </div>
   );
 };
@@ -33,22 +38,22 @@ const TypeComment = ({ post, refetch }) => {
       onSubmit={onSubmit}
       className="d-inline-flex bg-light p-2 flex-row align-items-start"
     >
-      <textarea
-        type="text"
-        style={{ width: "300px" }}
-        class="form-control ml-1 shadow-none textarea"
-        placeholder="Post a comment"
-      />
-      <div class="mt-2 text-right">
-        <button class="btn btn-primary btn-sm shadow-none" type="submit button">
-          Post comment
-        </button>
-        <button
-          class="btn btn-outline-primary btn-sm ml-1 shadow-none"
-          type="button"
-        >
-          Cancel
-        </button>
+      <div className="col">
+        <textarea
+          type="text"
+          style={{ width: "500px", height: "100px" }}
+          className="row form-control ml-1 shadow-none textarea"
+          placeholder=" Write a comment"
+        />
+        <div className="row mt-2 text-right">
+          <button
+            className="btn btn-dark shadow-none"
+            style={{ width: "auto" }}
+            type="submit button"
+          >
+            Post comment
+          </button>
+        </div>
       </div>
     </form>
 
@@ -73,7 +78,6 @@ export const PutComments = ({ post, refetch }) => {
     <div>
       {post.comments.length === 0 ? (
         <div>
-          <div className="fw-light fnt text-muted">no comments</div>
           <TypeComment key={post.id} post={post} refetch={refetch} />
         </div>
       ) : (

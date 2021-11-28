@@ -16,11 +16,11 @@ function Forum() {
     <>
       <div>
         <nav className="sidebar">
-          <div class="sidebar-header">
+          <div className="sidebar-header">
             <h3>Student uploads</h3>
           </div>
 
-          <ul class="list-unstyled components ">
+          <ul className="list-unstyled components ">
             <li>
               <a href="#notes" style={{ color: "black" }}>
                 Notes
@@ -47,7 +47,6 @@ function Forum() {
       {/* <div className="wrapper"> */}
       {/* <!-- Page Content  --> */}
       <div id="content">
-        <h2>Posts</h2>
         <GetPosts />
       </div>
       {/* </div> */}

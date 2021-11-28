@@ -13,16 +13,17 @@ body {
 .fs-12 {
   font-size: 12px;
 }
-comment-text {
+/* comment-text {
   text-size-adjust: 100%;
   height: inherit;
   width: 100%;
   display: inline-block;
   min-height: 100px;
+  color: black;
   overflow: hidden;
   white-space: pre-wrap;
   overflow-wrap: break-word;
-}
+} */
 .shadow-none {
   box-shadow: none;
 }
