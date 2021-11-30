@@ -42,7 +42,7 @@ const TypeComment = ({ post, refetch }) => {
         <textarea
           type="text"
           style={{ width: "500px", height: "100px" }}
-          className="row form-control ml-1 shadow-none textarea"
+          className="row form-control ml-1 shadow-none"
           placeholder=" Write a comment"
         />
         <div className="row mt-2 text-right">
