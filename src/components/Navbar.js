@@ -62,7 +62,7 @@ const Navbar= props =>{
             </Link>
         </li>
         <li className='nav-item'>
-            <Link to='/services' className='nav-links' onClick={closeMobileMenu}>
+            <Link to='/unilib/library' className='nav-links' onClick={closeMobileMenu}>
                 Library
             </Link>
         </li>

@@ -9,7 +9,9 @@ function HeroSection() {
     <div className="hero-container">
       <video src={vid} autoPlay={true} loop muted />
       <h1> RESOURCES ARE WAITING FOR YOU </h1>
-      <p>WHAT IS STOPPING YOU FROM DISCOVERING THEM?</p>
+      <h3 style={{ color: "white" }}>
+        WHAT IS STOPPING YOU FROM DISCOVERING THEM?
+      </h3>
       <div className="hero-btns">
         <Button
           className="btns"

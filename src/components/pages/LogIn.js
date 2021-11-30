@@ -1,6 +1,7 @@
 import React from "react";
 import "../../styles/App.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const appStyle = {
   display: "flex",
@@ -63,19 +64,35 @@ const Field = React.forwardRef(({ label, type }, ref) => {
 
 const Form = ({ onSubmit }) => {
   const emailRef = React.useRef();
-  const passwordRef = React.useRef();
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const data = {
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-    };
-    onSubmit(data);
-    axios.post("http://localhost:4000/login", {
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-    });
-  };
+    const passwordRef = React.useRef();
+    let history = useNavigate();
+    
+    const handleSubmit = e => {
+        e.preventDefault();
+        const data = {
+            email: emailRef.current.value,
+            password: passwordRef.current.value
+        };
+        onSubmit(data);
+        
+        axios.post('http://localhost:4000/login',{
+          email: emailRef.current.value,
+          password: passwordRef.current.value
+    }).then((res) => {    
+      console.log(res.data.token);      
+      if(res.data.token){
+        localStorage.setItem('token', res.data.token)
+        const email=emailRef.current.value;
+        var id = email.split('@');
+        history(`/unilib/user/${id[0]}`);
+      }
+      else{
+        alert('wrong username or password');
+      }
+      
+    },(error)=>{
+      alert('wrong username or password');
+    });}
   return (
     <form style={formStyle} onSubmit={handleSubmit}>
       <Field ref={emailRef} label="Email:" type="text" />
