@@ -1,10 +1,22 @@
-import React, { Component } from "react";
+import React from "react";
 import "../../App.css";
 import { Col, Form, Row, Button, Image } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import img1 from "../../images/user.png";
+import axios from "../../utility";
 
-class App extends Component {
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      registration: "",
+      department: "",
+      name: "",
+      session: "",
+    };
+  }
+
   componentDidMount() {
     const reloadCount = sessionStorage.getItem("reloadCount");
     if (reloadCount < 2) {
@@ -13,6 +25,19 @@ class App extends Component {
     } else {
       sessionStorage.removeItem("reloadCount");
     }
+
+    axios
+      .get("http://localhost:4000/user", { withCredentials: true })
+      .then((response) => {
+        console.log(response.data);
+        this.setState({
+          email: response.data.data.email,
+          name: response.data.data.name,
+          department: response.data.data.department,
+          session: response.data.data.session,
+          registration: response.data.data.registration,
+        });
+      });
   }
 
   render() {
@@ -30,12 +55,12 @@ class App extends Component {
               <Col className="mb-1"> </Col>
               <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label>Email</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
+                <Form.Control type="email" placeholder={this.state.email} />
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridPassword">
                 <Form.Label>Roll</Form.Label>
-                <Form.Control placeholder="1234" />
+                <Form.Control placeholder={this.state.registration} />
               </Form.Group>
               <Col className="mb-1"> </Col>
             </Row>
@@ -44,7 +69,7 @@ class App extends Component {
               <Col className="mb-0"> </Col>
               <Form.Group as={Col} controlId="formGridAddress1">
                 <Form.Label>Name</Form.Label>
-                <Form.Control placeholder="Name" />
+                <Form.Control placeholder={this.state.name} />
               </Form.Group>
               <Col className="mb-0"> </Col>
             </Row>
@@ -53,7 +78,7 @@ class App extends Component {
               <Col className="mb-1"> </Col>
               <Form.Group as={Col} controlId="formGridState">
                 <Form.Label>Department</Form.Label>
-                <Form.Select defaultValue="Choose...">
+                <Form.Select defaultValue={this.state.department}>
                   <option>Choose...</option>
                   <option>CSE</option>
                   <option>EEE</option>
@@ -64,7 +89,7 @@ class App extends Component {
 
               <Form.Group as={Col} controlId="formGridZip">
                 <Form.Label>Session</Form.Label>
-                <Form.Control />
+                <Form.Control placeholder={this.state.session} />
               </Form.Group>
               <Col className="mb-1"> </Col>
             </Row>

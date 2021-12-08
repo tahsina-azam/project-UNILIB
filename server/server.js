@@ -203,7 +203,8 @@ app.get("/user", checkTokenMiddleware, async (req, res) => {
 
 app.post("/logout", (req, res) => {
   res.cookie("jwt", "", { maxAge: 0 });
-
+  Session.Abandon();
+  res.Cookies.Clear();
   res.send({
     message: "success",
   });

@@ -72,7 +72,7 @@ const Navbar= props =>{
             </Link>
         </li>
         <li className='nav-item'>
-            <Link to='/sign-up' className='nav-links' onClick={closeMobileMenu}>
+            <Link to='/logout' className='nav-links' onClick={closeMobileMenu}>
                Log out
             </Link>
         </li>
