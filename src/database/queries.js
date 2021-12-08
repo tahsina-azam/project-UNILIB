@@ -27,3 +27,12 @@ export const GET_CATAGORIES_QUERY = gql`
     }
   }
 `;
+export const GET_BOOK_LIST_QUERY = gql`
+  query MyQuery {
+    BookLinks {
+      id
+      name
+      link
+    }
+  }
+`;
