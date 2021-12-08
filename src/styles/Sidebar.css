@@ -6,7 +6,6 @@ body {
 
 p {
   font-family: "Poppins", sans-serif;
-  font-size: 1.1em;
   font-weight: 300;
   line-height: 1.7em;
   color: #999;
@@ -114,6 +113,16 @@ ul.CTAs button {
 .book-content {
   position: relative;
   width: 80%;
+  /* background-color: aqua; */
+  padding-left: 1vw;
+  margin: 3% 0% auto 20%; /*top right bottom left*/
+
+  /* min-height: 100vh; */
+  transition: all 0.3s;
+}
+.bookshow-content {
+  height: 2px;
+  text-align: center;
   /* background-color: aqua; */
   padding-left: 1vw;
   margin: 3% 0% auto 20%; /*top right bottom left*/

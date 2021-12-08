@@ -27,17 +27,29 @@ const Sidebar = () => {
             </button>
           </li>
           <li>
-            <button className=" border-0 my-1" style={{ width: "100%" }}>
+            <button
+              className=" border-0 my-1"
+              style={{ width: "100%" }}
+              onClick={() => navigate("/forum/getBooks")}
+            >
               Books
             </button>
           </li>
           <li>
-            <button className=" border-0 my-1" style={{ width: "100%" }}>
+            <button
+              className=" border-0 my-1"
+              style={{ width: "100%" }}
+              onClick={() => navigate("/forum/getBooks")}
+            >
               Research paper
             </button>
           </li>
           <li>
-            <button className=" border-0 my-1" style={{ width: "100%" }}>
+            <button
+              className=" border-0 my-1"
+              style={{ width: "100%" }}
+              onClick={() => navigate("/forum/getBooks")}
+            >
               Previous year questions
             </button>
           </li>
