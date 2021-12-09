@@ -6,6 +6,7 @@ import { GET_CATAGORIES_QUERY } from "../database/queries";
 import { INSERT_BOOK } from "../database/Mutations";
 import { useQuery, useMutation } from "@apollo/client";
 import "../styles/Forum.css";
+import "../styles/Sidebar.css";
 //show categories in the dropdown menu
 const ShowCat = ({ name, id }) => {
   return <Dropdown.Item eventKey={name}>{name}</Dropdown.Item>;
@@ -72,8 +73,8 @@ const UploadPDFs = () => {
   return (
     <>
       {/* button to upload */}
-      <Button variant="dark" onClick={handleShow}>
-        Upload a book
+      <Button variant="dark" onClick={handleShow} className="m-2">
+        Upload
       </Button>
       {/* select book*/}
       <Modal show={show} onHide={handleClose}>
