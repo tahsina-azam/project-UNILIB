@@ -13,9 +13,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import client from "./config/graphql";
 import UserAccount from "./components/pages/UserAccount";
 import Library from "./components/pages/Library";
-import AdminAccount from './components/pages/Admin'
-import LogOut from './components/pages/LogOut'
-import AdminLibrary from './components/pages/AdminLibrary'
+import AdminAccount from "./components/pages/Admin";
+import LogOut from "./components/pages/LogOut";
+import AdminLibrary from "./components/pages/AdminLibrary";
+import AddBooks from "./components/pages/AddBooks";
+import StudentBooks from "./components/pages/StudentBooks";
 
 function App() {
   const [state, setState] = useState(false);
@@ -54,19 +56,17 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/log-in" element={<LogIn />} />
             <Route path="/sign-up" element={<SignUp />} />
-            <Route
-              path="/unilib/user/:username"
-             element={<UserAccount/>}
-            />
+            <Route path="/unilib/user/:username" element={<UserAccount />} />
             <Route path="/unilib/library" element={<Library />} />
             <Route
               path="/authentication/activation/:token"
-             element={<Activation/>}
+              element={<Activation />}
             />
-            <Route path  ='/unilib/admin/:username' element = {<AdminAccount/>}/>
-            <Route path  ='/unilib/admin/library' element = {<AdminLibrary/>}/>
-            <Route path  ='/logout/' element = {<LogOut/>}/>
-            
+            <Route path="/unilib/admin/:username" element={<AdminAccount />} />
+            <Route path="/forum/getBooks" element={<StudentBooks />} />
+            <Route path="/unilib/admin/library" element={<AdminLibrary />} />
+            <Route path="/unilib/admin/add-books/" element={<AddBooks />} />
+            <Route path="/logout/" element={<LogOut />} />
           </Routes>
         </div>
       </BrowserRouter>
