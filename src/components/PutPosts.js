@@ -1,9 +1,9 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { POST_POST } from "../database/Mutations";
 import { GET_POSTS_QUERY } from "../database/queries";
+import { POST_POST } from "../database/Mutations";
 
-//type post ansert
-export const TypePost = () => {
+//type post insert
+export function TypePost() {
   const { refetch } = useQuery(GET_POSTS_QUERY);
   const [postPost, { error, loading }] = useMutation(POST_POST);
   if (loading) return <div>loading...</div>;
@@ -12,7 +12,12 @@ export const TypePost = () => {
     e.preventDefault();
     const message = e.target[0].value;
     if (e.target[0].value !== "") {
-      postPost({ variables: { message: message } });
+      postPost({
+        variables: {
+          message: message,
+          // author_id: "13f57010-ae46-46a7-a104-2e3c124bf187",
+        },
+      });
       refetch();
     }
     e.target[0].value = "";
@@ -20,16 +25,17 @@ export const TypePost = () => {
   return (
     <form
       onSubmit={onSubmit}
-      className="m-2"
-      style={{ width: "100%", height: "30 rem" }}
+      className="mt-5"
+      style={{ width: "80%", height: "100px" }}
     >
       <textarea
         type="text"
         className="form-control"
         placeholder="write something..."
+        style={{ width: "100%", height: "100px" }}
       ></textarea>
       <button
-        className="m-2 p-1 btn btn-outline-dark d-inline-flex"
+        className="btn btn-dark shadow-none mt-2 text-right"
         style={{ width: "auto", height: "auto" }}
         type="submit button"
       >
@@ -37,4 +43,4 @@ export const TypePost = () => {
       </button>
     </form>
   );
-};
+}

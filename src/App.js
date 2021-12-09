@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  BrowserRouter,
+} from "react-router-dom";
+
 import "./styles/App.css";
 import Home from "./components/pages/Home";
 import Services from "./components/pages/Services";
@@ -9,7 +16,6 @@ import SignUp from "./components/pages/SignUp";
 import Activation from "./components/pages/Activation";
 import Forum from "./components/pages/Forum";
 import { ApolloProvider } from "@apollo/client";
-import "bootstrap/dist/css/bootstrap.min.css";
 import client from "./config/graphql";
 import UserAccount from "./components/pages/UserAccount";
 import Library from "./components/pages/Library";
@@ -48,7 +54,9 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <BrowserRouter>
+
         <Navbar state={state} setState={setState} />
+
         <div className="pt-5">
           <Routes>
             <Route path="/forum" element={<Forum />} />
@@ -56,8 +64,10 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/log-in" element={<LogIn />} />
             <Route path="/sign-up" element={<SignUp />} />
+
             <Route path="/unilib/user/:username" element={<UserAccount />} />
             <Route path="/unilib/library" element={<Library />} />
+
             <Route
               path="/authentication/activation/:token"
               element={<Activation />}
@@ -67,6 +77,7 @@ function App() {
             <Route path="/unilib/admin/library" element={<AdminLibrary />} />
             <Route path="/unilib/admin/add-books/" element={<AddBooks />} />
             <Route path="/logout/" element={<LogOut />} />
+
           </Routes>
         </div>
       </BrowserRouter>

@@ -7,7 +7,7 @@ import "../styles/post.css";
 const Post = ({ author, message, created_at }) => {
   const caption = "Published at: ";
   return (
-    <div className="pt-5">
+    <div>
       <div className="user-info flex-row">
         <img
           src="https://bootdey.com/img/Content/avatar/avatar6.png"
@@ -43,7 +43,7 @@ const GetPosts = () => {
   if (loading) return <div>loading...</div>;
   if (error) return <div>error!</div>;
   return (
-    <div className=" post-content">
+    <div className="post-content">
       <link
         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
         rel="stylesheet"

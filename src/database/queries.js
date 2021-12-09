@@ -19,3 +19,20 @@ export const GET_POSTS_QUERY = gql`
     }
   }
 `;
+export const GET_CATAGORIES_QUERY = gql`
+  query MyQuery {
+    categories(order_by: { name: asc }) {
+      name
+      id
+    }
+  }
+`;
+export const GET_BOOK_LIST_QUERY = gql`
+  query MyQuery {
+    BookLinks {
+      id
+      name
+      link
+    }
+  }
+`;
