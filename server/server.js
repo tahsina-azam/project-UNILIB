@@ -129,8 +129,10 @@ app.post("/activateAccount", async (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
-  const user = await User.findOne({ email: req.body.email });
-  console.log(req.body);
+  const { email } = req.body;
+  const user = await User.findOne({ email });
+
+  console.log(user);
   if (!user) {
     return res.status(404).send({
       message: "user not found",
@@ -143,58 +145,70 @@ app.post("/login", async (req, res) => {
     });
   }
 
-  const token = jwt.sign({ _id: user._id }, "secret");
+  const token = jwt.sign({ _id: user._id, email }, "secret");
 
   res.cookie("jwt", token, {
     httpOnly: true,
     maxAge: 24 * 60 * 60 * 1000, // 1 day
   });
 
+  res.json({ token: token });
+});
+
+const checkTokenMiddleware = (req, res, next) => {
+  const { headers } = req;
+  const token = req.headers["authorization"];
+  console.log({ token });
+  // const { token } = req.headers;
+  try {
+    const data = jwt.verify(token, "secret");
+    req.user = data;
+    next();
+  } catch (err) {
+    res.status(401).json({
+      message: "invalid token",
+    });
+  }
+};
+
+app.get("/user", checkTokenMiddleware, async (req, res) => {
+  console.log({ user: req.user });
+  const data = await User.findOne({ _id: req.user._id });
+
+  res.json({ message: "successful", data });
+  /*try {
+      const cookie = req.cookies['jwt']
+
+      const claims = jwt.verify(cookie, 'secret')
+
+      if (!claims) {
+          return res.status(401).send({
+              message: 'unauthenticated'
+          })
+      }
+      
+      
+      const user = await User.findOne({_id: claims._id})
+      console.log("user:"+user)
+
+      const {password, ...data} = await user.toJSON()
+      res.json({message: 'successful', user});
+     // res.send(user)
+  } catch (e) {
+      return res.status(401).send({
+          message: 'unauthenticated'
+      })
+  }*/
+});
+
+app.post("/logout", (req, res) => {
+  res.cookie("jwt", "", { maxAge: 0 });
+  Session.Abandon();
+  res.Cookies.Clear();
   res.send({
     message: "success",
   });
 });
-
-{
-  /*app.get('/user', async (req, res) => {
-    try {
-        const cookie = req.cookies['jwt']
-
-        const claims = jwt.verify(cookie, 'secret')
-
-        if (!claims) {
-            return res.status(401).send({
-                message: 'unauthenticated'
-            })
-        }
-        
-        
-        const user = await User.findOne({_id: claims._id})
-
-        const {password, ...data} = await user.toJSON()
-
-        res.send(data)
-    } catch (e) {
-        return res.status(401).send({
-            message: 'unauthenticated'
-        })
-    }
-})
-
-app.get('/user/:email',async(req,res)=>{
-    const {email} = req.params.email;
-    const user = await User.findOne({email});
-     res.status(200).json(user);
-})
-
-app.post('/logout', (req, res) => {
-    res.cookie('jwt', '', {maxAge: 0})
-
-    res.send({
-        message: 'success'
-    })
-})*/
-}
 
 app.listen(4000, () => {
   console.log("running on port 4000");

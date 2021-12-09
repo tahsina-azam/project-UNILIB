@@ -3,6 +3,7 @@ import { TypePost } from "../PutPosts";
 import Sidebar from "../Sidebar";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+
 function Forum() {
   return (
     <div>

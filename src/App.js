@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
+
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   BrowserRouter,
 } from "react-router-dom";
+
 import "./styles/App.css";
 import Home from "./components/pages/Home";
 import Services from "./components/pages/Services";
@@ -15,13 +17,46 @@ import Activation from "./components/pages/Activation";
 import Forum from "./components/pages/Forum";
 import { ApolloProvider } from "@apollo/client";
 import client from "./config/graphql";
+import UserAccount from "./components/pages/UserAccount";
+import Library from "./components/pages/Library";
+import AdminAccount from "./components/pages/Admin";
+import LogOut from "./components/pages/LogOut";
+import AdminLibrary from "./components/pages/AdminLibrary";
+import AddBooks from "./components/pages/AddBooks";
 import StudentBooks from "./components/pages/StudentBooks";
 
 function App() {
+  const [state, setState] = useState(false);
+
+  const path = window.location.pathname;
+  const words = path.split("/");
+  console.log(words[0]);
+
+  const requireAuth = () => {
+    const path = window.location.pathname;
+    const words = path.split("/");
+    console.log(words[0]);
+    if (words[1] === "unilib") {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  useEffect(() => {
+    (async () => {
+      const response = requireAuth();
+
+      setState(response);
+    })();
+  });
+
   return (
     <ApolloProvider client={client}>
       <BrowserRouter>
-        <Navbar />
+
+        <Navbar state={state} setState={setState} />
+
         <div className="pt-5">
           <Routes>
             <Route path="/forum" element={<Forum />} />
@@ -29,12 +64,20 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/log-in" element={<LogIn />} />
             <Route path="/sign-up" element={<SignUp />} />
-            <Route path="/forum/getBooks" element={<StudentBooks />} />
+
+            <Route path="/unilib/user/:username" element={<UserAccount />} />
+            <Route path="/unilib/library" element={<Library />} />
+
             <Route
               path="/authentication/activation/:token"
-              exact
-              component={Activation}
+              element={<Activation />}
             />
+            <Route path="/unilib/admin/:username" element={<AdminAccount />} />
+            <Route path="/forum/getBooks" element={<StudentBooks />} />
+            <Route path="/unilib/admin/library" element={<AdminLibrary />} />
+            <Route path="/unilib/admin/add-books/" element={<AddBooks />} />
+            <Route path="/logout/" element={<LogOut />} />
+
           </Routes>
         </div>
       </BrowserRouter>
