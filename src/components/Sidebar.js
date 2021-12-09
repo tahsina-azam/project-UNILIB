@@ -1,4 +1,6 @@
 //sidebar for forum and its children
+import { GET_CATAGORIES_QUERY } from "../database/queries";
+import UploadPDFs from "./UploadPDFs";
 import "../styles/Fonts.css";
 import "../styles/Forum.css";
 import "../styles/Sidebar.css";
@@ -6,56 +8,44 @@ import "@fontsource/open-sans";
 import "@fontsource/abhaya-libre";
 import "@fontsource/calistoga";
 import { useNavigate } from "react-router-dom";
-
-const Sidebar = () => {
+import { useQuery } from "@apollo/client";
+const ShowCatInSidebar = ({ name, id }) => {
   const navigate = useNavigate();
   return (
-    <div>
-      <nav className="sidebar">
+    <li>
+      <button
+        className=" border-0 my-1"
+        style={{ width: "100%" }}
+        onClick={() => navigate("/forum/getBooks")}
+      >
+        {name}
+      </button>
+    </li>
+  );
+};
+const Sidebar = () => {
+  const { data, loading, error } = useQuery(GET_CATAGORIES_QUERY);
+  if (loading) return <div className="text-muted">loading...</div>;
+  if (error) return <div>error!</div>;
+  return (
+    <>
+      <nav className="sidebar text-center">
         <div className="sidebar-header">
           <h3>Student uploads</h3>
         </div>
 
         <ul className="list-unstyled components ">
-          <li>
-            <button
-              className=" border-0 my-1"
-              style={{ width: "100%" }}
-              onClick={() => navigate("/forum/getBooks")}
-            >
-              Notes
-            </button>
-          </li>
-          <li>
-            <button
-              className=" border-0 my-1"
-              style={{ width: "100%" }}
-              onClick={() => navigate("/forum/getBooks")}
-            >
-              Books
-            </button>
-          </li>
-          <li>
-            <button
-              className=" border-0 my-1"
-              style={{ width: "100%" }}
-              onClick={() => navigate("/forum/getBooks")}
-            >
-              Research paper
-            </button>
-          </li>
-          <li>
-            <button
-              className=" border-0 my-1"
-              style={{ width: "100%" }}
-              onClick={() => navigate("/forum/getBooks")}
-            >
-              Previous year questions
-            </button>
-          </li>
+          {data.categories.length === 0 ? (
+            <div>""</div>
+          ) : (
+            data.categories.map((c) => (
+              <ShowCatInSidebar name={c.name} id={c.id} key={c.id} />
+            ))
+          )}
         </ul>
+        <UploadPDFs />
       </nav>
-    </div>
+    </>
   );
 };
 export default Sidebar;
