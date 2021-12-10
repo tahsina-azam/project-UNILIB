@@ -1,55 +1,49 @@
-import React from "react";
-import {
-  Col,
-  Form,
-  Row,
-  Button,
-  Image,
-  InputGroup,
-  FormControl,
-  input,
-  form,
-} from "react-bootstrap";
+import React, { useState } from "react";
+import { Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "../../utility";
 
 const Elements = ({ onSubmit }) => {
   const bookRef = React.useRef();
   const writerRef = React.useRef();
   const numRef = React.useRef();
-  const imgRef = React.useRef();
   const linkRef = React.useRef();
   const textRef = React.useRef();
+  const [fileName, setFileName] = useState("");
+
+  const onChangeFile = (e) => {
+    setFileName(e.target.files[0]);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("bookName", bookRef.current.value);
+    formData.append("writer", writerRef.current.value);
+    formData.append("number", numRef.current.value);
+    formData.append("image", fileName);
+    formData.append("link", linkRef.current.value);
+    formData.append("text", textRef.current.value);
+
     const data = {
-      book: bookRef.current.value,
+      bookName: bookRef.current.value,
       writer: writerRef.current.value,
       number: numRef.current.value,
-      image: imgRef.current.value,
+      image: fileName,
       link: linkRef.current.value,
       text: textRef.current.value,
     };
     onSubmit(data);
 
-    /*axios.post('http://localhost:4000/',{
-          email: emailRef.current.value,
-          password: passwordRef.current.value
-    }).then((res) => {    
-      console.log(res.data.token);      
-      if(res.data.token){
-        localStorage.setItem('token', res.data.token)
-        const email=emailRef.current.value;
-        var id = email.split('@');
-        history(`/unilib/user/${id[0]}`);
+    axios.post("http://localhost:4000/addbook", formData).then(
+      (res) => {
+        console.log(res.data);
+      },
+      (error) => {
+        alert("wrong username or password");
       }
-      else{
-        alert('wrong username or password');
-      }
-      
-    },(error)=>{
-      alert('wrong username or password');
-    });*/
+    );
   };
   return (
     <div>
@@ -65,7 +59,7 @@ const Elements = ({ onSubmit }) => {
       >
         <div class="card-header mx-auto">ADD A NEW BOOK</div>
         <div class="card-body">
-          <form>
+          <form enctype="multipart/form-data" onSubmit={handleSubmit}>
             <Row className="mb-5"></Row>
             <div class="form-group mx-sm-3 mb-2 ">
               <label for="inputPassword2">Enter the name of the book</label>
@@ -95,10 +89,10 @@ const Elements = ({ onSubmit }) => {
             <div class="form-group  mx-sm-3 mb-2">
               <label for="exampleFormControlFile1">Example file input</label>
               <input
-                ref={imgRef}
                 type="file"
                 class="form-control-file"
-                id="exampleFormControlFile1"
+                filename="image"
+                onChange={onChangeFile}
               />
             </div>
             <div class="form-group  mx-sm-3 mb-2">

@@ -6,13 +6,16 @@ const { faRetweet } = require("@fortawesome/free-solid-svg-icons");
 const cookieParser = require("cookieparser");
 const connectDB = require("./db/db_user");
 const User = require("./model/model_user");
+const Book = require("./model/model_books");
 const path = require("path");
+const bodyParser = require("body-parser");
 const dotenv = require("dotenv").config({
   path: path.resolve(__dirname, "./config.env"),
 });
 const mailgun = require("mailgun-js");
 const DOMAIN = "sandbox789f2766fe984c6a9bfa9978ecc7d9f7.mailgun.org";
 const mg = mailgun({ apiKey: process.env.MAILGUN_APIKEY, domain: DOMAIN });
+const multer = require("multer");
 
 const app = express();
 
@@ -27,6 +30,20 @@ app.use(
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); // To parse the incoming requests with JSON payloads
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(__dirname + "./public/"));
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./public/images");
+  },
+  filename: (req, file, cb) => {
+    console.log(file);
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({ storage: storage });
 
 app.get("/userinfo", (req, res) => {
   res.send("list of all task");
@@ -203,11 +220,28 @@ app.get("/user", checkTokenMiddleware, async (req, res) => {
 
 app.post("/logout", (req, res) => {
   res.cookie("jwt", "", { maxAge: 0 });
-  Session.Abandon();
-  res.Cookies.Clear();
+  res.cookie.Clear();
   res.send({
     message: "success",
   });
+});
+
+app.post("/addbook", upload.single("image"), async (req, res) => {
+  req.body.image = req.file.path;
+  const book = new Book({
+    bookName: req.body.bookName,
+    writer: req.body.writer,
+    pdfLink: req.body.pdfLink,
+    image: req.body.image,
+    number: req.body.number,
+    text: req.body.text,
+  });
+
+  const result = await book.save();
+
+  const { bookName, ...data } = await result.toJSON();
+
+  res.send(data);
 });
 
 app.listen(4000, () => {
