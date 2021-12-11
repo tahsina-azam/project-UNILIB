@@ -1,6 +1,7 @@
 import React from "react";
-import { Col, Form, Row, Button, Image } from "react-bootstrap";
+import { Row, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import ShowBookList from "./ShowBookList";
 
 class App extends React.Component {
   render() {
@@ -13,6 +14,9 @@ class App extends React.Component {
               + ADD BOOKS
             </Button>
           </a>
+          <div>
+            <ShowBookList />
+          </div>
         </div>
       </div>
     );
