@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  BrowserRouter,
-} from "react-router-dom";
-
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import "./styles/App.css";
 import Home from "./components/pages/Home";
 import Services from "./components/pages/Services";
@@ -24,6 +18,8 @@ import LogOut from "./components/pages/LogOut";
 import AdminLibrary from "./components/pages/AdminLibrary";
 import AddBooks from "./components/pages/AddBooks";
 import StudentBooks from "./components/pages/StudentBooks";
+import UpdateBookInfo from "./components/pages/UpdateBookInfo";
+import ShowBookDetails from "./components/pages/ShowBookDetails";
 
 function App() {
   const [state, setState] = useState(false);
@@ -54,7 +50,6 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <BrowserRouter>
-
         <Navbar state={state} setState={setState} />
 
         <div className="pt-5">
@@ -76,8 +71,9 @@ function App() {
             <Route path="/forum/getBooks" element={<StudentBooks />} />
             <Route path="/unilib/admin/library" element={<AdminLibrary />} />
             <Route path="/unilib/admin/add-books/" element={<AddBooks />} />
+            <Route path="/edit-book/:id" element={<UpdateBookInfo />} />
+            <Route path="/show-book/:id" element={<ShowBookDetails />} />
             <Route path="/logout/" element={<LogOut />} />
-
           </Routes>
         </div>
       </BrowserRouter>
