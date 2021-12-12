@@ -33,6 +33,9 @@ export const GET_BOOK_LIST_QUERY = gql`
       id
       name
       link
+      category {
+        name
+      }
     }
   }
 `;
