@@ -1,9 +1,8 @@
-//show and download books in forum
-import { GET_BOOK_LIST_QUERY } from "../database/queries";
-import { useQuery } from "@apollo/client";
 import "../styles/Booklist.css";
 import "../styles/Sidebar.css";
 import "../styles/Fonts.css";
+import { useFiles } from "../contexts/file";
+import { useParams } from "react-router-dom";
 const Book = ({ name, link }) => {
   console.log("Fetch books");
   return (
@@ -27,30 +26,24 @@ const Book = ({ name, link }) => {
   );
 };
 //show books
-const ShowBooks = () => {
-  const { data, loading, error } = useQuery(GET_BOOK_LIST_QUERY);
+const GetBooks = () => {
+  const { files, loading, error } = useFiles();
+  const { category } = useParams();
 
   if (loading) return <div>loading...</div>;
   if (error) return <div>error!</div>;
   return (
     <div className="d-flex justify-content-center book-content">
       <ul className="list-group text-white">
-        {data.BookLinks.length === 0 ? (
+        {files.length === 0 ? (
           <div>no books, sorry</div>
         ) : (
-          data.BookLinks.map((b) => (
-            <Book key={b.id} name={b.name} link={b.link} />
-          ))
+          files
+            .filter((e) => e.category.name === category)
+            .map((b) => <Book key={b.id} name={b.name} link={b.link} />)
         )}
       </ul>
     </div>
-  );
-};
-const GetBooks = () => {
-  return (
-    <>
-      <ShowBooks />
-    </>
   );
 };
 export default GetBooks;

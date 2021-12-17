@@ -16,7 +16,7 @@ const ShowCatInSidebar = ({ name, id }) => {
       <button
         className=" border-0 my-1"
         style={{ width: "100%" }}
-        onClick={() => navigate("/forum/getBooks")}
+        onClick={() => navigate(`/forum/${name}`)}
       >
         {name}
       </button>
