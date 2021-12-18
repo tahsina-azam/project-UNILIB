@@ -1,0 +1,27 @@
+.admin-library {
+  background-image: url("../images/img-12.jpg");
+  background-position: center;
+  background-repeat: repeat;
+  font-size: 100px;
+}
+.container {
+  margin-top: 50px;
+}
+
+.btn:hover {
+  color: rgb(8, 7, 7);
+}
+
+.input-text:focus {
+  box-shadow: 0px 0px 0px;
+  border-color: #dde74d;
+  outline: 0px;
+}
+
+.form-control {
+  border: 1px solid #dde74d;
+}
+
+.card {
+  background-color: #d0b485;
+}

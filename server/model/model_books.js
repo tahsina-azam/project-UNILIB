@@ -1,30 +1,29 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-var schema = new mongoose.Schema({
-    book:{
-        type:String,
-        required:true
-    },
-    writer: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    pdflink: {
-        type: String,
-        required: true
-    },
-    coverpage: {
-        type:Number,
-        required:true,
-        unique:true
-    },
-    number: {
-        type:Number,
-        required:true
-    }
-})
+var bookSchema = new mongoose.Schema({
+  bookName: {
+    type: String,
+    required: true,
+  },
+  writer: {
+    type: String,
+  },
+  pdfLink: {
+    type: String,
+  },
+  image: {
+    type: String,
+    required: true,
+  },
+  number: {
+    type: Number,
+    required: true,
+  },
+  text: {
+    type: String,
+  },
+});
 
-const Booksdb = mongoose.model('books',schema);
+const Booksdb = mongoose.model("books", bookSchema);
 
 module.exports = Booksdb;
