@@ -15,7 +15,7 @@ const BookCard = (props) => {
           <Link to={`/show-book/${book._id}`}>{book.bookName}</Link>
         </h2>
         <h3>{book.writer}</h3>
-        <p>{book.text}</p>
+        {/*<p>{book.text}</p>*/}
       </div>
     </div>
   );

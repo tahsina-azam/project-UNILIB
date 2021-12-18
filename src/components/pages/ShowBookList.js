@@ -41,7 +41,9 @@ class ShowBookList extends Component {
           <div className="row">
             <div className="col-md-12">
               <br />
-              <h2 className="display-4 text-center">Books List</h2>
+              <card className="card mx-auto" style={{ width: "18rem" }}>
+                <h2 className="display-4 text-center">Books</h2>
+              </card>
             </div>
 
             <div className="col-md-11">
