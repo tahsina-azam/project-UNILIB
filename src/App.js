@@ -20,6 +20,7 @@ import AddBooks from "./components/pages/AddBooks";
 import StudentBooks from "./components/pages/StudentBooks";
 import UpdateBookInfo from "./components/pages/UpdateBookInfo";
 import ShowBookDetails from "./components/pages/ShowBookDetails";
+import BookDetails from "./components/pages/BookDetails";
 import FileProvider from "./contexts/file";
 import axios from "./utility";
 
@@ -65,7 +66,6 @@ function App() {
       <ApolloProvider client={client}>
         <FileProvider>
           <BrowserRouter>
-
             <Navbar
               state={state}
               setState={setState}
@@ -84,10 +84,6 @@ function App() {
                 <Route
                   path="/unilib/user/:username"
                   element={<UserAccount />}
-                />
-                <Route
-                  path="/unilib/admin/:adminname"
-                  element={<AdminAccount />}
                 />
                 <Route path="/unilib/library" element={<Library />} />
 
@@ -108,17 +104,18 @@ function App() {
 
                 <Route path="/edit-book/:id" element={<UpdateBookInfo />} />
                 <Route path="/show-book/:id" element={<ShowBookDetails />} />
-
+                <Route
+                  path="/show-book-details/:id"
+                  element={<BookDetails />}
+                />
 
                 <Route path="/logout/" element={<LogOut />} />
               </Routes>
             </div>
           </BrowserRouter>
         </FileProvider>
-
       </ApolloProvider>
       {/* //will keep all the routers here. */}
-
     </div>
   );
 }
