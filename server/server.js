@@ -227,7 +227,7 @@ app.post("/addbook", upload.single("image"), async (req, res) => {
     bookName: req.body.bookName,
     writer: req.body.writer,
     pdfLink: req.body.pdfLink,
-    image: req.body.image,
+    image: req.file.originalname,
     number: req.body.number,
     text: req.body.text,
   });
