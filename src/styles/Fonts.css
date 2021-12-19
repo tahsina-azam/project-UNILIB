@@ -1,3 +1,15 @@
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+body {
+  font-family: "Poppins", sans-serif;
+
+  /* background: #fafafa; */
+}
+.bar {
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-size: medium;
+}
+
 .fnt {
   font-family: "Montserrat";
   font-size: 20px;

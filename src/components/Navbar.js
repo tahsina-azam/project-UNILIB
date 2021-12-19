@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./Navbar.css";
+import "../styles/Navbar.css";
+import "../styles/Fonts.css";
 
 const Navbar = (props) => {
   const [click, setClick] = useState(false);
@@ -13,44 +14,32 @@ const Navbar = (props) => {
 
   if (!props.state) {
     menu = (
-      <div className="navbar-container">
+      <div className="navbar-container bar">
         <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
           UNILIB <i className="fab fa-typo3" />
         </Link>
         <div className="menu-icon" onClick={handleClick}>
           <i className={click ? "fas fa-times" : "fas fa-bars"} />
         </div>
-        <ul className={click ? "nav-menu active" : "nav-menu"}>
-          <li className="nav-item">
-            <Link to="/" className="nav-links" onClick={closeMobileMenu}>
-              Home
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="/services"
-              className="nav-links"
-              onClick={closeMobileMenu}
-            >
-              Services
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/log-in" className="nav-links" onClick={closeMobileMenu}>
-              Log In
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/sign-up" className="nav-links" onClick={closeMobileMenu}>
-              Sign Up
-            </Link>
-          </li>
+        <ul className={click ? "nav-menu active " : "nav-menu"}>
+          <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+            Home
+          </Link>
+          <Link to="/services" className="nav-links" onClick={closeMobileMenu}>
+            Services
+          </Link>
+          <Link to="/log-in" className="nav-links" onClick={closeMobileMenu}>
+            Log In
+          </Link>
+          <Link to="/sign-up" className="nav-links" onClick={closeMobileMenu}>
+            Sign Up
+          </Link>
         </ul>
       </div>
     );
   } else {
     menu = (
-      <div className="navbar-container">
+      <div className="navbar-container bar">
         <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
           UNILIB <i className="fab fa-typo3" />
         </Link>
@@ -89,7 +78,7 @@ const Navbar = (props) => {
 
   return (
     <>
-      <nav className="navbar">{menu}</nav>
+      <nav>{menu}</nav>
     </>
   );
 };

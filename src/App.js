@@ -65,6 +65,7 @@ function App() {
       <ApolloProvider client={client}>
         <FileProvider>
           <BrowserRouter>
+
             <Navbar
               state={state}
               setState={setState}
@@ -108,13 +109,16 @@ function App() {
                 <Route path="/edit-book/:id" element={<UpdateBookInfo />} />
                 <Route path="/show-book/:id" element={<ShowBookDetails />} />
 
+
                 <Route path="/logout/" element={<LogOut />} />
               </Routes>
             </div>
           </BrowserRouter>
         </FileProvider>
-      </ApolloProvider>{" "}
-      //will keep all the routers here.
+
+      </ApolloProvider>
+      {/* //will keep all the routers here. */}
+
     </div>
   );
 }

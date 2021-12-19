@@ -1,106 +1,81 @@
 import React from "react";
 import "../../styles/App.css";
+import "../../styles/login.css";
+import "../../styles/Fonts.css";
+import "../../styles/Sidebar.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const appStyle = {
-  display: "flex",
-  flexWrap: "wrap",
-  position: "absolute",
-  top: 0,
-  left: 0,
-  height: "100%",
-  width: "100%",
-  alignItems: "center",
-};
-
-const formStyle = {
-  margin: "auto",
-  padding: "10px",
-  border: "1px solid #c9c9c9",
-  borderRadius: "5px",
-  background: "#f5f5f",
-  width: "220px",
-  display: "block",
-  alignItems: "center",
-};
-
-const labelStyle = {
-  margin: "10px 0 5px 0",
-  fontFamily: "Arial, Helvetica, sans-serif",
-  fontSize: "15px",
-};
-
-const inputStyle = {
-  margin: "5px 0 10px 0",
-  padding: "5px",
-  border: "1px solid #bfbfbf",
-  borderRadius: "3px",
-  boxSizing: "border-box",
-  width: "100%",
-};
-
-const submitStyle = {
-  margin: "10px 0 0 0",
-  padding: "7px 10px",
-  border: "1px solid #efffff",
-  borderRadius: "3px",
-  background: "#000000",
-  width: "100%",
-  fontSize: "15px",
-  color: "white",
-  display: "block",
-  align: "center",
-};
-
-const Field = React.forwardRef(({ label, type }, ref) => {
+const Field = React.forwardRef(({ label, type, placeholder }, ref) => {
   return (
-    <div>
-      <label style={labelStyle}>{label}</label>
-      <input ref={ref} type={type} style={inputStyle} />
+    <div className="m-5">
+      <label className="m-1 fnt">{label}</label>
+      <input
+        ref={ref}
+        type={type}
+        className="form-control fnt"
+        style={{ width: "90%", height: "100%" }}
+        placeholder={placeholder}
+      />
     </div>
   );
 });
 
 const Form = ({ onSubmit }) => {
   const emailRef = React.useRef();
-    const passwordRef = React.useRef();
-    let history = useNavigate();
-    
-    const handleSubmit = e => {
-        e.preventDefault();
-        const data = {
-            email: emailRef.current.value,
-            password: passwordRef.current.value
-        };
-        onSubmit(data);
-        
-        axios.post('http://localhost:4000/login',{
-          email: emailRef.current.value,
-          password: passwordRef.current.value
-    }).then((res) => {    
-      console.log(res.data.token);      
-      if(res.data.token){
-        localStorage.setItem('token', res.data.token)
-        const email=emailRef.current.value;
-        var id = email.split('@');
-        history(`/unilib/user/${id[0]}`);
-      }
-      else{
-        alert('wrong username or password');
-      }
-      
-    },(error)=>{
-      alert('wrong username or password');
-    });}
+  const passwordRef = React.useRef();
+  let history = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    };
+    onSubmit(data);
+
+    axios
+      .post("http://localhost:4000/login", {
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+      })
+      .then(
+        (res) => {
+          console.log(res.data.token);
+          if (res.data.token) {
+            localStorage.setItem("token", res.data.token);
+            const email = emailRef.current.value;
+            var id = email.split("@");
+            history(`/unilib/user/${id[0]}`);
+          } else {
+            alert("wrong username or password");
+          }
+        },
+        (error) => {
+          alert("wrong username or password");
+        }
+      );
+  };
   return (
-    <form style={formStyle} onSubmit={handleSubmit}>
-      <Field ref={emailRef} label="Email:" type="text" />
-      <Field ref={passwordRef} label="Password:" type="password" />
-      <div>
-        <button style={submitStyle} type="submit">
-          Submit
-        </button>
+    <form className="formStyle" onSubmit={handleSubmit}>
+      <div className="form-group">
+        <Field
+          ref={emailRef}
+          type="email"
+          placeholder="enter email"
+          label="Email Address"
+        />
+        <Field
+          ref={passwordRef}
+          placeholder="enter password"
+          type="password"
+          label="Password"
+        />
+        <div className="m-5">
+          <button className="btn btn-dark submitStyle" type="submit">
+            Submit
+          </button>
+        </div>
       </div>
     </form>
   );
@@ -115,7 +90,7 @@ function App() {
     console.log(json);
   };
   return (
-    <div style={appStyle}>
+    <div className="appStyle fnt">
       <Form onSubmit={handleSubmit} />
     </div>
   );
