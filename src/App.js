@@ -61,52 +61,61 @@ function App() {
   });
 
   return (
-    <ApolloProvider client={client}>
-      <FileProvider>
-        <BrowserRouter>
-          <Navbar
-            state={state}
-            setState={setState}
-            role={role}
-            setRole={setRole}
-          />
+    <div className="container">
+      <ApolloProvider client={client}>
+        <FileProvider>
+          <BrowserRouter>
+            <Navbar
+              state={state}
+              setState={setState}
+              role={role}
+              setRole={setRole}
+            />
 
-          <div className="pt-5">
-            <Routes>
-              <Route path="/forum" element={<Forum />} />
-              <Route path="/" element={<Home />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/log-in" element={<LogIn />} />
-              <Route path="/sign-up" element={<SignUp />} />
+            <div>
+              <Routes>
+                <Route path="/forum" element={<Forum />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/log-in" element={<LogIn />} />
+                <Route path="/sign-up" element={<SignUp />} />
 
-              <Route path="/unilib/user/:username" element={<UserAccount />} />
-              <Route
-                path="/unilib/admin/:adminname"
-                element={<AdminAccount />}
-              />
-              <Route path="/unilib/library" element={<Library />} />
+                <Route
+                  path="/unilib/user/:username"
+                  element={<UserAccount />}
+                />
+                <Route
+                  path="/unilib/admin/:adminname"
+                  element={<AdminAccount />}
+                />
+                <Route path="/unilib/library" element={<Library />} />
 
-              <Route
-                path="/authentication/activation/:token"
-                element={<Activation />}
-              />
-              <Route
-                path="/unilib/admin/:username"
-                element={<AdminAccount />}
-              />
-              <Route path="/forum/:category" element={<StudentBooks />} />
-              <Route path="/unilib/admin/library" element={<AdminLibrary />} />
-              <Route path="/unilib/admin/add-books/" element={<AddBooks />} />
+                <Route
+                  path="/authentication/activation/:token"
+                  element={<Activation />}
+                />
+                <Route
+                  path="/unilib/admin/:username"
+                  element={<AdminAccount />}
+                />
+                <Route path="/forum/:category" element={<StudentBooks />} />
+                <Route
+                  path="/unilib/admin/library"
+                  element={<AdminLibrary />}
+                />
+                <Route path="/unilib/admin/add-books/" element={<AddBooks />} />
 
-              <Route path="/edit-book/:id" element={<UpdateBookInfo />} />
-              <Route path="/show-book/:id" element={<ShowBookDetails />} />
+                <Route path="/edit-book/:id" element={<UpdateBookInfo />} />
+                <Route path="/show-book/:id" element={<ShowBookDetails />} />
 
-              <Route path="/logout/" element={<LogOut />} />
-            </Routes>
-          </div>
-        </BrowserRouter>
-      </FileProvider>
-    </ApolloProvider> //will keep all the routers here.
+                <Route path="/logout/" element={<LogOut />} />
+              </Routes>
+            </div>
+          </BrowserRouter>
+        </FileProvider>
+      </ApolloProvider>{" "}
+      //will keep all the routers here.
+    </div>
   );
 }
 
