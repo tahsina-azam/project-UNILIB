@@ -122,6 +122,7 @@ app.post(
   }
 );
 
+
 app.post(
   "/activateAccount",
   checkParamsIfExists(["token"]),

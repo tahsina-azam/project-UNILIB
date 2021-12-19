@@ -8,7 +8,7 @@ function Home() {
   return (
     <div>
       <HeroSection />
-      {/* <Cards /> */}
+      <Cards />
       {/* <Footer /> */}
     </div>
   );

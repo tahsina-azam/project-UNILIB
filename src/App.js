@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 
@@ -21,9 +22,11 @@ import StudentBooks from "./components/pages/StudentBooks";
 import UpdateBookInfo from "./components/pages/UpdateBookInfo";
 import ShowBookDetails from "./components/pages/ShowBookDetails";
 import FileProvider from "./contexts/file";
+import axios from "./utility";
 
 function App() {
   const [state, setState] = useState(false);
+  const [role, setRole] = useState("");
 
   const path = window.location.pathname;
   const words = path.split("/");
@@ -43,8 +46,18 @@ function App() {
   useEffect(() => {
     (async () => {
       const response = requireAuth();
-
       setState(response);
+      if (response) {
+        axios.get("http://localhost:4000/user", { withCredentials: true }).then(
+          (response) => {
+            console.log(response.data);
+            setRole(response.data.data.role);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      }
     })();
   });
 
@@ -53,7 +66,13 @@ function App() {
       <ApolloProvider client={client}>
         <FileProvider>
           <BrowserRouter>
-            <Navbar state={state} setState={setState} />
+            <Navbar
+              state={state}
+              setState={setState}
+              role={role}
+              setRole={setRole}
+            />
+
             <div>
               <Routes>
                 <Route path="/forum" element={<Forum />} />
@@ -65,6 +84,10 @@ function App() {
                 <Route
                   path="/unilib/user/:username"
                   element={<UserAccount />}
+                />
+                <Route
+                  path="/unilib/admin/:adminname"
+                  element={<AdminAccount />}
                 />
                 <Route path="/unilib/library" element={<Library />} />
 
@@ -98,3 +121,67 @@ function App() {
 }
 
 export default App;
+=======
+import React, {useEffect, useState} from 'react';
+import Navbar from './components/Navbar';
+import {BrowserRouter as Router , Switch , Route} from 'react-router-dom';
+import './App.css';
+import Home from './components/pages/Home';
+import Services from './components/pages/Services';
+import LogIn from './components/pages/LogIn';
+import SignUp from './components/pages/SignUp';
+iwmport Activation from './components/pages/Activation';
+import UserAccount from './components/pages/UserAccount'
+
+function App() {
+  const [state,setState]=useState(false);
+
+  const path = window.location.pathname;
+    const words = path.split('/');
+    console.log(words[0]);
+  
+  const requireAuth = () => {
+    const path = window.location.pathname;
+    const words = path.split('/');
+    console.log(words[0]);
+    if(words[1]==='unilib'){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  useEffect(() => {
+    (
+        async () => {
+            const response = requireAuth() ;
+
+            setState(response);
+        }
+    )();
+});
+
+  return (
+    <>
+    <Router>
+         <Navbar state={state} setState={setState}/>
+         <Switch>
+           <Route path='/' exact component=
+           {Home} />
+           <Route path='/services' exact component=
+           {Services} />
+            <Route path='/log-in' exact component=
+           {LogIn} />
+           <Route path='/sign-up' exact component=
+           {SignUp} />
+           <Route path='/authentication/activation/:token' exact component=
+           {Activation} />
+            <Route path='/unilib/user/:username' component={UserAccount}/> 
+         </Switch>
+    </Router>
+    </>//will keep all the routers here.
+  );
+}
+
+export default App;
+>>>>>>> Stashed changes
