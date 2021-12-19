@@ -24,7 +24,7 @@ const Navbar = (props) => {
     );
   } else {
     menu = (
-      <div class="navbar-nav ms0auto">
+      <div class="navbar-nav ms-auto">
         {/* wrong link for profile */}
         <Link class="nav-item nav-link active" to="/">
           Profile
