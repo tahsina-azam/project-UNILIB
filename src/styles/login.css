@@ -1,0 +1,44 @@
+.body {
+}
+.appStyle {
+  display: flex;
+  flex-wrap: wrap;
+  position: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  margin-top: 8%;
+  background: url("../images/background.jpg");
+}
+.formStyle {
+  margin: auto;
+  padding: 10px;
+  border: 1px solid #c9c9c9;
+  border-radius: 5px;
+  width: 50%;
+  height: 100%;
+  display: block;
+  align-items: center;
+  font-size: 20px;
+}
+.labelStyle = {
+  margin: 10px;
+  font-size: 20px;
+}
+
+.inputStyle = {
+  margin: 10px;
+  padding: 5px;
+  /* border: 1px solid #bfbfbf; */
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.submitStyle = {
+  border-radius: 3px;
+  background: #000000;
+  width: 100%;
+  font-size: 15px;
+  display: block;
+  align: center;
+}
