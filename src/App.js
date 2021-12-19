@@ -21,9 +21,11 @@ import StudentBooks from "./components/pages/StudentBooks";
 import UpdateBookInfo from "./components/pages/UpdateBookInfo";
 import ShowBookDetails from "./components/pages/ShowBookDetails";
 import FileProvider from "./contexts/file";
+import axios from "./utility";
 
 function App() {
   const [state, setState] = useState(false);
+  const [role, setRole] = useState("");
 
   const path = window.location.pathname;
   const words = path.split("/");
@@ -43,8 +45,18 @@ function App() {
   useEffect(() => {
     (async () => {
       const response = requireAuth();
-
       setState(response);
+      if (response) {
+        axios.get("http://localhost:4000/user", { withCredentials: true }).then(
+          (response) => {
+            console.log(response.data);
+            setRole(response.data.data.role);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      }
     })();
   });
 
@@ -53,34 +65,52 @@ function App() {
       <ApolloProvider client={client}>
         <FileProvider>
           <BrowserRouter>
-            <Navbar state={state} setState={setState} />
-            <Routes>
-              <Route path="/forum" element={<Forum />} />
-              <Route path="/" element={<Home />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/log-in" element={<LogIn />} />
-              <Route path="/sign-up" element={<SignUp />} />
+            <Navbar
+              state={state}
+              setState={setState}
+              role={role}
+              setRole={setRole}
+            />
 
-              <Route path="/unilib/user/:username" element={<UserAccount />} />
-              <Route path="/unilib/library" element={<Library />} />
+            <div>
+              <Routes>
+                <Route path="/forum" element={<Forum />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/log-in" element={<LogIn />} />
+                <Route path="/sign-up" element={<SignUp />} />
 
-              <Route
-                path="/authentication/activation/:token"
-                element={<Activation />}
-              />
-              <Route
-                path="/unilib/admin/:username"
-                element={<AdminAccount />}
-              />
-              <Route path="/forum/:category" element={<StudentBooks />} />
-              <Route path="/unilib/admin/library" element={<AdminLibrary />} />
-              <Route path="/unilib/admin/add-books/" element={<AddBooks />} />
+                <Route
+                  path="/unilib/user/:username"
+                  element={<UserAccount />}
+                />
+                <Route
+                  path="/unilib/admin/:adminname"
+                  element={<AdminAccount />}
+                />
+                <Route path="/unilib/library" element={<Library />} />
 
-              <Route path="/edit-book/:id" element={<UpdateBookInfo />} />
-              <Route path="/show-book/:id" element={<ShowBookDetails />} />
+                <Route
+                  path="/authentication/activation/:token"
+                  element={<Activation />}
+                />
+                <Route
+                  path="/unilib/admin/:username"
+                  element={<AdminAccount />}
+                />
+                <Route path="/forum/:category" element={<StudentBooks />} />
+                <Route
+                  path="/unilib/admin/library"
+                  element={<AdminLibrary />}
+                />
+                <Route path="/unilib/admin/add-books/" element={<AddBooks />} />
 
-              <Route path="/logout/" element={<LogOut />} />
-            </Routes>
+                <Route path="/edit-book/:id" element={<UpdateBookInfo />} />
+                <Route path="/show-book/:id" element={<ShowBookDetails />} />
+
+                <Route path="/logout/" element={<LogOut />} />
+              </Routes>
+            </div>
           </BrowserRouter>
         </FileProvider>
       </ApolloProvider>
