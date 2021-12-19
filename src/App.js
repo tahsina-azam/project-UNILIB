@@ -21,9 +21,11 @@ import StudentBooks from "./components/pages/StudentBooks";
 import UpdateBookInfo from "./components/pages/UpdateBookInfo";
 import ShowBookDetails from "./components/pages/ShowBookDetails";
 import FileProvider from "./contexts/file";
+import axios from "./utility";
 
 function App() {
   const [state, setState] = useState(false);
+  const [role, setRole] = useState("");
 
   const path = window.location.pathname;
   const words = path.split("/");
@@ -43,8 +45,18 @@ function App() {
   useEffect(() => {
     (async () => {
       const response = requireAuth();
-
       setState(response);
+      if (response) {
+        axios.get("http://localhost:4000/user", { withCredentials: true }).then(
+          (response) => {
+            console.log(response.data);
+            setRole(response.data.data.role);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      }
     })();
   });
 
@@ -53,7 +65,14 @@ function App() {
       <ApolloProvider client={client}>
         <FileProvider>
           <BrowserRouter>
-            <Navbar state={state} setState={setState} />
+
+            <Navbar
+              state={state}
+              setState={setState}
+              role={role}
+              setRole={setRole}
+            />
+
             <div>
               <Routes>
                 <Route path="/forum" element={<Forum />} />
@@ -65,6 +84,10 @@ function App() {
                 <Route
                   path="/unilib/user/:username"
                   element={<UserAccount />}
+                />
+                <Route
+                  path="/unilib/admin/:adminname"
+                  element={<AdminAccount />}
                 />
                 <Route path="/unilib/library" element={<Library />} />
 
@@ -86,13 +109,16 @@ function App() {
                 <Route path="/edit-book/:id" element={<UpdateBookInfo />} />
                 <Route path="/show-book/:id" element={<ShowBookDetails />} />
 
+
                 <Route path="/logout/" element={<LogOut />} />
               </Routes>
             </div>
           </BrowserRouter>
         </FileProvider>
+
       </ApolloProvider>
       {/* //will keep all the routers here. */}
+
     </div>
   );
 }
