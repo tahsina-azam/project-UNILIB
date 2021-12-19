@@ -21,9 +21,11 @@ import StudentBooks from "./components/pages/StudentBooks";
 import UpdateBookInfo from "./components/pages/UpdateBookInfo";
 import ShowBookDetails from "./components/pages/ShowBookDetails";
 import FileProvider from "./contexts/file";
+import axios from "./utility";
 
 function App() {
   const [state, setState] = useState(false);
+  const [role, setRole] = useState("");
 
   const path = window.location.pathname;
   const words = path.split("/");
@@ -43,8 +45,18 @@ function App() {
   useEffect(() => {
     (async () => {
       const response = requireAuth();
-
       setState(response);
+      if (response) {
+        axios.get("http://localhost:4000/user", { withCredentials: true }).then(
+          (response) => {
+            console.log(response.data);
+            setRole(response.data.data.role);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      }
     })();
   });
 
@@ -52,8 +64,12 @@ function App() {
     <ApolloProvider client={client}>
       <FileProvider>
         <BrowserRouter>
-          <Navbar state={state} setState={setState} />
-
+          <Navbar
+            state={state}
+            setState={setState}
+            role={role}
+            setRole={setRole}
+          />
 
           <div className="pt-5">
             <Routes>
@@ -64,8 +80,11 @@ function App() {
               <Route path="/sign-up" element={<SignUp />} />
 
               <Route path="/unilib/user/:username" element={<UserAccount />} />
+              <Route
+                path="/unilib/admin/:adminname"
+                element={<AdminAccount />}
+              />
               <Route path="/unilib/library" element={<Library />} />
-
 
               <Route
                 path="/authentication/activation/:token"
