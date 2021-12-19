@@ -98,9 +98,7 @@ app.post("/register", async (req, res) => {
 
   // const {password, ...data} = await result.toJSON()
 
-  {
-    /* res.send(data)*/
-  }
+  res.json({ token });
 });
 
 app.post("/activateAccount", async (req, res) => {

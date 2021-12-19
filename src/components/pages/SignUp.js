@@ -1,56 +1,13 @@
 import axios from "axios";
 import React from "react";
-import "../../styles/App.css";
-
-const appStyle = {
-  height: "250px",
-  display: "flex",
-};
-
-const formStyle = {
-  margin: "auto",
-  padding: "20px",
-  border: "10px solid #c9c9c9",
-  borderRadius: "5px",
-  background: "#f5f5f5",
-  width: "400px",
-  display: "block",
-  align: "center",
-};
-
-const labelStyle = {
-  margin: "10px 0 5px 0",
-  fontFamily: "Arial, Helvetica, sans-serif",
-  fontSize: "15px",
-};
-
-const inputStyle = {
-  margin: "5px 0 10px 0",
-  padding: "5px",
-  border: "1px solid #bfbfbf",
-  borderRadius: "3px",
-  boxSizing: "border-box",
-  width: "100%",
-};
-
-const submitStyle = {
-  margin: "10px 0 0 0",
-  padding: "7px 10px",
-  border: "1px solid #efffff",
-  borderRadius: "3px",
-  background: "#000000",
-  width: "100%",
-  fontSize: "15px",
-  color: "white",
-  display: "block",
-  align: "center",
-};
+import "../../styles/login.css";
+import "../../styles/Fonts.css";
 
 const Field = React.forwardRef(({ label, type }, ref) => {
   return (
-    <div>
-      <label style={labelStyle}>{label}</label>
-      <input ref={ref} type={type} style={inputStyle} />
+    <div className="form-outline flex-fill mb-0">
+      <input ref={ref} type={type} className="form-control" />
+      <label className="form-label">{label}</label>
     </div>
   );
 });
@@ -84,23 +41,84 @@ const Form = ({ onSubmit }) => {
     });
   };
   return (
-    <form style={formStyle} onSubmit={handleSubmit}>
-      <Field ref={nameRef} label="Name:" type="text" />
-      <Field ref={emailRef} label="Email:" type="email" />
-      <Field
-        ref={registrationNumRef}
-        label="Registration Number:"
-        type="number"
-      />
-      <Field ref={departmentRef} label="Department:" type="text" />
-      <Field ref={sessionRef} label="Session:" type="varchar" />
-      <Field ref={passwordRef} label="Password:" type="password" />
-      <div>
-        <button style={submitStyle} type="submit">
-          Submit
-        </button>
+    <div className="vh-90 border-0">
+      <div className="container">
+        <div className="row d-flex justify-content-center align-items-center">
+          <div className="col-lg-12 col-xl-11">
+            <div className="card text-black border-0">
+              <div className="card-body p-md-5 regbody">
+                <div className="row justify-content-center">
+                  <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                    <form className="mx-1 mx-md-4">
+                      <div className="d-flex flex-row align-items-center mb-4">
+                        <i className="fas fa-user fa-lg me-3 fa-fw"></i>
+                        <Field ref={nameRef} label="Name" type="text" />
+                      </div>
+
+                      <div className="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-calendar-alt fa-lg me-3 fa-fw"></i>
+                        <Field
+                          ref={sessionRef}
+                          label="Session"
+                          type="varchar"
+                        />
+                      </div>
+
+                      <div className="d-flex flex-row align-items-center mb-4">
+                        <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                        <Field ref={emailRef} label="Email" type="email" />
+                      </div>
+                      <div className="d-flex flex-row align-items-center mb-4">
+                        <i className="fas fa-list-ol fa-lg me-3 fa-fw"></i>
+                        <Field
+                          ref={registrationNumRef}
+                          label="Registration Number"
+                          type="number"
+                        />
+                      </div>
+                      <div className="d-flex flex-row align-items-center mb-4">
+                        <i className="fas fa-book-reader fa-lg me-3 fa-fw"></i>
+                        <Field
+                          ref={departmentRef}
+                          label="Department"
+                          type="text"
+                        />
+                      </div>
+
+                      <div className="d-flex flex-row align-items-center mb-4">
+                        <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
+                        <Field
+                          ref={passwordRef}
+                          label="Password"
+                          type="password"
+                        />
+                      </div>
+
+                      <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                        <button
+                          type="submit"
+                          className="btn btn-dark text-align-center"
+                          onSubmit={handleSubmit}
+                        >
+                          Register
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                  <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                    <img
+                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.png"
+                      className="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </form>
+    </div>
   );
 };
 
@@ -112,11 +130,7 @@ const App = () => {
     console.clear();
     console.log(json);
   };
-  return (
-    <div style={appStyle}>
-      <Form onSubmit={handleSubmit} />
-    </div>
-  );
+  return <Form onSubmit={handleSubmit} />;
 };
 
 export default App;
