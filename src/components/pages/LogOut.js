@@ -31,7 +31,6 @@ class App extends React.Component {
     return (
       <div>
         <Row className="mb-5"></Row>
-        <button>hello</button>
         <p>You are logged out.Please log in again.</p>
         <p>You are logged out.Please log in again.</p>
         <p>You are logged out.Please log in again.</p>

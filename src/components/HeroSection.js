@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/App.css";
 import { Button } from "react-bootstrap";
 import "./HeroSection.css";
+import Footer from "./Footer";
 import vid from "../videos/video-3.mp4";
 
 function HeroSection() {
@@ -13,10 +14,10 @@ function HeroSection() {
         WHAT IS STOPPING YOU FROM DISCOVERING THEM?
       </h3>
       <div className="hero-btns">
-        <Button
+        {/*<Button
           className="btns"
-          buttonStyle="btn--outline"
-          buttonSize="btn-large"
+          buttonstyle="btn--outline"
+          buttonsize="btn-large"
         >
           GET STARTED
         </Button>
@@ -26,7 +27,8 @@ function HeroSection() {
           buttonSize="btn-large"
         >
           WATCH TRAILER <i className="far fa-play-circle" />
-        </Button>
+       </Button>*/}
+        <Footer />
       </div>
     </div>
   );

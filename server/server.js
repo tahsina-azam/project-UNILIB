@@ -98,9 +98,7 @@ app.post("/register", async (req, res) => {
 
   // const {password, ...data} = await result.toJSON()
 
-  {
-    /* res.send(data)*/
-  }
+  res.json({ token });
 });
 
 app.post("/activateAccount", async (req, res) => {
@@ -193,29 +191,6 @@ app.get("/user", checkTokenMiddleware, async (req, res) => {
   const data = await User.findOne({ _id: req.user._id });
 
   res.json({ message: "successful", data });
-  /*try {
-      const cookie = req.cookies['jwt']
-
-      const claims = jwt.verify(cookie, 'secret')
-
-      if (!claims) {
-          return res.status(401).send({
-              message: 'unauthenticated'
-          })
-      }
-      
-      
-      const user = await User.findOne({_id: claims._id})
-      console.log("user:"+user)
-
-      const {password, ...data} = await user.toJSON()
-      res.json({message: 'successful', user});
-     // res.send(user)
-  } catch (e) {
-      return res.status(401).send({
-          message: 'unauthenticated'
-      })
-  }*/
 });
 
 app.post("/logout", (req, res) => {
@@ -242,6 +217,41 @@ app.post("/addbook", upload.single("image"), async (req, res) => {
   const { bookName, ...data } = await result.toJSON();
 
   res.send(data);
+});
+
+// @route GET api/books
+// @description Get all books
+// @access Public
+app.get("/allbooks", (req, res) => {
+  Book.find()
+    .then((books) => res.json(books))
+    .catch((err) => res.status(404).json({ nobooksfound: "No Books found" }));
+});
+
+// @route GET api/books/:id
+// @description Get single book by id
+// @access Public
+app.get("/api/books/:id", (req, res) => {
+  Book.findById(req.params.id)
+    .then((book) => res.json(book))
+    .catch((err) => res.status(404).json({ nobookfound: "No Book found" }));
+});
+
+app.put("/api/books/:id", (req, res) => {
+  Book.findByIdAndUpdate(req.params.id, req.body)
+    .then((book) => res.json({ msg: "Updated successfully" }))
+    .catch((err) =>
+      res.status(400).json({ error: "Unable to update the Database" })
+    );
+});
+
+// @route GET api/books/:id
+// @description Delete book by id
+// @access Public
+app.delete("/api/books/:id", (req, res) => {
+  Book.findByIdAndRemove(req.params.id, req.body)
+    .then((book) => res.json({ mgs: "Book entry deleted successfully" }))
+    .catch((err) => res.status(404).json({ error: "No such a book" }));
 });
 
 app.listen(4000, () => {

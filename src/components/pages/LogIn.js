@@ -1,108 +1,129 @@
 import React from "react";
 import "../../styles/App.css";
+import "../../styles/login.css";
+import "../../styles/Fonts.css";
+import "../../styles/Sidebar.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const appStyle = {
-  display: "flex",
-  flexWrap: "wrap",
-  position: "absolute",
-  top: 0,
-  left: 0,
-  height: "100%",
-  width: "100%",
-  alignItems: "center",
-};
-
-const formStyle = {
-  margin: "auto",
-  padding: "10px",
-  border: "1px solid #c9c9c9",
-  borderRadius: "5px",
-  background: "#f5f5f",
-  width: "220px",
-  display: "block",
-  alignItems: "center",
-};
-
-const labelStyle = {
-  margin: "10px 0 5px 0",
-  fontFamily: "Arial, Helvetica, sans-serif",
-  fontSize: "15px",
-};
-
-const inputStyle = {
-  margin: "5px 0 10px 0",
-  padding: "5px",
-  border: "1px solid #bfbfbf",
-  borderRadius: "3px",
-  boxSizing: "border-box",
-  width: "100%",
-};
-
-const submitStyle = {
-  margin: "10px 0 0 0",
-  padding: "7px 10px",
-  border: "1px solid #efffff",
-  borderRadius: "3px",
-  background: "#000000",
-  width: "100%",
-  fontSize: "15px",
-  color: "white",
-  display: "block",
-  align: "center",
-};
-
-const Field = React.forwardRef(({ label, type }, ref) => {
+const Field = React.forwardRef(({ label, type, placeholder }, ref) => {
   return (
     <div>
-      <label style={labelStyle}>{label}</label>
-      <input ref={ref} type={type} style={inputStyle} />
+      <label className="fnt">{label}</label>
+      <input
+        ref={ref}
+        type={type}
+        className="form-control fnt"
+        placeholder={placeholder}
+      />
     </div>
   );
 });
 
 const Form = ({ onSubmit }) => {
   const emailRef = React.useRef();
-    const passwordRef = React.useRef();
-    let history = useNavigate();
-    
-    const handleSubmit = e => {
-        e.preventDefault();
-        const data = {
-            email: emailRef.current.value,
-            password: passwordRef.current.value
-        };
-        onSubmit(data);
-        
-        axios.post('http://localhost:4000/login',{
-          email: emailRef.current.value,
-          password: passwordRef.current.value
-    }).then((res) => {    
-      console.log(res.data.token);      
-      if(res.data.token){
-        localStorage.setItem('token', res.data.token)
-        const email=emailRef.current.value;
-        var id = email.split('@');
-        history(`/unilib/user/${id[0]}`);
-      }
-      else{
-        alert('wrong username or password');
-      }
-      
-    },(error)=>{
-      alert('wrong username or password');
-    });}
+  const passwordRef = React.useRef();
+  let history = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    };
+    onSubmit(data);
+
+    axios
+      .post("http://localhost:4000/login", {
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+      })
+      .then(
+        (res) => {
+          console.log(res.data.token);
+          if (res.data.token) {
+            localStorage.setItem("token", res.data.token);
+            const email = emailRef.current.value;
+            var id = email.split("@");
+            history(`/unilib/user/${id[0]}`);
+          } else {
+            alert("wrong username or password");
+          }
+        },
+        (error) => {
+          alert("wrong username or password");
+        }
+      );
+  };
   return (
-    <form style={formStyle} onSubmit={handleSubmit}>
-      <Field ref={emailRef} label="Email:" type="text" />
-      <Field ref={passwordRef} label="Password:" type="password" />
-      <div>
-        <button style={submitStyle} type="submit">
-          Submit
-        </button>
+    <div className="vh-90 border-0">
+      <div className="container">
+        <div className="row d-flex justify-content-center align-items-center">
+          <div className="col-lg-12 col-xl-11">
+            <div className="card text-black border-0">
+              <div className="card-body p-md-5 regbody">
+                <div className="row justify-content-center">
+                  <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                    <form className="mx-1 mx-md-4">
+                      <div className="d-flex flex-row align-items-center mb-4">
+                        <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                        <Field ref={emailRef} label="Email" type="email" />
+                      </div>
+                      <div className="d-flex flex-row align-items-center mb-4">
+                        <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
+                        <Field
+                          ref={passwordRef}
+                          label="Password"
+                          type="password"
+                        />
+                      </div>
+
+                      <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                        <button
+                          type="submit"
+                          className="btn btn-dark text-align-center"
+                          onSubmit={handleSubmit}
+                        >
+                          Login
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                  <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                    <img
+                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.png"
+                      className="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </form>
+    </div>
+    // <form className="formStyle" onSubmit={handleSubmit}>
+    //   <div className="form-group">
+    //     <Field
+    //       ref={emailRef}
+    //       type="email"
+    //       placeholder="enter email"
+    //       label="Email Address"
+    //     />
+    //     <Field
+    //       ref={passwordRef}
+    //       placeholder="enter password"
+    //       type="password"
+    //       label="Password"
+    //     />
+    //     <div className="m-5">
+    //       <button className="btn btn-dark submitStyle" type="submit">
+    //         Submit
+    //       </button>
+    //     </div>
+    //   </div>
+    // </form>
   );
 };
 
@@ -115,7 +136,7 @@ function App() {
     console.log(json);
   };
   return (
-    <div style={appStyle}>
+    <div className="fnt mt-0 pt-0">
       <Form onSubmit={handleSubmit} />
     </div>
   );

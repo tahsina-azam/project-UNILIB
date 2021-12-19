@@ -1,5 +1,5 @@
 import React from "react";
-import "../../App.css";
+import "../../styles/App.css";
 import { Col, Form, Row, Button, Image } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import img1 from "../../images/user.png";

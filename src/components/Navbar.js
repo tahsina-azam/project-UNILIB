@@ -1,95 +1,70 @@
-import React,{useState} from 'react'
-import { Link } from 'react-router-dom'
-import './Navbar.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import "../styles/Fonts.css";
 
-const Navbar= props =>{
-    const [click, setClick] = useState(false);
+const Navbar = (props) => {
+  let menu;
 
-    const handleClick = () =>setClick(!click);
+  if (!props.state) {
+    menu = (
+      <div class="navbar-nav ms-auto">
+        <Link class="nav-item nav-link active mx-3" to="/">
+          Home
+        </Link>
+        <Link to="/services" class="nav-item nav-link mx-3">
+          Services
+        </Link>
+        <Link to="/log-in" class="nav-item nav-link mx-3">
+          Log In
+        </Link>
+        <Link to="/sign-up" class="nav-item nav-link mx-3">
+          Sign Up
+        </Link>
+      </div>
+    );
+  } else {
+    menu = (
+      <div class="navbar-nav ms0auto">
+        {/* wrong link for profile */}
+        <Link class="nav-item nav-link active" to="/">
+          Profile
+        </Link>
+        <Link to="/forum" class="nav-item nav-link">
+          Forum
+        </Link>
+        <Link to="/unilib/library" class="nav-item nav-link">
+          Library
+        </Link>
+        <Link to="/logout" class="nav-item nav-link">
+          Log out
+        </Link>
+      </div>
+    );
+  }
 
-    const closeMobileMenu= () =>setClick(false);
+  return (
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+      <div class="container-fluid">
+        <div class="navbar-brand">
+          {/* unilib redirection cancelled */}
+          <div>
+            UNILIB <i className="fab fa-typo3" />
+          </div>
+        </div>
+        <button
+          type="button"
+          class="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarCollapse2"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse2">
+          {menu}
+        </div>
+      </div>
+    </nav>
+  );
+};
 
-    let menu;
-    
-    if(!props.state){
-     menu=(
-        <div className="navbar-container">
-             <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-        UNILIB <i className='fab fa-typo3'/>
-    </Link>
-    <div className="menu-icon" onClick={handleClick}>
-        <i className={click ? 'fas fa-times':'fas fa-bars'} />
-    </div>
-    <ul className={click ? 'nav-menu active' :'nav-menu'}>
-        <li className='nav-item'>
-            <Link to='/' className='nav-links' onClick={closeMobileMenu}>
-                Home
-            </Link>
-        </li>
-        <li className='nav-item'>
-            <Link to='/services' className='nav-links' onClick={closeMobileMenu}>
-                Services
-            </Link>
-        </li>
-        <li className='nav-item'>
-            <Link to='/log-in' className='nav-links' onClick={closeMobileMenu}>
-               Log In
-            </Link>
-        </li>
-        <li className='nav-item'>
-            <Link to='/sign-up' className='nav-links' onClick={closeMobileMenu}>
-                Sign Up
-            </Link>
-        </li>
-    </ul>
-                 
-             </div>
-    )
-    }
-    else{
-        menu=(
-            <div className="navbar-container">
-             <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-        UNILIB <i className='fab fa-typo3'/>
-    </Link>
-    <div className="menu-icon" onClick={handleClick}>
-        <i className={click ? 'fas fa-times':'fas fa-bars'} />
-    </div>
-    <ul className={click ? 'nav-menu active' :'nav-menu'}>
-        <li className='nav-item'>
-            <Link to='/' className='nav-links' onClick={closeMobileMenu}>
-                Profile
-            </Link>
-        </li>
-        <li className='nav-item'>
-            <Link to='/unilib/library' className='nav-links' onClick={closeMobileMenu}>
-                Library
-            </Link>
-        </li>
-        <li className='nav-item'>
-            <Link to='/log-in' className='nav-links' onClick={closeMobileMenu}>
-               Forum
-            </Link>
-        </li>
-        <li className='nav-item'>
-            <Link to='/logout' className='nav-links' onClick={closeMobileMenu}>
-               Log out
-            </Link>
-        </li>
-    </ul>
-                 
-             </div>
-        )
-    }
-    
-    return (
-        <>
-         <nav className="navbar">
-             {menu}
-         </nav>   
-        </>
-    )
-}
-
-export default Navbar
-
+export default Navbar;
