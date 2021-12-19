@@ -37,6 +37,38 @@ const Navbar = (props) => {
         </ul>
       </div>
     );
+  } else if (props.role === "admin") {
+    menu = (
+      <div className="navbar-container bar">
+        <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+          UNILIB <i className="fab fa-typo3" />
+        </Link>
+        <div className="menu-icon" onClick={handleClick}>
+          <i className={click ? "fas fa-times" : "fas fa-bars"} />
+        </div>
+        <ul className={click ? "nav-menu active" : "nav-menu"}>
+          <li className="nav-item">
+            <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+              Admin
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              to="/unilib/admin/library"
+              className="nav-links"
+              onClick={closeMobileMenu}
+            >
+              Library
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/logout" className="nav-links" onClick={closeMobileMenu}>
+              Log out
+            </Link>
+          </li>
+        </ul>
+      </div>
+    );
   } else {
     menu = (
       <div className="navbar-container bar">

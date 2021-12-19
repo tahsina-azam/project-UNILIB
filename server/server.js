@@ -7,6 +7,7 @@ const cookieParser = require("cookieparser");
 const connectDB = require("./db/db_user");
 const User = require("./model/model_user");
 const Book = require("./model/model_books");
+const Role = require("./model/model_role");
 const path = require("path");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv").config({
@@ -60,6 +61,7 @@ app.post("/register", async (req, res) => {
     department: req.body.department,
     session: req.body.session,
     password: hashedPassword,
+    role: "user",
   });
 
   const token = jwt.sign(
@@ -70,6 +72,7 @@ app.post("/register", async (req, res) => {
       department: user.department,
       session: user.session,
       password: user.password,
+      role: user.role,
     },
     process.env.JWT_ACC_ACTIVATE,
     { expiresIn: "200m" }
@@ -114,8 +117,16 @@ app.post("/activateAccount", async (req, res) => {
         if (err) {
           return res.status(400).json({ error: "Incorrect or Expired link" });
         }
-        const { name, email, registration, department, session, password } =
-          decodedToken;
+        const {
+          name,
+          email,
+          registration,
+          department,
+          session,
+          password,
+          role,
+        } = decodedToken;
+
         User.findOne({ email }).exec((err, user) => {
           if (user) {
             return res
@@ -129,6 +140,7 @@ app.post("/activateAccount", async (req, res) => {
             department,
             session,
             password,
+            role,
           });
           newUser.save((err, success) => {
             if (err) {
@@ -195,9 +207,15 @@ app.get("/user", checkTokenMiddleware, async (req, res) => {
   res.json({ message: "successful", data });
 });
 
+app.get("/role", checkTokenMiddleware, async (req, res) => {
+  console.log({ user: req.user });
+  const data = await Role.findOne({ Email: req.user.email });
+
+  res.json({ message: "successful", data });
+});
+
 app.post("/logout", (req, res) => {
   res.cookie("jwt", "", { maxAge: 0 });
-  res.cookie.Clear();
   res.send({
     message: "success",
   });
