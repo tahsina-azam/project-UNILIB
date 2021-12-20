@@ -7,7 +7,7 @@ export const INSERT_BOOK = gql`
         category_id: "0b1666c9-cd69-444f-bbf4-7453db836e5d"
         link: $link
         name: $name
-        uploader_id: "aff58d89-41c6-46d8-82a5-85590c106129"
+        uploader_id: "d9a9427d-d40a-4796-bf63-926aa74c4972"
       }
     ) {
       id
@@ -19,7 +19,7 @@ export const POST_COMMENT = gql`
     insert_comments(
       objects: {
         post_id: $post_id
-        commenter_id: "aff58d89-41c6-46d8-82a5-85590c106129"
+        commenter_id: "d9a9427d-d40a-4796-bf63-926aa74c4972"
         reply: $reply
       }
     ) {
@@ -33,7 +33,7 @@ export const POST_POST = gql`
   mutation MyMutation($message: String!) {
     insert_posts_one(
       object: {
-        author_id: "aff58d89-41c6-46d8-82a5-85590c106129"
+        author_id: "d9a9427d-d40a-4796-bf63-926aa74c4972"
         message: $message
       }
     ) {

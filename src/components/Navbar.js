@@ -26,16 +26,16 @@ const Navbar = (props) => {
     menu = (
       <div class="navbar-nav ms-auto">
         {/* wrong link for profile */}
-        <Link class="nav-item nav-link active" to="/">
+        <Link class="nav-item nav-link active mx-3" to="/">
           Profile
         </Link>
-        <Link to="/forum" class="nav-item nav-link">
+        <Link to="/forum" class="nav-item nav-link mx-3">
           Forum
         </Link>
-        <Link to="/unilib/library" class="nav-item nav-link">
+        <Link to="/unilib/library" class="nav-item nav-link mx-3">
           Library
         </Link>
-        <Link to="/logout" class="nav-item nav-link">
+        <Link to="/logout" class="nav-item nav-link mx-3">
           Log out
         </Link>
       </div>

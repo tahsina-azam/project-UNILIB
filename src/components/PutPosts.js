@@ -15,7 +15,7 @@ export function TypePost() {
       postPost({
         variables: {
           message: message,
-          // author_id: "13f57010-ae46-46a7-a104-2e3c124bf187",
+          author_id: "d9a9427d-d40a-4796-bf63-926aa74c4972",
         },
       });
       refetch();
