@@ -7,7 +7,6 @@ const cookieParser = require("cookieparser");
 const connectDB = require("./db/db_user");
 const User = require("./model/model_user");
 const Book = require("./model/model_books");
-const Role = require("./model/model_role");
 const path = require("path");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv").config({
@@ -33,14 +32,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); // To parse the incoming requests with JSON payloads
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "./public/"));
+app.use(express.static(__dirname + "./server/public/"));
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./public/images");
+    cb(null, "../public/images");
   },
   filename: (req, file, cb) => {
     console.log(file);
-    cb(null, Date.now() + path.extname(file.originalname));
+    cb(null, file.originalname);
   },
 });
 
