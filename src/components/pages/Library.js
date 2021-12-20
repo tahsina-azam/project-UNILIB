@@ -1,13 +1,13 @@
 import React from "react";
 import { Row, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ShowBookList from "./ShowBookList";
+import StudentBookList from "./StudentBookList";
 import "../../styles/AdminLibrary.css";
 
 const App = () => {
   return (
-    <div>
-      <div class="">
+    <div className="library">
+      <div>
         <Row className="mb-5"></Row>
         <div className=" container mx-auto">
           <div class="row">

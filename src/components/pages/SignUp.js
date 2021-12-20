@@ -74,14 +74,18 @@ const Form = ({ onSubmit }) => {
       password: passwordRef.current.value,
     };
     onSubmit(data);
-    axios.post("http://localhost:4000/register", {
-      name: nameRef.current.value,
-      email: emailRef.current.value,
-      registration: registrationNumRef.current.value,
-      department: departmentRef.current.value,
-      session: sessionRef.current.value,
-      password: passwordRef.current.value,
-    });
+    axios
+      .post("http://localhost:4000/register", {
+        name: nameRef.current.value,
+        email: emailRef.current.value,
+        registration: registrationNumRef.current.value,
+        department: departmentRef.current.value,
+        session: sessionRef.current.value,
+        password: passwordRef.current.value,
+      })
+      .then((res) => {
+        alert("check your email for the activation link");
+      });
   };
   return (
     <form style={formStyle} onSubmit={handleSubmit}>
@@ -120,4 +124,3 @@ const App = () => {
 };
 
 export default App;
-

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import BookCard from "./BookCard";
+import "../../styles/Fonts.css";
 
 class ShowBookList extends Component {
   constructor(props) {
@@ -42,7 +43,7 @@ class ShowBookList extends Component {
             <div className="col-md-12">
               <br />
               <card className="card mx-auto" style={{ width: "18rem" }}>
-                <h2 className="display-4 text-center">Books</h2>
+                <h2 className="fnt-sheeva text-center">Books</h2>
               </card>
             </div>
 
