@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { GET_POSTS_QUERY } from "../database/queries";
 import { PutComments } from "./PutComments";
-import { Time } from "./UuidToTime";
+import Time from "./UuidToTime";
 import "../styles/post.css";
 //show posts
 const Post = ({ author, message, created_at }) => {

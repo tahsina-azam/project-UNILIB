@@ -1,6 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { POST_COMMENT } from "../database/Mutations";
-import { Time } from "./UuidToTime";
+import Time from "./UuidToTime";
 import "../styles/Forum.css";
 import "../styles/Comment.css";
 //show comment
