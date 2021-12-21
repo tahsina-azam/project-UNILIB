@@ -24,34 +24,16 @@ const Navbar = (props) => {
     );
   } else if (props.role === "admin") {
     menu = (
-      <div className="navbar-container bar">
-        <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-          UNILIB <i className="fab fa-typo3" />
+      <div class="navbar-nav ms-auto">
+        <Link class="nav-item nav-link active mx-3" to="/">
+          Admin
         </Link>
-        <div className="menu-icon" onClick={handleClick}>
-          <i className={click ? "fas fa-times" : "fas fa-bars"} />
-        </div>
-        <ul className={click ? "nav-menu active" : "nav-menu"}>
-          <li className="nav-item">
-            <Link to="/" className="nav-links" onClick={closeMobileMenu}>
-              Admin
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="/unilib/admin/library"
-              className="nav-links"
-              onClick={closeMobileMenu}
-            >
-              Library
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/logout" className="nav-links" onClick={closeMobileMenu}>
-              Log out
-            </Link>
-          </li>
-        </ul>
+        <Link to="/unilib/admin/library" class="nav-item nav-link mx-3">
+          Library
+        </Link>
+        <Link to="/logout" class="nav-item nav-link mx-3">
+          Log out
+        </Link>
       </div>
     );
   } else {
