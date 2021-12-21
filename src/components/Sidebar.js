@@ -31,7 +31,7 @@ const Sidebar = () => {
     <>
       <nav className="sidebar text-center">
         <div className="sidebar-header">
-          <h3>Student uploads</h3>
+          <h3></h3>
         </div>
 
         <ul className="list-unstyled components ">

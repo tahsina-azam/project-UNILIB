@@ -8,13 +8,12 @@ import { useNavigate } from "react-router-dom";
 
 const Field = React.forwardRef(({ label, type, placeholder }, ref) => {
   return (
-    <div className="m-5">
-      <label className="m-1 fnt">{label}</label>
+    <div>
+      <label className="fnt">{label}</label>
       <input
         ref={ref}
         type={type}
         className="form-control fnt"
-        style={{ width: "90%", height: "100%" }}
         placeholder={placeholder}
       />
     </div>
@@ -44,6 +43,7 @@ const Form = ({ onSubmit }) => {
           console.log(res.data.token);
           if (res.data.token) {
             localStorage.setItem("token", res.data.token);
+            localStorage.setItem("id", res.data.id);
             const email = emailRef.current.value;
             var id = email.split("@");
             history(`/unilib/user/${id[0]}`);
@@ -57,27 +57,74 @@ const Form = ({ onSubmit }) => {
       );
   };
   return (
-    <form className="formStyle" onSubmit={handleSubmit}>
-      <div className="form-group">
-        <Field
-          ref={emailRef}
-          type="email"
-          placeholder="enter email"
-          label="Email Address"
-        />
-        <Field
-          ref={passwordRef}
-          placeholder="enter password"
-          type="password"
-          label="Password"
-        />
-        <div className="m-5">
-          <button className="btn btn-dark submitStyle" type="submit">
-            Submit
-          </button>
+    <div className="vh-90 border-0">
+      <div className="container">
+        <div className="row d-flex justify-content-center align-items-center">
+          <div className="col-lg-12 col-xl-11">
+            <div className="card text-black border-0">
+              <div className="card-body p-md-5 regbody">
+                <div className="row justify-content-center">
+                  <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                    <form className="mx-1 mx-md-4" onSubmit={handleSubmit}>
+                      <div className="d-flex flex-row align-items-center mb-4">
+                        <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                        <Field ref={emailRef} label="Email" type="email" />
+                      </div>
+                      <div className="d-flex flex-row align-items-center mb-4">
+                        <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
+                        <Field
+                          ref={passwordRef}
+                          label="Password"
+                          type="password"
+                        />
+                      </div>
+
+                      <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                        <button
+                          type="submit"
+                          className="btn btn-dark text-align-center"
+                          onSubmit={handleSubmit}
+                        >
+                          Login
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                  <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                    <img
+                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.png"
+                      className="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </form>
+    </div>
+    // <form className="formStyle" onSubmit={handleSubmit}>
+    //   <div className="form-group">
+    //     <Field
+    //       ref={emailRef}
+    //       type="email"
+    //       placeholder="enter email"
+    //       label="Email Address"
+    //     />
+    //     <Field
+    //       ref={passwordRef}
+    //       placeholder="enter password"
+    //       type="password"
+    //       label="Password"
+    //     />
+    //     <div className="m-5">
+    //       <button className="btn btn-dark submitStyle" type="submit">
+    //         Submit
+    //       </button>
+    //     </div>
+    //   </div>
+    // </form>
   );
 };
 
@@ -90,7 +137,7 @@ function App() {
     console.log(json);
   };
   return (
-    <div className="appStyle fnt">
+    <div className="fnt mt-0 pt-0">
       <Form onSubmit={handleSubmit} />
     </div>
   );

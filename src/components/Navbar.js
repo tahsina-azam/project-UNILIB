@@ -1,40 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/Navbar.css";
 import "../styles/Fonts.css";
 
 const Navbar = (props) => {
-  const [click, setClick] = useState(false);
-
-  const handleClick = () => setClick(!click);
-
-  const closeMobileMenu = () => setClick(false);
-
   let menu;
 
   if (!props.state) {
     menu = (
-      <div className="navbar-container bar">
-        <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-          UNILIB <i className="fab fa-typo3" />
+      <div class="navbar-nav ms-auto">
+        <Link class="nav-item nav-link active mx-3" to="/">
+          Home
         </Link>
-        <div className="menu-icon" onClick={handleClick}>
-          <i className={click ? "fas fa-times" : "fas fa-bars"} />
-        </div>
-        <ul className={click ? "nav-menu active " : "nav-menu"}>
-          <Link to="/" className="nav-links" onClick={closeMobileMenu}>
-            Home
-          </Link>
-          <Link to="/services" className="nav-links" onClick={closeMobileMenu}>
-            Services
-          </Link>
-          <Link to="/log-in" className="nav-links" onClick={closeMobileMenu}>
-            Log In
-          </Link>
-          <Link to="/sign-up" className="nav-links" onClick={closeMobileMenu}>
-            Sign Up
-          </Link>
-        </ul>
+        <Link to="/services" class="nav-item nav-link mx-3">
+          Services
+        </Link>
+        <Link to="/log-in" class="nav-item nav-link mx-3">
+          Log In
+        </Link>
+        <Link to="/sign-up" class="nav-item nav-link mx-3">
+          Sign Up
+        </Link>
       </div>
     );
   } else if (props.role === "admin") {
@@ -71,47 +56,46 @@ const Navbar = (props) => {
     );
   } else {
     menu = (
-      <div className="navbar-container bar">
-        <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-          UNILIB <i className="fab fa-typo3" />
+      <div class="navbar-nav ms-auto">
+        {/* wrong link for profile */}
+        <Link class="nav-item nav-link active mx-3" to="/">
+          Profile
         </Link>
-        <div className="menu-icon" onClick={handleClick}>
-          <i className={click ? "fas fa-times" : "fas fa-bars"} />
-        </div>
-        <ul className={click ? "nav-menu active" : "nav-menu"}>
-          <li className="nav-item">
-            <Link to="/" className="nav-links" onClick={closeMobileMenu}>
-              Profile
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="/unilib/library"
-              className="nav-links"
-              onClick={closeMobileMenu}
-            >
-              Library
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/forum" className="nav-links" onClick={closeMobileMenu}>
-              Forum
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/logout" className="nav-links" onClick={closeMobileMenu}>
-              Log out
-            </Link>
-          </li>
-        </ul>
+        <Link to="/forum" class="nav-item nav-link mx-3">
+          Forum
+        </Link>
+        <Link to="/unilib/library" class="nav-item nav-link mx-3">
+          Library
+        </Link>
+        <Link to="/logout" class="nav-item nav-link mx-3">
+          Log out
+        </Link>
       </div>
     );
   }
 
   return (
-    <>
-      <nav>{menu}</nav>
-    </>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+      <div class="container-fluid">
+        <div class="navbar-brand">
+          {/* unilib redirection cancelled */}
+          <div>
+            UNILIB <i className="fab fa-typo3" />
+          </div>
+        </div>
+        <button
+          type="button"
+          class="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarCollapse2"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse2">
+          {menu}
+        </div>
+      </div>
+    </nav>
   );
 };
 
