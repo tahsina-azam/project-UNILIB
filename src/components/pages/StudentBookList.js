@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import BookCard from "./BookCard";
-import "../../styles/Fonts.css";
+import StudentBookCard from "./StudentBookCard";
 
-class ShowBookList extends Component {
+class StudentBookList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,7 +32,9 @@ class ShowBookList extends Component {
     if (!books) {
       bookList = "there is no book record!";
     } else {
-      bookList = books.map((book, k) => <BookCard book={book} key={k} />);
+      bookList = books.map((book, k) => (
+        <StudentBookCard book={book} key={k} />
+      ));
     }
 
     return (
@@ -67,4 +68,4 @@ class ShowBookList extends Component {
   }
 }
 
-export default ShowBookList;
+export default StudentBookList;

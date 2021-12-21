@@ -20,6 +20,7 @@ import AddBooks from "./components/pages/AddBooks";
 import StudentBooks from "./components/pages/StudentBooks";
 import UpdateBookInfo from "./components/pages/UpdateBookInfo";
 import ShowBookDetails from "./components/pages/ShowBookDetails";
+import BookDetails from "./components/pages/BookDetails";
 import FileProvider from "./contexts/file";
 import axios from "./utility";
 
@@ -35,10 +36,24 @@ function App() {
     const path = window.location.pathname;
     const words = path.split("/");
     console.log(words[0]);
-    if (words[1] === "unilib") {
+    {
+      /*if (words[1] === "unilib") {
       return true;
     } else {
       return false;
+    }*/
+    }
+    if (
+      words[1] === "" ||
+      words[1] === "services" ||
+      words[1] === "log-in" ||
+      words[1] === "sign-up" ||
+      words[1] === "logout" ||
+      words[1] === "authentication"
+    ) {
+      return false;
+    } else {
+      return true;
     }
   };
 
@@ -84,10 +99,6 @@ function App() {
                   path="/unilib/user/:username"
                   element={<UserAccount />}
                 />
-                <Route
-                  path="/unilib/admin/:adminname"
-                  element={<AdminAccount />}
-                />
                 <Route path="/unilib/library" element={<Library />} />
 
                 <Route
@@ -107,6 +118,10 @@ function App() {
 
                 <Route path="/edit-book/:id" element={<UpdateBookInfo />} />
                 <Route path="/show-book/:id" element={<ShowBookDetails />} />
+                <Route
+                  path="/show-book-details/:id"
+                  element={<BookDetails />}
+                />
 
                 <Route path="/logout/" element={<LogOut />} />
               </Routes>

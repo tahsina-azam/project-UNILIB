@@ -1,5 +1,5 @@
 .admin-library {
-  background-image: url("../images/img-12.jpg");
+  background-image: url("../images/img-5.jpg");
   background-position: center;
   background-repeat: repeat;
   font-size: 100px;
@@ -22,6 +22,9 @@
   border: 1px solid #dde74d;
 }
 
-.card {
-  /* background-color: #d0b485; */
+.library {
+  background-image: url("../images/img-5.jpg");
+  background-position: center;
+  background-repeat: repeat;
+  font-size: 100px;
 }

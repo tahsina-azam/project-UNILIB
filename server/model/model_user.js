@@ -5,10 +5,12 @@ var schema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
   id: {
     type: String,
     required: true,
   },
+
   email: {
     type: String,
     required: true,
@@ -30,6 +32,10 @@ var schema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+  },
+
+  role: {
+    type: String,
   },
 });
 

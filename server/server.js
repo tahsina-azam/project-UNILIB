@@ -35,14 +35,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); // To parse the incoming requests with JSON payloads
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "./public/"));
+app.use(express.static(__dirname + "./server/public/"));
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./public/images");
+    cb(null, "../public/images");
   },
   filename: (req, file, cb) => {
     console.log(file);
-    cb(null, Date.now() + path.extname(file.originalname));
+    cb(null, file.originalname);
   },
 });
 
@@ -121,7 +122,6 @@ app.post(
     });
   }
 );
-
 
 app.post(
   "/activateAccount",
@@ -237,9 +237,15 @@ app.get("/user", checkTokenMiddleware, async (req, res) => {
   res.json({ message: "successful", data });
 });
 
+app.get("/role", checkTokenMiddleware, async (req, res) => {
+  console.log({ user: req.user });
+  const data = await Role.findOne({ Email: req.user.email });
+
+  res.json({ message: "successful", data });
+});
+
 app.post("/logout", (req, res) => {
   res.cookie("jwt", "", { maxAge: 0 });
-  res.cookie.Clear();
   res.send({
     message: "success",
   });
@@ -251,7 +257,7 @@ app.post("/addbook", upload.single("image"), async (req, res) => {
     bookName: req.body.bookName,
     writer: req.body.writer,
     pdfLink: req.body.pdfLink,
-    image: req.body.image,
+    image: req.file.originalname,
     number: req.body.number,
     text: req.body.text,
   });

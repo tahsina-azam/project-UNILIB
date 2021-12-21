@@ -32,3 +32,9 @@ body {
   margin-top: 0%;
   padding-top: 0%;
 }
+
+.fnt-sheeva {
+  font-family: "Montserrat";
+  font-size: 50px;
+  font-weight: 1000;
+}

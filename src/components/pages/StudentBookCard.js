@@ -4,11 +4,8 @@ import { Row, Button, Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../styles/Fonts.css";
 
-const BookCard = (props) => {
+const StudentBookCard = (props) => {
   const book = props.book;
-  console.log(book.image);
-  {
-  }
 
   return (
     <div>
@@ -19,7 +16,7 @@ const BookCard = (props) => {
         />
         <Card.Body>
           <Card.Title>
-            <Link to={`/show-book/${book._id}`}>{book.bookName}</Link>
+            <Link to={`/show-book-details/${book._id}`}>{book.bookName}</Link>
           </Card.Title>
           <h3>{book.writer}</h3>
           <Card.Text className="fnt">{book.text}</Card.Text>
@@ -30,4 +27,4 @@ const BookCard = (props) => {
   );
 };
 
-export default BookCard;
+export default StudentBookCard;

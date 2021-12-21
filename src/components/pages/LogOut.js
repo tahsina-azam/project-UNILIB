@@ -20,6 +20,8 @@ class App extends React.Component {
       .then(
         (response) => {
           console.log(response.data);
+
+          alert("You are logged out. Please log in again.");
         },
         (error) => {
           console.log(error);
@@ -31,9 +33,6 @@ class App extends React.Component {
     return (
       <div>
         <Row className="mb-5"></Row>
-        <p>You are logged out.Please log in again.</p>
-        <p>You are logged out.Please log in again.</p>
-        <p>You are logged out.Please log in again.</p>
         <p>You are logged out.Please log in again.</p>
       </div>
     );

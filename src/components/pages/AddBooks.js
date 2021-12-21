@@ -23,7 +23,7 @@ const Elements = ({ onSubmit }) => {
     formData.append("writer", writerRef.current.value);
     formData.append("number", numRef.current.value);
     formData.append("image", fileName);
-    formData.append("link", linkRef.current.value);
+    formData.append("pdfLink", linkRef.current.value);
     formData.append("text", textRef.current.value);
 
     const data = {
@@ -31,7 +31,7 @@ const Elements = ({ onSubmit }) => {
       writer: writerRef.current.value,
       number: numRef.current.value,
       image: fileName,
-      link: linkRef.current.value,
+      pdfLink: linkRef.current.value,
       text: textRef.current.value,
     };
     onSubmit(data);
