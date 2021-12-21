@@ -4,7 +4,7 @@ export const INSERT_BOOK = gql`
   mutation MyMutation($category_id: uuid, $link: String!, $name: String!) {
     insert_BookLinks_one(
       object: {
-        category_id: "0b1666c9-cd69-444f-bbf4-7453db836e5d"
+        category_id: $category_id
         link: $link
         name: $name
         uploader_id: "d9a9427d-d40a-4796-bf63-926aa74c4972"
