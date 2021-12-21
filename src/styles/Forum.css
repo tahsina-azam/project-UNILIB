@@ -16,9 +16,8 @@
   border-style: groove;
 }
 .show_time {
-  font-size: x-small;
-  font-style: italic;
-  color: gray;
+  font-size: 12px !important;
+  font-style: italic !important;
 }
 .flexing {
   flex-shrink: 5;

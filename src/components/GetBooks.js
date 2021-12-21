@@ -3,7 +3,8 @@ import "../styles/Sidebar.css";
 import "../styles/Fonts.css";
 import { useFiles } from "../contexts/file";
 import { useParams } from "react-router-dom";
-const Book = ({ name, link }) => {
+import Time from "./UuidToTime";
+const Book = ({ name, link, uploaderName, uploaded_at }) => {
   console.log("Fetch books");
   return (
     <li
@@ -18,7 +19,8 @@ const Book = ({ name, link }) => {
         <div className="ml-2">
           <h6 className="mb-0 text-capitalize">{name}</h6>
           <div className="about">
-            <span>"who uploadeed"</span> <span>"when uploaded"</span>{" "}
+            <span className="text-capitalize">Uploader: {uploaderName}</span>{" "}
+            <Time time={uploaded_at} caption="uploaded at" />
           </div>
         </div>
       </div>
@@ -40,7 +42,15 @@ const GetBooks = () => {
         ) : (
           files
             .filter((e) => e.category.name === category)
-            .map((b) => <Book key={b.id} name={b.name} link={b.link} />)
+            .map((b) => (
+              <Book
+                key={b.id}
+                name={b.name}
+                link={b.link}
+                uploaderName={b.uploader.name}
+                uploaded_at={b.uploaded_at}
+              />
+            ))
         )}
       </ul>
     </div>

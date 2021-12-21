@@ -36,6 +36,10 @@ export const GET_BOOK_LIST_QUERY = gql`
       category {
         name
       }
+      uploader {
+        name
+      }
+      uploaded_at
     }
   }
 `;
