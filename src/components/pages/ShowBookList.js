@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import BookCard from "./BookCard";
 import "../../styles/Fonts.css";
+import "../../styles/Library.css";
 
 class ShowBookList extends Component {
   constructor(props) {
