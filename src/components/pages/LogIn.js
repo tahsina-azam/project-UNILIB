@@ -40,10 +40,10 @@ const Form = ({ onSubmit }) => {
       })
       .then(
         (res) => {
-          console.log(res.data.token);
           if (res.data.token) {
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("id", res.data.id);
+
             const email = emailRef.current.value;
             var id = email.split("@");
             history(`/unilib/user/${id[0]}`);

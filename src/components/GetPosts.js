@@ -38,7 +38,7 @@ const Post = ({ author, message, created_at }) => {
   );
 };
 //fetch posts
-const GetPosts = () => {
+const GetPosts = ({ commenter_id }) => {
   const { data, loading, error, refetch } = useQuery(GET_POSTS_QUERY);
   if (loading) return <div>loading...</div>;
   if (error) return <div>error!</div>;
@@ -71,7 +71,12 @@ const GetPosts = () => {
                 </div>
                 <div className="line-divider"></div>
                 <div className="post-comment borderrr px-2">
-                  <PutComments key={p.id} post={p} refetch={refetch} />
+                  <PutComments
+                    key={p.id}
+                    post={p}
+                    refetch={refetch}
+                    commenter_id={commenter_id}
+                  />
                 </div>
               </div>
             </div>

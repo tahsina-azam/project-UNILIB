@@ -36,13 +36,11 @@ function App() {
     const path = window.location.pathname;
     const words = path.split("/");
     console.log(words[0]);
-    {
-      /*if (words[1] === "unilib") {
+    /*if (words[1] === "unilib") {
       return true;
     } else {
       return false;
     }*/
-    }
     if (
       words[1] === "" ||
       words[1] === "services" ||

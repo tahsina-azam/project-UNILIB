@@ -20,7 +20,7 @@ const Comment = ({ replier, reply, commented_at }) => {
   );
 };
 //type to comment
-const TypeComment = ({ post, refetch }) => {
+const TypeComment = ({ post, refetch, commenter_id }) => {
   const [postComment, { error, loading }] = useMutation(POST_COMMENT);
   if (loading) return <div>loading...</div>;
   if (error) return <div>error!</div>;
@@ -28,7 +28,13 @@ const TypeComment = ({ post, refetch }) => {
     e.preventDefault();
     const reply = e.target[0].value;
     if (e.target[0].value !== "")
-      postComment({ variables: { post_id: post.id, reply } });
+      postComment({
+        variables: {
+          post_id: post.id,
+          reply: reply,
+          commenter_id: commenter_id,
+        },
+      });
     e.target[0].value = "";
     refetch();
   };
@@ -73,12 +79,17 @@ const TypeComment = ({ post, refetch }) => {
   );
 };
 //insert comment
-export const PutComments = ({ post, refetch }) => {
+export const PutComments = ({ post, refetch, commenter_id }) => {
   return (
     <div>
       {post.comments.length === 0 ? (
         <div>
-          <TypeComment key={post.id} post={post} refetch={refetch} />
+          <TypeComment
+            key={post.id}
+            post={post}
+            refetch={refetch}
+            commenter_id={commenter_id}
+          />
         </div>
       ) : (
         <div>
@@ -90,7 +101,12 @@ export const PutComments = ({ post, refetch }) => {
               commented_at={c.commented_at}
             />
           ))}
-          <TypeComment key={post.id} post={post} refetch={refetch} />
+          <TypeComment
+            key={post.id}
+            post={post}
+            refetch={refetch}
+            commenter_id={commenter_id}
+          />
         </div>
       )}
     </div>

@@ -3,7 +3,9 @@ import { GET_POSTS_QUERY } from "../database/queries";
 import { POST_POST } from "../database/Mutations";
 
 //type post insert
-export function TypePost() {
+export function TypePost({ author_id }) {
+  console.log(author_id);
+  console.log(typeof author_id);
   const { refetch } = useQuery(GET_POSTS_QUERY);
   const [postPost, { error, loading }] = useMutation(POST_POST);
   if (loading) return <div>loading...</div>;
@@ -15,7 +17,7 @@ export function TypePost() {
       postPost({
         variables: {
           message: message,
-          author_id: "d9a9427d-d40a-4796-bf63-926aa74c4972",
+          author_id: author_id,
         },
       });
       refetch();
