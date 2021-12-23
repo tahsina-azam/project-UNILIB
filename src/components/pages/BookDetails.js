@@ -71,9 +71,7 @@ class BookDetails extends Component {
             <tr>
               <th scope="row">4</th>
               <td>Pdf Link</td>
-              <td>
-                <a href={`${book.pdflink}`}>{book.pdfLink}</a>
-              </td>
+              <td>{book.pdfLink}</td>
             </tr>
             <tr>
               <th scope="row">5</th>
