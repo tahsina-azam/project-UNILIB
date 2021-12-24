@@ -43,6 +43,25 @@ class StudentBookList extends Component {
       <div className="ShowBookList">
         <div className="container">
           <div className="row">
+            <div class="input-group mb-3">
+              {" "}
+              <input
+                type="text"
+                class="form-control input-text"
+                placeholder="Search books...."
+                onChange={(event) => {}}
+              />
+              <div class="input-group-append">
+                {" "}
+                <button
+                  color="black"
+                  class="btn btn-outline-warning btn-lg"
+                  type="button"
+                >
+                  <i style={{ color: "black" }} class="fa fa-search"></i>
+                </button>{" "}
+              </div>
+            </div>
             <div className="col-md-12">
               <br />
               <card className="card mx-auto" style={{ width: "18rem" }}>
