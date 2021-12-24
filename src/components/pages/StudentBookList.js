@@ -18,6 +18,7 @@ class StudentBookList extends Component {
         this.setState({
           books: res.data,
         });
+        console.log(res.data);
       })
       .catch((err) => {
         console.log("Error from ShowBookList");

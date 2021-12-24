@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Row, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import StudentBookList from "./StudentBookList";
 import "../../styles/AdminLibrary.css";
 
 const App = () => {
+  const [searchTerm, setSearchTerm] = useState("");
   return (
     <div className="library">
       <div>
@@ -18,8 +19,9 @@ const App = () => {
                   type="text"
                   class="form-control input-text"
                   placeholder="Search books...."
-                  aria-label="Recipient's username"
-                  aria-describedby="basic-addon2"
+                  onChange={(event) => {
+                    setSearchTerm(event.target.value);
+                  }}
                 />
                 <div class="input-group-append">
                   {" "}
@@ -37,7 +39,10 @@ const App = () => {
         </div>
       </div>
       <div class="mx-auto">
-        <StudentBookList />
+        <StudentBookList
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+        />
       </div>
     </div>
   );
