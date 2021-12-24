@@ -1,5 +1,4 @@
 import GetPosts from "../GetPosts";
-import { TypePost } from "../PutPosts";
 import Sidebar from "../Sidebar";
 import "bootstrap/dist/css/bootstrap.min.css";
 function Forum() {
@@ -10,7 +9,7 @@ function Forum() {
       {/* <div className="wrapper"> */}
       {/* <!-- Page Content  --> */}
       <div className="content">
-        <TypePost author_id={hasura_id} />
+        {/* <TypePost author_id={hasura_id} /> */}
         <GetPosts commenter_id={hasura_id} />
       </div>
     </div>

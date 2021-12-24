@@ -7,6 +7,7 @@ import { INSERT_BOOK } from "../database/Mutations";
 import { useQuery, useMutation } from "@apollo/client";
 import "../styles/Forum.css";
 import "../styles/Sidebar.css";
+import selectType from "./popups";
 const UploadPDFs = () => {
   const [show, setShow] = useState(false);
   const [val, setVal] = useState({ name: "Select category" });
@@ -15,7 +16,7 @@ const UploadPDFs = () => {
     setShowWarning("");
     setShow(false);
   };
-  const handleShow = () => setShow(true);
+  const handleShow = () => setShow(!show);
   const [upload] = useMutation(INSERT_BOOK);
   let storageref, finalFile, finalFileName;
   //show categories in the dropdown menu
@@ -35,16 +36,18 @@ const UploadPDFs = () => {
   const onSubmitButton = (e) => {
     console.log("onSubmitButton " + finalFileName);
     console.log("1");
-    console.log(showWarning);
-    setShowWarning(
+    console.log(val.name);
+    const ShowWarningString =
       val.name === "Select category"
         ? "Fill the fields correctly"
         : typeof finalFile === undefined
         ? "Fill the fields correctly"
-        : ""
-    );
-    if (showWarning !== "") {
-      console.log(showWarning);
+        : "";
+    setShowWarning(ShowWarningString);
+
+    if (ShowWarningString === "") {
+      selectType("waiting", "books");
+      console.log("2");
       try {
         storageref.put(finalFile).then(() => {
           storageref.getDownloadURL().then((link) => {
@@ -56,21 +59,25 @@ const UploadPDFs = () => {
                 category_id: val.id,
               },
             });
+            selectType("success", "book");
             console.log("books refetching");
             refetch();
             console.log("books refetched");
             setShowWarning("");
+            handleShow();
+
             return link;
           });
         });
       } catch (err) {
         console.log("here");
         console.log({ err });
-        setShowWarning("Fill the fields correctly");
+
         return err;
       }
+    } else {
+      setShowWarning("Fill the fields correctly");
     }
-    return;
   };
   //the function to upload the file to firebase
   const UploadToFirebase = () => {
@@ -95,8 +102,13 @@ const UploadPDFs = () => {
     <>
       {/* button to upload */}
 
-      <Button variant="dark" onClick={handleShow} className="m-2">
-        Upload
+      <Button
+        variant="btn btn-outline-light shadow-none"
+        type="submit"
+        onClick={handleShow}
+        className="text-center"
+      >
+        Upload a book
       </Button>
       {/* select book*/}
       <Modal show={show} onHide={handleClose}>
@@ -130,15 +142,11 @@ const UploadPDFs = () => {
         </Modal.Body>
 
         <Modal.Footer>
+          {/* warning */}
           <span style={{ color: "red", fontSize: "12px" }} className="ml-auto">
             {showWarning}
           </span>
-          <Button
-            variant="success"
-            onClick={onSubmitButton}
-            // disable a button when there is no file input
-            // disabled=[showWarningState ? false : true} --> doesn't work
-          >
+          <Button variant="success" onClick={onSubmitButton}>
             Upload
           </Button>
         </Modal.Footer>

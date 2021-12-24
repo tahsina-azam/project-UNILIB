@@ -23,6 +23,7 @@ import ShowBookDetails from "./components/pages/ShowBookDetails";
 import BookDetails from "./components/pages/BookDetails";
 import FileProvider from "./contexts/file";
 import axios from "./utility";
+import TypePost from "./components/pages/PutPosts";
 
 function App() {
   const [state, setState] = useState(false);
@@ -85,7 +86,7 @@ function App() {
               setRole={setRole}
             />
 
-            <div>
+            <div className="wrap ml-0 mt-0">
               <Routes>
                 <Route path="/forum" element={<Forum />} />
                 <Route path="/" element={<Home />} />
@@ -108,6 +109,7 @@ function App() {
                   element={<AdminAccount />}
                 />
                 <Route path="/forum/:category" element={<StudentBooks />} />
+                <Route path="/forum/writepost" element={<TypePost />} />
                 <Route
                   path="/unilib/admin/library"
                   element={<AdminLibrary />}
