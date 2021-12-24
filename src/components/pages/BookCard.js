@@ -13,10 +13,12 @@ const BookCard = (props) => {
   return (
     <div>
       <Card style={{ width: "18rem" }}>
-        <Card.Img
-          variant="top"
-          src={window.location.origin + "/images/" + book.image}
-        />
+        <div>
+          <Card.Img
+            variant="top"
+            src={window.location.origin + "/images/" + book.image}
+          />
+        </div>
         <Card.Body>
           <Card.Title>
             <Link to={`/show-book/${book._id}`}>{book.bookName}</Link>

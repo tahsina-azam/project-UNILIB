@@ -4,6 +4,8 @@ import { Col, Form, Row, Button, Image } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import img1 from "../../images/user.png";
 import axios from "../../utility";
+import { ListGroup } from "react-bootstrap";
+import "../../styles/UserProfile.css";
 
 class App extends React.Component {
   constructor(props) {
@@ -42,64 +44,120 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <Row className="mb-5"></Row>
-        <Row className="mb-5">
-          <div className="text-center">
-            <Image src={img1} roundedCircle alt="..." />
-          </div>
-        </Row>
-        <div>
-          <Form>
-            <Row className="mb-3">
-              <Col className="mb-1"> </Col>
-              <Form.Group as={Col} controlId="formGridEmail">
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="email" placeholder={this.state.email} />
-              </Form.Group>
-
-              <Form.Group as={Col} controlId="formGridPassword">
-                <Form.Label>Roll</Form.Label>
-                <Form.Control placeholder={this.state.registration} />
-              </Form.Group>
-              <Col className="mb-1"> </Col>
-            </Row>
-
-            <Row className="mb-3">
-              <Col className="mb-0"> </Col>
-              <Form.Group as={Col} controlId="formGridAddress1">
-                <Form.Label>Name</Form.Label>
-                <Form.Control placeholder={this.state.name} />
-              </Form.Group>
-              <Col className="mb-0"> </Col>
-            </Row>
-
-            <Row className="mb-3">
-              <Col className="mb-1"> </Col>
-              <Form.Group as={Col} controlId="formGridState">
-                <Form.Label>Department</Form.Label>
-                <Form.Select defaultValue={this.state.department}>
-                  <option>Choose...</option>
-                  <option>CSE</option>
-                  <option>EEE</option>
-                  <option>SWE</option>
-                  <option>...</option>
-                </Form.Select>
-              </Form.Group>
-
-              <Form.Group as={Col} controlId="formGridZip">
-                <Form.Label>Session</Form.Label>
-                <Form.Control placeholder={this.state.session} />
-              </Form.Group>
-              <Col className="mb-1"> </Col>
-            </Row>
-            <div className="text-center">
-              <Button variant="primary" type="submit" align="center">
-                Update
-              </Button>
-              <Row className="mb-5"></Row>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <Row className="mb-3"></Row>
+            <div class="profile-card-4 z-depth-3">
+              <div class="card">
+                <div class="card-body text-center  rounded-top">
+                  <div class="user-box">
+                    <Image
+                      src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                      alt="user avatar"
+                    />
+                  </div>
+                  <h5 class="mb-1 text-white">{this.state.name}</h5>
+                </div>
+                <div class="card-body">
+                  <ul class="list-group shadow-none">
+                    <li class="list-group-item">
+                      <div class="list-icon">
+                        <i class="fa fa-envelope"></i>
+                      </div>
+                      <div class="list-details">
+                        <span>{this.state.email}</span>
+                      </div>
+                    </li>
+                    <li></li>
+                  </ul>
+                  <ListGroup>
+                    <ListGroup.Item>Edit Account Info</ListGroup.Item>
+                    <ListGroup.Item>View Other Users</ListGroup.Item>
+                    <ListGroup.Item>Recently Added Books</ListGroup.Item>
+                    <ListGroup.Item>Contact Support</ListGroup.Item>
+                  </ListGroup>
+                </div>
+                <div class="card-footer text-center"></div>
+              </div>
             </div>
-          </Form>
+          </div>
+          <div class="col-lg-8">
+            <Row className="mb-3"></Row>
+            <div class="card z-depth-3">
+              <div class="card-body">
+                <ul class="nav nav-pills nav-pills-primary nav-justified">
+                  <li class="nav-item">
+                    <a
+                      href="javascript:void();"
+                      data-target="#profile"
+                      data-toggle="pill"
+                      class="nav-link active show"
+                    >
+                      <i class="icon-user"></i>{" "}
+                      <span class="hidden-xs">Profile</span>
+                    </a>
+                  </li>
+                </ul>
+                <div class="tab-content p-3">
+                  <div class="tab-pane active show" id="profile">
+                    <h5 class="mb-3">User Profile</h5>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <h6>Name</h6>
+                        <p>{this.state.name}</p>
+                        <h6>Registration Number</h6>
+                        <p>{this.state.registration}</p>
+                        <h6>Department</h6>
+                        <p>{this.state.department}</p>
+                      </div>
+                      <div class="col-md-6">
+                        <h6>Contact</h6>
+                        <p>{this.state.email}</p>
+                        <h6>Session</h6>
+
+                        <p>{this.state.session}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="col-lg-8" style={{ width: "46rem" }}>
+                <div class="card z-depth-3">
+                  <div class="card-body">
+                    <ul class="nav nav-pills nav-pills-primary nav-justified">
+                      <li class="nav-item">
+                        <a
+                          href="javascript:void();"
+                          data-target="#profile"
+                          data-toggle="pill"
+                          class="nav-link active show"
+                        >
+                          <i class="icon-user"></i>{" "}
+                          <span class="hidden-xs">Borrowed Books</span>
+                        </a>
+                      </li>
+                      <div class="col-md-12">
+                        <table class="table table-hover table-striped">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <strong>{this.state.name}</strong> Borrowed book
+                                "A great Romance" with id{" "}
+                                <strong>"12345fgdfgg345"</strong>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );

@@ -6,6 +6,7 @@ const { faRetweet } = require("@fortawesome/free-solid-svg-icons");
 const cookieParser = require("cookieparser");
 const connectDB = require("./db/db_user");
 const User = require("./model/model_user");
+const Role = require("./model/model_user"); //not sure
 const Book = require("./model/model_books");
 const path = require("path");
 const bodyParser = require("body-parser");
@@ -83,7 +84,7 @@ app.post(
     "password",
   ]),
   async (req, res) => {
-    const { name, email, registration, department, session, password } =
+    const { name, email, registration, department, session, password, id } =
       req.body;
 
     const salt = await bcrypt.genSalt(10);
@@ -97,6 +98,7 @@ app.post(
         department,
         session,
         password: hashedPassword,
+        id,
       },
       process.env.JWT_ACC_ACTIVATE,
       { expiresIn: "200m" }

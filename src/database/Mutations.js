@@ -15,13 +15,9 @@ export const INSERT_BOOK = gql`
   }
 `;
 export const POST_COMMENT = gql`
-  mutation MyMutation2($post_id: uuid!, $reply: String!) {
+  mutation MyMutation2($post_id: uuid!, $reply: String!, $commenter_id: uuid) {
     insert_comments(
-      objects: {
-        post_id: $post_id
-        commenter_id: "d9a9427d-d40a-4796-bf63-926aa74c4972"
-        reply: $reply
-      }
+      objects: { post_id: $post_id, commenter_id: $commenter_id, reply: $reply }
     ) {
       returning {
         id
@@ -30,13 +26,8 @@ export const POST_COMMENT = gql`
   }
 `;
 export const POST_POST = gql`
-  mutation MyMutation($message: String!) {
-    insert_posts_one(
-      object: {
-        author_id: "d9a9427d-d40a-4796-bf63-926aa74c4972"
-        message: $message
-      }
-    ) {
+  mutation MyMutation($message: String!, $author_id: uuid) {
+    insert_posts_one(object: { author_id: $author_id, message: $message }) {
       id
     }
   }

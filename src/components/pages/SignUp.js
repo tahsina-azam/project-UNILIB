@@ -22,6 +22,7 @@ const Form = ({ onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("in signup");
     const data = {
       name: nameRef.current.value,
       email: emailRef.current.value,
@@ -103,7 +104,6 @@ const Form = ({ onSubmit }) => {
                         <button
                           type="submit"
                           className="btn btn-dark text-align-center"
-                          onSubmit={handleSubmit}
                         >
                           Register
                         </button>
