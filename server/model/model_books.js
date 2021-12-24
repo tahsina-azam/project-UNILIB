@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const mongoose_fuzzy_searching = require("mongoose-fuzzy-searching");
 
 var bookSchema = new mongoose.Schema({
   bookName: {
@@ -23,6 +24,8 @@ var bookSchema = new mongoose.Schema({
     type: String,
   },
 });
+
+bookSchema.plugin(mongoose_fuzzy_searching, { fields: ["bookName", "writer"] });
 
 const Booksdb = mongoose.model("books", bookSchema);
 
