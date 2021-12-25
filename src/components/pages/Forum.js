@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function Forum() {
   const hasura_id = localStorage.getItem("id");
   return (
-    <div>
+    <div className="wraper">
       <Sidebar />
       {/* <div className="wrapper"> */}
       {/* <!-- Page Content  --> */}

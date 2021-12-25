@@ -3,37 +3,24 @@ import { GET_POSTS_QUERY } from "../database/queries";
 import { PutComments } from "./PutComments";
 import Time from "./UuidToTime";
 import "../styles/post.css";
+import "../styles/Fonts.css";
+import "../styles/Sidebar.css";
 //show posts
 const Post = ({ author, message, created_at }) => {
   const caption = "Published at: ";
   return (
     <div>
       <div className="user-info flex-row">
-        <img
+        {/* <img
           src="https://bootdey.com/img/Content/avatar/avatar6.png"
           alt="user"
           className="profile-photo pull-left "
-        />
-        <h3 className="text-capitalize fnt-calistoga col-lg-10">
-          <a href="timeline.html" className="profile-link">
-            {author}
-          </a>{" "}
-        </h3>
+        /> */}
+        <h3 className="text-capitalize fnt-poster col-lg-10">{author} </h3>
+        <Time time={created_at} caption={caption} className="text-muted" />
       </div>
-      <Time time={created_at} caption={caption} className="text-muted" />
-      {/* <div className="reaction">
-              <a className="btn text-green">
-                <i className="fa fa-thumbs-up"></i> 13
-              </a>
-              <a className="btn text-red">
-                <i className="fa fa-thumbs-down"></i> 0
-              </a>
-            </div> */}
-      <div className="text-capitalize fnt-calistoga text-bold">
-        {console.log(created_at)}
 
-        <p className=".fnt-abhaya paddin">{message}</p>
-      </div>
+      <p className="text-capitalize fnt text-bold p-3">{message}</p>
     </div>
   );
 };
@@ -43,7 +30,7 @@ const GetPosts = ({ commenter_id }) => {
   if (loading) return <div>loading...</div>;
   if (error) return <div>error!</div>;
   return (
-    <div className="post-content">
+    <div>
       <link
         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
         rel="stylesheet"
@@ -53,7 +40,7 @@ const GetPosts = ({ commenter_id }) => {
           src="https://via.placeholder.com/400x150/FFB6C1/000000"
           className="img-responsive post-image"
         /> */}
-      <div className="post-container">
+      <div>
         {data.posts.length === 0 ? (
           <div>no posts, sorry</div>
         ) : (
@@ -70,7 +57,7 @@ const GetPosts = ({ commenter_id }) => {
                   />
                 </div>
                 <div className="line-divider"></div>
-                <div className="post-comment borderrr px-2">
+                <div>
                   <PutComments
                     key={p.id}
                     post={p}

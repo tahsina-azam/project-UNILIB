@@ -27,7 +27,7 @@ const StudentBookCard = (props) => {
 
           <Card.Text className="fnt-description mt-3">
             <p>
-              <span style={{ color: "#198754" }}>Writer: </span>
+              <span style={{ color: "#198754" }}>Author: </span>
               {book.writer}
             </p>
             {/* <span style={{ color: "#198754" }}>Description: </span>

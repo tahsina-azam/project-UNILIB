@@ -43,38 +43,25 @@ class BookDetails extends Component {
     const book = this.state.book;
     let BookItem = (
       <div>
-        <table className="table table-hover table-dark">
-          {/* <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead> */}
+        <table className="table table-hover border-success">
           <tbody>
             <tr>
-              <th scope="row">1</th>
               <td>Title</td>
               <td>{book.bookName}</td>
             </tr>
             <tr>
-              <th scope="row">2</th>
               <td>Author</td>
               <td>{book.writer}</td>
             </tr>
             <tr>
-              <th scope="row">3</th>
               <td>Number</td>
               <td>{book.number}</td>
             </tr>
             <tr>
-              <th scope="row">4</th>
               <td>Pdf Link</td>
               <td>{book.pdfLink}</td>
             </tr>
             <tr>
-              <th scope="row">5</th>
               <td>Description</td>
               <td>{book.text}</td>
             </tr>
@@ -87,7 +74,7 @@ class BookDetails extends Component {
       <div className="ShowBookDetails">
         <div className="container">
           <div className="row">
-            <div className="col-md-10 m-auto">
+            {/* <div className="col-md-10 m-auto">
               <br /> <br />
               <Link
                 to="/unilib/library"
@@ -95,11 +82,13 @@ class BookDetails extends Component {
               >
                 Show Book List
               </Link>
-            </div>
+            </div> */}
             <br />
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Book's Record</h1>
-              <p className="lead text-center">View Book's Info</p>
+              <h1 className="display-4 text-center text-success">
+                Book's Informaions
+              </h1>
+              {/* <p className="lead text-center">View Book's Info</p> */}
               <hr /> <br />
             </div>
           </div>

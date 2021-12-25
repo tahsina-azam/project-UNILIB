@@ -10,12 +10,7 @@ const Comment = ({ replier, reply, commented_at }) => {
       <h5 className="text-capitalize">
         {replier} <Time time={commented_at} caption="commented at: " />
       </h5>
-      <p
-        className="d-flex container-fluid "
-        style={{ color: "black", fontSize: "15px" }}
-      >
-        {reply}
-      </p>
+      <p style={{ color: "black", fontSize: "15px" }}>{reply}</p>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {
   font-family: "Poppins", sans-serif;
+  /* background-color: #dd6b55; */
 
   /* background: #fafafa; */
 }
@@ -44,17 +45,19 @@ button:focus {
   border-top: 0ch;
   border-right: 0ch;
   border-bottom: 0ch;
+  padding: 12px;
+  text-align: center;
   /* border-color: black;
   border-style: groove; */
 }
 .link {
-  color: rgba(255, 255, 255, 0.55);
+  color: rgb(255, 255, 255);
   text-decoration: none;
 }
 .link:hover .inside-text {
   text-decoration: none;
   display: inline-block;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.8);
 }
 .icon {
   display: inline-block;
@@ -64,6 +67,18 @@ button:focus {
 .sidebar.active {
   margin-left: -250px;
 }
+.bg-success {
+  background-image: var(--bs-gradient);
+}
+/* .bg-danger1 {
+  background-image: var(--bs-gradient);
+  --bs-bg-opacity: 1;
+  background-color: rgba(
+    var(--bs-success-rgb),
+    var(--bs-bg-opacity)
+  ) !important;
+} */
+
 .sidebar ul.components {
   padding: 20px 0;
   opacity: 0.8;
@@ -116,21 +131,25 @@ ul.CTAs button {
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
-/* .wrapper {
+.wrapper {
   margin: auto;
-  width: 100rem;
+  /* width: 100rem; */
   align-items: flex-start;
-  display: flex;
+  display: grid;
   min-height: 100px;
   overflow: hidden;
   position: fixed;
-} */
+  grid-template-columns: 1fr minmax(150px, 20%);
+}
 .content {
-  width: 100%;
-  padding-left: 30vw;
+  position: relative;
+  width: 80%;
+  padding-left: 1vw;
   margin: auto;
-  /* min-height: 100vh; */
+  min-height: 100vh;
   transition: all 0.3s;
+  padding: 12px;
+  text-align: center;
 }
 .book-content {
   position: relative;

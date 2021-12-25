@@ -1,5 +1,5 @@
 body {
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 /*==================================================
@@ -9,7 +9,7 @@ body {
 .post-content {
   background: #f8f8f8;
   border-radius: 4px;
-  width: 80%;
+  width: 100%;
   border: 1px solid #f1f2f2;
   margin-bottom: 20px;
   margin-top: 60px;
@@ -38,7 +38,7 @@ video.post-video,
 }
 
 .post-content .post-container .post-detail .post-text {
-  line-height: 24px;
+  /* line-height: 24px; */
   margin: 0;
 }
 
