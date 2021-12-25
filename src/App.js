@@ -27,6 +27,7 @@ import axios from "./utility";
 function App() {
   const [state, setState] = useState(false);
   const [role, setRole] = useState("");
+  const [name, setName] = useState("");
 
   const path = window.location.pathname;
   const words = path.split("/");
@@ -64,6 +65,9 @@ function App() {
           (response) => {
             console.log(response.data);
             setRole(response.data.data.role);
+            const email = response.data.data.email;
+            var id = email.split("@");
+            setName(id[0]);
           },
           (error) => {
             console.log(error);
@@ -83,6 +87,8 @@ function App() {
               setState={setState}
               role={role}
               setRole={setRole}
+              name={name}
+              setName={setName}
             />
 
             <div>
