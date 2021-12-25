@@ -3,12 +3,25 @@ import { Link } from "react-router-dom";
 import { Row, Button, Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../styles/Fonts.css";
+import axios from "axios";
 
 const UserCard = (props) => {
   const user = props.user;
+
+  const onDeleteClick = (id) => {
+    axios
+      .delete("http://localhost:4000/api/delete/user/" + id)
+      .then((res) => {
+        this.props.history.push("/unilib/admin/library");
+      })
+      .catch((err) => {
+        console.log("Error form ShowBookDetails_deleteClick");
+      });
+  };
+
   return (
     <div>
-      <Card style={{ width: "18rem", height: "30rem" }}>
+      <Card style={{ width: "18rem", height: "17rem" }}>
         <Card.Body>
           {/* <Card.Title>
             <Link to={`/show-book/${book._id}`}>{book.bookName}</Link>
@@ -17,6 +30,15 @@ const UserCard = (props) => {
           <Card.Text className="fnt">{user.email}</Card.Text>
           <Card.Text className="fnt">{user.registration}</Card.Text>
         </Card.Body>
+        <div>
+          <button
+            type="button"
+            className="btn btn-outline-danger btn-lg btn-block"
+            onClick={onDeleteClick.bind(this, user._id)}
+          >
+            Delete User
+          </button>
+        </div>
       </Card>
       <Row className="mb-5"></Row>
     </div>

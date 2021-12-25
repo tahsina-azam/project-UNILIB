@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import UserCard from "./UserCard";
 import "../../styles/Fonts.css";
-import "../../styles/Library.css";
+import "../../styles/ManageUser.css";
 import AdminUserSearch from "../AdminUserSearch";
 
 class ShowUserList extends Component {
