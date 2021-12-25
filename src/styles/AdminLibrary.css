@@ -1,5 +1,5 @@
 .admin-library {
-  background-image: url("../images/img-5.jpg");
+  /* background-image: url("../images/img-5.jpg"); */
   background-position: center;
   background-repeat: repeat;
   font-size: 100px;
@@ -23,7 +23,7 @@
 }
 
 .library {
-  background-image: url("../images/img-5.jpg");
+  /* background-image: url("../images/img-5.jpg"); */
   background-position: center;
   background-repeat: repeat;
   font-size: 100px;

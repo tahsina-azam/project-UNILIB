@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import StudentBookCard from "./StudentBookCard";
 import "../../styles/Library.css";
 import "./LibrarySearchBar";
@@ -66,7 +65,6 @@ class StudentBookList extends Component {
                 <h2 className="fnt-sheeva text-center">Books</h2>
               </card>
             </div>
-
             <div className="col-md-11">
               {/* <Link
                 to="/create-book"
@@ -74,9 +72,6 @@ class StudentBookList extends Component {
               >
                 + Add New Book
            </Link>*/}
-              <br />
-              <br />
-              <hr />
             </div>
           </div>
 
