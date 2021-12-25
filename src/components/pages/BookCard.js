@@ -12,7 +12,7 @@ const BookCard = (props) => {
 
   return (
     <div>
-      <Card style={{ width: "18rem" }}>
+      <Card style={{ width: "18rem", height: "30rem" }}>
         <div>
           <Card.Img
             variant="top"
