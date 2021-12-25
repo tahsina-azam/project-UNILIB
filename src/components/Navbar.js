@@ -25,7 +25,10 @@ const Navbar = (props) => {
   } else if (props.role === "admin") {
     menu = (
       <div class="navbar-nav ms-auto">
-        <Link class="nav-item nav-link active mx-3" to="/">
+        <Link
+          class="nav-item nav-link active mx-3"
+          to={`/unilib/user/${props.name}`}
+        >
           Admin
         </Link>
         <Link to="/unilib/admin/library" class="nav-item nav-link mx-3">
@@ -40,7 +43,10 @@ const Navbar = (props) => {
     menu = (
       <div class="navbar-nav ms-auto">
         {/* wrong link for profile */}
-        <Link class="nav-item nav-link active mx-3" to="/">
+        <Link
+          class="nav-item nav-link active mx-3"
+          to={`/unilib/user/${props.name}`}
+        >
           Profile
         </Link>
         <Link to="/forum" class="nav-item nav-link mx-3">

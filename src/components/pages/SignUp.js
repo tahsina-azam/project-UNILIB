@@ -32,6 +32,7 @@ const Form = ({ onSubmit }) => {
       password: passwordRef.current.value,
     };
     onSubmit(data);
+    console.log(data);
     axios
       .post("http://localhost:4000/register", {
         name: nameRef.current.value,
