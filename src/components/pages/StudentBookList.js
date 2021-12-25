@@ -3,14 +3,23 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import StudentBookCard from "./StudentBookCard";
 import "../../styles/Library.css";
+import "./LibrarySearchBar";
+import LibrarySearchBar from "./LibrarySearchBar";
 
 class StudentBookList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       books: [],
+      searchResult: [],
     };
   }
+
+  updateState = (obj) => {
+    this.setState({ searchResult: obj }, () =>
+      console.log(this.state.searchResult)
+    );
+  };
 
   componentDidMount() {
     axios
@@ -18,8 +27,8 @@ class StudentBookList extends Component {
       .then((res) => {
         this.setState({
           books: res.data,
+          searchResult: res.data,
         });
-        console.log(res.data);
       })
       .catch((err) => {
         console.log("Error from ShowBookList");
@@ -28,13 +37,17 @@ class StudentBookList extends Component {
 
   render() {
     const books = this.state.books;
-    console.log("PrintBook: " + books);
+    const searchResult = this.state.searchResult;
     let bookList;
 
     if (!books) {
       bookList = "there is no book record!";
-    } else {
+    } else if (!searchResult) {
       bookList = books.map((book, k) => (
+        <StudentBookCard book={book} key={k} />
+      ));
+    } else {
+      bookList = searchResult.map((book, k) => (
         <StudentBookCard book={book} key={k} />
       ));
     }
@@ -43,25 +56,10 @@ class StudentBookList extends Component {
       <div className="ShowBookList">
         <div className="container">
           <div className="row">
-            <div class="input-group mb-3">
-              {" "}
-              <input
-                type="text"
-                class="form-control input-text"
-                placeholder="Search books...."
-                onChange={(event) => {}}
-              />
-              <div class="input-group-append">
-                {" "}
-                <button
-                  color="black"
-                  class="btn btn-outline-warning btn-lg"
-                  type="button"
-                >
-                  <i style={{ color: "black" }} class="fa fa-search"></i>
-                </button>{" "}
-              </div>
-            </div>
+            <LibrarySearchBar
+              books={this.state.books}
+              updateParent={this.updateState}
+            />
             <div className="col-md-12">
               <br />
               <card className="card mx-auto" style={{ width: "18rem" }}>
