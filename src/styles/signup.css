@@ -16,7 +16,7 @@ const formStyle = {
 
 const labelStyle = {
   margin: 10px 0 5px 0;
-  font-family: Arial;
+  /* font-family: Arial; */
   font-size: 15px;
 }
 

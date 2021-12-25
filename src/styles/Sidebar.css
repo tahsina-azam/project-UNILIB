@@ -11,7 +11,14 @@ p {
   line-height: 1.7em;
   color: black;
 }
-
+.Custom_Cancel > .sa-button-container > .cancel {
+  background-color: #dd6b55;
+  border-color: #dd6b55;
+}
+.Custom_Cancel > .sa-button-container > .cancel:hover {
+  background-color: #dd6b55;
+  border-color: #dd6b55;
+}
 button,
 button:hover,
 button:focus {
@@ -25,12 +32,10 @@ button:focus {
 ----------------------------------------------------- */
 
 .sidebar {
-  min-width: 20%;
-  max-width: 20%;
+  /* max-width: 5%; */
   min-height: 100%;
-  background-color: black;
   /* background: #bdbdbd; */
-  color: black;
+  /* color: black; */
   transition: all 0.3s;
   position: fixed;
   left: 0;
@@ -39,20 +44,26 @@ button:focus {
   border-top: 0ch;
   border-right: 0ch;
   border-bottom: 0ch;
-  border-color: black;
-  border-style: groove;
+  /* border-color: black;
+  border-style: groove; */
+}
+.link {
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+}
+.link:hover .inside-text {
+  text-decoration: none;
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.75);
+}
+.icon {
+  display: inline-block;
+  color: white;
 }
 
 .sidebar.active {
   margin-left: -250px;
 }
-
-.sidebar .sidebar-header {
-  padding: 20px;
-  background: white;
-  opacity: 0.6;
-}
-
 .sidebar ul.components {
   padding: 20px 0;
   opacity: 0.8;
@@ -74,22 +85,20 @@ button:focus {
 }
 
 .sidebar ul li button:hover {
-  color: black;
-  /* background: #fff; */
-  opacity: 0.4;
+  /* color: black; */
+  background: #fff;
 }
 
 .sidebar ul li.active > button,
 a[aria-expanded="true"] {
   /* color: #fff; */
   /* background: #373737; */
-  opacity: 0.4;
 }
 
 ul ul button {
   font-size: 0.9em !important;
   padding-left: 30px !important;
-  background: black;
+  /* background: black; */
 }
 
 ul.CTAs {

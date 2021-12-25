@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/App.css";
 import { Button } from "react-bootstrap";
 import "./HeroSection.css";
+import "../styles/Fonts.css";
 import Footer from "./Footer";
 import vid from "../videos/video-3.mp4";
 

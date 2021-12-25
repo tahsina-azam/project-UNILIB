@@ -9,6 +9,10 @@ body {
   font-weight: 100;
   font-size: medium;
 }
+.popup {
+  font-family: "Poppins", sans-serif;
+  font-size: x-small;
+}
 .subs {
   font-family: "Poppins", sans-serif;
   font-style: italic;
