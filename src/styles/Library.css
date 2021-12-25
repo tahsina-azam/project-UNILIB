@@ -5,3 +5,12 @@
   grid-auto-rows: 1fr;
   grid-gap: 5rem;
 }
+.book-links {
+  color: rgb(25, 135, 84);
+  text-decoration: none;
+}
+.book-links:hover {
+  text-decoration: none;
+  display: inline-block;
+  color: rgb(74, 229, 74);
+}

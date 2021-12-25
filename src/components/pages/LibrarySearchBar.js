@@ -22,31 +22,45 @@ const LibrarySearchBar = (props) => {
     searchKeyword(inputBar.current.value);
   };
   return (
-    <div>
-      <div class="input-group mb-3">
-        {" "}
-        <input
-          ref={inputBar}
-          type="text"
-          class="form-control input-text"
-          placeholder="Search books...."
-          /*onChange={(event) => {
-           
-          }}*/
-          onChange={getSearchTerm}
-        />
-        <div class="input-group-append">
-          {" "}
-          <button
-            color="black"
-            class="btn btn-outline-warning btn-lg"
-            type="button"
-          >
-            <i style={{ color: "black" }} class="fa fa-search"></i>
-          </button>{" "}
-        </div>
+    <div className="input-group mb-3 ">
+      <input
+        ref={inputBar}
+        type="text"
+        className="form-control input-text"
+        placeholder="Type here to search"
+        onChange={getSearchTerm}
+      />
+      <div className="input-group-append">
+        <button className="btn btn-success btn-lg m-1" type="button">
+          <i style={{ color: "white" }} className="fa fa-search" />
+        </button>
       </div>
     </div>
+    // <div>
+    //   <div class="input-group mb-3">
+    //     {" "}
+    //     <input
+    //
+    //       type="text"
+    //       class="form-control input-text"
+    //       placeholder="Search books...."
+    //       /*onChange={(event) => {
+
+    //       }}*/
+    //
+    //     />
+    //     <div class="input-group-append">
+    //       {" "}
+    //       <button
+    //         color="black"
+    //         class="btn btn-outline-warning btn-lg"
+    //         type="button"
+    //       >
+    //         <i style={{ color: "black" }} class="fa fa-search"></i>
+    //       </button>{" "}
+    //     </div>
+    //   </div>
+    // </div>
   );
 };
 

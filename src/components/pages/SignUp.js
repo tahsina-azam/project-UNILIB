@@ -57,12 +57,12 @@ const Form = ({ onSubmit }) => {
                   <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                     <form className="mx-1 mx-md-4" onSubmit={handleSubmit}>
                       <div className="d-flex flex-row align-items-center mb-4">
-                        <i className="fas fa-user fa-lg me-3 fa-fw"></i>
+                        <i className="fas fa-user fa-lg me-3 fa-fw" />
                         <Field ref={nameRef} label="Name" type="text" />
                       </div>
 
                       <div className="d-flex flex-row align-items-center mb-4">
-                        <i class="fas fa-calendar-alt fa-lg me-3 fa-fw"></i>
+                        <i class="fas fa-calendar-alt fa-lg me-3 fa-fw" />
                         <Field
                           ref={sessionRef}
                           label="Session"
@@ -71,11 +71,11 @@ const Form = ({ onSubmit }) => {
                       </div>
 
                       <div className="d-flex flex-row align-items-center mb-4">
-                        <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                        <i className="fas fa-envelope fa-lg me-3 fa-fw" />
                         <Field ref={emailRef} label="Email" type="email" />
                       </div>
                       <div className="d-flex flex-row align-items-center mb-4">
-                        <i className="fas fa-list-ol fa-lg me-3 fa-fw"></i>
+                        <i className="fas fa-list-ol fa-lg me-3 fa-fw" />
                         <Field
                           ref={registrationNumRef}
                           label="Registration Number"
@@ -83,14 +83,13 @@ const Form = ({ onSubmit }) => {
                         />
                       </div>
                       <div className="d-flex flex-row align-items-center mb-4">
-                        <i className="fas fa-book-reader fa-lg me-3 fa-fw"></i>
+                        <i className="fas fa-book-reader fa-lg me-3 fa-fw" />
                         <Field
                           ref={departmentRef}
                           label="Department"
                           type="text"
                         />
                       </div>
-
                       <div className="d-flex flex-row align-items-center mb-4">
                         <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
                         <Field
