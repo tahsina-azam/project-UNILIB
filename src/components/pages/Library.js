@@ -8,35 +8,26 @@ const App = () => {
   return (
     <div className="library">
       <div>
-        <Row className="mb-5"></Row>
-        <div className=" container mx-auto">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="input-group mb-3">
-                {" "}
+        <div className="container mx-auto">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="input-group mb-3 ">
                 <input
                   type="text"
-                  class="form-control input-text"
-                  placeholder="Search books...."
-                  aria-label="Recipient's username"
-                  aria-describedby="basic-addon2"
+                  className="form-control input-text"
+                  placeholder="Type here"
                 />
-                <div class="input-group-append">
-                  {" "}
-                  <button
-                    color="black"
-                    class="btn btn-outline-warning btn-lg"
-                    type="button"
-                  >
-                    <i style={{ color: "black" }} class="fa fa-search"></i>
-                  </button>{" "}
+                <div className="input-group-append">
+                  <button className="btn btn-success btn-lg m-1" type="button">
+                    <i style={{ color: "white" }} className="fa fa-search" />
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="mx-auto">
+      <div className="mx-auto">
         <StudentBookList />
       </div>
     </div>
