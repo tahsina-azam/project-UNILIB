@@ -24,6 +24,7 @@ import BookDetails from "./components/pages/BookDetails";
 import FileProvider from "./contexts/file";
 import axios from "./utility";
 import TypePost from "./components/pages/PutPosts";
+import ManageUsers from "./components/pages/ManageUsers";
 
 function App() {
   const [state, setState] = useState(false);
@@ -128,7 +129,10 @@ function App() {
                   path="/show-book-details/:id"
                   element={<BookDetails />}
                 />
-
+                <Route
+                  path="/unilib/admin/manage-users"
+                  element={<ManageUsers />}
+                />
                 <Route path="/logout/" element={<LogOut />} />
               </Routes>
             </div>
