@@ -38,17 +38,7 @@ const UserCard = (props) => {
         </div>
       );
     } else {
-      menu = (
-        <div>
-          {" "}
-          <button
-            type="button"
-            className="btn btn-outline-danger btn-lg btn-block"
-          >
-            View
-          </button>
-        </div>
-      );
+      menu = <div></div>;
     }
   };
 
@@ -75,6 +65,7 @@ const UserCard = (props) => {
           <h3>{user.name}</h3>
           <Card.Text className="fnt">{user.email}</Card.Text>
           <Card.Text className="fnt">{user.registration}</Card.Text>
+          <Card.Text className="fnt">{user.department}</Card.Text>
         </Card.Body>
         <div>{menu}</div>
       </Card>

@@ -26,6 +26,7 @@ import axios from "./utility";
 import TypePost from "./components/pages/PutPosts";
 import ManageUsers from "./components/pages/ManageUsers";
 import EditUser from "./components/pages/EditUser";
+import UserViewAll from "./components/pages/UserViewAll";
 
 function App() {
   const [state, setState] = useState(false);
@@ -131,6 +132,7 @@ function App() {
                   element={<BookDetails />}
                 />
                 <Route path="/edit-user/:id" element={<EditUser />} />
+                <Route path="/view-all" element={<UserViewAll />} />
                 <Route
                   path="/unilib/admin/manage-users"
                   element={<ManageUsers />}

@@ -74,7 +74,7 @@ class App extends React.Component {
                       </Link>
                     </ListGroup.Item>
                     <ListGroup.Item className="text-white">
-                      View Other Users
+                      <Link to="/view-all">View Other Users</Link>
                     </ListGroup.Item>
                     <ListGroup.Item className="text-white">
                       Recently Added Books
