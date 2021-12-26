@@ -6,8 +6,8 @@ const { faRetweet } = require("@fortawesome/free-solid-svg-icons");
 const cookieParser = require("cookieparser");
 const connectDB = require("./db/db_user");
 const User = require("./model/model_user");
-const Role = require("./model/model_user"); //not sure
 const Book = require("./model/model_books");
+const Message = require("./model/model_messages");
 const path = require("path");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv").config({
@@ -239,11 +239,16 @@ app.get("/user", checkTokenMiddleware, async (req, res) => {
   res.json({ message: "successful", data });
 });
 
-app.get("/role", checkTokenMiddleware, async (req, res) => {
-  console.log({ user: req.user });
-  const data = await Role.findOne({ Email: req.user.email });
+app.get("/allusers", (req, res) => {
+  User.find()
+    .then((users) => res.json(users))
+    .catch((err) => res.status(404).json({ nobooksfound: "No Books found" }));
+});
 
-  res.json({ message: "successful", data });
+app.delete("/api/delete/user/:id", (req, res) => {
+  User.findByIdAndRemove(req.params.id, req.body)
+    .then((user) => res.json({ mgs: "User entry deleted successfully" }))
+    .catch((err) => res.status(404).json({ error: "No such user" }));
 });
 
 app.post("/logout", (req, res) => {
@@ -304,6 +309,14 @@ app.delete("/api/books/:id", (req, res) => {
   Book.findByIdAndRemove(req.params.id, req.body)
     .then((book) => res.json({ mgs: "Book entry deleted successfully" }))
     .catch((err) => res.status(404).json({ error: "No such a book" }));
+});
+
+app.post("/messages", async (req, res) => {
+  const sentMessage = new Message({
+    message: req.body.message,
+  });
+  const result = await sentMessage.save();
+  const { message, ...data } = await result.toJSON();
 });
 
 app.listen(4000, () => {
