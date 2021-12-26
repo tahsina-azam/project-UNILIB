@@ -6,10 +6,12 @@ import axios from "../../utility";
 import { ListGroup } from "react-bootstrap";
 import "../../styles/UserProfile.css";
 import "../../styles/Fonts.css";
+import { Link } from "react-router-dom";
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: "",
       email: "",
       registration: "",
       department: "",
@@ -38,6 +40,13 @@ class App extends React.Component {
           session: response.data.data.session,
           registration: response.data.data.registration,
         });
+        axios
+          .get("http://localhost:4000/user/" + this.state.email)
+          .then((res) => {
+            this.setState({
+              id: res.data.data._id,
+            });
+          });
       });
   }
 
@@ -60,7 +69,9 @@ class App extends React.Component {
                 <div className="card-body">
                   <ListGroup>
                     <ListGroup.Item className="text-white">
-                      Edit Account Info
+                      <Link to={`/edit-user/${this.state.id}`}>
+                        Edit Account Info
+                      </Link>
                     </ListGroup.Item>
                     <ListGroup.Item className="text-white">
                       View Other Users

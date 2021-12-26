@@ -25,6 +25,7 @@ import FileProvider from "./contexts/file";
 import axios from "./utility";
 import TypePost from "./components/pages/PutPosts";
 import ManageUsers from "./components/pages/ManageUsers";
+import EditUser from "./components/pages/EditUser";
 
 function App() {
   const [state, setState] = useState(false);
@@ -129,6 +130,7 @@ function App() {
                   path="/show-book-details/:id"
                   element={<BookDetails />}
                 />
+                <Route path="/edit-user/:id" element={<EditUser />} />
                 <Route
                   path="/unilib/admin/manage-users"
                   element={<ManageUsers />}

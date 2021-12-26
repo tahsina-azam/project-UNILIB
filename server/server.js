@@ -239,6 +239,12 @@ app.get("/user", checkTokenMiddleware, async (req, res) => {
   res.json({ message: "successful", data });
 });
 
+app.get("/user/:email", async (req, res) => {
+  const data = await User.findOne({ email: req.params.email });
+
+  res.json({ message: "successful", data });
+});
+
 app.get("/allusers", (req, res) => {
   User.find()
     .then((users) => res.json(users))
@@ -249,6 +255,20 @@ app.delete("/api/delete/user/:id", (req, res) => {
   User.findByIdAndRemove(req.params.id, req.body)
     .then((user) => res.json({ mgs: "User entry deleted successfully" }))
     .catch((err) => res.status(404).json({ error: "No such user" }));
+});
+
+app.put("/api/users/:id", (req, res) => {
+  User.findByIdAndUpdate(req.params.id, req.body)
+    .then((user) => res.json({ msg: "Updated successfully" }))
+    .catch((err) =>
+      res.status(400).json({ error: "Unable to update the Database" })
+    );
+});
+
+app.get("/api/users/:id", (req, res) => {
+  User.findById(req.params.id)
+    .then((user) => res.json(user))
+    .catch((err) => res.status(404).json({ nobookfound: "No user found" }));
 });
 
 app.post("/logout", (req, res) => {
