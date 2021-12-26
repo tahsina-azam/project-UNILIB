@@ -339,6 +339,37 @@ app.post("/messages", async (req, res) => {
   const { message, ...data } = await result.toJSON();
 });
 
+app.post("/issue-book", async (req, res) => {
+  const user = await User.findOne({ email: req.body.email });
+  let date_ob = new Date();
+  let date = ("0" + date_ob.getDate()).slice(-2);
+
+  // current month
+  let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
+  // current year
+  let year = date_ob.getFullYear();
+
+  // current hours
+  let hours = date_ob.getHours();
+
+  // current minutes
+  let minutes = date_ob.getMinutes();
+  let issueDate = year + "-" + month + "-" + date;
+  let issueTime = hours + ":" + minutes;
+  var issue = {
+    issue_date: issueDate,
+    issue_time: issueTime,
+    issued_book: req.body.book,
+  };
+  User.findOneAndUpdate(
+    { email: req.body.email },
+    { $push: { books: issue } }
+  ).then((error) => {
+    res.send(error);
+  });
+});
+
 app.listen(4000, () => {
   console.log("running on port 4000");
 });
