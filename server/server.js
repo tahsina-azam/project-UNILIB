@@ -7,6 +7,7 @@ const cookieParser = require("cookieparser");
 const connectDB = require("./db/db_user");
 const User = require("./model/model_user");
 const Book = require("./model/model_books");
+const Message = require("./model/model_messages");
 const path = require("path");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv").config({
@@ -308,6 +309,14 @@ app.delete("/api/books/:id", (req, res) => {
   Book.findByIdAndRemove(req.params.id, req.body)
     .then((book) => res.json({ mgs: "Book entry deleted successfully" }))
     .catch((err) => res.status(404).json({ error: "No such a book" }));
+});
+
+app.post("/messages", async (req, res) => {
+  const sentMessage = new Message({
+    message: req.body.message,
+  });
+  const result = await sentMessage.save();
+  const { message, ...data } = await result.toJSON();
 });
 
 app.listen(4000, () => {
