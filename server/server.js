@@ -239,6 +239,12 @@ app.get("/user", checkTokenMiddleware, async (req, res) => {
   res.json({ message: "successful", data });
 });
 
+app.get("/user/:email", async (req, res) => {
+  const data = await User.findOne({ email: req.params.email });
+
+  res.json({ message: "successful", data });
+});
+
 app.get("/allusers", (req, res) => {
   User.find()
     .then((users) => res.json(users))
@@ -249,6 +255,20 @@ app.delete("/api/delete/user/:id", (req, res) => {
   User.findByIdAndRemove(req.params.id, req.body)
     .then((user) => res.json({ mgs: "User entry deleted successfully" }))
     .catch((err) => res.status(404).json({ error: "No such user" }));
+});
+
+app.put("/api/users/:id", (req, res) => {
+  User.findByIdAndUpdate(req.params.id, req.body)
+    .then((user) => res.json({ msg: "Updated successfully" }))
+    .catch((err) =>
+      res.status(400).json({ error: "Unable to update the Database" })
+    );
+});
+
+app.get("/api/users/:id", (req, res) => {
+  User.findById(req.params.id)
+    .then((user) => res.json(user))
+    .catch((err) => res.status(404).json({ nobookfound: "No user found" }));
 });
 
 app.post("/logout", (req, res) => {
@@ -317,6 +337,37 @@ app.post("/messages", async (req, res) => {
   });
   const result = await sentMessage.save();
   const { message, ...data } = await result.toJSON();
+});
+
+app.post("/issue-book", async (req, res) => {
+  const user = await User.findOne({ email: req.body.email });
+  let date_ob = new Date();
+  let date = ("0" + date_ob.getDate()).slice(-2);
+
+  // current month
+  let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
+  // current year
+  let year = date_ob.getFullYear();
+
+  // current hours
+  let hours = date_ob.getHours();
+
+  // current minutes
+  let minutes = date_ob.getMinutes();
+  let issueDate = year + "-" + month + "-" + date;
+  let issueTime = hours + ":" + minutes;
+  var issue = {
+    issue_date: issueDate,
+    issue_time: issueTime,
+    issued_book: req.body.book,
+  };
+  User.findOneAndUpdate(
+    { email: req.body.email },
+    { $push: { books: issue } }
+  ).then((error) => {
+    res.send(error);
+  });
 });
 
 app.listen(4000, () => {

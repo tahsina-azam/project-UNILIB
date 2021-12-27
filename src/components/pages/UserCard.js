@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Row, Button, Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -7,6 +7,59 @@ import axios from "axios";
 
 const UserCard = (props) => {
   const user = props.user;
+  const [state, setState] = useState("");
+  let menu;
+
+  const requireAuth = () => {
+    const path = window.location.pathname;
+    const words = path.split("/");
+    console.log(words[0]);
+    if (words[1] === "unilib") {
+      menu = (
+        <div>
+          <button
+            type="button"
+            className="btn btn-outline-danger btn-lg btn-block"
+            onClick={onDeleteClick.bind(this, user._id)}
+          >
+            Delete User
+          </button>
+        </div>
+      );
+    } else if (words[1] === "show-book") {
+      menu = (
+        <div>
+          <button
+            type="button"
+            className="btn btn-outline-danger btn-lg btn-block"
+            onClick={onIssueClick.bind(this, user._id)}
+          >
+            Issue This Book
+          </button>
+        </div>
+      );
+    } else {
+      menu = <div></div>;
+    }
+  };
+
+  const onIssueClick = (id) => {
+    const path = window.location.pathname;
+    const bookRef = path.split("/");
+    axios
+      .post("http://localhost:4000/issue-book", {
+        email: user.email,
+        book: bookRef[2],
+      })
+      .then(
+        (success) => {
+          console.log("sucessfully issued this book");
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  };
 
   const onDeleteClick = (id) => {
     axios
@@ -19,6 +72,8 @@ const UserCard = (props) => {
       });
   };
 
+  requireAuth();
+
   return (
     <div>
       <Card style={{ width: "18rem", height: "17rem" }}>
@@ -29,16 +84,9 @@ const UserCard = (props) => {
           <h3>{user.name}</h3>
           <Card.Text className="fnt">{user.email}</Card.Text>
           <Card.Text className="fnt">{user.registration}</Card.Text>
+          <Card.Text className="fnt">{user.department}</Card.Text>
         </Card.Body>
-        <div>
-          <button
-            type="button"
-            className="btn btn-outline-danger btn-lg btn-block"
-            onClick={onDeleteClick.bind(this, user._id)}
-          >
-            Delete User
-          </button>
-        </div>
+        <div>{menu}</div>
       </Card>
       <Row className="mb-5"></Row>
     </div>

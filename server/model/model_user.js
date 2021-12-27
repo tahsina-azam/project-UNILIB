@@ -37,6 +37,22 @@ var schema = new mongoose.Schema({
   role: {
     type: String,
   },
+  books: [
+    {
+      issue_date: {
+        type: String,
+        // required : true,
+      },
+      issue_time: {
+        type: String,
+        // required : true,
+      },
+      issued_book: {
+        type: String,
+        // required : true,
+      },
+    },
+  ],
 });
 
 const Userdb = mongoose.model("userdb", schema);
