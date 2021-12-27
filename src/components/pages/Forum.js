@@ -1,18 +1,20 @@
 import GetPosts from "../GetPosts";
 import Sidebar from "../Sidebar";
+import "../../styles/Sidebar.css";
+import { Col, Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 function Forum() {
   const hasura_id = localStorage.getItem("id");
   return (
-    <div className="wraper">
-      <Sidebar />
-      {/* <div className="wrapper"> */}
-      {/* <!-- Page Content  --> */}
-      <div className="content">
-        {/* <TypePost author_id={hasura_id} /> */}
+    <Row className="wrapper">
+      <Col className="col-sm-2 sidebar">
+        <Sidebar />
+      </Col>
+
+      <Col className="col-sm-100 content">
         <GetPosts commenter_id={hasura_id} />
-      </div>
-    </div>
+      </Col>
+    </Row>
   );
 }
 

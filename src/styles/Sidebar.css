@@ -12,21 +12,6 @@ p {
   line-height: 1.7em;
   color: black;
 }
-.Custom_Cancel > .sa-button-container > .cancel {
-  background-color: #dd6b55;
-  border-color: #dd6b55;
-}
-.Custom_Cancel > .sa-button-container > .cancel:hover {
-  background-color: #dd6b55;
-  border-color: #dd6b55;
-}
-button,
-button:hover,
-button:focus {
-  color: inherit;
-  text-decoration: none;
-  transition: all 0.3s;
-}
 
 /* ---------------------------------------------------
     SIDEBAR STYLE
@@ -41,11 +26,11 @@ button:focus {
   position: fixed;
   left: 0;
   top: 0;
-  position: fixed;
+  padding-top: 2%;
   border-top: 0ch;
   border-right: 0ch;
   border-bottom: 0ch;
-  padding: 12px;
+  padding-right: 12vw;
   text-align: center;
   /* border-color: black;
   border-style: groove; */
@@ -64,12 +49,24 @@ button:focus {
   color: white;
 }
 
-.sidebar.active {
-  margin-left: -250px;
-}
 .bg-success {
   background-image: var(--bs-gradient);
 }
+.bg-success1 {
+  --bs-bg-opacity: 0.75;
+  background-color: rgba(
+    var(--bs-success-rgb),
+    var(--bs-bg-opacity)
+  ) !important;
+}
+.bg-success2 {
+  --bs-bg-opacity: 0.1;
+  background-color: rgba(
+    var(--bs-success-rgb),
+    var(--bs-bg-opacity)
+  ) !important;
+}
+
 /* .bg-danger1 {
   background-image: var(--bs-gradient);
   --bs-bg-opacity: 1;
@@ -80,76 +77,29 @@ button:focus {
 } */
 
 .sidebar ul.components {
-  padding: 20px 0;
-  opacity: 0.8;
+  padding: 25px 0;
   /* border-bottom: 1px solid #47748b; */
 }
-
-.sidebar ul p {
-  /* color: #fff; */
-  opacity: 0.4;
-  padding: 10px;
-}
-
-.sidebar ul li button {
-  padding: 10px;
-  background-color: white;
-
-  font-size: 1.1em;
-  /* display: block; */
-}
-
-.sidebar ul li button:hover {
-  /* color: black; */
-  background: #fff;
-}
-
-.sidebar ul li.active > button,
-a[aria-expanded="true"] {
-  /* color: #fff; */
-  /* background: #373737; */
-}
-
-ul ul button {
-  font-size: 0.9em !important;
-  padding-left: 30px !important;
-  /* background: black; */
-}
-
-ul.CTAs {
-  padding: 20px;
-}
-
-ul.CTAs button {
-  text-align: center;
-  font-size: 0.9em !important;
-  display: block;
-  border-radius: 5px;
-  margin-bottom: 5px;
-}
-
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
 .wrapper {
   margin: auto;
-  /* width: 100rem; */
-  align-items: flex-start;
-  display: grid;
+  width: 100%;
+  /* align-items: flex-start; */
   min-height: 100px;
   overflow: hidden;
-  position: fixed;
-  grid-template-columns: 1fr minmax(150px, 20%);
+  position: relative;
 }
 .content {
   position: relative;
-  width: 80%;
-  padding-left: 1vw;
-  margin: auto;
+  width: 100%;
+  padding-top: 2%;
+  /* padding-left: 20%; */
+  margin-left: 205px;
   min-height: 100vh;
   transition: all 0.3s;
-  padding: 12px;
-  text-align: center;
+  text-align: left;
 }
 .book-content {
   position: relative;

@@ -4,6 +4,7 @@
   display: flex;
   justify-content: left;
   align-items: left;
+  /* padding-bottom: 5%; */
   /* font-size: 20px; */
   position: fixed !important;
   width: 100vw;

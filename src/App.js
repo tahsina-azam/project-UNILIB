@@ -28,6 +28,7 @@ import ManageUsers from "./components/pages/ManageUsers";
 import EditUser from "./components/pages/EditUser";
 import UserViewAll from "./components/pages/UserViewAll";
 import UserHistory from "./components/pages/UserHistory";
+import ContactAdmin from "./components/pages/ContactAdmin";
 
 function App() {
   const [state, setState] = useState(false);
@@ -95,6 +96,7 @@ function App() {
             <div className="wrap ml-0 mt-0">
               <Routes>
                 <Route path="/forum" element={<Forum />} />
+                <Route path="/forum/ContactAdmin" element={<ContactAdmin />} />
                 <Route path="/" element={<Home />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/log-in" element={<LogIn />} />

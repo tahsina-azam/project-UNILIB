@@ -1,21 +1,50 @@
 import { useMutation } from "@apollo/client";
+import React from "react";
+import ReactDOM from "react-dom";
+import { useState } from "react";
+import { Button } from "react-bootstrap";
+
 import { POST_COMMENT } from "../database/Mutations";
 import Time from "./UuidToTime";
 import "../styles/Forum.css";
 import "../styles/Comment.css";
+import "../styles/Sidebar.css";
 //show comment
 const Comment = ({ replier, reply, commented_at }) => {
   return (
-    <div className="mb-5">
-      <h5 className="text-capitalize">
-        {replier} <Time time={commented_at} caption="commented at: " />
-      </h5>
-      <p style={{ color: "black", fontSize: "15px" }}>{reply}</p>
+    <div class="container-fluid mt-2 text-start">
+      <div class="row d-flex justify-content-left" style={{ width: "100%" }}>
+        <div class="col-md-8" style={{ width: "100%" }}>
+          <div class="card p-2" style={{ width: "100%" }}>
+            <div
+              class="d-flex justify-content-between align-items-left "
+              style={{ width: "100%" }}
+            >
+              <div class="user d-flex flex-row align-items-left">
+                <div>
+                  <small class="font-weight-bold text-success text-capitalize">
+                    {replier}
+                  </small>
+                  <Time time={commented_at} caption="commented at: " />
+                  <br />
+                  <small class="font-weight-bold">{reply}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    // <div className="mb-5">
+    //   <h5 className="text-capitalize">
+    //     {replier} <Time time={commented_at} caption="commented at: " />
+    //   </h5>
+    //   <p style={{ color: "black", fontSize: "15px" }}></p>
+    // </div>
   );
 };
 //type to comment
-const TypeComment = ({ post, refetch, commenter_id }) => {
+export const TypeComment = ({ post, refetch, commenter_id }) => {
   const [postComment, { error, loading }] = useMutation(POST_COMMENT);
   if (loading) return <div>loading...</div>;
   if (error) return <div>error!</div>;
@@ -34,74 +63,57 @@ const TypeComment = ({ post, refetch, commenter_id }) => {
     refetch();
   };
   return (
-    <form
-      style={{ height: "20%", width: "100%" }}
-      onSubmit={onSubmit}
-      className="d-inline-flex bg-light p-2 flex-row align-items-start"
-    >
-      <div className="col">
+    <div className="p-2 text-center">
+      <form onSubmit={onSubmit} className="flex-row" style={{ width: "100%" }}>
         <textarea
           type="text"
-          style={{ width: "500px", height: "100px" }}
-          className="row form-control ml-1 shadow-none"
-          placeholder=" Write a comment"
+          className="form-control mt-2 rounded-pill border-success"
+          placeholder=" Type here..."
         />
-        <div className="row mt-2 text-right">
+        <div className="mt-2 text-right">
           <button
-            className="btn btn-dark shadow-none"
-            style={{ width: "auto" }}
+            className="btn btn-outline-success rounded-pill buttons"
             type="submit button"
           >
-            Post comment
+            Upload
           </button>
         </div>
-      </div>
-    </form>
-
-    // <form onSubmit={onSubmit} className="d-inline-flex">
-    //   <input
-    //     type="text"
-    //     className="flex-row form-control"
-    //     placeholder="write something..."
-    //   ></input>
-    //   <button
-    //     className="m-2 p-1 btn btn-outline-dark d-inline-flex"
-    //     type="submit button"
-    //   >
-    //     Comment
-    //   </button>
-    // </form>
+      </form>
+    </div>
   );
 };
 //insert comment
 export const PutComments = ({ post, refetch, commenter_id }) => {
+  const [show, setShow] = useState(false);
+  const [buttonText, setButtontext] = useState("Show comments");
   return (
-    <div>
+    <div className="text-center p-2">
       {post.comments.length === 0 ? (
-        <div>
-          <TypeComment
-            key={post.id}
-            post={post}
-            refetch={refetch}
-            commenter_id={commenter_id}
-          />
-        </div>
+        <div>No comments!</div>
       ) : (
         <div>
-          {post.comments.map((c) => (
-            <Comment
-              key={c.id}
-              reply={c.reply}
-              replier={c.commenter.name}
-              commented_at={c.commented_at}
-            />
-          ))}
-          <TypeComment
-            key={post.id}
-            post={post}
-            refetch={refetch}
-            commenter_id={commenter_id}
-          />
+          <Button
+            className="bg-success1 border-0"
+            onClick={() => {
+              setShow(!show);
+              const setText =
+                buttonText === "Show comments"
+                  ? "Hide Comments"
+                  : "Show comments";
+              setButtontext(setText);
+            }}
+          >
+            {buttonText}
+          </Button>
+          {show &&
+            post.comments.map((c) => (
+              <Comment
+                key={c.id}
+                reply={c.reply}
+                replier={c.commenter.name}
+                commented_at={c.commented_at}
+              />
+            ))}
         </div>
       )}
     </div>

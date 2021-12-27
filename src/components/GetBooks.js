@@ -2,6 +2,8 @@ import "../styles/Booklist.css";
 import "../styles/Sidebar.css";
 import "../styles/Fonts.css";
 import { useFiles } from "../contexts/file";
+import React from "react";
+import ReactDOM from "react-dom";
 import { useParams } from "react-router-dom";
 import Time from "./UuidToTime";
 const Book = ({ name, link, uploaderName, uploaded_at }) => {

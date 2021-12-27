@@ -1,15 +1,18 @@
 import { useQuery } from "@apollo/client";
 import { GET_POSTS_QUERY } from "../database/queries";
-import { PutComments } from "./PutComments";
+import { PutComments, TypeComment } from "./PutComments";
+import { Accordion } from "react-bootstrap";
+import React from "react";
+import ReactDOM from "react-dom";
 import Time from "./UuidToTime";
-import "../styles/post.css";
+// import "../styles/post.css";
 import "../styles/Fonts.css";
 import "../styles/Sidebar.css";
 //show posts
 const Post = ({ author, message, created_at }) => {
   const caption = "Published at: ";
   return (
-    <div>
+    <div className="bg-success2 p-3" style={{ width: "100%" }}>
       <div className="user-info flex-row">
         {/* <img
           src="https://bootdey.com/img/Content/avatar/avatar6.png"
@@ -40,31 +43,32 @@ const GetPosts = ({ commenter_id }) => {
           src="https://via.placeholder.com/400x150/FFB6C1/000000"
           className="img-responsive post-image"
         /> */}
-      <div>
+      <div className="container content">
         {data.posts.length === 0 ? (
           <div>no posts, sorry</div>
         ) : (
           data.posts.map((p) => (
-            <div className="d-flex flex-row mt-2 justify-content-start mb-3">
-              <div>
-                <div className="line-divider"></div>
-                <div className="post-text">
-                  <Post
-                    key={p.id}
-                    author={p.author.name}
-                    message={p.message}
-                    created_at={p.created_at}
-                  />
-                </div>
-                <div className="line-divider"></div>
-                <div>
-                  <PutComments
-                    key={p.id}
-                    post={p}
-                    refetch={refetch}
-                    commenter_id={commenter_id}
-                  />
-                </div>
+            <div className="mt-2 justify-content-start mb-3 card">
+              <div className="post-text">
+                <Post
+                  key={p.id}
+                  author={p.author.name}
+                  message={p.message}
+                  created_at={p.created_at}
+                />
+                <TypeComment
+                  key={p.id}
+                  post={p}
+                  refetch={refetch}
+                  commenter_id={commenter_id}
+                />
+
+                <PutComments
+                  key={p.id}
+                  post={p}
+                  refetch={refetch}
+                  commenter_id={commenter_id}
+                />
               </div>
             </div>
           ))
