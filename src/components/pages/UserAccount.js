@@ -7,6 +7,7 @@ import { ListGroup } from "react-bootstrap";
 import "../../styles/UserProfile.css";
 import "../../styles/Fonts.css";
 import { Link } from "react-router-dom";
+import CommonProfile from "./CommonProfile";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -17,18 +18,18 @@ class App extends React.Component {
       department: "",
       name: "",
       session: "",
+      role: "",
+      sideBar: "",
     };
   }
-
   componentDidMount() {
     const reloadCount = sessionStorage.getItem("reloadCount");
-    if (reloadCount < 2) {
+    if (reloadCount < 1) {
       sessionStorage.setItem("reloadCount", String(reloadCount + 1));
       window.location.reload();
     } else {
       sessionStorage.removeItem("reloadCount");
     }
-
     axios
       .get("http://localhost:4000/user", { withCredentials: true })
       .then((response) => {
@@ -45,10 +46,97 @@ class App extends React.Component {
           .then((res) => {
             this.setState({
               id: res.data.data._id,
+              role: res.data.data.role,
             });
+            console.log("this is response " + res.data.data.role);
+            if (this.state.role === "admin") {
+              this.setState({
+                sideBar: (
+                  <div className="profile-card-4 z-depth-3">
+                    <div className="card">
+                      <div className="card-body text-center  rounded-top">
+                        <div className="user-box">
+                          <Image
+                            src="https://cdn-icons.flaticon.com/png/512/560/premium/560277.png?token=exp=1640441048~hmac=98f88c50b4ff97a562830cf5332adeae"
+                            alt="user avatar"
+                          />
+                        </div>
+                      </div>
+                      <div className="card-body">
+                        <ListGroup>
+                          <ListGroup.Item className="text-white">
+                            <Link to={`/edit-user/${this.state.id}`}>
+                              Edit Account Info
+                            </Link>
+                          </ListGroup.Item>
+                          <ListGroup.Item className="text-white">
+                            <Link to="/unilib/admin/manage-users">
+                              Manage Users
+                            </Link>
+                          </ListGroup.Item>
+                          <ListGroup.Item className="text-white">
+                            <Link to="/check-report">Check Reports</Link>
+                          </ListGroup.Item>
+                          <ListGroup.Item className="text-white">
+                            <Link to="/user-history">
+                              {" "}
+                              Your account history
+                            </Link>
+                          </ListGroup.Item>
+                        </ListGroup>
+                      </div>
+                      {/* <div className="card-footer text-center"></div> */}
+                    </div>
+                  </div>
+                ),
+              });
+            } else {
+              this.setState({
+                sideBar: (
+                  <div className="profile-card-4 z-depth-3">
+                    <div className="card">
+                      <div className="card-body text-center  rounded-top">
+                        <div className="user-box">
+                          <Image
+                            src="https://cdn-icons.flaticon.com/png/512/560/premium/560277.png?token=exp=1640441048~hmac=98f88c50b4ff97a562830cf5332adeae"
+                            alt="user avatar"
+                          />
+                        </div>
+                      </div>
+                      <div className="card-body">
+                        <ListGroup>
+                          <ListGroup.Item className="text-white">
+                            <Link to={`/edit-user/${this.state.id}`}>
+                              Edit Account Info
+                            </Link>
+                          </ListGroup.Item>
+                          <ListGroup.Item className="text-white">
+                            <Link to="/view-all">View Other Users</Link>
+                          </ListGroup.Item>
+                          <ListGroup.Item className="text-white">
+                            Recently Added Books
+                          </ListGroup.Item>
+                          <ListGroup.Item className="text-white">
+                            <Link to="/user-history">
+                              {" "}
+                              Your account history
+                            </Link>
+                          </ListGroup.Item>
+                        </ListGroup>
+                      </div>
+                      {/* <div className="card-footer text-center"></div> */}
+                    </div>
+                  </div>
+                ),
+              });
+            }
           });
       });
+    console.log(this.state.role);
   }
+
+  //design of side card component is inside sidebar inside componentdidmount method
+  //and the other card is in CommonProfile.js
 
   render() {
     return (
@@ -56,37 +144,7 @@ class App extends React.Component {
         <div className="row">
           <div className="col-lg-4">
             <Row className="mb-3"></Row>
-            <div className="profile-card-4 z-depth-3">
-              <div className="card">
-                <div className="card-body text-center  rounded-top">
-                  <div className="user-box">
-                    <Image
-                      src="https://cdn-icons.flaticon.com/png/512/560/premium/560277.png?token=exp=1640441048~hmac=98f88c50b4ff97a562830cf5332adeae"
-                      alt="user avatar"
-                    />
-                  </div>
-                </div>
-                <div className="card-body">
-                  <ListGroup>
-                    <ListGroup.Item className="text-white">
-                      <Link to={`/edit-user/${this.state.id}`}>
-                        Edit Account Info
-                      </Link>
-                    </ListGroup.Item>
-                    <ListGroup.Item className="text-white">
-                      <Link to="/view-all">View Other Users</Link>
-                    </ListGroup.Item>
-                    <ListGroup.Item className="text-white">
-                      Recently Added Books
-                    </ListGroup.Item>
-                    <ListGroup.Item className="text-white">
-                      <Link to="/user-history"> Your account history</Link>
-                    </ListGroup.Item>
-                  </ListGroup>
-                </div>
-                {/* <div className="card-footer text-center"></div> */}
-              </div>
-            </div>
+            {this.state.sideBar}
           </div>
           <div className="col-lg-8">
             <div className="card z-depth-3">
@@ -104,51 +162,7 @@ class App extends React.Component {
                     {/* </a> */}
                   </li>
                 </ul>
-                <div className="tab-content p-3 ">
-                  <div className="tab-pane active show" id="profile">
-                    <div className="text-capitalize">
-                      <div>
-                        <p className="fnt grading text-white">
-                          <i className="fas fa-user fa-lg me-3 fa-fw"></i>
-                          Name
-                        </p>
-                        <p className="m-2 fnt-user text-success">
-                          {this.state.name}
-                        </p>
-                      </div>
-
-                      <p className="fnt grading text-white">
-                        <i className="fas fa-list-ol fa-lg me-3 fa-fw" />
-                        Registration Number
-                      </p>
-                      <p className="m-2 fnt-user text-success">
-                        {this.state.registration}
-                      </p>
-                      <p className="fnt grading text-white">
-                        <i className="fas fa-book-reader fa-lg me-3 fa-fw" />
-                        Department
-                      </p>
-                      <p className="m-2 fnt-user text-success">
-                        {this.state.department}
-                      </p>
-                    </div>
-                    <p className="fnt grading text-white">
-                      <i className="fas fa-envelope fa-lg me-3 fa-fw" />
-                      Contact
-                    </p>
-                    <p className="m-2 fnt-user text-success">
-                      {this.state.email}
-                    </p>
-                    <p className="fnt grading text-white">
-                      <i class="fas fa-calendar-alt fa-lg me-3 fa-fw" />
-                      Session
-                    </p>
-
-                    <p className="m-2 fnt-user text-success">
-                      {this.state.session}
-                    </p>
-                  </div>
-                </div>
+                <CommonProfile />
               </div>
             </div>
           </div>
