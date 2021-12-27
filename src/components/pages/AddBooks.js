@@ -46,74 +46,68 @@ const Elements = ({ onSubmit }) => {
     );
   };
   return (
-    <div>
-      <Row className="mb-5"></Row>
-      <div
-        class="card text-dark border-dark mb-3 mx-auto"
-        style={{
-          maxWidth: "25rem",
-          alignSelf: "center",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <div class="card-header mx-auto">ADD A NEW BOOK</div>
-        <div class="card-body">
-          <form enctype="multipart/form-data" onSubmit={handleSubmit}>
-            <Row className="mb-5"></Row>
-            <div class="form-group mx-sm-3 mb-2 ">
-              <label for="inputPassword2">Enter the name of the book</label>
-              <input ref={bookRef} type="text" class="form-control" />
-            </div>
-
-            <div class="form-group mx-sm-3 mb-2  ">
-              <label for="inputPassword2">Enter the name of the writer</label>
-              <input ref={writerRef} type="text" class="form-control" />
-            </div>
-            <div class="form-group mx-sm-3 mb-2  ">
-              <label for="inputPassword2">
-                Enter the number of available books
-              </label>
-              <input ref={numRef} type="text" class="form-control" />
-            </div>
-            <div class="form-group mx-sm-3 mb-2  ">
-              <label for="inputPassword2">Enter the pdf link:</label>
-              <input
-                ref={linkRef}
-                type="text"
-                class="form-control"
-                id="basic-url"
-                aria-describedby="basic-addon3"
-              />
-            </div>
-            <div class="form-group  mx-sm-3 mb-2">
-              <label for="exampleFormControlFile1">Example file input</label>
-              <input
-                type="file"
-                class="form-control-file"
-                filename="image"
-                onChange={onChangeFile}
-              />
-            </div>
-            <div class="form-group  mx-sm-3 mb-2">
-              <label for="exampleFormControlTextarea1">
-                Additional information about book:
-              </label>
-              <textarea
-                ref={textRef}
-                class="form-control"
-                id="exampleFormControlTextarea1"
-                rows="3"
-              ></textarea>
-            </div>
-            <div className="text-center">
-              <button class="btn btn-dark" type="submit" align="center">
-                Update
-              </button>
-              <Row className="mb-5"></Row>
-            </div>
-          </form>
+    <div class="mx-auto">
+      <div>
+        <div class="form-group  mx-sm-3 mb-2">
+          <label for="exampleFormControlFile1">
+            Enter the front page of the file:
+          </label>{" "}
+          <div className="input-group">
+            <span className="input-group-text border-0">
+              <i className="fa fa-cloud-upload p-0 m-0" />
+            </span>
+            <input
+              type="file"
+              accept="image/*"
+              className="form-control border-0 align-center pl-0 ml-0"
+              filename="image"
+              onChange={onChangeFile}
+            />
+          </div>
         </div>
+        <form enctype="multipart/form-data" onSubmit={handleSubmit}>
+          <div class="form-group m-3">
+            <label for="inputPassword2">The name of the book</label>
+            <input ref={bookRef} type="text" class="form-control" />
+          </div>
+
+          <div class="form-group m-3">
+            <label for="inputPassword2">The name of the writer</label>
+            <input ref={writerRef} type="text" class="form-control" />
+          </div>
+          <div class="form-group m-3">
+            <label for="inputPassword2">The number of available books</label>
+            <input ref={numRef} type="text" class="form-control" />
+          </div>
+          <div class="form-group m-3">
+            <label for="inputPassword2">The pdf link</label>
+            <input
+              ref={linkRef}
+              type="text"
+              class="form-control"
+              id="basic-url"
+              aria-describedby="basic-addon3"
+            />
+          </div>
+
+          <div class="form-group  mx-sm-3 mb-2">
+            <label for="exampleFormControlTextarea1">
+              Additional information about book:
+            </label>
+            <textarea
+              ref={textRef}
+              class="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"
+            ></textarea>
+          </div>
+          <div className="text-center">
+            <button class="btn btn-success" type="submit" align="center">
+              Update
+            </button>
+            <Row className="mb-5"></Row>
+          </div>
+        </form>
       </div>
     </div>
   );

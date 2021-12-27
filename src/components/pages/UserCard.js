@@ -16,10 +16,10 @@ const UserCard = (props) => {
     console.log(words[0]);
     if (words[1] === "unilib") {
       menu = (
-        <div>
+        <div className="text-end">
           <button
             type="button"
-            className="btn btn-outline-danger btn-lg btn-block"
+            className="btn btn-danger btn-lg btn-block"
             onClick={onDeleteClick.bind(this, user._id)}
           >
             Delete User
@@ -76,19 +76,41 @@ const UserCard = (props) => {
 
   return (
     <div>
-      <Card style={{ width: "18rem", height: "17rem" }}>
-        <Card.Body>
+      <Card style={{ width: "auto", height: "20rem" }} className="p-2">
+        <Card.Body className="text-start">
           {/* <Card.Title>
             <Link to={`/show-book/${book._id}`}>{book.bookName}</Link>
          </Card.Title>*/}
-          <h3>{user.name}</h3>
-          <Card.Text className="fnt">{user.email}</Card.Text>
-          <Card.Text className="fnt">{user.registration}</Card.Text>
-          <Card.Text className="fnt">{user.department}</Card.Text>
+          <Card.Text className="fnt-showUser text-capitalize">
+            <span className="text-success " style={{ fontWeight: "bold" }}>
+              Name:{" "}
+            </span>
+            {user.name}
+          </Card.Text>
+          <Card.Text className="fnt-showUser">
+            <span className="text-success" style={{ fontWeight: "bold" }}>
+              Email:{" "}
+            </span>
+            {user.email}
+          </Card.Text>
+          <Card.Text className="fnt-showUser">
+            <span className="text-success" style={{ fontWeight: "bold" }}>
+              Reg. number:{" "}
+            </span>
+            {user.registration}
+          </Card.Text>
+          <Card.Text className="fnt-showUser text-uppercase">
+            <span
+              className="text-success text-capitalize"
+              style={{ fontWeight: "bold" }}
+            >
+              Department:{" "}
+            </span>
+            {user.department}
+          </Card.Text>
         </Card.Body>
         <div>{menu}</div>
       </Card>
-      <Row className="mb-5"></Row>
     </div>
   );
 };

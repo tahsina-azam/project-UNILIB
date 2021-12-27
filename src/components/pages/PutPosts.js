@@ -48,7 +48,7 @@ function TypePost() {
             onChange={(e) => {
               setShowWarning("");
             }}
-          ></textarea>
+          />
           <div style={{ color: "red", fontSize: "12px" }} className="ml-auto">
             {showWarning}
           </div>

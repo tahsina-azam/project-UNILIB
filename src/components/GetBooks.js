@@ -3,30 +3,36 @@ import "../styles/Sidebar.css";
 import "../styles/Fonts.css";
 import { useFiles } from "../contexts/file";
 import React from "react";
-import ReactDOM from "react-dom";
+import "../styles/Library.css";
+import { Row, Card } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Time from "./UuidToTime";
 const Book = ({ name, link, uploaderName, uploaded_at }) => {
   console.log("Fetch books");
   return (
-    <li
-      className="list-group-item d-flex justify-content-between align-content-center"
+    <Card
+      style={{ width: "18rem", height: "20rem" }}
       onClick={() => {
         // window.location = link;
         window.open(link);
       }}
     >
-      <div className="d-flex flex-row fnt">
-        {" "}
-        <div className="ml-2">
-          <h6 className="mb-0 text-capitalize">{name}</h6>
-          <div className="about">
-            <span className="text-capitalize">Uploader: {uploaderName}</span>{" "}
-            <Time time={uploaded_at} caption="uploaded at" />
-          </div>
-        </div>
-      </div>
-    </li>
+      <Card.Body>
+        <Card.Title className="text-success ">
+          {name}
+          <br /> <Time time={uploaded_at} caption="uploaded at" />
+        </Card.Title>
+
+        <Card.Text className="fnt-description mt-3">
+          <p>
+            <span style={{ color: "#198754" }} className="text-capitalize">
+              Uploader: {uploaderName}
+            </span>
+          </p>
+          <span style={{ color: "#198754" }}>Description: </span>
+        </Card.Text>
+      </Card.Body>{" "}
+    </Card>
   );
 };
 //show books
@@ -37,24 +43,22 @@ const GetBooks = () => {
   if (loading) return <div>loading...</div>;
   if (error) return <div>error!</div>;
   return (
-    <div className="d-flex justify-content-center book-content">
-      <ul className="list-group text-white">
-        {files.length === 0 ? (
-          <div>no books, sorry</div>
-        ) : (
-          files
-            .filter((e) => e.category.name === category)
-            .map((b) => (
-              <Book
-                key={b.id}
-                name={b.name}
-                link={b.link}
-                uploaderName={b.uploader.name}
-                uploaded_at={b.uploaded_at}
-              />
-            ))
-        )}
-      </ul>
+    <div className="content list-forum">
+      {files.length === 0 ? (
+        <div>no books, sorry</div>
+      ) : (
+        files
+          .filter((e) => e.category.name === category)
+          .map((b) => (
+            <Book
+              key={b.id}
+              name={b.name}
+              link={b.link}
+              uploaderName={b.uploader.name}
+              uploaded_at={b.uploaded_at}
+            />
+          ))
+      )}
     </div>
   );
 };

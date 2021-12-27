@@ -59,24 +59,6 @@ class ShowUserList extends Component {
               users={this.state.users}
               updateParent={this.updateState}
             />
-            <div className="col-md-12">
-              <br />
-              <card className="card mx-auto" style={{ width: "18rem" }}>
-                <h2 className="fnt-sheeva text-center">Users</h2>
-              </card>
-            </div>
-
-            <div className="col-md-11">
-              {/* <Link
-                to="/create-book"
-                className="btn btn-outline-warning float-right"
-              >
-                + Add New Book
-           </Link>*/}
-              <br />
-              <br />
-              <hr />
-            </div>
           </div>
 
           <div className="list">{userList}</div>

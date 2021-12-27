@@ -29,7 +29,7 @@ const AdminUserSearch = (props) => {
           ref={inputBar}
           type="text"
           class="form-control input-text"
-          placeholder="Search users...."
+          placeholder="Search users here"
           /*onChange={(event) => {
            
           }}*/
@@ -37,12 +37,8 @@ const AdminUserSearch = (props) => {
         />
         <div class="input-group-append">
           {" "}
-          <button
-            color="black"
-            class="btn btn-outline-warning btn-lg"
-            type="button"
-          >
-            <i style={{ color: "black" }} class="fa fa-search"></i>
+          <button class="btn btn-success btn-lg m-1" type="button">
+            <i style={{ color: "white" }} class="fa fa-search" />
           </button>{" "}
         </div>
       </div>

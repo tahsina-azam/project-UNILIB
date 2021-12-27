@@ -1,10 +1,11 @@
 import { storage } from "../config/firebase";
 import React from "react";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Modal, Button, Dropdown } from "react-bootstrap";
 import { GET_CATAGORIES_QUERY, GET_BOOK_LIST_QUERY } from "../database/queries";
 import { INSERT_BOOK } from "../database/Mutations";
 import { useQuery, useMutation } from "@apollo/client";
+import { useRef } from "react";
 import "../styles/Forum.css";
 import "../styles/Sidebar.css";
 import selectType from "./popups";
@@ -12,28 +13,35 @@ const UploadPDFs = () => {
   const [show, setShow] = useState(false);
   const [val, setVal] = useState({ name: "Select category" });
   const [showWarning, setShowWarning] = useState("");
+  const [description, setDescription] = useState("");
+  const [finalFile, setFinalFile] = useState();
+  const [finalFileName, setfinalFileName] = useState();
   const handleClose = () => {
     setShowWarning("");
     setShow(false);
   };
   const handleShow = () => setShow(!show);
   const [upload] = useMutation(INSERT_BOOK);
-  let storageref, finalFile, finalFileName;
+  let storageref;
   //show categories in the dropdown menu
   const ShowCat = ({ name, id }) => {
     return <Dropdown.Item eventKey={id}>{name}</Dropdown.Item>;
   };
   //generate file to upload
   const onSubmitForm = (e) => {
-    console.log(e.target.files);
-    finalFile = e.target.files[0];
-    finalFileName = typeof finalFile === undefined ? "" : finalFile.name;
+    e.preventDefault();
+    console.log("count");
+    setFinalFile(e.target.files[0]);
+    console.log(e.target.files[0]);
+    setfinalFileName(
+      typeof e.target.files[0] === undefined ? "" : e.target.files[0].name
+    );
     if (finalFileName !== "") setShowWarning("");
-    storageref = storage.ref().child(`${e.target.files[0].name}`);
   };
   //generate download link and add to hasura
   //if the input is empty, generates error
   const onSubmitButton = (e) => {
+    storageref = storage.ref().child(`${finalFileName}`);
     console.log("onSubmitButton " + finalFileName);
     console.log("1");
     console.log(val.name);
@@ -48,6 +56,7 @@ const UploadPDFs = () => {
     if (ShowWarningString === "") {
       selectType("waiting", "books");
       console.log("2");
+      console.log(finalFileName);
       try {
         storageref.put(finalFile).then(() => {
           storageref.getDownloadURL().then((link) => {
@@ -57,6 +66,7 @@ const UploadPDFs = () => {
                 link: link,
                 name: finalFileName,
                 category_id: val.id,
+                description: description,
               },
             });
             selectType("success", "book");
@@ -80,7 +90,7 @@ const UploadPDFs = () => {
     }
   };
   //the function to upload the file to firebase
-  const UploadToFirebase = () => {
+  const UploadToFirebase = useCallback(() => {
     return (
       <div className="input-group">
         <span className="input-group-text border-0">
@@ -93,7 +103,7 @@ const UploadPDFs = () => {
         />
       </div>
     );
-  };
+  }, []);
   const { data, loading, error } = useQuery(GET_CATAGORIES_QUERY);
   const { refetch } = useQuery(GET_BOOK_LIST_QUERY);
   if (loading) return <div className="text-muted">loading...</div>;
@@ -136,9 +146,17 @@ const UploadPDFs = () => {
               ))}
             </Dropdown.Menu>
           </Dropdown>
-          <span style={{ color: "grey", fontSize: "12px" }} className="ml-auto">
-            **Select the category first
-          </span>
+          <textarea
+            placeholder=" Any other important informations"
+            type="text"
+            value={description}
+            onChange={(e) => {
+              const getDes = e.target.value;
+              setDescription(getDes);
+              console.log(getDes);
+            }}
+            style={{ width: "100%" }}
+          />
         </Modal.Body>
 
         <Modal.Footer>

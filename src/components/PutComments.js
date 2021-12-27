@@ -61,12 +61,12 @@ export const TypeComment = ({ post, refetch, commenter_id }) => {
       <form onSubmit={onSubmit} className="flex-row" style={{ width: "100%" }}>
         <textarea
           type="text"
-          className="form-control mt-2 rounded-pill border-success"
+          className="form-control mt-2 border-success"
           placeholder=" Type here..."
         />
         <div className="mt-2 text-right">
           <button
-            className="btn btn-outline-success rounded-pill buttons"
+            className="btn btn-outline-success buttons"
             type="submit button"
           >
             Upload

@@ -1,13 +1,19 @@
 import gql from "graphql-tag";
 
 export const INSERT_BOOK = gql`
-  mutation MyMutation($category_id: uuid, $link: String!, $name: String!) {
+  mutation MyMutation(
+    $category_id: uuid
+    $link: String!
+    $name: String!
+    $description: String
+  ) {
     insert_BookLinks_one(
       object: {
         category_id: $category_id
         link: $link
         name: $name
         uploader_id: "d9a9427d-d40a-4796-bf63-926aa74c4972"
+        description: $description
       }
     ) {
       id

@@ -24,25 +24,19 @@ const AdminLibrarySearch = (props) => {
   return (
     <div>
       <div class="input-group mb-3">
-        {" "}
         <input
           ref={inputBar}
           type="text"
           class="form-control input-text"
-          placeholder="Search books...."
+          placeholder="Type here to search"
           /*onChange={(event) => {
            
           }}*/
           onChange={getSearchTerm}
         />
         <div class="input-group-append">
-          {" "}
-          <button
-            color="black"
-            class="btn btn-outline-warning btn-lg"
-            type="button"
-          >
-            <i style={{ color: "black" }} class="fa fa-search"></i>
+          <button className="btn btn-success btn-lg m-1" type="button">
+            <i style={{ color: "white" }} class="fa fa-search" />
           </button>{" "}
         </div>
       </div>

@@ -47,6 +47,10 @@ body {
   font-family: "Poppins", sans-serif;
   font-size: 18px;
 }
+.fnt-showUser {
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+}
 .fnt-abhaya {
   font-family: "Abhaya Libre";
   font-size: xx-large;

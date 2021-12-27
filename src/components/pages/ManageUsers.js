@@ -1,12 +1,12 @@
 import React from "react";
 import ShowUserList from "./ShowUserList";
 
-function ManageUsers() {
+const ManageUsers = () => {
   return (
     <div>
       <ShowUserList />
     </div>
   );
-}
+};
 
 export default ManageUsers;
