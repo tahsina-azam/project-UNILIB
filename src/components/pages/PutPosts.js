@@ -5,6 +5,7 @@ import "../../styles/Sidebar.css";
 import { useState } from "react";
 import Sidebar from "../Sidebar";
 import selectType from "../popups";
+import { Col, Row } from "react-bootstrap";
 //type post insert
 function TypePost() {
   const author_id = localStorage.getItem("id"); //hasura_id
@@ -34,34 +35,33 @@ function TypePost() {
     e.target[0].value = "";
   };
   return (
-    <>
-      <Sidebar />
-      <form
-        onSubmit={onSubmit}
-        className="mt-auto content"
-        // style={{ width: "950%", height: "auto" }}
-      >
-        <textarea
-          type="text"
-          className="form-control"
-          placeholder="write something..."
-          onChange={(e) => {
-            setShowWarning("");
-          }}
-          // style={{ width: "100%", height: "auto" }}
-        ></textarea>
-        <div style={{ color: "red", fontSize: "12px" }} className="ml-auto">
-          {showWarning}
-        </div>
-        <button
-          className="btn btn-outline-dark mt-2 ml-auto"
-          style={{ width: "auto", height: "auto" }}
-          type="submit"
-        >
-          Post now
-        </button>
-      </form>
-    </>
+    <Row>
+      <Col className="col-sm-2 m-0 p-0 sidebar">
+        <Sidebar />
+      </Col>
+      <Col className="col-sm-100 content">
+        <form onSubmit={onSubmit}>
+          <textarea
+            type="text"
+            className="form-control"
+            placeholder="write something..."
+            onChange={(e) => {
+              setShowWarning("");
+            }}
+          ></textarea>
+          <div style={{ color: "red", fontSize: "12px" }} className="ml-auto">
+            {showWarning}
+          </div>
+          <button
+            className="btn btn-outline-dark mt-2 ml-auto"
+            style={{ width: "auto", height: "auto" }}
+            type="submit"
+          >
+            Post now
+          </button>
+        </form>
+      </Col>
+    </Row>
   );
 }
 export default TypePost;

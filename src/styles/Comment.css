@@ -1,45 +1,71 @@
 body {
-  background: #eee;
+  background-color: #f7f6f6;
+}
+.lining {
+  line-height: 1.5px;
+  padding: 1;
+}
+.buttons {
+  margin: 0 auto;
+  display: block;
+}
+.card {
+  border: none;
+  box-shadow: 5px 6px 6px 2px #e9ecef;
+  border-radius: 4px;
 }
 
-.date {
-  font-size: 11px;
-}
-
-.comment-text {
-  font-size: 12px;
-}
-
-.fs-12 {
-  font-size: 12px;
-}
-/* comment-text {
-  text-size-adjust: 100%;
-  height: inherit;
-  width: 100%;
+.dots {
+  height: 4px;
+  width: 4px;
+  margin-bottom: 2px;
+  background-color: #bbb;
+  border-radius: 50%;
   display: inline-block;
-  min-height: 100px;
-  color: black;
-  overflow: hidden;
-  white-space: pre-wrap;
-  overflow-wrap: break-word;
-} */
-.shadow-none {
-  box-shadow: none;
 }
 
-.name {
-  color: #007bff;
+.badge {
+  padding: 7px;
+  padding-right: 9px;
+  padding-left: 16px;
+  box-shadow: 5px 6px 6px 2px #e9ecef;
 }
 
-.cursor:hover {
-  color: blue;
+.user-img {
+  margin-top: 4px;
 }
 
-.cursor {
+.check-icon {
+  font-size: 17px;
+  color: #c3bfbf;
+  top: 1px;
+  position: relative;
+  margin-left: 3px;
+}
+
+.form-check-input {
+  margin-top: 6px;
+  margin-left: -24px !important;
   cursor: pointer;
 }
 
-.textarea {
-  resize: none;
+.form-check-input:focus {
+  box-shadow: none;
+}
+
+.icons i {
+  margin-left: 8px;
+}
+
+.reply {
+  margin-left: 12px;
+}
+
+.reply small {
+  color: #b7b4b4;
+}
+
+.reply small:hover {
+  color: green;
+  cursor: pointer;
 }

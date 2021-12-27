@@ -25,6 +25,7 @@ import FileProvider from "./contexts/file";
 import axios from "./utility";
 import TypePost from "./components/pages/PutPosts";
 import ManageUsers from "./components/pages/ManageUsers";
+import ContactAdmin from "./components/pages/ContactAdmin";
 
 function App() {
   const [state, setState] = useState(false);
@@ -96,6 +97,7 @@ function App() {
             <div className="wrap ml-0 mt-0">
               <Routes>
                 <Route path="/forum" element={<Forum />} />
+                <Route path="/forum/ContactAdmin" element={<ContactAdmin />} />
                 <Route path="/" element={<Home />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/log-in" element={<LogIn />} />
