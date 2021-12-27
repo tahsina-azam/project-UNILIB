@@ -27,11 +27,13 @@ import TypePost from "./components/pages/PutPosts";
 import ManageUsers from "./components/pages/ManageUsers";
 import EditUser from "./components/pages/EditUser";
 import UserViewAll from "./components/pages/UserViewAll";
+import UserHistory from "./components/pages/UserHistory";
 
 function App() {
   const [state, setState] = useState(false);
   const [role, setRole] = useState("");
   const [name, setName] = useState("");
+  const [emailHistory, setEmailHistory] = useState("");
 
   const path = window.location.pathname;
   const words = path.split("/");
@@ -40,12 +42,6 @@ function App() {
   const requireAuth = () => {
     const path = window.location.pathname;
     const words = path.split("/");
-    console.log(words[0]);
-    /*if (words[1] === "unilib") {
-      return true;
-    } else {
-      return false;
-    }*/
     if (
       words[1] === "" ||
       words[1] === "services" ||
@@ -69,6 +65,7 @@ function App() {
           (response) => {
             console.log(response.data);
             setRole(response.data.data.role);
+            setEmailHistory(response.data.data.email);
             const email = response.data.data.email;
             var id = email.split("@");
             setName(id[0]);
@@ -136,6 +133,10 @@ function App() {
                 <Route
                   path="/unilib/admin/manage-users"
                   element={<ManageUsers />}
+                />
+                <Route
+                  path="/user-history"
+                  element={<UserHistory emailHistory={emailHistory} />}
                 />
                 <Route path="/logout/" element={<LogOut />} />
               </Routes>

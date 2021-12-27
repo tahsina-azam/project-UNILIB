@@ -42,7 +42,7 @@ class ShowUserList extends Component {
     let userList;
 
     if (!users) {
-      userList = "there is no book record!";
+      userList = "there is no user record!";
     } else if (!searchResult) {
       userList = users.map((user, k) => <UserCard user={user} key={k} />);
     } else {

@@ -32,6 +32,7 @@ const UserCard = (props) => {
           <button
             type="button"
             className="btn btn-outline-danger btn-lg btn-block"
+            onClick={onIssueClick.bind(this, user._id)}
           >
             Issue This Book
           </button>
@@ -40,6 +41,24 @@ const UserCard = (props) => {
     } else {
       menu = <div></div>;
     }
+  };
+
+  const onIssueClick = (id) => {
+    const path = window.location.pathname;
+    const bookRef = path.split("/");
+    axios
+      .post("http://localhost:4000/issue-book", {
+        email: user.email,
+        book: bookRef[2],
+      })
+      .then(
+        (success) => {
+          console.log("sucessfully issued this book");
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   };
 
   const onDeleteClick = (id) => {

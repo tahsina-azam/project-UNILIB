@@ -80,7 +80,7 @@ class App extends React.Component {
                       Recently Added Books
                     </ListGroup.Item>
                     <ListGroup.Item className="text-white">
-                      Your account history
+                      <Link to="/user-history"> Your account history</Link>
                     </ListGroup.Item>
                   </ListGroup>
                 </div>
