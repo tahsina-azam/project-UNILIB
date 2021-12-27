@@ -8,6 +8,7 @@ const connectDB = require("./db/db_user");
 const User = require("./model/model_user");
 const Book = require("./model/model_books");
 const Message = require("./model/model_messages");
+const Report = require("./model/model_report");
 const path = require("path");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv").config({
@@ -368,6 +369,16 @@ app.post("/issue-book", async (req, res) => {
   ).then((error) => {
     res.send(error);
   });
+});
+
+app.post("/reports", async (req, res) => {
+  const sentReport = new Report({
+    type: req.body.type,
+    body: req.body.body,
+    user_email: req.body.email,
+  });
+  const result = await sentReport.save();
+  const { type, ...data } = await result.toJSON();
 });
 
 app.listen(4000, () => {
