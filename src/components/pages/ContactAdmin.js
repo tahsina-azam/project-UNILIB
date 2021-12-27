@@ -1,10 +1,38 @@
 import { Dropdown } from "react-bootstrap";
-const ContactAdmin = () => {
+import { React, useState } from "react";
+import axios from "axios";
+
+const ContactAdmin = (props) => {
+  const [category, setCategory] = useState("");
+  const [text, setText] = useState("");
+
+  const onSubmitClick = (email) => {
+    if (text === "") {
+      alert("please write something first before submitting");
+    } else {
+      axios
+        .post("http://localhost:4000/reports", {
+          type: category,
+          body: text,
+          email: email,
+        })
+        .then(
+          (success) => {
+            console.log("sucessfully sent report to admin");
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    }
+  };
+
   return (
     <div className="text-start">
       <Dropdown
         className="m-5"
         onSelect={(e) => {
+          setCategory(e);
           console.log(e);
         }}
       >
@@ -30,7 +58,9 @@ const ContactAdmin = () => {
             type="text"
             className="form-control"
             placeholder="write something..."
-            onChange={(e) => {}}
+            onChange={(e) => {
+              setText(e.target.value);
+            }}
             style={{ height: "200px" }}
           ></textarea>
           <div
@@ -41,6 +71,7 @@ const ContactAdmin = () => {
             className="btn btn-success mt-2 ml-auto"
             style={{ width: "auto", height: "auto" }}
             type="submit"
+            onClick={onSubmitClick.bind(this, props.email)}
           >
             <i class="far fa-share-square" /> Send
           </button>

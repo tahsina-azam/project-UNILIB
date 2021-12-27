@@ -29,12 +29,14 @@ import EditUser from "./components/pages/EditUser";
 import UserViewAll from "./components/pages/UserViewAll";
 import UserHistory from "./components/pages/UserHistory";
 import ContactAdmin from "./components/pages/ContactAdmin";
+import CheckReport from "./components/pages/CheckReport";
 
 function App() {
   const [state, setState] = useState(false);
   const [role, setRole] = useState("");
   const [name, setName] = useState("");
   const [emailHistory, setEmailHistory] = useState("");
+  const [id, setID] = useState("");
 
   const path = window.location.pathname;
   const words = path.split("/");
@@ -61,12 +63,14 @@ function App() {
     (async () => {
       const response = requireAuth();
       setState(response);
+
       if (response) {
         axios.get("http://localhost:4000/user", { withCredentials: true }).then(
           (response) => {
             console.log(response.data);
             setRole(response.data.data.role);
             setEmailHistory(response.data.data.email);
+            setID(response.data.data._id);
             const email = response.data.data.email;
             var id = email.split("@");
             setName(id[0]);
@@ -104,7 +108,7 @@ function App() {
 
                 <Route
                   path="/unilib/user/:username"
-                  element={<UserAccount />}
+                  element={<UserAccount role={role} id={id} />}
                 />
                 <Route path="/unilib/library" element={<Library />} />
 
@@ -132,6 +136,7 @@ function App() {
                 />
                 <Route path="/edit-user/:id" element={<EditUser />} />
                 <Route path="/view-all" element={<UserViewAll />} />
+                <Route path="/check-report" element={<CheckReport />} />
                 <Route
                   path="/unilib/admin/manage-users"
                   element={<ManageUsers />}
