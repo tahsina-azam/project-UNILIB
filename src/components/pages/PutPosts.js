@@ -53,7 +53,7 @@ function TypePost() {
             {showWarning}
           </div>
           <button
-            className="btn btn-outline-dark mt-2 ml-auto"
+            className="btn btn-success mt-2 ml-auto"
             style={{ width: "auto", height: "auto" }}
             type="submit"
           >

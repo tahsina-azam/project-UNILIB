@@ -35,12 +35,6 @@ const Comment = ({ replier, reply, commented_at }) => {
         </div>
       </div>
     </div>
-    // <div className="mb-5">
-    //   <h5 className="text-capitalize">
-    //     {replier} <Time time={commented_at} caption="commented at: " />
-    //   </h5>
-    //   <p style={{ color: "black", fontSize: "15px" }}></p>
-    // </div>
   );
 };
 //type to comment

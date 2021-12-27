@@ -93,7 +93,7 @@ function App() {
               setName={setName}
             />
 
-            <div className="wrap ml-0 mt-0">
+            <div className="ml-0 mt-5">
               <Routes>
                 <Route path="/forum" element={<Forum />} />
                 <Route path="/forum/ContactAdmin" element={<ContactAdmin />} />
