@@ -1,16 +1,15 @@
 import { useMutation } from "@apollo/client";
-import React from "react";
-import ReactDOM from "react-dom";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
-
+import selectType from "./popups";
+import BoxLoading from "react-loadingg/lib/BoxLoading";
 import { POST_COMMENT } from "../database/Mutations";
 import Time from "./UuidToTime";
 import "../styles/Forum.css";
 import "../styles/Comment.css";
 import "../styles/Sidebar.css";
 //show comment
-const Comment = ({ replier, reply, commented_at }) => {
+const Comment = ({ replier, reply, commented_at, registration }) => {
   return (
     <div class="container-fluid mt-2 text-start">
       <div class="row d-flex justify-content-left" style={{ width: "100%" }}>
@@ -22,9 +21,17 @@ const Comment = ({ replier, reply, commented_at }) => {
             >
               <div class="user d-flex flex-row align-items-left">
                 <div>
-                  <small class="font-weight-bold text-success text-capitalize">
+                  <small
+                    class="font-weight-bold text-success text-capitalize"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title={registration}
+                  >
                     {replier}
                   </small>
+                  {/* <small class="font-weight-bold text-success text-capitalize">
+                    Reg.no: {registration}
+                  </small> */}
                   <Time time={commented_at} caption="commented at: " />
                   <br />
                   <small class="font-weight-bold">{reply}</small>
@@ -40,8 +47,8 @@ const Comment = ({ replier, reply, commented_at }) => {
 //type to comment
 export const TypeComment = ({ post, refetch, commenter_id }) => {
   const [postComment, { error, loading }] = useMutation(POST_COMMENT);
-  if (loading) return <div>loading...</div>;
-  if (error) return <div>error!</div>;
+  if (loading) return <BoxLoading />;
+  if (error) return selectType("success", "please try again");
   const onSubmit = (e) => {
     e.preventDefault();
     const reply = e.target[0].value;
@@ -106,6 +113,7 @@ export const PutComments = ({ post, refetch, commenter_id }) => {
                 reply={c.reply}
                 replier={c.commenter.name}
                 commented_at={c.commented_at}
+                registration={c.commenter.registration}
               />
             ))}
         </div>

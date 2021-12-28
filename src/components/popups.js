@@ -15,7 +15,7 @@ const selectType = (type, htmlType) => {
   }
   if (type === "error") {
     const html = `Failed!`;
-    return pop("Please try again.", "#FF0000", html, `rgba(255, 0, 0,0.4)`);
+    return pop("There was an error.", "#FF0000", html, `rgba(255, 0, 0,0.4)`);
   }
 };
 const pop = (title, textColor, html, backColor) => {

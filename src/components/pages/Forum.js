@@ -8,7 +8,7 @@ function Forum() {
   return (
     <Row className="wrapper">
       <Col className="col-sm-2 sidebar">
-        <Sidebar />
+        <Sidebar user_id={hasura_id} />
       </Col>
 
       <Col className="col-sm-100 content">

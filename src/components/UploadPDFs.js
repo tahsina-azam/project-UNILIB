@@ -5,11 +5,11 @@ import { Modal, Button, Dropdown } from "react-bootstrap";
 import { GET_CATAGORIES_QUERY, GET_BOOK_LIST_QUERY } from "../database/queries";
 import { INSERT_BOOK } from "../database/Mutations";
 import { useQuery, useMutation } from "@apollo/client";
-import { useRef } from "react";
 import "../styles/Forum.css";
 import "../styles/Sidebar.css";
 import selectType from "./popups";
-const UploadPDFs = () => {
+import BoxLoading from "react-loadingg/lib/BoxLoading";
+const UploadPDFs = ({ user_id }) => {
   const [show, setShow] = useState(false);
   const [val, setVal] = useState({ name: "Select category" });
   const [showWarning, setShowWarning] = useState("");
@@ -61,12 +61,14 @@ const UploadPDFs = () => {
         storageref.put(finalFile).then(() => {
           storageref.getDownloadURL().then((link) => {
             e.preventDefault();
+            console.log(`here is the logged user ${user_id}`);
             upload({
               variables: {
                 link: link,
                 name: finalFileName,
                 category_id: val.id,
                 description: description,
+                uploader_id: user_id,
               },
             });
             selectType("success", "book");
@@ -106,8 +108,8 @@ const UploadPDFs = () => {
   }, []);
   const { data, loading, error } = useQuery(GET_CATAGORIES_QUERY);
   const { refetch } = useQuery(GET_BOOK_LIST_QUERY);
-  if (loading) return <div className="text-muted">loading...</div>;
-  if (error) return <div>error!</div>;
+  if (loading) return <BoxLoading />;
+  if (error) return selectType("success", "please try again");
   return (
     <>
       {/* button to upload */}
