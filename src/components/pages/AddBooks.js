@@ -48,24 +48,24 @@ const Elements = ({ onSubmit }) => {
   return (
     <div class="mx-auto">
       <div>
-        <div class="form-group  mx-sm-3 mb-2">
-          <label for="exampleFormControlFile1">
-            Enter the front page of the file:
-          </label>{" "}
-          <div className="input-group">
-            <span className="input-group-text border-0">
-              <i className="fa fa-cloud-upload p-0 m-0" />
-            </span>
-            <input
-              type="file"
-              accept="image/*"
-              className="form-control border-0 align-center pl-0 ml-0"
-              filename="image"
-              onChange={onChangeFile}
-            />
-          </div>
-        </div>
         <form enctype="multipart/form-data" onSubmit={handleSubmit}>
+          <div class="form-group  mx-sm-3 mb-2">
+            <label for="exampleFormControlFile1">
+              Enter the front page of the file:
+            </label>{" "}
+            <div className="input-group">
+              <span className="input-group-text border-0">
+                <i className="fa fa-cloud-upload p-0 m-0" />
+              </span>
+              <input
+                type="file"
+                accept="image/*"
+                className="form-control border-0 align-center pl-0 ml-0"
+                filename="image"
+                onChange={onChangeFile}
+              />
+            </div>
+          </div>
           <div class="form-group m-3">
             <label for="inputPassword2">The name of the book</label>
             <input ref={bookRef} type="text" class="form-control" />

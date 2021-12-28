@@ -9,6 +9,7 @@ const User = require("./model/model_user");
 const Book = require("./model/model_books");
 const Message = require("./model/model_messages");
 const Report = require("./model/model_report");
+const AddImg = require("./model/model_image");
 const path = require("path");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv").config({
@@ -379,6 +380,30 @@ app.post("/reports", async (req, res) => {
   });
   const result = await sentReport.save();
   const { type, ...data } = await result.toJSON();
+});
+
+app.post("/addImage", upload.single("image"), async (req, res) => {
+  req.body.image = req.file.path;
+  const img = new AddImg({
+    email: req.body.email,
+    id: req.body.id,
+    image: req.file.originalname,
+  });
+
+  const result = await img.save();
+
+  const { email, ...data } = await result.toJSON();
+
+  res.send(data);
+});
+app.get("/img/:email", async (req, res) => {
+  /*AddImg.findOne({ email: req.params.email })
+    .then((data) => res.json(data))
+    .catch((err) => res.status(404).json({ noimagefound: "No image found" }));*/
+  const data = await AddImg.findOne({ email: req.params.email });
+  if (data === null) {
+    res.status(400).json("not have image");
+  } else res.json({ message: "successful", data });
 });
 
 app.listen(4000, () => {

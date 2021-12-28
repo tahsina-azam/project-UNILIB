@@ -1,6 +1,6 @@
 import React from "react";
 import "../../styles/App.css";
-import { Row, Image } from "react-bootstrap";
+import { Row, Image, Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "../../utility";
 import { ListGroup } from "react-bootstrap";
@@ -20,6 +20,7 @@ class App extends React.Component {
       session: "",
       role: "",
       sideBar: "",
+      userimg: "",
     };
   }
   componentDidMount() {
@@ -49,6 +50,19 @@ class App extends React.Component {
               role: res.data.data.role,
             });
             console.log("this is response " + res.data.data.role);
+            axios.get("http://localhost:4000/img/" + this.state.email).then(
+              (res) => {
+                this.setState({
+                  userimg: res.data.data.image,
+                });
+                console.log(res.data.data.image);
+              },
+              (error) => {
+                this.setState({
+                  //userimg: "",
+                });
+              }
+            );
             if (this.state.role === "admin") {
               this.setState({
                 sideBar: (
@@ -133,6 +147,7 @@ class App extends React.Component {
           });
       });
     console.log(this.state.role);
+    console.log(this.state.userimg);
   }
 
   //design of side card component is inside sidebar inside componentdidmount method

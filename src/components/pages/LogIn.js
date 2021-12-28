@@ -48,7 +48,7 @@ const Form = ({ onSubmit }) => {
             var id = email.split("@");
             history(`/unilib/user/${id[0]}`);
           } else {
-            alert("wrong username or password");
+            alert("login first");
           }
         },
         (error) => {

@@ -12,8 +12,16 @@ class EditUser extends Component {
       registration: "",
       department: "",
       session: "",
+      id: "",
+      fileName: "",
     };
   }
+  onChangeFile = (e) => {
+    this.setState({
+      fileName: e.target.files[0],
+    });
+    console.log(e.target.files[0]);
+  };
 
   componentDidMount() {
     // console.log("Print id: " + this.props.match.params.id);
@@ -30,6 +38,7 @@ class EditUser extends Component {
           registration: res.data.registration,
           department: res.data.department,
           session: res.data.session,
+          id: res.data._id,
         });
       })
       .catch((err) => {
@@ -39,6 +48,23 @@ class EditUser extends Component {
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleClick = () => {
+    if (this.state.fileName) {
+      const formData = new FormData();
+      formData.append("image", this.state.fileName);
+      formData.append("email", this.state.email);
+      formData.append("id", this.state.id);
+      axios.post("http://localhost:4000/addImage", formData).then(
+        (res) => {
+          console.log(res.data);
+        },
+        (error) => {
+          alert("wrong username or password");
+        }
+      );
+    }
   };
 
   onSubmit = (e) => {
@@ -60,7 +86,7 @@ class EditUser extends Component {
         //this.props.history.push("/show-book/" + bookRef[2]);
       })
       .catch((err) => {
-        console.log("Error in UpdateBookInfo!");
+        console.log("Error in UpdateUserInfo!");
         console.log(err);
       });
   };
@@ -78,7 +104,39 @@ class EditUser extends Component {
               <p className="lead text-center">Update Personal Info</p>
             </div>
           </div>
-
+          {/*here begins */}
+          <div class="mx-auto">
+            <div>
+              <form enctype="multipart/form-data">
+                <div class="form-group  mx-sm-3 mb-2">
+                  <label for="exampleFormControlFile1">Add A Image</label>{" "}
+                  <div className="input-group">
+                    <span className="input-group-text border-0">
+                      <i className="fa fa-cloud-upload p-0 m-0" />
+                    </span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="form-control border-0 align-center pl-0 ml-0"
+                      filename="image"
+                      onChange={this.onChangeFile}
+                    />
+                  </div>
+                </div>
+                <div className="text-center">
+                  <button
+                    class="btn btn-success"
+                    type="submit"
+                    align="center"
+                    onClick={this.handleClick}
+                  >
+                    Update
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          {/*here stops */}
           <div className="col-md-8 m-auto">
             <form noValidate onSubmit={this.onSubmit}>
               <div className="form-group">
