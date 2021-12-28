@@ -67,7 +67,6 @@ function App() {
       if (response) {
         axios.get("http://localhost:4000/user", { withCredentials: true }).then(
           (response) => {
-            console.log(response.data);
             setRole(response.data.data.role);
             setEmailHistory(response.data.data.email);
             setID(response.data.data._id);
@@ -134,7 +133,10 @@ function App() {
                   path="/show-book-details/:id"
                   element={<BookDetails />}
                 />
-                <Route path="/edit-user/:id" element={<EditUser />} />
+                <Route
+                  path="/edit-user/:id"
+                  element={<EditUser email={emailHistory} />}
+                />
                 <Route path="/view-all" element={<UserViewAll />} />
                 <Route path="/check-report" element={<CheckReport />} />
                 <Route
@@ -143,7 +145,7 @@ function App() {
                 />
                 <Route
                   path="/user-history"
-                  element={<UserHistory emailHistory={emailHistory} />}
+                  element={<UserHistory emailHistory={emailHistory} id={id} />}
                 />
                 <Route path="/logout/" element={<LogOut />} />
               </Routes>
