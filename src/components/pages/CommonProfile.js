@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import "../../styles/App.css";
-import { Row, Image } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "../../utility";
-import { ListGroup } from "react-bootstrap";
 import "../../styles/UserProfile.css";
 import "../../styles/Fonts.css";
-import { Link } from "react-router-dom";
 
 class CommonProfile extends Component {
   constructor(props) {
@@ -45,46 +42,38 @@ class CommonProfile extends Component {
   }
   render() {
     return (
-      <div>
-        <div className="tab-content p-3 ">
-          <div className="tab-pane active show" id="profile">
-            <div className="text-capitalize">
-              <div>
-                <p className="fnt grading text-white">
-                  <i className="fas fa-user fa-lg me-3 fa-fw"></i>
-                  Name
-                </p>
-                <p className="m-2 fnt-user text-success">{this.state.name}</p>
-              </div>
-
-              <p className="fnt grading text-white">
-                <i className="fas fa-list-ol fa-lg me-3 fa-fw" />
-                Registration Number
-              </p>
-              <p className="m-2 fnt-user text-success">
-                {this.state.registration}
-              </p>
-              <p className="fnt grading text-white">
-                <i className="fas fa-book-reader fa-lg me-3 fa-fw" />
-                Department
-              </p>
-              <p className="m-2 fnt-user text-success">
-                {this.state.department}
-              </p>
-            </div>
+      <div className="content m-10">
+        <div className="text-capitalize">
+          <div>
             <p className="fnt grading text-white">
-              <i className="fas fa-envelope fa-lg me-3 fa-fw" />
-              Contact
+              <i className="fas fa-user fa-lg me-3 fa-fw"></i>
+              Name
             </p>
-            <p className="m-2 fnt-user text-success">{this.state.email}</p>
-            <p className="fnt grading text-white">
-              <i class="fas fa-calendar-alt fa-lg me-3 fa-fw" />
-              Session
-            </p>
-
-            <p className="m-2 fnt-user text-success">{this.state.session}</p>
+            <p className="m-2 fnt-user text-success">{this.state.name}</p>
           </div>
+
+          <p className="fnt grading text-white">
+            <i className="fas fa-list-ol fa-lg me-3 fa-fw" />
+            Registration Number
+          </p>
+          <p className="m-2 fnt-user text-success">{this.state.registration}</p>
+          <p className="fnt grading text-white">
+            <i className="fas fa-book-reader fa-lg me-3 fa-fw" />
+            Department
+          </p>
+          <p className="m-2 fnt-user text-success">{this.state.department}</p>
         </div>
+        <p className="fnt grading text-white">
+          <i className="fas fa-envelope fa-lg me-3 fa-fw" />
+          Contact
+        </p>
+        <p className="m-2 fnt-user text-success">{this.state.email}</p>
+        <p className="fnt grading text-white">
+          <i class="fas fa-calendar-alt fa-lg me-3 fa-fw" />
+          Session
+        </p>
+
+        <p className="m-2 fnt-user text-success">{this.state.session}</p>
       </div>
     );
   }

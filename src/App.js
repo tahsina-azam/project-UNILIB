@@ -30,6 +30,7 @@ import UserViewAll from "./components/pages/UserViewAll";
 import UserHistory from "./components/pages/UserHistory";
 import ContactAdmin from "./components/pages/ContactAdmin";
 import CheckReport from "./components/pages/CheckReport";
+import ShowUserList from "./components/pages/ShowUserList";
 import { SearchForum } from "./components/pages/SearchForum";
 
 function App() {
@@ -148,6 +149,7 @@ function App() {
                   path="/user-history"
                   element={<UserHistory emailHistory={emailHistory} id={id} />}
                 />
+                <Route to=" /show-book/issue" element={<ShowUserList />} />
                 <Route path="/logout/" element={<LogOut />} />
               </Routes>
             </div>

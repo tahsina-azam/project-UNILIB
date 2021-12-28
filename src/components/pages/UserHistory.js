@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import HistoryCard from "./HistoryCard";
 import "../../styles/Fonts.css";
 import "../../styles/ManageUser.css";
-import AdminUserSearch from "../AdminUserSearch";
 
 class UserHistory extends Component {
   constructor(props) {
@@ -42,24 +40,7 @@ class UserHistory extends Component {
 
     return (
       <div className="ShowBookList">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <br />
-              <card className="card mx-auto" style={{ width: "18rem" }}>
-                <h2 className="fnt-sheeva text-center">Issued books</h2>
-              </card>
-            </div>
-
-            <div className="col-md-11">
-              <br />
-              <br />
-              <hr />
-            </div>
-          </div>
-
-          <div className="list">{issuedBookList}</div>
-        </div>
+        <div className="list">{issuedBookList}</div>
       </div>
     );
   }

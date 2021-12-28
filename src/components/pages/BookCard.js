@@ -1,15 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Row, Button, Card } from "react-bootstrap";
+import { Row, Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../styles/Fonts.css";
 
 const BookCard = (props) => {
   const book = props.book;
   console.log(book.image);
-  {
-  }
-
   return (
     <div>
       <Card style={{ width: "18rem", height: "30rem" }}>

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 
 class BookDetails extends Component {
@@ -74,48 +73,15 @@ class BookDetails extends Component {
       <div className="ShowBookDetails">
         <div className="container">
           <div className="row">
-            {/* <div className="col-md-10 m-auto">
-              <br /> <br />
-              <Link
-                to="/unilib/library"
-                className="btn btn-outline-warning float-left"
-              >
-                Show Book List
-              </Link>
-            </div> */}
             <br />
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center text-success">
                 Book's Informaions
               </h1>
-              {/* <p className="lead text-center">View Book's Info</p> */}
               <hr /> <br />
             </div>
           </div>
           <div>{BookItem}</div>
-
-          {/* <div className="row">
-            <div className="col-md-6">
-              <button
-                type="button"
-                className="btn btn-outline-danger btn-lg btn-block"
-                onClick={this.onDeleteClick.bind(this, book._id)}
-              >
-                Delete Book
-              </button>
-              <br />
-            </div>
-
-            <div className="col-md-6">
-              <Link
-                to={`/edit-book/${book._id}`}
-                className="btn btn-outline-info btn-lg btn-block"
-              >
-                Edit Book
-              </Link>
-              <br />
-            </div>
-    </div>*/}
         </div>
       </div>
     );

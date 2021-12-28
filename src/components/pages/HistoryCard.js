@@ -1,23 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Row, Button, Card } from "react-bootstrap";
+import { Row, Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../styles/Fonts.css";
-
+import "../../styles/Library.css";
 const HistoryCard = (props) => {
   const history = props.book;
   return (
     <div>
-      <Card style={{ width: "18rem", height: "17rem" }}>
-        <div></div>
+      <Card style={{ width: "18rem", height: "auto" }}>
         <Card.Body>
           <Card.Title>
-            <Link to={`/show-book-details/${history.issued_book}`}>
-              {history.issued_book}
+            <Link
+              to={`/show-book-details/${history.issued_book}`}
+              className="book-links fnt-description"
+            >
+              Book id: {history.issued_book}
             </Link>
           </Card.Title>
-          <h3>{history.issue_date}</h3>
-          <Card.Text className="fnt">{history.issue_time}</Card.Text>
+          <sub className=" subs mx-2 text-capitalize">
+            <i class="fas fa-calendar-alt" />
+            {history.issue_date} <i class="fas fa-clock ms-2" />{" "}
+            {history.issue_time}
+          </sub>
         </Card.Body>
       </Card>
       <Row className="mb-5"></Row>

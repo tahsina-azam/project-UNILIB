@@ -11,6 +11,7 @@ import "@fontsource/abhaya-libre";
 import "@fontsource/calistoga";
 import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
+import { useState } from "react";
 const ShowCatInSidebar = ({ name, id }) => {
   return (
     <Link className="w-100 py-1 link" to={`/forum/${name}`}>
@@ -19,12 +20,12 @@ const ShowCatInSidebar = ({ name, id }) => {
     </Link>
   );
 };
-const Sidebar = ({ user_id }) => {
+const Sidebar = ({ user_id, type, pageid }) => {
   const { data, loading, error } = useQuery(GET_CATAGORIES_QUERY);
-  if (loading) <BoxLoading />;
-  if (error) return selectType("success", "please try again");
-  return (
-    <>
+  if (type === "1") {
+    if (loading) return <BoxLoading />;
+    if (error) return selectType("success", "please try again");
+    return (
       <div className="bar">
         <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-success sidebar ">
           <div className="col align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
@@ -104,7 +105,116 @@ const Sidebar = ({ user_id }) => {
           </div>
         </div>
       </div>
-    </>
-  );
+    );
+  } else if (type === "2") {
+    return (
+      <div className="bar">
+        <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-success sidebar ">
+          <div className="col align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+            <ul
+              className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start list-unstyled components"
+              id="menu"
+            >
+              <Link
+                className="nav-item align-middle px-0 py-1 link"
+                to={`/edit-user/${pageid}`}
+              >
+                <i className="fa fa-search icon" />
+                <span className="ms-1 d-none d-sm-inline inside-text">
+                  {" "}
+                  Edit Account
+                </span>
+              </Link>
+              <Link
+                className="nav-item align-middle px-0 py-1 link"
+                to="/check-report"
+              >
+                <i className="fas fa-pen icon" />
+                <span className="ms-1 d-none d-sm-inline inside-text">
+                  {" "}
+                  Check Reports
+                </span>
+              </Link>
+              <Link
+                className="nav-item align-middle px-0 py-1 link"
+                to="/unilib/admin/manage-users"
+              >
+                <i className="fas fa-envelope-open-text icon" />
+                <span className="ms-1 d-none d-sm-inline inside-text">
+                  {" "}
+                  Manage Users
+                </span>
+              </Link>
+              <Link
+                className="nav-item align-middle px-0 py-1 link"
+                to="/user-history"
+              >
+                <i className="fas fa-newspaper icon" />
+                <span className="ms-1 d-none d-sm-inline inside-text">
+                  Account History
+                </span>
+              </Link>
+            </ul>
+            <Link
+              className="btn btn-outline-light shadow-none text-center"
+              to="/unilib/admin/add-books/"
+            >
+              Upload a book
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div className="bar">
+        <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-success sidebar ">
+          <div className="col align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+            <ul
+              className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start list-unstyled components"
+              id="menu"
+            >
+              <Link
+                className="nav-item align-middle px-0 py-1 link"
+                to={`/edit-user/${pageid}`}
+              >
+                <i className="fa fa-search icon" />
+                <span className="ms-1 d-none d-sm-inline inside-text">
+                  {" "}
+                  Edit Account
+                </span>
+              </Link>
+              <Link
+                className="nav-item align-middle px-0 py-1 link"
+                to="/view-all"
+              >
+                <i className="fas fa-pen icon" />
+                <span className="ms-1 d-none d-sm-inline inside-text">
+                  {" "}
+                  Other Users
+                </span>
+              </Link>
+              <Link className="nav-item align-middle px-0 py-1 link" to="/">
+                <i className="fas fa-envelope-open-text icon" />
+                <span className="ms-1 d-none d-sm-inline inside-text">
+                  {" "}
+                  Recent Uploads
+                </span>
+              </Link>
+              <Link
+                className="nav-item align-middle px-0 py-1 link"
+                to="/user-history"
+              >
+                <i className="fas fa-newspaper icon" />
+                <span className="ms-1 d-none d-sm-inline inside-text">
+                  Account History
+                </span>
+              </Link>
+            </ul>
+          </div>
+        </div>
+      </div>
+    );
+  }
 };
 export default Sidebar;

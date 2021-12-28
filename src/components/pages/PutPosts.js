@@ -38,7 +38,7 @@ function TypePost() {
   return (
     <Row>
       <Col className="col-sm-2 m-0 p-0 sidebar">
-        <Sidebar />
+        <Sidebar type={"1"} />
       </Col>
       <Col className="col-sm-100 content">
         <form onSubmit={onSubmit}>

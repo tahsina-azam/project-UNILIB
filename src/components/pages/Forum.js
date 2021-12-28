@@ -8,11 +8,11 @@ function Forum() {
   return (
     <Row className="wrapper">
       <Col className="col-sm-2 sidebar">
-        <Sidebar user_id={hasura_id} />
+        <Sidebar user_id={hasura_id} type={"1"} />
       </Col>
 
       <Col className="col-sm-100 content">
-        <GetPosts commenter_id={hasura_id} />
+        <GetPosts commenter_id={hasura_id} type={"1"} />
       </Col>
     </Row>
   );

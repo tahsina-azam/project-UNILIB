@@ -1,19 +1,17 @@
-import { React, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { Row, Button, Card } from "react-bootstrap";
+import { React, useState } from "react";
+import { Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../styles/Fonts.css";
 import axios from "axios";
 
 const UserCard = (props) => {
   const user = props.user;
-  const [state, setState] = useState("");
   let menu;
 
   const requireAuth = () => {
     const path = window.location.pathname;
     const words = path.split("/");
-    console.log(words[0]);
+    console.log(`in user card ${words[0]}`);
     if (words[1] === "unilib") {
       menu = (
         <div className="text-end">
@@ -31,7 +29,7 @@ const UserCard = (props) => {
         <div>
           <button
             type="button"
-            className="btn btn-outline-danger btn-lg btn-block"
+            className="btn btn-success btn-block"
             onClick={onIssueClick.bind(this, user._id)}
           >
             Issue This Book

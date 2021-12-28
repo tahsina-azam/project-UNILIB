@@ -44,38 +44,25 @@ class showBookDetails extends Component {
     const book = this.state.book;
     let BookItem = (
       <div>
-        <table className="table table-hover table-dark">
-          {/* <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead> */}
+        <table className="table table-hover border-success">
           <tbody>
             <tr>
-              <th scope="row">1</th>
               <td>Title</td>
               <td>{book.bookName}</td>
             </tr>
             <tr>
-              <th scope="row">2</th>
               <td>Author</td>
               <td>{book.writer}</td>
             </tr>
             <tr>
-              <th scope="row">3</th>
               <td>Number</td>
               <td>{book.number}</td>
             </tr>
             <tr>
-              <th scope="row">4</th>
               <td>Pdf Link</td>
               <td>{book.pdfLink}</td>
             </tr>
             <tr>
-              <th scope="row">5</th>
               <td>Description</td>
               <td>{book.text}</td>
             </tr>
@@ -88,7 +75,7 @@ class showBookDetails extends Component {
       <div className="ShowBookDetails">
         <div className="container">
           <div className="row">
-            <div className="col-md-10 m-auto">
+            {/* <div className="col-md-10 m-auto">
               <br /> <br />
               <Link
                 to="/unilib/admin/library"
@@ -96,45 +83,38 @@ class showBookDetails extends Component {
               >
                 Show Book List
               </Link>
-            </div>
+            </div> */}
             <br />
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Book's Record</h1>
-              <p className="lead text-center">View Book's Info</p>
+              <h1 className="display-4 text-center text-success">
+                Book's Informaions
+              </h1>
               <hr /> <br />
             </div>
           </div>
-          <div>{BookItem}</div>
+          <div className="row">{BookItem}</div>
 
-          <div className="row">
+          <div className="row m-5 text-center">
+            <div className="col-md-6">
+              <Link
+                to={`/edit-book/${book._id}`}
+                className="btn btn-warning btn-block"
+              >
+                Edit Book
+              </Link>
+            </div>
             <div className="col-md-6">
               <button
                 type="button"
-                className="btn btn-outline-danger btn-lg btn-block"
+                className="btn btn-danger btn-block"
                 onClick={this.onDeleteClick.bind(this, book._id)}
               >
                 Delete Book
               </button>
-              <br />
-            </div>
-
-            <div className="col-md-6">
-              <Link
-                to={`/edit-book/${book._id}`}
-                className="btn btn-outline-info btn-lg btn-block"
-              >
-                Edit Book
-              </Link>
-              <br />
             </div>
           </div>
-          {/* <br />
-            <button type="button" class="btn btn-outline-info btn-lg btn-block">Edit Book</button>
-            <button type="button" class="btn btn-outline-danger btn-lg btn-block">Delete Book</button> */}
         </div>
-        <div>
-          <ShowUserList />
-        </div>
+        <ShowUserList />
       </div>
     );
   }

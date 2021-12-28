@@ -1,13 +1,15 @@
 import React from "react";
 import "../../styles/App.css";
+<<<<<<< HEAD
 import { Row, Image, Card } from "react-bootstrap";
+=======
+>>>>>>> de6efea (fixed #96 and fixed ui)
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "../../utility";
-import { ListGroup } from "react-bootstrap";
 import "../../styles/UserProfile.css";
 import "../../styles/Fonts.css";
-import { Link } from "react-router-dom";
 import CommonProfile from "./CommonProfile";
+import Sidebar from "../Sidebar";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -19,8 +21,12 @@ class App extends React.Component {
       name: "",
       session: "",
       role: "",
+<<<<<<< HEAD
       sideBar: "",
       userimg: "",
+=======
+      val: "",
+>>>>>>> de6efea (fixed #96 and fixed ui)
     };
   }
   componentDidMount() {
@@ -65,83 +71,11 @@ class App extends React.Component {
             );
             if (this.state.role === "admin") {
               this.setState({
-                sideBar: (
-                  <div className="profile-card-4 z-depth-3">
-                    <div className="card">
-                      <div className="card-body text-center  rounded-top">
-                        <div className="user-box">
-                          <Image
-                            src="https://cdn-icons.flaticon.com/png/512/560/premium/560277.png?token=exp=1640441048~hmac=98f88c50b4ff97a562830cf5332adeae"
-                            alt="user avatar"
-                          />
-                        </div>
-                      </div>
-                      <div className="card-body">
-                        <ListGroup>
-                          <ListGroup.Item className="text-white">
-                            <Link to={`/edit-user/${this.state.id}`}>
-                              Edit Account Info
-                            </Link>
-                          </ListGroup.Item>
-                          <ListGroup.Item className="text-white">
-                            <Link to="/unilib/admin/manage-users">
-                              Manage Users
-                            </Link>
-                          </ListGroup.Item>
-                          <ListGroup.Item className="text-white">
-                            <Link to="/check-report">Check Reports</Link>
-                          </ListGroup.Item>
-                          <ListGroup.Item className="text-white">
-                            <Link to="/user-history">
-                              {" "}
-                              Your account history
-                            </Link>
-                          </ListGroup.Item>
-                        </ListGroup>
-                      </div>
-                      {/* <div className="card-footer text-center"></div> */}
-                    </div>
-                  </div>
-                ),
+                val: "2",
               });
             } else {
               this.setState({
-                sideBar: (
-                  <div className="profile-card-4 z-depth-3">
-                    <div className="card">
-                      <div className="card-body text-center  rounded-top">
-                        <div className="user-box">
-                          <Image
-                            src="https://cdn-icons.flaticon.com/png/512/560/premium/560277.png?token=exp=1640441048~hmac=98f88c50b4ff97a562830cf5332adeae"
-                            alt="user avatar"
-                          />
-                        </div>
-                      </div>
-                      <div className="card-body">
-                        <ListGroup>
-                          <ListGroup.Item className="text-white">
-                            <Link to={`/edit-user/${this.state.id}`}>
-                              Edit Account Info
-                            </Link>
-                          </ListGroup.Item>
-                          <ListGroup.Item className="text-white">
-                            <Link to="/view-all">View Other Users</Link>
-                          </ListGroup.Item>
-                          <ListGroup.Item className="text-white">
-                            Recently Added Books
-                          </ListGroup.Item>
-                          <ListGroup.Item className="text-white">
-                            <Link to="/user-history">
-                              {" "}
-                              Your account history
-                            </Link>
-                          </ListGroup.Item>
-                        </ListGroup>
-                      </div>
-                      {/* <div className="card-footer text-center"></div> */}
-                    </div>
-                  </div>
-                ),
+                val: "3",
               });
             }
           });
@@ -155,33 +89,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-4">
-            <Row className="mb-3"></Row>
-            {this.state.sideBar}
-          </div>
-          <div className="col-lg-8">
-            <div className="card z-depth-3">
-              <div className="card-body">
-                <ul className="nav nav-pills nav-pills-primary nav-justified">
-                  <li className="nav-item">
-                    {/* <a
-                      href="javascript:void();"
-                      data-target="#profile"
-                      data-toggle="pill"
-                      className="nav-link active show"
-                    > */}
-                    {/* <i className="icon-user"></i>{" "} */}
-                    {/* <span className="hidden-xs">Profile</span> */}
-                    {/* </a> */}
-                  </li>
-                </ul>
-                <CommonProfile />
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="wrapper">
+        <Sidebar type={this.state.val} pageid={this.state.id} />
+        <CommonProfile className="content" />
       </div>
     );
   }
