@@ -55,7 +55,7 @@ const Form = ({ onSubmit }) => {
         },
         (error) => {
           // alert("wrong username or password");
-          selectType("error");
+          selectType("invalid", "wrong user name or password");
         }
       );
   };

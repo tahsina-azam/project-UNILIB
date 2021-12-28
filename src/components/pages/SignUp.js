@@ -49,9 +49,10 @@ const Form = ({ onSubmit }) => {
             "success",
             "activation link which is sent in your email account"
           );
-          alert("check your email for the activation link");
+          // alert("check your email for the activation link");
         },
         (error) => {
+          selectType("invalid", "Carefully fillout all the fields");
           console.log(error);
         }
       );

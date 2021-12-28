@@ -105,7 +105,7 @@ class EditUser extends Component {
             </div>
           </div>
           {/*here begins */}
-          <div class="mx-auto">
+          {/* <div class="mx-auto">
             <div>
               <form enctype="multipart/form-data">
                 <div class="form-group  mx-sm-3 mb-2">
@@ -135,7 +135,7 @@ class EditUser extends Component {
                 </div>
               </form>
             </div>
-          </div>
+         </div>*/}
           {/*here stops */}
           <div className="col-md-8 m-auto">
             <form noValidate onSubmit={this.onSubmit}>

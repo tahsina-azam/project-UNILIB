@@ -106,7 +106,7 @@ app.post(
       { expiresIn: "200m" }
     );
 
-    console.log(`${process.env.CLIENT_URL}/authentication/activation/${token}`);
+    //console.log(`${process.env.CLIENT_URL}/authentication/activation/${token}`);
 
     const dataMail = {
       from: "Noreply@Unilib.com",
@@ -404,6 +404,28 @@ app.get("/img/:email", async (req, res) => {
   if (data === null) {
     res.status(400).json("not have image");
   } else res.json({ message: "successful", data });
+});
+
+app.post("/api/admin/send-email", async (req, res) => {
+  //console.log(req.body.id);
+  //const user = User.findById(req.body.id);
+  console.log(req.body);
+  const dataMail = {
+    from: "Noreply@Unilib.com",
+    to: req.body.email,
+    subject: req.body.subject,
+    html: `
+      <h2>Hello there! Contacting you from unilib :)</h2>
+      <p>${req.body.message}</p>
+      `,
+  };
+  await mg.messages().send(dataMail, function (error, body) {
+    if (error) {
+      return res.json({
+        message: error.message,
+      });
+    } else res.json({ message: "Email has been sent, kindly activate your account" });
+  });
 });
 
 app.listen(4000, () => {

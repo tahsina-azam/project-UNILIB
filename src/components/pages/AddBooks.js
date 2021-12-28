@@ -43,7 +43,7 @@ const Elements = ({ onSubmit }) => {
         console.log(res.data);
       },
       (error) => {
-        alert("Carefully fillup all the fields");
+        selectType("invalid", "Carefully fillout all the fields");
       }
     );
   };
