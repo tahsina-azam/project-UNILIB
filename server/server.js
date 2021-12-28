@@ -396,6 +396,15 @@ app.post("/addImage", upload.single("image"), async (req, res) => {
 
   res.send(data);
 });
+app.get("/img/:email", async (req, res) => {
+  /*AddImg.findOne({ email: req.params.email })
+    .then((data) => res.json(data))
+    .catch((err) => res.status(404).json({ noimagefound: "No image found" }));*/
+  const data = await AddImg.findOne({ email: req.params.email });
+  if (data === null) {
+    res.status(400).json("not have image");
+  } else res.json({ message: "successful", data });
+});
 
 app.listen(4000, () => {
   console.log("running on port 4000");
