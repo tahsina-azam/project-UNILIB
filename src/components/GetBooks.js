@@ -49,7 +49,7 @@ const GetBooks = () => {
   const { category } = useParams();
 
   if (loading) return <BoxLoading />;
-  if (error) return selectType("success", "please try again");
+  if (error) return selectType("error", "please try again");
   return (
     <div className="content list-forum">
       {files.length === 0 ? (

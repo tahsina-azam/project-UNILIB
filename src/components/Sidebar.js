@@ -11,7 +11,6 @@ import "@fontsource/abhaya-libre";
 import "@fontsource/calistoga";
 import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { useState } from "react";
 const ShowCatInSidebar = ({ name, id }) => {
   return (
     <Link className="w-100 py-1 link" to={`/forum/${name}`}>

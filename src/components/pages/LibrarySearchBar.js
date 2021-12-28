@@ -30,11 +30,6 @@ const LibrarySearchBar = (props) => {
         placeholder="Type here to search"
         onChange={getSearchTerm}
       />
-      <div className="input-group-append">
-        <button className="btn btn-success btn-lg m-1" type="button">
-          <i style={{ color: "white" }} className="fa fa-search" />
-        </button>
-      </div>
     </div>
     // <div>
     //   <div class="input-group mb-3">

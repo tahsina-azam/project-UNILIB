@@ -18,10 +18,20 @@ const BookCard = (props) => {
         </div>
         <Card.Body>
           <Card.Title>
-            <Link to={`/show-book/${book._id}`}>{book.bookName}</Link>
+            <Link
+              to={`/show-book/${book._id}`}
+              className="book-links fnt-bookname"
+            >
+              {book.bookName}
+            </Link>
           </Card.Title>
-          <h3>{book.writer}</h3>
-          <Card.Text className="fnt">{book.text}</Card.Text>
+
+          <Card.Text className="fnt-description ">
+            <p>
+              <span style={{ color: "#198754" }}>Author: </span>
+              {book.writer}
+            </p>
+          </Card.Text>
         </Card.Body>
       </Card>
       <Row className="mb-5"></Row>
