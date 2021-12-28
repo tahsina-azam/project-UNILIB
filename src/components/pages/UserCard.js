@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import { Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
 import "../../styles/Fonts.css";
 import axios from "axios";
 
@@ -15,6 +16,14 @@ const UserCard = (props) => {
     if (words[1] === "unilib") {
       menu = (
         <div className="text-end">
+          <div>
+            <Link to={`/send-email/${user.email}`}>
+              {" "}
+              <button type="button" className="btn btn-danger btn-lg btn-block">
+                Send Mail
+              </button>
+            </Link>
+          </div>
           <button
             type="button"
             className="btn btn-danger btn-lg btn-block"

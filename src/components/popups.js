@@ -6,6 +6,9 @@ const selectType = (type, htmlType) => {
   } else if (type === "waiting") {
     const html = `Putting your ${htmlType} in <b></b> milliseconds.`;
     pop("Cooking your cookies...", "#F9D10B", html, `rgba(249, 209, 11,0.4)`);
+  } else if (type === "invalid") {
+    const html = `Error! ${htmlType}. Please try again in <b></b> milliseconds.`;
+    return pop("There was an error.", "#FF0000", html, `rgba(255, 0, 0,0.4)`);
   } else {
     const html = `Please try again to get your ${htmlType} in <b></b> milliseconds.`;
     return pop("There was an error.", "#FF0000", html, `rgba(255, 0, 0,0.4)`);

@@ -31,6 +31,7 @@ import UserHistory from "./components/pages/UserHistory";
 import ContactAdmin from "./components/pages/ContactAdmin";
 import CheckReport from "./components/pages/CheckReport";
 import ShowUserList from "./components/pages/ShowUserList";
+import SendEmail from "./components/pages/SendEmail";
 import { SearchForum } from "./components/pages/SearchForum";
 
 function App() {
@@ -150,6 +151,10 @@ function App() {
                   element={<UserHistory emailHistory={emailHistory} id={id} />}
                 />
                 <Route to=" /show-book/issue" element={<ShowUserList />} />
+                <Route
+                  path="/send-email/:id"
+                  element={<SendEmail email={emailHistory} id={id} />}
+                />
                 <Route path="/logout/" element={<LogOut />} />
               </Routes>
             </div>

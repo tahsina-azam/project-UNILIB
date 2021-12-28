@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import "../../styles/login.css";
 import "../../styles/Fonts.css";
+import selectType from "../popups";
 
 const Field = React.forwardRef(({ label, type }, ref) => {
   return (
@@ -42,9 +43,19 @@ const Form = ({ onSubmit }) => {
         session: sessionRef.current.value,
         password: passwordRef.current.value,
       })
-      .then((res) => {
-        alert("check your email for the activation link");
-      });
+      .then(
+        (res) => {
+          selectType(
+            "success",
+            "activation link which is sent in your email account"
+          );
+          // alert("check your email for the activation link");
+        },
+        (error) => {
+          selectType("invalid", "Carefully fillout all the fields");
+          console.log(error);
+        }
+      );
   };
   return (
     <div className="vh-90 border-0">
