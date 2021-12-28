@@ -3,6 +3,7 @@ import "../../styles/App.css";
 import "../../styles/login.css";
 import "../../styles/Fonts.css";
 import "../../styles/Sidebar.css";
+import selectType from "../popups";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -46,13 +47,15 @@ const Form = ({ onSubmit }) => {
 
             const email = emailRef.current.value;
             var id = email.split("@");
+            selectType("success", "account");
             history(`/unilib/user/${id[0]}`);
           } else {
-            alert("login first");
+            //alert("login first");
           }
         },
         (error) => {
-          alert("wrong username or password");
+          // alert("wrong username or password");
+          selectType("error");
         }
       );
   };

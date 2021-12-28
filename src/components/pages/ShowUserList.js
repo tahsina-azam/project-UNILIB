@@ -5,6 +5,7 @@ import UserCard from "./UserCard";
 import "../../styles/Fonts.css";
 import "../../styles/ManageUser.css";
 import AdminUserSearch from "../AdminUserSearch";
+import selectType from "../popups";
 
 class ShowUserList extends Component {
   constructor(props) {
@@ -29,6 +30,7 @@ class ShowUserList extends Component {
           users: res.data,
           searchResult: res.data,
         });
+        selectType("success", "requested items");
       })
       .catch((err) => {
         console.log("Error from ShowUserList");

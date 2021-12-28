@@ -4,6 +4,7 @@ import StudentBookCard from "./StudentBookCard";
 import "../../styles/Library.css";
 import "./LibrarySearchBar";
 import LibrarySearchBar from "./LibrarySearchBar";
+import selectType from "../popups";
 
 class StudentBookList extends Component {
   constructor(props) {
@@ -28,6 +29,7 @@ class StudentBookList extends Component {
           books: res.data,
           searchResult: res.data,
         });
+        selectType("success", "requested items");
       })
       .catch((err) => {
         console.log("Error from ShowBookList");

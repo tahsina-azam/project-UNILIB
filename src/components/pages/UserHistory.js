@@ -3,6 +3,7 @@ import axios from "axios";
 import HistoryCard from "./HistoryCard";
 import "../../styles/Fonts.css";
 import "../../styles/ManageUser.css";
+import selectType from "../popups";
 
 class UserHistory extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class UserHistory extends Component {
           borrowed_books: res.data.data.books,
         });
         console.log(res.data.data.books);
+        selectType("success", "issued book Information");
       })
       .catch((err) => {
         console.log("Error from UserHistory" + err);

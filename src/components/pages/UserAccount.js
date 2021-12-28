@@ -1,9 +1,7 @@
 import React from "react";
 import "../../styles/App.css";
-<<<<<<< HEAD
 import { Row, Image, Card } from "react-bootstrap";
-=======
->>>>>>> de6efea (fixed #96 and fixed ui)
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "../../utility";
 import "../../styles/UserProfile.css";
@@ -21,12 +19,9 @@ class App extends React.Component {
       name: "",
       session: "",
       role: "",
-<<<<<<< HEAD
       sideBar: "",
       userimg: "",
-=======
       val: "",
->>>>>>> de6efea (fixed #96 and fixed ui)
     };
   }
   componentDidMount() {

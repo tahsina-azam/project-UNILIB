@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "../../utility";
+import selectType from "../popups";
 
 const Elements = ({ onSubmit }) => {
   const bookRef = React.useRef();
@@ -38,10 +39,11 @@ const Elements = ({ onSubmit }) => {
 
     axios.post("http://localhost:4000/addbook", formData).then(
       (res) => {
+        selectType("success", "book uploaded");
         console.log(res.data);
       },
       (error) => {
-        alert("wrong username or password");
+        alert("Carefully fillup all the fields");
       }
     );
   };
