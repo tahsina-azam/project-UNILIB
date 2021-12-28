@@ -5,6 +5,7 @@ export const GET_POSTS_QUERY = gql`
       comments {
         commenter {
           name
+          registration
         }
         reply
         commented_at
@@ -12,6 +13,7 @@ export const GET_POSTS_QUERY = gql`
       }
       author {
         name
+        registration
       }
       message
       id
@@ -33,6 +35,7 @@ export const GET_BOOK_LIST_QUERY = gql`
       id
       name
       link
+      description
       category {
         name
       }
@@ -40,6 +43,51 @@ export const GET_BOOK_LIST_QUERY = gql`
         name
       }
       uploaded_at
+    }
+  }
+`;
+export const SEARCH_USER = gql`
+  query MyQuery($text1: String, $text2: String) {
+    posts(
+      where: {
+        message: { _ilike: $text1 }
+        _or: { author: { name: { _gt: $text2 } } }
+      }
+    ) {
+      id
+      author {
+        name
+        registration
+      }
+      comments {
+        commenter {
+          name
+          registration
+        }
+        reply
+        commented_at
+        id
+      }
+      message
+      created_at
+    }
+  }
+`;
+export const SEARCH_BOOKS = gql`
+  query MyQuery($name: String) {
+    BookLinks(
+      where: {
+        name: { _ilike: $name }
+        _or: { uploader: { name: { _ilike: $name } } }
+      }
+    ) {
+      name
+      link
+      description
+      uploaded_at
+      uploader {
+        name
+      }
     }
   }
 `;

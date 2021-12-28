@@ -1,6 +1,8 @@
 //sidebar for forum and its children
 import { GET_CATAGORIES_QUERY } from "../database/queries";
 import UploadPDFs from "./UploadPDFs";
+import selectType from "./popups";
+import BoxLoading from "react-loadingg/lib/BoxLoading";
 import "../styles/Fonts.css";
 import "../styles/Forum.css";
 import "../styles/Sidebar.css";
@@ -11,42 +13,37 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 const ShowCatInSidebar = ({ name, id }) => {
   return (
-    // <li>
-    //   <button
-    //     className=" border-0 my-1"
-    //     style={{ width: "100%" }}
-    //
-    //   >
-    //
-    //   </button>
-    // </li>
-    <Link className="w-100 my-1 link" to={`/forum/${name}`}>
+    <Link className="w-100 py-1 link" to={`/forum/${name}`}>
       <i className="fas fa-circle-notch" />
       <span className="d-none d-sm-inline inside-text"> {name}</span>
     </Link>
   );
 };
-const Sidebar = () => {
+const Sidebar = ({ user_id }) => {
   const { data, loading, error } = useQuery(GET_CATAGORIES_QUERY);
-  if (loading) return <div className="text-muted">loading...</div>;
-  if (error) return <div>error!</div>;
+  if (loading) <BoxLoading />;
+  if (error) return selectType("success", "please try again");
   return (
     <>
       <div className="bar">
         <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-success sidebar ">
           <div className="col align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-            <a
-              href="/"
-              className="align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none"
-            >
-              <span className="fs-5 d-none d-sm-inline">Menu</span>
-            </a>
             <ul
               className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start list-unstyled components"
               id="menu"
             >
               <Link
-                className="nav-item align-middle px-0 py-3 link"
+                className="nav-item align-middle px-0 py-1 link"
+                to="/forum/search"
+              >
+                <i className="fa fa-search icon" />
+                <span className="ms-1 d-none d-sm-inline inside-text">
+                  {" "}
+                  Search
+                </span>
+              </Link>
+              <Link
+                className="nav-item align-middle px-0 py-1 link"
                 to="/forum/writepost"
               >
                 <i className="fas fa-pen icon" />
@@ -56,17 +53,17 @@ const Sidebar = () => {
                 </span>
               </Link>
               <Link
-                className="nav-item align-middle px-0 py-3 link"
+                className="nav-item align-middle px-0 py-1 link"
                 to="/forum/ContactAdmin"
               >
-                <i className="fas fa-pen icon" />
+                <i className="fas fa-envelope-open-text icon" />
                 <span className="ms-1 d-none d-sm-inline inside-text">
                   {" "}
                   Contact admin
                 </span>
               </Link>
               <Link
-                className="nav-item align-middle px-0 py-3 link"
+                className="nav-item align-middle px-0 py-1 link"
                 to="/forum"
               >
                 <i className="fas fa-newspaper icon" />
@@ -79,7 +76,7 @@ const Sidebar = () => {
                 <div
                   href="#submenu1"
                   data-bs-toggle="collapse"
-                  className="nav-item px-0 align-middle py-3"
+                  className="nav-item px-0 align-middle py-1"
                 >
                   <i className="fas fa-book icon" />
                   <span className="ms-1 d-none d-sm-inline inside-text">
@@ -102,7 +99,7 @@ const Sidebar = () => {
                 </ul>
               </li>
             </ul>
-            <UploadPDFs />
+            <UploadPDFs user_id={user_id} />
             <div className="dropdown pb-4"></div>
           </div>
         </div>

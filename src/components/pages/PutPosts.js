@@ -4,6 +4,7 @@ import { POST_POST } from "../../database/Mutations";
 import "../../styles/Sidebar.css";
 import { useState } from "react";
 import Sidebar from "../Sidebar";
+import BoxLoading from "react-loadingg/lib/BoxLoading";
 import selectType from "../popups";
 import { Col, Row } from "react-bootstrap";
 //type post insert
@@ -14,8 +15,8 @@ function TypePost() {
   const { refetch } = useQuery(GET_POSTS_QUERY);
   const [showWarning, setShowWarning] = useState("");
   const [postPost, { error, loading }] = useMutation(POST_POST);
-  if (loading) return <div>loading...</div>;
-  if (error) return <div>error!</div>;
+  if (loading) return <BoxLoading />;
+  if (error) return selectType("success", "please try again");
   const onSubmit = (e) => {
     setShowWarning("");
     e.preventDefault();

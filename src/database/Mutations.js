@@ -6,13 +6,14 @@ export const INSERT_BOOK = gql`
     $link: String!
     $name: String!
     $description: String
+    $uploader_id: uuid
   ) {
     insert_BookLinks_one(
       object: {
         category_id: $category_id
         link: $link
         name: $name
-        uploader_id: "d9a9427d-d40a-4796-bf63-926aa74c4972"
+        uploader_id: $uploader_id
         description: $description
       }
     ) {

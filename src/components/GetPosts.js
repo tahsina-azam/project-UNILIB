@@ -1,15 +1,15 @@
 import { useQuery } from "@apollo/client";
 import { GET_POSTS_QUERY } from "../database/queries";
 import { PutComments, TypeComment } from "./PutComments";
-import { Accordion } from "react-bootstrap";
 import React from "react";
-import ReactDOM from "react-dom";
+import selectType from "./popups";
 import Time from "./UuidToTime";
+import BoxLoading from "react-loadingg/lib/BoxLoading";
 // import "../styles/post.css";
 import "../styles/Fonts.css";
 import "../styles/Sidebar.css";
 //show posts
-const Post = ({ author, message, created_at }) => {
+export const Post = ({ author, message, created_at, registration }) => {
   const caption = "Published at: ";
   return (
     <div className="bg-success2 p-3" style={{ width: "100%" }}>
@@ -19,7 +19,14 @@ const Post = ({ author, message, created_at }) => {
           alt="user"
           className="profile-photo pull-left "
         /> */}
-        <h3 className="text-capitalize fnt-poster col-lg-10">{author} </h3>
+        <h3
+          className="text-capitalize fnt-poster col-lg-10"
+          data-toggle="tooltip"
+          data-placement="top"
+          title={registration}
+        >
+          {author}{" "}
+        </h3>
         <Time time={created_at} caption={caption} className="text-muted" />
       </div>
 
@@ -30,8 +37,8 @@ const Post = ({ author, message, created_at }) => {
 //fetch posts
 const GetPosts = ({ commenter_id }) => {
   const { data, loading, error, refetch } = useQuery(GET_POSTS_QUERY);
-  if (loading) return <div>loading...</div>;
-  if (error) return <div>error!</div>;
+  if (loading) return <BoxLoading />;
+  if (error) selectType("success", "please try again");
   return (
     <div>
       <link
@@ -53,6 +60,7 @@ const GetPosts = ({ commenter_id }) => {
                 <Post
                   key={p.id}
                   author={p.author.name}
+                  registration={p.author.registration}
                   message={p.message}
                   created_at={p.created_at}
                 />

@@ -30,6 +30,7 @@ import UserViewAll from "./components/pages/UserViewAll";
 import UserHistory from "./components/pages/UserHistory";
 import ContactAdmin from "./components/pages/ContactAdmin";
 import CheckReport from "./components/pages/CheckReport";
+import { SearchForum } from "./components/pages/SearchForum";
 
 function App() {
   const [state, setState] = useState(false);
@@ -104,7 +105,7 @@ function App() {
                 <Route path="/services" element={<Services />} />
                 <Route path="/log-in" element={<LogIn />} />
                 <Route path="/sign-up" element={<SignUp />} />
-
+                <Route path="/forum/search" element={<SearchForum />} />
                 <Route
                   path="/unilib/user/:username"
                   element={<UserAccount role={role} id={id} />}

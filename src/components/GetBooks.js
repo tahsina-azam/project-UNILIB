@@ -4,10 +4,18 @@ import "../styles/Fonts.css";
 import { useFiles } from "../contexts/file";
 import React from "react";
 import "../styles/Library.css";
-import { Row, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Time from "./UuidToTime";
-const Book = ({ name, link, uploaderName, uploaded_at }) => {
+import selectType from "./popups";
+import BoxLoading from "react-loadingg/lib/BoxLoading";
+export const Book = ({
+  name,
+  link,
+  uploaderName,
+  uploaded_at,
+  description,
+}) => {
   console.log("Fetch books");
   return (
     <Card
@@ -29,7 +37,7 @@ const Book = ({ name, link, uploaderName, uploaded_at }) => {
               Uploader: {uploaderName}
             </span>
           </p>
-          <span style={{ color: "#198754" }}>Description: </span>
+          <span style={{ color: "#198754" }}>Description: {description}</span>
         </Card.Text>
       </Card.Body>{" "}
     </Card>
@@ -40,8 +48,8 @@ const GetBooks = () => {
   const { files, loading, error } = useFiles();
   const { category } = useParams();
 
-  if (loading) return <div>loading...</div>;
-  if (error) return <div>error!</div>;
+  if (loading) return <BoxLoading />;
+  if (error) return selectType("success", "please try again");
   return (
     <div className="content list-forum">
       {files.length === 0 ? (
@@ -56,6 +64,7 @@ const GetBooks = () => {
               link={b.link}
               uploaderName={b.uploader.name}
               uploaded_at={b.uploaded_at}
+              description={b.description}
             />
           ))
       )}
