@@ -75,19 +75,19 @@ export const SearchForum = () => {
           value="Users"
           name="platform"
           type="radio"
-          className="m-3"
+          className="mx-3"
           onChange={(e) => {
             setShow1(true);
             setShow2(false);
           }}
         />
-        Users
+        Posts
         <input
           id="Books Uploaded By Students"
           value="Books Uploaded By Students"
           name="platform"
           type="radio"
-          className="m-3"
+          className="mx-3"
           onChange={(e) => {
             setShow1(false);
             setShow2(true);

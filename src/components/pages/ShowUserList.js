@@ -1,6 +1,6 @@
 import React, { Component } from "react";
+import { Button } from "react-bootstrap";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import UserCard from "./UserCard";
 import "../../styles/Fonts.css";
 import "../../styles/ManageUser.css";
@@ -13,6 +13,8 @@ class ShowUserList extends Component {
     this.state = {
       users: [],
       searchResult: [],
+      show: true,
+      buttonText: "Hide users",
     };
   }
 
@@ -55,15 +57,36 @@ class ShowUserList extends Component {
 
     return (
       <div className="ShowBookList">
-        <div className="container">
-          <div className="row">
-            <AdminUserSearch
-              users={this.state.users}
-              updateParent={this.updateState}
-            />
+        <div className="container text-center">
+          <div className="col-md-8 m-auto">
+            <h1 className="display-4 text-center text-success mt-3">
+              Issue This Book To Users
+            </h1>
+            <hr /> <br />
           </div>
+          <div>
+            <div className="row">
+              <AdminUserSearch
+                users={this.state.users}
+                updateParent={this.updateState}
+              />
+            </div>
 
-          <div className="list">{userList}</div>
+            <Button
+              className="bg-success border-0 m-2"
+              onClick={() => {
+                this.setState({ show: !this.state.show });
+                const setText =
+                  this.state.buttonText === "Show users"
+                    ? "Hide users"
+                    : "Show users";
+                this.setState({ buttonText: setText });
+              }}
+            >
+              {this.state.buttonText}
+            </Button>
+            {this.state.show && <div className="list">{userList}</div>}
+          </div>
         </div>
       </div>
     );

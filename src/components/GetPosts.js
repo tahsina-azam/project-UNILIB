@@ -38,7 +38,7 @@ export const Post = ({ author, message, created_at, registration }) => {
 const GetPosts = ({ commenter_id }) => {
   const { data, loading, error, refetch } = useQuery(GET_POSTS_QUERY);
   if (loading) return <BoxLoading />;
-  if (error) selectType("success", "please try again");
+  if (error) selectType("error", "please try again");
   return (
     <div>
       <link

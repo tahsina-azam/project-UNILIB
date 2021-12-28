@@ -1,7 +1,10 @@
 import React from "react";
 import "../../styles/App.css";
 import { Row, Image, Card } from "react-bootstrap";
+<<<<<<< HEAD
 
+=======
+>>>>>>> c2f51f6044e152b4a5f0f42b6142f413e980c694
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "../../utility";
 import "../../styles/UserProfile.css";

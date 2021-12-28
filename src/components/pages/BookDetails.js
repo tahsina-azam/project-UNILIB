@@ -76,7 +76,7 @@ class BookDetails extends Component {
             <br />
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center text-success">
-                Book's Informaions
+                Book's Informations
               </h1>
               <hr /> <br />
             </div>
