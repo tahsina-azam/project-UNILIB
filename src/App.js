@@ -32,6 +32,7 @@ import ContactAdmin from "./components/pages/ContactAdmin";
 import CheckReport from "./components/pages/CheckReport";
 import ShowUserList from "./components/pages/ShowUserList";
 import SendEmail from "./components/pages/SendEmail";
+import RecentBooks from "./components/pages/RecentBooks";
 import { SearchForum } from "./components/pages/SearchForum";
 
 function App() {
@@ -151,6 +152,7 @@ function App() {
                   element={<UserHistory emailHistory={emailHistory} id={id} />}
                 />
                 <Route to=" /show-book/issue" element={<ShowUserList />} />
+                <Route path="/recently-added-books" element={<RecentBooks />} />
                 <Route
                   path="/send-email/:id"
                   element={<SendEmail email={emailHistory} id={id} />}
