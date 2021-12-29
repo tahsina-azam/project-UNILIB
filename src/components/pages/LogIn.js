@@ -88,7 +88,7 @@ const Form = ({ onSubmit }) => {
                       <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                         <button
                           type="submit"
-                          className="btn btn-dark text-align-center"
+                          className="btn btn-success text-align-center"
                           onSubmit={handleSubmit}
                         >
                           Login
@@ -110,27 +110,6 @@ const Form = ({ onSubmit }) => {
         </div>
       </div>
     </div>
-    // <form className="formStyle" onSubmit={handleSubmit}>
-    //   <div className="form-group">
-    //     <Field
-    //       ref={emailRef}
-    //       type="email"
-    //       placeholder="enter email"
-    //       label="Email Address"
-    //     />
-    //     <Field
-    //       ref={passwordRef}
-    //       placeholder="enter password"
-    //       type="password"
-    //       label="Password"
-    //     />
-    //     <div className="m-5">
-    //       <button className="btn btn-dark submitStyle" type="submit">
-    //         Submit
-    //       </button>
-    //     </div>
-    //   </div>
-    // </form>
   );
 };
 

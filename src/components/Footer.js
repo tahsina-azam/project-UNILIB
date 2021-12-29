@@ -5,7 +5,7 @@ function Footer() {
   return (
     <div className="footer-container">
       <section className="footer-subscription">
-        <p className="footer-subscription-heading">
+        <p className="footer-subscription-heading text-success">
           Join us to checkout some awesome books and notes that are recently
           added and motivate yourself to study
         </p>

@@ -114,6 +114,12 @@ class showBookDetails extends Component {
             </div>
           </div>
         </div>
+        <div className="col-md-8 m-auto">
+          <h1 className="display-4 text-center text-success mt-3">
+            Issue This Book To Users
+          </h1>
+          <hr /> <br />
+        </div>
         <ShowUserList />
       </div>
     );

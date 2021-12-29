@@ -14,6 +14,7 @@ export const GET_POSTS_QUERY = gql`
       author {
         name
         registration
+        id
       }
       message
       id

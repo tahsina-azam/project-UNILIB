@@ -48,7 +48,7 @@ const Comment = ({ replier, reply, commented_at, registration }) => {
 export const TypeComment = ({ post, refetch, commenter_id }) => {
   const [postComment, { error, loading }] = useMutation(POST_COMMENT);
   if (loading) return <BoxLoading />;
-  if (error) return selectType("success", "please try again");
+  if (error) selectType("error", "please try again");
   const onSubmit = (e) => {
     e.preventDefault();
     const reply = e.target[0].value;
@@ -94,7 +94,7 @@ export const PutComments = ({ post, refetch, commenter_id }) => {
       ) : (
         <div>
           <Button
-            className="bg-success1 border-0"
+            className="bg-success border-0"
             onClick={() => {
               setShow(!show);
               const setText =

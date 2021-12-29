@@ -113,7 +113,7 @@ const Form = ({ onSubmit }) => {
                       <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                         <button
                           type="submit"
-                          className="btn btn-dark text-align-center"
+                          className="btn btn-success text-align-center"
                         >
                           Register
                         </button>

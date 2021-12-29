@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { GET_POSTS_QUERY } from "../../database/queries";
-import { POST_POST } from "../../database/Mutations";
+import { EDIT_POST, POST_POST } from "../../database/Mutations";
 import "../../styles/Sidebar.css";
 import { useState } from "react";
 import Sidebar from "../Sidebar";
@@ -16,7 +16,7 @@ function TypePost() {
   const [showWarning, setShowWarning] = useState("");
   const [postPost, { error, loading }] = useMutation(POST_POST);
   if (loading) return <BoxLoading />;
-  if (error) return selectType("success", "please try again");
+  if (error) selectType("error", "please try again");
   const onSubmit = (e) => {
     setShowWarning("");
     e.preventDefault();
@@ -63,6 +63,58 @@ function TypePost() {
         </form>
       </Col>
     </Row>
+  );
+}
+export function EditPost({ messageBefore, postid }) {
+  const [showWarning, setShowWarning] = useState("");
+  const [showForm, setshowForm] = useState(true);
+  const [postPost, { error, loading }] = useMutation(EDIT_POST);
+  if (loading) return <BoxLoading />;
+  if (error) selectType("error", "please try again");
+  const onSubmit = (e) => {
+    setShowWarning("");
+    const message = e.target[0].value;
+    if (e.target[0].value !== "") {
+      postPost({
+        variables: {
+          message: message,
+          id: postid,
+        },
+      });
+      setshowForm(false);
+      selectType("success", "post");
+      window.location.reload();
+    } else {
+      return setShowWarning("write something to post");
+    }
+    e.target[0].value = "";
+  };
+  return (
+    <div>
+      {showForm && (
+        <form onSubmit={onSubmit} className="m-2">
+          <textarea
+            type="text"
+            className="form-control"
+            defaultValue={messageBefore}
+            onChange={(e) => {
+              setShowWarning("");
+              // setVal(e.target[0].value);
+            }}
+          />
+          <div style={{ color: "red", fontSize: "12px" }} className="ml-auto">
+            {showWarning}
+          </div>
+          <button
+            className="btn btn-success mt-2 ml-auto"
+            style={{ width: "auto", height: "auto" }}
+            type="submit"
+          >
+            Submit
+          </button>
+        </form>
+      )}
+    </div>
   );
 }
 export default TypePost;

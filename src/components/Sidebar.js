@@ -23,7 +23,7 @@ const Sidebar = ({ user_id, type, pageid }) => {
   const { data, loading, error } = useQuery(GET_CATAGORIES_QUERY);
   if (type === "1") {
     if (loading) return <BoxLoading />;
-    if (error) return selectType("success", "please try again");
+    if (error) selectType("error", "please try again");
     return (
       <div className="bar">
         <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-success sidebar ">
@@ -118,7 +118,7 @@ const Sidebar = ({ user_id, type, pageid }) => {
                 className="nav-item align-middle px-0 py-1 link"
                 to={`/edit-user/${pageid}`}
               >
-                <i className="fa fa-search icon" />
+                <i className="fa fa-user-edit icon" />
                 <span className="ms-1 d-none d-sm-inline inside-text">
                   {" "}
                   Edit Account
@@ -128,7 +128,7 @@ const Sidebar = ({ user_id, type, pageid }) => {
                 className="nav-item align-middle px-0 py-1 link"
                 to="/check-report"
               >
-                <i className="fas fa-pen icon" />
+                <i className="fas fa-clipboard-check icon" />
                 <span className="ms-1 d-none d-sm-inline inside-text">
                   {" "}
                   Check Reports
@@ -138,7 +138,7 @@ const Sidebar = ({ user_id, type, pageid }) => {
                 className="nav-item align-middle px-0 py-1 link"
                 to="/unilib/admin/manage-users"
               >
-                <i className="fas fa-envelope-open-text icon" />
+                <i className="fas fa-users icon" />
                 <span className="ms-1 d-none d-sm-inline inside-text">
                   {" "}
                   Manage Users
@@ -148,7 +148,7 @@ const Sidebar = ({ user_id, type, pageid }) => {
                 className="nav-item align-middle px-0 py-1 link"
                 to="/user-history"
               >
-                <i className="fas fa-newspaper icon" />
+                <i className="fas fa-history icon" />
                 <span className="ms-1 d-none d-sm-inline inside-text">
                   Account History
                 </span>
@@ -177,7 +177,7 @@ const Sidebar = ({ user_id, type, pageid }) => {
                 className="nav-item align-middle px-0 py-1 link"
                 to={`/edit-user/${pageid}`}
               >
-                <i className="fa fa-search icon" />
+                <i className="fa fa-user-edit icon" />
                 <span className="ms-1 d-none d-sm-inline inside-text">
                   {" "}
                   Edit Account
@@ -187,12 +187,13 @@ const Sidebar = ({ user_id, type, pageid }) => {
                 className="nav-item align-middle px-0 py-1 link"
                 to="/view-all"
               >
-                <i className="fas fa-pen icon" />
+                <i className="fas fa-users icon" />
                 <span className="ms-1 d-none d-sm-inline inside-text">
                   {" "}
                   Other Users
                 </span>
               </Link>
+<<<<<<< HEAD
               <Link
                 className="nav-item align-middle px-0 py-1 link"
                 to="/recently-added-books"
@@ -203,11 +204,14 @@ const Sidebar = ({ user_id, type, pageid }) => {
                   Recent Uploads
                 </span>
               </Link>
+=======
+
+>>>>>>> a466ec4 (fixed #83 and added post edit-delete option)
               <Link
                 className="nav-item align-middle px-0 py-1 link"
                 to="/user-history"
               >
-                <i className="fas fa-newspaper icon" />
+                <i className="fas fa-history icon" />
                 <span className="ms-1 d-none d-sm-inline inside-text">
                   Account History
                 </span>

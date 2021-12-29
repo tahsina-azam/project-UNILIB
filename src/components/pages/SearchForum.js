@@ -13,7 +13,7 @@ const SearchBooks = ({ val }) => {
     },
   });
   if (loading) return <BoxLoading />;
-  if (error) return selectType("success", "please try again");
+  if (error) selectType("error", "please try again");
   return (
     <div className="text-start">
       {console.log(data)}
@@ -38,7 +38,7 @@ const SearchUser = ({ val }) => {
     },
   });
   if (loading) return <BoxLoading />;
-  if (error) return <div>error!</div>;
+  if (error) selectType("error", "please try again");
   return (
     <div className="text-start">
       {console.log(data)}
