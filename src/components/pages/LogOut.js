@@ -2,6 +2,7 @@ import React from "react";
 import axios from "../../utility";
 import { Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Auth from "../../Auth";
 
 class App extends React.Component {
   componentDidMount() {
@@ -19,12 +20,15 @@ class App extends React.Component {
       })
       .then(
         (response) => {
+          Auth.signout();
           console.log(response.data);
         },
         (error) => {
+          Auth.signout();
           console.log(error);
         }
       );
+    console.log(Auth.getAuth() + "from logout.js");
   }
 
   render() {
