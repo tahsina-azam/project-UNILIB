@@ -142,3 +142,13 @@ p {
     display: none;
   }
 }
+.float-container {
+  align-items: flex-end;
+}
+
+.float-child1 {
+  float: right;
+}
+.float-child2 {
+  float: left;
+}

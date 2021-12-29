@@ -59,12 +59,6 @@ class ShowUserList extends Component {
     return (
       <div className="ShowBookList">
         <div className="container text-center">
-          <div className="col-md-8 m-auto">
-            <h1 className="display-4 text-center text-success mt-3">
-              Issue This Book To Users
-            </h1>
-            <hr /> <br />
-          </div>
           <div>
             <div className="row">
               <AdminUserSearch

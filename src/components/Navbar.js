@@ -8,7 +8,7 @@ const Navbar = (props) => {
   if (!props.state) {
     menu = (
       <div class="navbar-nav ms-auto">
-        <Link class="nav-item nav-link active mx-3" to="/">
+        <Link class="nav-item nav-link mx-3" to="/">
           Home
         </Link>
         <Link to="/services" class="nav-item nav-link mx-3">
@@ -34,7 +34,7 @@ const Navbar = (props) => {
         <Link to="/unilib/admin/library" class="nav-item nav-link mx-3">
           Library
         </Link>
-        <Link to="/logout" class="nav-item nav-link mx-3">
+        <Link to="/" class="nav-item nav-link mx-3">
           Log out
         </Link>
       </div>
@@ -43,10 +43,7 @@ const Navbar = (props) => {
     menu = (
       <div class="navbar-nav ms-auto">
         {/* wrong link for profile */}
-        <Link
-          class="nav-item nav-link active mx-3"
-          to={`/unilib/user/${props.name}`}
-        >
+        <Link class="nav-item nav-link mx-3" to={`/unilib/user/${props.name}`}>
           Profile
         </Link>
         <Link to="/forum" class="nav-item nav-link mx-3">
@@ -55,7 +52,7 @@ const Navbar = (props) => {
         <Link to="/unilib/library" class="nav-item nav-link mx-3">
           Library
         </Link>
-        <Link to="/logout" class="nav-item nav-link mx-3">
+        <Link to="/" class="nav-item nav-link mx-3">
           Log out
         </Link>
       </div>

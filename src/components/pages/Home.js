@@ -1,14 +1,12 @@
 import React from "react";
 import "../../styles/App.css";
-import Cards from "../Cards";
 import HeroSection from "../HeroSection";
-import Footer from "../Footer";
 
 function Home() {
   return (
-    <div>
+    <div className="text-center">
       <HeroSection />
-      <Cards />
+      {/* <Cards /> */}
       {/* <Footer /> */}
     </div>
   );

@@ -109,7 +109,7 @@ const UploadPDFs = ({ user_id }) => {
   const { data, loading, error } = useQuery(GET_CATAGORIES_QUERY);
   const { refetch } = useQuery(GET_BOOK_LIST_QUERY);
   if (loading) return <BoxLoading />;
-  if (error) return selectType("success", "please try again");
+  if (error) selectType("error", "please try again");
   return (
     <>
       {/* button to upload */}

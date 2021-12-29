@@ -39,3 +39,17 @@ export const POST_POST = gql`
     }
   }
 `;
+export const EDIT_POST = gql`
+  mutation MyMutation($id: uuid!, $message: String!) {
+    update_posts_by_pk(pk_columns: { id: $id }, _set: { message: $message }) {
+      id
+    }
+  }
+`;
+export const DELETE_POST = gql`
+  mutation MyMutation($id: uuid!) {
+    delete_posts_by_pk(id: $id) {
+      message
+    }
+  }
+`;

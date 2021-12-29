@@ -100,7 +100,7 @@ function App() {
               setName={setName}
             />
 
-            <div className="ml-0 mt-5">
+            <div className="mt-5">
               <Routes>
                 <Route path="/forum" element={<Forum />} />
                 <Route path="/forum/ContactAdmin" element={<ContactAdmin />} />
