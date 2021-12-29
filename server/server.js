@@ -428,6 +428,18 @@ app.post("/api/admin/send-email", async (req, res) => {
   });
 });
 
+app.get("/allreports", (req, res) => {
+  Report.find()
+    .then((reports) => res.json(reports))
+    .catch((err) => res.status(404).json({ nobooksfound: "No Books found" }));
+});
+
+app.delete("/api/delete/report/:id", (req, res) => {
+  Report.findByIdAndRemove(req.params.id, req.body)
+    .then((report) => res.json({ mgs: "Report entry deleted successfully" }))
+    .catch((err) => res.status(404).json({ error: "No such a report" }));
+});
+
 app.listen(4000, () => {
   console.log("running on port 4000");
 });

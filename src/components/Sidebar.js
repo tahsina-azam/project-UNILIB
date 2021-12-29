@@ -193,7 +193,10 @@ const Sidebar = ({ user_id, type, pageid }) => {
                   Other Users
                 </span>
               </Link>
-              <Link className="nav-item align-middle px-0 py-1 link" to="/">
+              <Link
+                className="nav-item align-middle px-0 py-1 link"
+                to="/recently-added-books"
+              >
                 <i className="fas fa-envelope-open-text icon" />
                 <span className="ms-1 d-none d-sm-inline inside-text">
                   {" "}
