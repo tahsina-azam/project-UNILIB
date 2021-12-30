@@ -5,7 +5,7 @@ import "../../styles/Library.css";
 import "./LibrarySearchBar";
 import LibrarySearchBar from "./LibrarySearchBar";
 import selectType from "../popups";
-
+import BoxLoading from "react-loadingg/lib/BoxLoading";
 class StudentBookList extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +22,7 @@ class StudentBookList extends Component {
   };
 
   componentDidMount() {
+    // selectType("success", "requested items");
     axios
       .get("http://localhost:4000/allbooks")
       .then((res) => {
@@ -29,7 +30,8 @@ class StudentBookList extends Component {
           books: res.data,
           searchResult: res.data,
         });
-        selectType("success", "requested items");
+
+        //
       })
       .catch((err) => {
         console.log("Error from ShowBookList");

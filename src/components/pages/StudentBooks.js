@@ -6,7 +6,7 @@ import GetBooks from "../GetBooks";
 const StudentBooks = () => {
   return (
     <div>
-      <Sidebar />
+      <Sidebar type={"1"} />
 
       <GetBooks />
     </div>

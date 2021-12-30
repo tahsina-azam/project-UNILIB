@@ -44,7 +44,7 @@ const UploadPDFs = ({ user_id }) => {
     storageref = storage.ref().child(`${finalFileName}`);
     console.log("onSubmitButton " + finalFileName);
     console.log("1");
-    console.log(val.name);
+    console.log(`${val.name} with ${val.id}`);
     const ShowWarningString =
       val.name === "Select category"
         ? "Fill the fields correctly"
@@ -56,22 +56,26 @@ const UploadPDFs = ({ user_id }) => {
     if (ShowWarningString === "") {
       selectType("waiting", "books");
       console.log("2");
+      const des = description.substring(0, 150);
+      console.log(`des ${des}`);
       console.log(finalFileName);
       try {
         storageref.put(finalFile).then(() => {
           storageref.getDownloadURL().then((link) => {
             e.preventDefault();
-            console.log(`here is the logged user ${user_id}`);
+            console.log(
+              `here is the logged user ${localStorage.getItem("id")}`
+            );
             upload({
               variables: {
                 link: link,
                 name: finalFileName,
                 category_id: val.id,
-                description: description,
-                uploader_id: user_id,
+                description: des,
+                uploader_id: localStorage.getItem("id"),
               },
-            });
-            selectType("success", "book");
+            }).then(selectType("success", "book"));
+
             console.log("books refetching");
             refetch();
             console.log("books refetched");
@@ -149,7 +153,7 @@ const UploadPDFs = ({ user_id }) => {
             </Dropdown.Menu>
           </Dropdown>
           <textarea
-            placeholder=" Any other important informations"
+            placeholder=" Any other important informations(keep it in 150 characters)"
             type="text"
             value={description}
             onChange={(e) => {
