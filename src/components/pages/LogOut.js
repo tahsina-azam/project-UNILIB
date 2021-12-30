@@ -3,6 +3,7 @@ import axios from "../../utility";
 import { Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Auth from "../../Auth";
+import selectType from "../popups";
 
 class App extends React.Component {
   componentDidMount() {
@@ -20,6 +21,7 @@ class App extends React.Component {
       })
       .then(
         (response) => {
+          selectType("message", "Logging you out ");
           Auth.signout();
           console.log(response.data);
         },

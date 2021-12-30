@@ -28,7 +28,7 @@ class App extends React.Component {
   componentDidMount() {
     Auth.authenticate();
     const reloadCount = sessionStorage.getItem("reloadCount");
-    if (reloadCount < 1) {
+    if (reloadCount < 2) {
       sessionStorage.setItem("reloadCount", String(reloadCount + 1));
       window.location.reload();
     } else {

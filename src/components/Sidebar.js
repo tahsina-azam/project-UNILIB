@@ -193,7 +193,6 @@ const Sidebar = ({ user_id, type, pageid }) => {
                   Other Users
                 </span>
               </Link>
-<<<<<<< HEAD
               <Link
                 className="nav-item align-middle px-0 py-1 link"
                 to="/recently-added-books"
@@ -204,9 +203,6 @@ const Sidebar = ({ user_id, type, pageid }) => {
                   Recent Uploads
                 </span>
               </Link>
-=======
-
->>>>>>> a466ec4 (fixed #83 and added post edit-delete option)
               <Link
                 className="nav-item align-middle px-0 py-1 link"
                 to="/user-history"
