@@ -5,6 +5,7 @@ import "../../styles/Fonts.css";
 import "../../styles/Sidebar.css";
 import selectType from "../popups";
 import axios from "axios";
+import Auth from "../../Auth";
 import { useNavigate } from "react-router-dom";
 
 const Field = React.forwardRef(({ label, type, placeholder }, ref) => {
@@ -42,12 +43,14 @@ const Form = ({ onSubmit }) => {
       .then(
         (res) => {
           if (res.data.token) {
+            Auth.authenticate();
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("id", res.data.id);
 
             const email = emailRef.current.value;
             var id = email.split("@");
             selectType("success", "account");
+            console.log(Auth.getAuth() + "from login");
             history(`/unilib/user/${id[0]}`);
           } else {
             //alert("login first");

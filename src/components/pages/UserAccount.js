@@ -7,6 +7,7 @@ import "../../styles/UserProfile.css";
 import "../../styles/Fonts.css";
 import CommonProfile from "./CommonProfile";
 import Sidebar from "../Sidebar";
+import Auth from "../../Auth";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -23,9 +24,11 @@ class App extends React.Component {
       val: "",
     };
   }
+
   componentDidMount() {
+    Auth.authenticate();
     const reloadCount = sessionStorage.getItem("reloadCount");
-    if (reloadCount < 1) {
+    if (reloadCount < 2) {
       sessionStorage.setItem("reloadCount", String(reloadCount + 1));
       window.location.reload();
     } else {
@@ -49,7 +52,9 @@ class App extends React.Component {
               id: res.data.data._id,
               role: res.data.data.role,
             });
-            console.log("this is response " + res.data.data.role);
+            console.log(
+              "this is response " + res.data.data.role + Auth.getAuth()
+            );
             axios.get("http://localhost:4000/img/" + this.state.email).then(
               (res) => {
                 this.setState({
