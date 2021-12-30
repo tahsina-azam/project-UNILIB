@@ -92,3 +92,21 @@ export const SEARCH_BOOKS = gql`
     }
   }
 `;
+export const USER_HISTORY = gql`
+  query MyQuery($id: uuid!) {
+    posts_aggregate(where: { author_id: { _eq: $id } }) {
+      nodes {
+        id
+        message
+        created_at
+        author {
+          registration
+          name
+        }
+      }
+      aggregate {
+        count
+      }
+    }
+  }
+`;

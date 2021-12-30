@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import "../../../src/styles/App.css";
-
+import selectType from "../popups";
 class EditUser extends Component {
   constructor(props) {
     super(props);
@@ -83,132 +82,88 @@ class EditUser extends Component {
     axios
       .put("http://localhost:4000/api/users/" + userRef[2], data)
       .then((res) => {
-        //this.props.history.push("/show-book/" + bookRef[2]);
+        selectType("success", "info");
+        window.history.back();
       })
       .catch((err) => {
         console.log("Error in UpdateUserInfo!");
         console.log(err);
+        selectType("invalid", "Cannot save your changes!");
       });
   };
 
   render() {
     return (
-      <div className="UpdateBookInfo">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <br />
-            </div>
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Update Your Account</h1>
-              <p className="lead text-center">Update Personal Info</p>
-            </div>
+      <div className="vh-90 border-0">
+        <form noValidate onSubmit={this.onSubmit}>
+          <div className="align-items-center mb-4">
+            <i className="fas fa-user fa-lg me-1 fa-fw" />
+            <label>Name </label>
+            <input
+              type="text"
+              placeholder="Title of the Book"
+              name="name"
+              className="form-control"
+              value={this.state.name}
+              onChange={this.onChange}
+            />
           </div>
-          {/*here begins */}
-          {/* <div class="mx-auto">
-            <div>
-              <form enctype="multipart/form-data">
-                <div class="form-group  mx-sm-3 mb-2">
-                  <label for="exampleFormControlFile1">Add A Image</label>{" "}
-                  <div className="input-group">
-                    <span className="input-group-text border-0">
-                      <i className="fa fa-cloud-upload p-0 m-0" />
-                    </span>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      className="form-control border-0 align-center pl-0 ml-0"
-                      filename="image"
-                      onChange={this.onChangeFile}
-                    />
-                  </div>
-                </div>
-                <div className="text-center">
-                  <button
-                    class="btn btn-success"
-                    type="submit"
-                    align="center"
-                    onClick={this.handleClick}
-                  >
-                    Update
-                  </button>
-                </div>
-              </form>
-            </div>
-         </div>*/}
-          {/*here stops */}
-          <div className="col-md-8 m-auto">
-            <form noValidate onSubmit={this.onSubmit}>
-              <div className="form-group">
-                <label htmlFor="title">Name</label>
-                <input
-                  type="text"
-                  placeholder="Title of the Book"
-                  name="name"
-                  className="form-control"
-                  value={this.state.name}
-                  onChange={this.onChange}
-                />
-              </div>
-              <br />
 
-              <div className="form-group">
-                <label htmlFor="isbn">Email</label>
-                <input
-                  type="text"
-                  placeholder="email"
-                  name="email"
-                  className="form-control"
-                  value={this.state.email}
-                  onChange={this.onChange}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="author">Registration Number</label>
-                <input
-                  type="text"
-                  placeholder="registration"
-                  name="registration"
-                  className="form-control"
-                  value={this.state.registration}
-                  onChange={this.onChange}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="description">Department</label>
-                <input
-                  type="text"
-                  placeholder="Department"
-                  name="department"
-                  className="form-control"
-                  value={this.state.department}
-                  onChange={this.onChange}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="published_date">Session</label>
-                <input
-                  type="text"
-                  placeholder="session"
-                  name="session"
-                  className="form-control"
-                  value={this.state.session}
-                  onChange={this.onChange}
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="btn btn-outline-info btn-lg btn-block"
-              >
-                Update
-              </button>
-            </form>
+          <div className="align-items-center mb-4">
+            <i class="fas fa-calendar-alt fa-lg me-1 fa-fw" />
+            <label htmlFor="published_date">Session</label>
+            <input
+              type="text"
+              placeholder="session"
+              name="session"
+              className="form-control"
+              value={this.state.session}
+              onChange={this.onChange}
+            />
           </div>
-        </div>
+
+          <div className="align-items-center mb-4">
+            <i className="fas fa-envelope fa-lg me-1 fa-fw" />
+            <label htmlFor="isbn">Email</label>
+            <input
+              type="text"
+              placeholder="email"
+              name="email"
+              className="form-control"
+              value={this.state.email}
+              onChange={this.onChange}
+            />
+          </div>
+          <div className="align-items-center mb-4">
+            <i className="fas fa-list-ol fa-lg me-1 fa-fw" />
+            <label htmlFor="author">Registration Number</label>
+            <input
+              type="text"
+              placeholder="registration"
+              name="registration"
+              className="form-control"
+              value={this.state.registration}
+              onChange={this.onChange}
+            />
+          </div>
+          <div className="align-items-center mb-4">
+            <i className="fas fa-book-reader fa-lg me-1 fa-fw" />
+            <label htmlFor="description">Department</label>
+            <input
+              type="text"
+              placeholder="Department"
+              name="department"
+              className="form-control"
+              value={this.state.department}
+              onChange={this.onChange}
+            />
+          </div>
+          <div className="text-center">
+            <button type="submit" className="btn btn-success text-align-center">
+              Submit
+            </button>
+          </div>
+        </form>
       </div>
     );
   }
