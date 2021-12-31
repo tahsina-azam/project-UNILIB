@@ -23,11 +23,13 @@ export const Post = ({
   postid,
 }) => {
   const showEditButton = editid === loggedid ? true : false;
+
   const [editBox, setEditBox] = useState(false);
   const [tool, setTool] = useState("Click here to edit");
   const caption = "Published at: ";
   return (
     <div className="bg-success2 p-3 text-start" style={{ width: "100%" }}>
+      {console.log(`post author ${registration}`)}
       <div className="user-info float-container">
         <h3
           className="float-child2 text-capitalize fnt-poster"
@@ -46,7 +48,7 @@ export const Post = ({
           <div className="float-child1 float-container">
             <DeletePosts postid={postid} />
             <Button
-              className="btn btn-success border-0 float-child1 mx-1"
+              className="btn btn-success float-child1 mx-1"
               to="/forum/writepost"
               data-toggle="tooltip"
               data-placement="top"
@@ -77,6 +79,7 @@ export const Post = ({
 const GetPosts = ({ commenter_id }) => {
   const { data, loading, error, refetch } = useQuery(GET_POSTS_QUERY);
   if (loading) return <BoxLoading />;
+
   if (error) return selectType("error", "please try again");
   return (
     <div>

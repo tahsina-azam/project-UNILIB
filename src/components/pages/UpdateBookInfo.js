@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "../../../src/styles/App.css";
-import { useNavigate } from "react-router-dom";
 
 class UpdateBookInfo extends Component {
   constructor(props) {

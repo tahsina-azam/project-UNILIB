@@ -9,8 +9,7 @@ const DeletePosts = ({ postid }) => {
   const [deletePost, { loading, error }] = useMutation(DELETE_POST);
   const [show, setShow] = useState(false);
   const onSubmitButton = () => {
-    deletePost({ variables: { id: postid } });
-    window.location.reload();
+    deletePost({ variables: { id: postid } }).then(window.location.reload());
   };
   const handleClose = () => {
     setShow(false);
