@@ -8,6 +8,7 @@ import "../../styles/Fonts.css";
 import CommonProfile from "./CommonProfile";
 import Sidebar from "../Sidebar";
 import Auth from "../../Auth";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -22,13 +23,14 @@ class App extends React.Component {
       sideBar: "",
       userimg: "",
       val: "",
+      redirect: null,
     };
   }
 
   componentDidMount() {
     Auth.authenticate();
     const reloadCount = sessionStorage.getItem("reloadCount");
-    if (reloadCount < 2) {
+    if (reloadCount < 1) {
       sessionStorage.setItem("reloadCount", String(reloadCount + 1));
       window.location.reload();
     } else {

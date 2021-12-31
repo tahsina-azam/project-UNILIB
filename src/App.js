@@ -48,7 +48,7 @@ function App() {
   const [name, setName] = useState("");
   const [emailHistory, setEmailHistory] = useState("");
   const [id, setID] = useState("");
-  const [auth, setAuth] = useState(false);
+  const [auth, setAuth] = useState(Auth.getAuth());
 
   const path = window.location.pathname;
   const words = path.split("/");
@@ -79,7 +79,7 @@ function App() {
     (async () => {
       const response = requireAuth();
       setState(response);
-      setAuth(Auth.getAuth());
+      await setAuth(Auth.getAuth());
       if (response) {
         axios.get("http://localhost:4000/user", { withCredentials: true }).then(
           (response) => {
@@ -227,10 +227,7 @@ function App() {
                     )
                   }
                 />
-                <Route
-                  path="/logout/"
-                  element={auth ? <LogOut /> : <Navigate to="/" />}
-                />
+                <Route path="/logout/" element={<LogOut />} />
               </Routes>
             </div>
           </BrowserRouter>

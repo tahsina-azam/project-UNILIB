@@ -23,6 +23,8 @@ class App extends React.Component {
       .then(
         (response) => {
           selectType("message", "Logging you out ");
+          window.localStorage.clear();
+          console.log(window.localStorage.getItem("token") + "from logout");
           Auth.signout();
           console.log(response.data);
         },
