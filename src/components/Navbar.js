@@ -34,7 +34,7 @@ const Navbar = (props) => {
         <Link to="/unilib/admin/library" class="nav-item nav-link mx-3">
           Library
         </Link>
-        <Link to="/" class="nav-item nav-link mx-3">
+        <Link to="/logout" class="nav-item nav-link mx-3">
           Log out
         </Link>
       </div>
@@ -52,7 +52,7 @@ const Navbar = (props) => {
         <Link to="/unilib/library" class="nav-item nav-link mx-3">
           Library
         </Link>
-        <Link to="/" class="nav-item nav-link mx-3">
+        <Link to="/logout" class="nav-item nav-link mx-3">
           Log out
         </Link>
       </div>
