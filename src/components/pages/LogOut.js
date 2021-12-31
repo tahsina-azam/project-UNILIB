@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "../../utility";
-import { Row } from "react-bootstrap";
 import Home from "./Home";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Auth from "../../Auth";

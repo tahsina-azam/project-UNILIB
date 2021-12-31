@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 const ShowCatInSidebar = ({ name, id }) => {
   return (
-    <Link className="w-100 py-1 link" to={`/forum/${name}`}>
+    <Link className="w-100 py-1 link" to={`/unilib/forum/${name}`}>
       <i className="fas fa-circle-notch" />
       <span className="d-none d-sm-inline inside-text"> {name}</span>
     </Link>
@@ -34,7 +34,7 @@ const Sidebar = ({ user_id, type, pageid }) => {
             >
               <Link
                 className="nav-item align-middle px-0 py-1 link"
-                to="/forum/search"
+                to="/unilib/forum/search"
               >
                 <i className="fa fa-search icon" />
                 <span className="ms-1 d-none d-sm-inline inside-text">
@@ -44,7 +44,7 @@ const Sidebar = ({ user_id, type, pageid }) => {
               </Link>
               <Link
                 className="nav-item align-middle px-0 py-1 link"
-                to="/forum/writepost"
+                to="/unilib/forum/writepost"
               >
                 <i className="fas fa-pen icon" />
                 <span className="ms-1 d-none d-sm-inline inside-text">
@@ -54,7 +54,7 @@ const Sidebar = ({ user_id, type, pageid }) => {
               </Link>
               <Link
                 className="nav-item align-middle px-0 py-1 link"
-                to="/forum/ContactAdmin"
+                to="/unilib/forum/ContactAdmin"
               >
                 <i className="fas fa-envelope-open-text icon" />
                 <span className="ms-1 d-none d-sm-inline inside-text">
@@ -64,7 +64,7 @@ const Sidebar = ({ user_id, type, pageid }) => {
               </Link>
               <Link
                 className="nav-item align-middle px-0 py-1 link"
-                to="/forum"
+                to="/unilib/forum"
               >
                 <i className="fas fa-newspaper icon" />
                 <span className="ms-1 d-none d-sm-inline inside-text">

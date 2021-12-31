@@ -46,7 +46,7 @@ const Navbar = (props) => {
         <Link class="nav-item nav-link mx-3" to={`/unilib/user/${props.name}`}>
           Profile
         </Link>
-        <Link to="/forum" class="nav-item nav-link mx-3">
+        <Link to="/unilib/forum" class="nav-item nav-link mx-3">
           Forum
         </Link>
         <Link to="/unilib/library" class="nav-item nav-link mx-3">

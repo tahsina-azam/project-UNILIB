@@ -1,6 +1,5 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import axios from "axios";
-import { useState } from "react";
 import HistoryCard from "./HistoryCard";
 import "../../styles/Fonts.css";
 import selectType from "../popups";
@@ -8,8 +7,7 @@ import { USER_HISTORY } from "../../database/queries";
 import { useQuery } from "@apollo/client";
 import BoxLoading from "react-loadingg/lib/BoxLoading";
 import Time from "../UuidToTime";
-import { Button } from "react-bootstrap";
-import DeletePosts from "../DeletePosts";
+import { DeletePosts } from "../Delete";
 import { EditPost } from "./PutPosts";
 import "../../styles/Comment.css";
 const UserPost = ({ message, created_at, postid }) => {
@@ -28,7 +26,6 @@ const UserPost = ({ message, created_at, postid }) => {
           <DeletePosts postid={postid} />
           <button
             className="btn btn-success float-child1 mx-1 buttons"
-            to="/forum/writepost"
             data-toggle="tooltip"
             data-placement="top"
             title={tool}

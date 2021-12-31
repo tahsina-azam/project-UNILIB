@@ -53,3 +53,10 @@ export const DELETE_POST = gql`
     }
   }
 `;
+export const DELETE_BOOK = gql`
+  mutation MyMutation($id: uuid!, $link: String!) {
+    delete_BookLinks_by_pk(id: $id, link: $link) {
+      name
+    }
+  }
+`;

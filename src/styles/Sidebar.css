@@ -151,4 +151,6 @@ p {
 }
 .float-child2 {
   float: left;
+  top: 0;
+  left: 0;
 }

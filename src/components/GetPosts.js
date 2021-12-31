@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { GET_POSTS_QUERY } from "../database/queries";
 import { PutComments, TypeComment } from "./PutComments";
-import React from "react";
+import React, { useState } from "react";
 import selectType from "./popups";
 import Time from "./UuidToTime";
 import { EditPost } from "./pages/PutPosts";
@@ -9,8 +9,7 @@ import BoxLoading from "react-loadingg/lib/BoxLoading";
 import "../styles/Fonts.css";
 import "../styles/Sidebar.css";
 import { Button } from "react-bootstrap";
-import { useState } from "react";
-import DeletePosts from "./DeletePosts";
+import { DeletePosts } from "./Delete";
 
 //show posts
 export const Post = ({
@@ -49,7 +48,6 @@ export const Post = ({
             <DeletePosts postid={postid} />
             <Button
               className="btn btn-success float-child1 mx-1"
-              to="/forum/writepost"
               data-toggle="tooltip"
               data-placement="top"
               title={tool}

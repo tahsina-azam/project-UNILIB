@@ -42,6 +42,7 @@ export const GET_BOOK_LIST_QUERY = gql`
       }
       uploader {
         name
+        id
       }
       uploaded_at
     }

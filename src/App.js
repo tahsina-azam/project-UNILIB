@@ -41,6 +41,8 @@ import SendEmail from "./components/pages/SendEmail";
 import RecentBooks from "./components/pages/RecentBooks";
 import Auth from "./Auth";
 import { SearchForum } from "./components/pages/SearchForum";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
 
 function App() {
   const [state, setState] = useState(false);
@@ -48,11 +50,21 @@ function App() {
   const [name, setName] = useState("");
   const [emailHistory, setEmailHistory] = useState("");
   const [id, setID] = useState("");
-  const [auth, setAuth] = useState(false);
+  const [auth, setAuth] = useState(true); ///////////////
 
   const path = window.location.pathname;
   const words = path.split("/");
   console.log(words[0]);
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.utils.toArray(".section").forEach((section) => {
+    ScrollTrigger.create({
+      trigger: section,
+      start: "top top",
+      pin: true,
+      pinSpacing: false,
+    });
+  });
 
   const requireAuth = () => {
     const path = window.location.pathname;
@@ -71,15 +83,11 @@ function App() {
     }
   };
 
-  const defaultNavigate = () => {
-    <Route path="*" element={<Navigate replace to="/" />} />;
-  };
-
   useEffect(() => {
     (async () => {
       const response = requireAuth();
       setState(response);
-      setAuth(Auth.getAuth());
+      setAuth(true); ////////////////////
       if (response) {
         axios.get("http://localhost:4000/user", { withCredentials: true }).then(
           (response) => {
@@ -115,11 +123,11 @@ function App() {
             <div className="mt-5">
               <Routes>
                 <Route
-                  path="/forum"
+                  path="/unilib/forum"
                   element={auth ? <Forum /> : <Navigate to="/" />}
                 />
                 <Route
-                  path="/forum/ContactAdmin"
+                  path="/unilib/forum/ContactAdmin"
                   element={auth ? <ContactAdmin /> : <Navigate to="/" />}
                 />
                 <Route path="/" element={<Home />} />
@@ -127,7 +135,7 @@ function App() {
                 <Route path="/log-in" element={<LogIn />} />
                 <Route path="/sign-up" element={<SignUp />} />
                 <Route
-                  path="/forum/search"
+                  path="/unilib/forum/search"
                   element={auth ? <SearchForum /> : <Navigate to="/" />}
                 />
                 <Route
@@ -148,11 +156,11 @@ function App() {
                   element={auth ? <AdminAccount /> : <Navigate to="/" />}
                 />
                 <Route
-                  path="/forum/:category"
+                  path="/unilib/forum/:category"
                   element={auth ? <StudentBooks /> : <Navigate to="/" />}
                 />
                 <Route
-                  path="/forum/writepost"
+                  path="/unilib/forum/writepost"
                   element={auth ? <TypePost /> : <Navigate to="/" />}
                 />
                 <Route
@@ -188,7 +196,6 @@ function App() {
                 />
                 <Route
                   path="/view-all"
-                  element={<UserViewAll />}
                   element={auth ? <UserViewAll /> : <Navigate to="/" />}
                 />
                 <Route
