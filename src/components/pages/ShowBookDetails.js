@@ -60,7 +60,15 @@ class showBookDetails extends Component {
             </tr>
             <tr>
               <td>Pdf Link</td>
-              <td>{book.pdfLink}</td>
+              <td
+                className="text-success"
+                onClick={() => {
+                  window.open(book.pdfLink);
+                }}
+              >
+                {" "}
+                Click here to read the book
+              </td>
             </tr>
             <tr>
               <td>Description</td>

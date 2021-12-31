@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "../../styles/Library.css";
 
 class BookDetails extends Component {
   constructor(props) {
@@ -58,7 +59,15 @@ class BookDetails extends Component {
             </tr>
             <tr>
               <td>Pdf Link</td>
-              <td>{book.pdfLink}</td>
+              <td
+                className="text-success book-links"
+                onClick={() => {
+                  window.open(book.pdfLink);
+                }}
+              >
+                {" "}
+                Click here to read the book
+              </td>
             </tr>
             <tr>
               <td>Description</td>

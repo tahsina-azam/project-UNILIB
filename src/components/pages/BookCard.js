@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Row, Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../styles/Fonts.css";
+import "../../styles/Library.css";
 
 const BookCard = (props) => {
   const book = props.book;

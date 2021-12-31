@@ -152,6 +152,7 @@ const UploadPDFs = ({ user_id }) => {
               ))}
             </Dropdown.Menu>
           </Dropdown>
+          {/* description area */}
           <textarea
             placeholder=" Any other important informations(keep it in 150 characters)"
             type="text"

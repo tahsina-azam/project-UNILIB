@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "../../utility";
 import selectType from "../popups";
+import { storage } from "../../config/firebase";
 
 const Elements = ({ onSubmit }) => {
+  let finalFile, finalFileName, storageref;
   const bookRef = React.useRef();
   const writerRef = React.useRef();
   const numRef = React.useRef();
@@ -15,42 +16,78 @@ const Elements = ({ onSubmit }) => {
   const onChangeFile = (e) => {
     setFileName(e.target.files[0]);
   };
+  //generate file to upload
+  const onSubmitForm = (e) => {
+    e.preventDefault();
+    console.log("count");
+    finalFile = e.target.files[0];
+    console.log(e.target.files[0]);
+    finalFileName =
+      typeof e.target.files[0] === undefined ? "" : e.target.files[0].name;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("bookName", bookRef.current.value);
-    formData.append("writer", writerRef.current.value);
-    formData.append("number", numRef.current.value);
-    formData.append("image", fileName);
-    formData.append("pdfLink", linkRef.current.value);
-    formData.append("text", textRef.current.value);
+    storageref = storage.ref().child(`${finalFileName}`);
+    console.log("onSubmitButton " + finalFileName);
+    console.log(finalFileName);
+    try {
+      storageref.put(finalFile).then(() => {
+        storageref.getDownloadURL().then((link) => {
+          e.preventDefault();
+          console.log(`link for library book ${link}`);
+          const formData = new FormData();
+          formData.append("bookName", bookRef.current.value);
+          formData.append("writer", writerRef.current.value);
+          formData.append("number", numRef.current.value);
+          formData.append("image", fileName);
+          formData.append("pdfLink", link);
+          formData.append("text", textRef.current.value);
 
-    const data = {
-      bookName: bookRef.current.value,
-      writer: writerRef.current.value,
-      number: numRef.current.value,
-      image: fileName,
-      pdfLink: linkRef.current.value,
-      text: textRef.current.value,
-    };
-    onSubmit(data);
+          const data = {
+            bookName: bookRef.current.value,
+            writer: writerRef.current.value,
+            number: numRef.current.value,
+            image: fileName,
+            pdfLink: link,
+            text: textRef.current.value,
+          };
+          onSubmit(data);
 
-    axios.post("http://localhost:4000/addbook", formData).then(
-      (res) => {
-        selectType("success", "book uploaded");
-        console.log(res.data);
-      },
-      (error) => {
-        selectType("invalid", "Carefully fillout all the fields");
-      }
-    );
+          axios.post("http://localhost:4000/addbook", formData).then(
+            (res) => {
+              selectType("success", "book uploaded");
+              console.log(res.data);
+            },
+            (error) => {
+              selectType("invalid", "Carefully fillout all the fields");
+            }
+          );
+        });
+      });
+    } catch (err) {
+      console.log("here");
+      console.log({ err });
+    }
   };
   return (
     <div class="mx-auto">
       <div>
         <form enctype="multipart/form-data" onSubmit={handleSubmit}>
+          <div class="form-group  mx-sm-3 mb-2">
+            <label>Enter the file:</label>{" "}
+            <div className="input-group">
+              <span className="input-group-text border-0">
+                <i className="fa fa-cloud-upload p-0 m-0" />
+              </span>
+              <input
+                type="file"
+                className="form-control border-0 align-center pl-0 ml-0"
+                onChange={onSubmitForm}
+              />
+            </div>
+          </div>
           <div class="form-group  mx-sm-3 mb-2">
             <label for="exampleFormControlFile1">
               Enter the front page of the file:
@@ -81,7 +118,7 @@ const Elements = ({ onSubmit }) => {
             <label for="inputPassword2">The number of available books</label>
             <input ref={numRef} type="text" class="form-control" />
           </div>
-          <div class="form-group m-3">
+          {/* <div class="form-group m-3">
             <label for="inputPassword2">The pdf link</label>
             <input
               ref={linkRef}
@@ -90,7 +127,7 @@ const Elements = ({ onSubmit }) => {
               id="basic-url"
               aria-describedby="basic-addon3"
             />
-          </div>
+          </div> */}
 
           <div class="form-group  mx-sm-3 mb-2">
             <label for="exampleFormControlTextarea1">
@@ -107,7 +144,6 @@ const Elements = ({ onSubmit }) => {
             <button class="btn btn-success" type="submit" align="center">
               Update
             </button>
-            <Row className="mb-5"></Row>
           </div>
         </form>
       </div>
