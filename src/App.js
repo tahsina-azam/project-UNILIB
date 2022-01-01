@@ -41,6 +41,7 @@ import SendEmail from "./components/pages/SendEmail";
 import RecentBooks from "./components/pages/RecentBooks";
 import Auth from "./Auth";
 import { SearchForum } from "./components/pages/SearchForum";
+import RegisterTeacher from "./components/pages/RegisterTeacher";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 
@@ -128,7 +129,13 @@ function App() {
                 />
                 <Route
                   path="/unilib/forum/ContactAdmin"
-                  element={auth ? <ContactAdmin /> : <Navigate to="/" />}
+                  element={
+                    auth ? (
+                      <ContactAdmin email={emailHistory} />
+                    ) : (
+                      <Navigate to="/" />
+                    )
+                  }
                 />
                 <Route path="/" element={<Home />} />
                 <Route path="/services" element={<Services />} />
@@ -226,10 +233,20 @@ function App() {
                 />
 
                 <Route
-                  path="/send-email/:id"
+                  path="/send-email/:id/"
                   element={
                     auth ? (
                       <SendEmail email={emailHistory} id={id} />
+                    ) : (
+                      <Navigate to="/" />
+                    )
+                  }
+                />
+                <Route
+                  path="/register-teacher"
+                  element={
+                    auth ? (
+                      <RegisterTeacher email={emailHistory} id={id} />
                     ) : (
                       <Navigate to="/" />
                     )
