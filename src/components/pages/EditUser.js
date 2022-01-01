@@ -82,7 +82,7 @@ class EditUser extends Component {
     axios
       .put("http://localhost:4000/api/users/" + userRef[2], data)
       .then((res) => {
-        selectType("success", "info");
+        //selectType("success", "info");
         window.history.back();
       })
       .catch((err) => {
