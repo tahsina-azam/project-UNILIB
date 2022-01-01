@@ -8,7 +8,6 @@ var schema = new mongoose.Schema({
 
   id: {
     type: String,
-    required: true,
   },
 
   email: {
@@ -22,8 +21,8 @@ var schema = new mongoose.Schema({
   },
   registration: {
     type: Number,
-    required: true,
-    unique: true,
+    // required: true,
+    // unique: true,
   },
   session: {
     type: String,

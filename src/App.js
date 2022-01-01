@@ -41,7 +41,7 @@ import SendEmail from "./components/pages/SendEmail";
 import RecentBooks from "./components/pages/RecentBooks";
 import Auth from "./Auth";
 import { SearchForum } from "./components/pages/SearchForum";
-import RegisterTeacher from "./components/pages/RegisterTeacher";
+import VerifyTeacher from "./components/pages/VerifyTeacher.js";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 
@@ -243,10 +243,10 @@ function App() {
                   }
                 />
                 <Route
-                  path="/register-teacher"
+                  path="/verify-teacher"
                   element={
                     auth ? (
-                      <RegisterTeacher email={emailHistory} id={id} />
+                      <VerifyTeacher email={emailHistory} id={id} />
                     ) : (
                       <Navigate to="/" />
                     )
