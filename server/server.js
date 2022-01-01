@@ -440,6 +440,25 @@ app.delete("/api/delete/report/:id", (req, res) => {
     .catch((err) => res.status(404).json({ error: "No such a report" }));
 });
 
+app.post("/register-teacher", async (req, res) => {
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(req.body.password, salt);
+  const user = new User({
+    name: req.body.name,
+    email: req.body.email,
+    role: req.body.role,
+    department: req.body.department,
+    session: req.body.session,
+    password: hashedPassword,
+  });
+
+  const result = await user.save();
+
+  const { name, ...data } = await result.toJSON();
+
+  res.send(data);
+});
+
 app.listen(4000, () => {
   console.log("running on port 4000");
 });
