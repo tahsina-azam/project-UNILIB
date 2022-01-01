@@ -41,8 +41,8 @@ import SendEmail from "./components/pages/SendEmail";
 import RecentBooks from "./components/pages/RecentBooks";
 import Auth from "./Auth";
 import { SearchForum } from "./components/pages/SearchForum";
-import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import { gsap, CSSPlugin } from "gsap/all";
 
 function App() {
   const [state, setState] = useState(false);
@@ -55,16 +55,6 @@ function App() {
   const path = window.location.pathname;
   const words = path.split("/");
   console.log(words[0]);
-  gsap.registerPlugin(ScrollTrigger);
-
-  gsap.utils.toArray(".section").forEach((section) => {
-    ScrollTrigger.create({
-      trigger: section,
-      start: "top top",
-      pin: true,
-      pinSpacing: false,
-    });
-  });
 
   const requireAuth = () => {
     const path = window.location.pathname;
