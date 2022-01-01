@@ -36,7 +36,11 @@ class App extends React.Component {
   }
 
   render() {
-    return <Home />;
+    return (
+      <div>
+        <h3>You are logged out. Please log in again.</h3>
+      </div>
+    );
   }
 }
 

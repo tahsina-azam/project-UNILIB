@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import * as React from "react";
 import Navbar from "./components/Navbar";
-import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  BrowserRouter,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 import "./styles/App.css";
 import Home from "./components/pages/Home";
 import Services from "./components/pages/Services";
@@ -218,6 +224,7 @@ function App() {
                   path="/recently-added-books"
                   element={auth ? <RecentBooks /> : <Navigate to="/" />}
                 />
+
                 <Route
                   path="/send-email/:id"
                   element={

@@ -35,7 +35,7 @@ class ShowUserList extends Component {
         selectType("success", "requested items");
       })
       .catch((err) => {
-        selectType("waiting", "requested page");
+        //selectType("waiting", "requested page");
         console.log("Error from ShowUserList");
       });
   }
