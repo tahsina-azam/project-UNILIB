@@ -22,6 +22,12 @@ var bookSchema = new mongoose.Schema({
   text: {
     type: String,
   },
+  date: {
+    type: String,
+  },
+  time: {
+    type: String,
+  },
 });
 
 const Booksdb = mongoose.model("books", bookSchema);
