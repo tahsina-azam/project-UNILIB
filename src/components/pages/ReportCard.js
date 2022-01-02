@@ -43,12 +43,20 @@ const ReportCard = (props) => {
           </Card.Text>
         </Card.Body>
         <div>
+          <Link to={`/send-email/${report.user_email}`}>
+            {" "}
+            <button type="button" className="btn btn-danger btn-lg btn-block">
+              Give a Reply
+            </button>
+          </Link>
+        </div>
+        <div>
           <button
             type="button"
             className="btn btn-danger btn-lg btn-block"
             onClick={onDeleteClick.bind(this, report._id)}
           >
-            Delete User
+            Delete
           </button>
         </div>
       </Card>
