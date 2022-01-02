@@ -10,6 +10,7 @@ const Book = require("./model/model_books");
 const Message = require("./model/model_messages");
 const Report = require("./model/model_report");
 const AddImg = require("./model/model_image");
+const IssueTrack = require("./model/model_admin_issue");
 const path = require("path");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv").config({
@@ -281,6 +282,22 @@ app.post("/logout", (req, res) => {
 });
 
 app.post("/addbook", upload.single("image"), async (req, res) => {
+  let date_ob = new Date();
+  let date = ("0" + date_ob.getDate()).slice(-2);
+
+  // current month
+  let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
+  // current year
+  let year = date_ob.getFullYear();
+
+  // current hours
+  let hours = date_ob.getHours();
+
+  // current minutes
+  let minutes = date_ob.getMinutes();
+  let issueDate = year + "-" + month + "-" + date;
+  let issueTime = hours + ":" + minutes;
   req.body.image = req.file.path;
   const book = new Book({
     bookName: req.body.bookName,
@@ -289,6 +306,8 @@ app.post("/addbook", upload.single("image"), async (req, res) => {
     image: req.file.originalname,
     number: req.body.number,
     text: req.body.text,
+    date: issueDate,
+    time: issueTime,
   });
 
   const result = await book.save();
@@ -370,6 +389,16 @@ app.post("/issue-book", async (req, res) => {
   ).then((error) => {
     res.send(error);
   });
+
+  const admin_issue = new IssueTrack({
+    issue_date: issueDate,
+    issue_time: issueTime,
+    issued_book: req.body.book,
+    issued_user: req.body.email,
+    status: "issued",
+  });
+  const result = await admin_issue.save();
+  const { issue_date, ...data } = await result.toJSON();
 });
 
 app.post("/reports", async (req, res) => {

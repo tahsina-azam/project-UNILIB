@@ -42,9 +42,6 @@ import RecentBooks from "./components/pages/RecentBooks";
 import Auth from "./Auth";
 import { SearchForum } from "./components/pages/SearchForum";
 import VerifyTeacher from "./components/pages/VerifyTeacher.js";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/dist/ScrollTrigger";
-import { gsap, CSSPlugin } from "gsap/all";
 
 function App() {
   const [state, setState] = useState(false);
