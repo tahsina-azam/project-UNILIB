@@ -2,10 +2,10 @@ import Swal from "sweetalert2";
 const selectType = (type, htmlType) => {
   if (type === "success") {
     const html = `You can get your ${htmlType} in <b></b> milliseconds.`;
-    pop("Say Cheese!", "#32BA7C", html, `rgba(50, 186, 124,0.4)`);
+    return pop("Say Cheese!", "#32BA7C", html, `rgba(50, 186, 124,0.4)`);
   } else if (type === "message") {
     const html = ` ${htmlType} in <b></b> milliseconds.`;
-    pop("Bye Bye!", "#32BA7C", html, `rgba(50, 186, 124,0.4)`);
+    // return pop("Bye Bye!", "#32BA7C", html, `rgba(50, 186, 124,0.4)`);
     return pop("Say Cheese!", "#32BA7C", html, `rgba(50, 186, 124,0.4)`);
   } else if (type === "waiting") {
     const html = `Putting your ${htmlType} in <b></b> milliseconds.`;

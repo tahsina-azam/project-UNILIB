@@ -60,7 +60,7 @@ class BookDetails extends Component {
             <tr>
               <td>Pdf Link</td>
               <td
-                className="text-success book-links"
+                className="text-success"
                 onClick={() => {
                   window.open(book.pdfLink);
                 }}

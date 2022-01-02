@@ -45,7 +45,7 @@ const Form = ({ onSubmit }) => {
           if (res.data.token) {
             Auth.authenticate();
             localStorage.setItem("token", res.data.token);
-            //localStorage.setItem("id", res.data.id);
+            localStorage.setItem("id", res.data.id);
 
             const email = emailRef.current.value;
             var id = email.split("@");

@@ -56,12 +56,13 @@ const AllPostsByUser = () => {
   const { data, loading, error } = useQuery(USER_HISTORY, {
     variables: { id: localStorage.getItem("id") },
   });
+  console.log(data);
   if (loading) return <BoxLoading />;
   if (error) return selectType("error", "please try again");
   return (
     <div className="text-left">
       {" "}
-      {console.log(data.posts_aggregate)}
+      {console.log(data)}
       <br />
       <br />
       <button
