@@ -146,6 +146,16 @@ const Sidebar = ({ user_id, type, pageid }) => {
               </Link>
               <Link
                 className="nav-item align-middle px-0 py-1 link"
+                to="/admin/issued-books"
+              >
+                <i className="fas fa-users icon" />
+                <span className="ms-1 d-none d-sm-inline inside-text">
+                  {" "}
+                  Issued Book List
+                </span>
+              </Link>
+              <Link
+                className="nav-item align-middle px-0 py-1 link"
                 to="/verify-teacher"
               >
                 <i className="fas fa-history icon" />

@@ -488,6 +488,22 @@ app.post("/register-teacher", async (req, res) => {
   res.send(data);
 });
 
+app.get("/admin/allissuedbooks", (req, res) => {
+  IssueTrack.find()
+    .then((issues) => res.json(issues))
+    .catch((err) =>
+      res.status(404).json({ nobooksfound: "No Books have been issued" })
+    );
+});
+app.post("/admin/changeStatus/:id", (req, res) => {
+  IssueTrack.findOneAndUpdate(
+    { _id: req.params.id },
+    { $set: { status: req.body.status } }
+  ).then((error) => {
+    res.send(error);
+  });
+});
+
 app.listen(4000, () => {
   console.log("running on port 4000");
 });
