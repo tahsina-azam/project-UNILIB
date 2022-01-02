@@ -21,6 +21,10 @@ const AdminIssueCard = (props) => {
   const onChangeClick = (id) => {
     axios.post("http://localhost:4000/admin/changeStatus/" + id, {
       status: "returned",
+      book: issuedBook.issued_book,
+      email: issuedBook.issued_user,
+      date: issuedBook.issue_date,
+      time: issuedBook.issue_time,
     });
   };
   return (

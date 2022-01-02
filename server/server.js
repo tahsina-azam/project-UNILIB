@@ -495,12 +495,28 @@ app.get("/admin/allissuedbooks", (req, res) => {
       res.status(404).json({ nobooksfound: "No Books have been issued" })
     );
 });
-app.post("/admin/changeStatus/:id", (req, res) => {
+app.post("/admin/changeStatus/:id", async (req, res) => {
   IssueTrack.findOneAndUpdate(
     { _id: req.params.id },
     { $set: { status: req.body.status } }
   ).then((error) => {
-    res.send(error);
+    //res.send(error);
+  });
+  const dataMail = {
+    from: "Noreply@Unilib.com",
+    to: req.body.email,
+    subject: "Returning the book from library",
+    html: `
+    <h2>Hello there! Contacting you from unilib :)</h2>
+    <p>"thanks for returning the book with id "${req.body.book}"which was issued at "${req.body.time}"on "${req.body.date}</p>
+    `,
+  };
+  await mg.messages().send(dataMail, function (error, body) {
+    if (error) {
+      return res.json({
+        message: error.message,
+      });
+    } else res.json({ message: "Email has been sent, kindly activate your account" });
   });
 });
 
