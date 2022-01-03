@@ -38,7 +38,7 @@ export default function Services() {
             <div class="hero-column-left">
               <p class="hero-text">Choose from a wide variety of books.</p>
               <a class="hero-anchor" href="http://localhost:3000/log-in">
-                <button class="hero-button">Get Started</button>
+                {/*<button class="hero-button">Get Started</button>*/}
               </a>
             </div>
             <div class="hero-column-right">
