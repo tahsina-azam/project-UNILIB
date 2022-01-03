@@ -4,7 +4,11 @@ import { Row, Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../styles/Fonts.css";
 import "../../styles/Library.css";
-
+/**
+ * @description creates cards when admin adds a book to the library
+ * @param {array} props details of individual books
+ * @returns cards containing book description
+ */
 const BookCard = (props) => {
   const book = props.book;
   console.log(book.image);

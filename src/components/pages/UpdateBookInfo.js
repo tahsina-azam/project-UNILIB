@@ -3,6 +3,12 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "../../../src/styles/App.css";
 
+/**
+ * its a class for updating book info
+ * @class
+ * @constructor
+ * @public
+ */
 class UpdateBookInfo extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +21,10 @@ class UpdateBookInfo extends Component {
       text: "",
     };
   }
+  /**
+   * lifecycle method in which request is made to the backend for data
+   * @method
+   */
 
   componentDidMount() {
     // console.log("Print id: " + this.props.match.params.id);
@@ -38,11 +48,17 @@ class UpdateBookInfo extends Component {
         console.log("Error from UpdateBookInfo");
       });
   }
-
+  /**
+   * @description gets called when file is changes
+   * @param {event} e keeps tract of any changes in the file
+   */
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
-
+  /**
+   * handles form submission
+   * @param {event} e  event function
+   */
   onSubmit = (e) => {
     e.preventDefault();
     const path = window.location.pathname;

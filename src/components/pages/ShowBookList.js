@@ -6,6 +6,12 @@ import "../../styles/Library.css";
 import AdminLibrarySearch from "../AdminLibrarySearch";
 import selectType from "../popups";
 
+/**
+ * it is a class for showing the list of books
+ * @class
+ * @constructor
+ * @public
+ */
 class ShowBookList extends Component {
   constructor(props) {
     super(props);
@@ -15,11 +21,20 @@ class ShowBookList extends Component {
     };
   }
 
+  /**
+   *updates the state variable searchResult if it is passed as props to other components
+   * @param {array} obj result from the searches made by the user
+   */
   updateState = (obj) => {
     this.setState({ searchResult: obj }, () =>
       console.log(this.state.searchResult)
     );
   };
+
+  /**
+   * lifecycle method in which request is made to the backend for data
+   * @method
+   */
 
   componentDidMount() {
     axios

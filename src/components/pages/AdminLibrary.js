@@ -3,7 +3,9 @@ import { Row, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ShowBookList from "./ShowBookList";
 import "../../styles/AdminLibrary.css";
-
+/**
+ *@description contains all the components of admin library
+ */
 class App extends React.Component {
   render() {
     return (

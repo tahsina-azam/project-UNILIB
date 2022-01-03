@@ -1,9 +1,18 @@
 import React, { useRef } from "react";
 
+/**
+ * a search box from which issued books can be searched by their info
+ * @param {array} props takes all the books info as array
+ * @returns a search bar and a result array based on user search
+ */
 const AdminIssueSearchBar = (props) => {
   const inputBar = useRef("");
   const book = props.books;
   //console.log(props.books);
+  /**
+   * it searches for the word fragments that the user types in the searchbar
+   * @param {string} searchTerm whatever input is in search bar
+   */
   const searchKeyword = (searchTerm) => {
     if (searchTerm !== "") {
       const newBookList = book.filter((searchItem) => {

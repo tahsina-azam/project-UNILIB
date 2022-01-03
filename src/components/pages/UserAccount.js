@@ -9,6 +9,13 @@ import CommonProfile from "./CommonProfile";
 import Sidebar from "../Sidebar";
 import Auth from "../../Auth";
 
+/**
+ * it is a class for user profile
+ * @class
+ * @constructor
+ * @public
+ */
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -27,6 +34,10 @@ class App extends React.Component {
     };
   }
 
+  /**
+   * lifecycle method in which request is made to the backend for data
+   * @method
+   */
   componentDidMount() {
     Auth.authenticate();
     const reloadCount = sessionStorage.getItem("reloadCount");

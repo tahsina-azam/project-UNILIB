@@ -4,6 +4,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "../../utility";
 import "../../styles/UserProfile.css";
 import "../../styles/Fonts.css";
+/**
+ * it is a class for the common part of the User profile
+ * @class
+ * @constructor
+ * @public
+ */
 
 class CommonProfile extends Component {
   constructor(props) {
@@ -18,6 +24,10 @@ class CommonProfile extends Component {
       role: "",
     };
   }
+  /**
+   * lifecycle method for requesting the issued book list from the backend
+   * @method
+   */
   componentDidMount() {
     axios
       .get("http://localhost:4000/user", { withCredentials: true })

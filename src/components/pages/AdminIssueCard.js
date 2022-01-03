@@ -5,9 +5,18 @@ import { Link } from "react-router-dom";
 import "../../styles/Fonts.css";
 import axios from "axios";
 
+/**
+ * @description creates cards when admin issues a book
+ * @param {array} props details of individual books
+ * @returns cards containing book description and issue history
+ */
 const AdminIssueCard = (props) => {
   const issuedBook = props.issuedBook;
 
+  /**
+   * @description deletes the specific issue with provided id
+   * @param {String} id unique id of every books
+   */
   const onDeleteClick = (id) => {
     axios
       .delete("http://localhost:4000/api/delete/issue/" + id)
@@ -18,6 +27,11 @@ const AdminIssueCard = (props) => {
         console.log("Error form report card");
       });
   };
+
+  /**
+   * @description changes the status of the person with specified id
+   * @param {String} id unique id of every books
+   */
   const onChangeClick = (id) => {
     axios.post("http://localhost:4000/admin/changeStatus/" + id, {
       status: "returned",

@@ -4,10 +4,18 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import selectType from "../popups";
 
+/**
+ * sending email to the user
+ * @param {String} props user email and id
+ * @return email sent to the user
+ */
 const SendEmail = (props) => {
   const [subject, setSubject] = useState("");
   const [text, setText] = useState("");
-
+  /**
+   * Sending email to the users
+   * @param {String} email
+   */
   const onSubmitClick = (email) => {
     const path = window.location.pathname;
     const userRef = path.split("/");

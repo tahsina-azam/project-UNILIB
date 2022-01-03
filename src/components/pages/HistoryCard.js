@@ -4,6 +4,11 @@ import { Row, Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../styles/Fonts.css";
 import "../../styles/Library.css";
+/**
+ * @description creates cards when admin issues a book
+ * @param {array} props details of individual books
+ * @returns cards containing book description and issue history
+ */
 const HistoryCard = (props) => {
   const history = props.book;
   return (

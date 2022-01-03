@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import axios from "axios";
 import "../../styles/Library.css";
 
+/**
+ * it is a class for showing all the information of books in the library
+ * @class
+ * @constructor
+ * @public
+ */
 class BookDetails extends Component {
   constructor(props) {
     super(props);
@@ -9,6 +15,10 @@ class BookDetails extends Component {
       book: {},
     };
   }
+  /**
+   * lifecycle method for requesting the specific book with the given id
+   * @method
+   */
 
   componentDidMount() {
     //console.log("Print id: " + this.props.match.params.id);
@@ -27,7 +37,10 @@ class BookDetails extends Component {
         console.log("Error from ShowBookDetails");
       });
   }
-
+  /**
+   * deletes the report with specified id
+   * @param {String} id
+   */
   onDeleteClick(id) {
     axios
       .delete("http://localhost:4000/api/books/" + id)

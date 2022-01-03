@@ -5,6 +5,9 @@ import "../../styles/Fonts.css";
 import "../../styles/Sidebar.css";
 import axios from "axios";
 
+/**
+ * specifying Field component
+ */
 const Field = React.forwardRef(({ label, type, placeholder }, ref) => {
   return (
     <textarea
@@ -15,10 +18,17 @@ const Field = React.forwardRef(({ label, type, placeholder }, ref) => {
     />
   );
 });
-
+/**
+ * specifying login form
+ * @param {function} param0
+ * @returns a login form
+ */
 const Form = ({ onSubmit }) => {
   const messageRef = React.useRef();
-
+  /**
+   * handles form submission
+   * @param {event} e  event function
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {

@@ -7,7 +7,9 @@ import selectType from "../popups";
 import axios from "axios";
 import Auth from "../../Auth";
 import { useNavigate } from "react-router-dom";
-
+/**
+ * specifying Field component
+ */
 const Field = React.forwardRef(({ label, type, placeholder }, ref) => {
   return (
     <div>
@@ -21,12 +23,20 @@ const Field = React.forwardRef(({ label, type, placeholder }, ref) => {
     </div>
   );
 });
-
+/**
+ * specifying login form
+ * @param {function} param0
+ * @returns a login form
+ */
 const Form = ({ onSubmit }) => {
   const emailRef = React.useRef();
   const passwordRef = React.useRef();
   let history = useNavigate();
 
+  /**
+   * handles form submission
+   * @param {event} e  event function
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
@@ -116,6 +126,10 @@ const Form = ({ onSubmit }) => {
 
 // Usage example:
 
+/**
+ * handles login of users , admins and teachers
+ * @returns login form
+ */
 function App() {
   const handleSubmit = (data) => {
     const json = JSON.stringify(data, null, 4);
