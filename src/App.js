@@ -42,9 +42,7 @@ import RecentBooks from "./components/pages/RecentBooks";
 import Auth from "./Auth";
 import { SearchForum } from "./components/pages/SearchForum";
 import VerifyTeacher from "./components/pages/VerifyTeacher.js";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/dist/ScrollTrigger";
-import { gsap, CSSPlugin } from "gsap/all";
+import AdminIssueList from "./components/pages/AdminIssueList";
 
 function App() {
   const [state, setState] = useState(false);
@@ -242,6 +240,10 @@ function App() {
                       <Navigate to="/" />
                     )
                   }
+                />
+                <Route
+                  path="/admin/issued-books"
+                  element={auth ? <AdminIssueList /> : <Navigate to="/" />}
                 />
                 <Route path="/logout/" element={<LogOut />} />
               </Routes>
