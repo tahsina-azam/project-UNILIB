@@ -1,9 +1,6 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {
   font-family: "Poppins", sans-serif;
-  /* background-color: #dd6b55; */
-
-  /* background: #fafafa; */
 }
 
 p {
@@ -94,6 +91,7 @@ p {
 }
 .content {
   position: relative;
+  /* margin-top: 5%; */
   /* width: 100%; */
   padding-top: 2%;
   /* padding-left: 20%; */

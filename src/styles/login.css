@@ -13,8 +13,8 @@
 .formStyle {
   margin: auto;
   padding: 10px;
-  border: 1px solid #c9c9c9;
-  border-radius: 5px;
+  /* border: 1px solid #c9c9c9;
+  border-radius: 5px; */
   width: 50%;
   height: 100%;
   display: block;
@@ -30,12 +30,12 @@
   margin: 10px;
   padding: 5px;
   /* border: 1px solid #bfbfbf; */
-  border-radius: 3px;
+  /* border-radius: 3px; */
   box-sizing: border-box;
 }
 
 .submitStyle = {
-  border-radius: 3px;
+  /* border-radius: 3px; */
   background: #000000;
   width: 100%;
   font-size: 15px;

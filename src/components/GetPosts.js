@@ -80,7 +80,7 @@ const GetPosts = ({ commenter_id }) => {
 
   if (error) return selectType("error", "please try again");
   return (
-    <div>
+    <div className="mt-5">
       <link
         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
         rel="stylesheet"
@@ -95,7 +95,7 @@ const GetPosts = ({ commenter_id }) => {
           <div>no posts, sorry</div>
         ) : (
           data.posts.map((p) => (
-            <div className="mt-2 justify-content-start mb-3 card">
+            <div className="mt-5 justify-content-start mb-3 card">
               <div className="post-text">
                 <Post
                   key={p.id}

@@ -5,6 +5,7 @@ import HeroSection from "../HeroSection";
  *@description contains all the components of homepage
  */
 function Home() {
+  localStorage.clear();
   useEffect(() => {
     const reloadCount = sessionStorage.getItem("reloadCount");
     if (reloadCount < 1) {
@@ -15,13 +16,7 @@ function Home() {
     }
     return () => {};
   }, []);
-  return (
-    <div className="text-center">
-      <HeroSection />
-      {/* <Cards /> */}
-      {/* <Footer /> */}
-    </div>
-  );
+  return <HeroSection />;
 }
 
 export default Home;

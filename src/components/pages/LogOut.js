@@ -1,8 +1,7 @@
 import React from "react";
 import axios from "../../utility";
-import Home from "./Home";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Auth from "../../Auth";
+<<<<<<< HEAD
 import selectType from "../popups";
 /**
  * its a class for Logging out the user
@@ -10,6 +9,10 @@ import selectType from "../popups";
  * @constructor
  * @public
  */
+=======
+import HeroSection from "../HeroSection";
+
+>>>>>>> 180abd2 (fixed #109 #110 #111 #112 #114 #117)
 class App extends React.Component {
   componentDidMount() {
     const reloadCount = sessionStorage.getItem("reloadCount");
@@ -26,7 +29,7 @@ class App extends React.Component {
       })
       .then(
         (response) => {
-          selectType("message", "Logging you out ");
+          // selectType("message", "Logging you out ");
           window.localStorage.clear();
           console.log(window.localStorage.getItem("token") + "from logout");
           Auth.signout();
@@ -42,9 +45,16 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h3>You are logged out. Please log in again.</h3>
-      </div>
+      <HeroSection />
+
+      // <div className="text-center">
+      //   <img
+      //     src={sadFace}
+      //     style={{ height: "200px", width: "200px" }}
+      //     alt="sad face"
+      //   />
+      //   <h3 className="mt-5">You are logged out. Please log in again.</h3>
+      // </div>
     );
   }
 }

@@ -10,13 +10,13 @@ class App extends React.Component {
   render() {
     return (
       <div className="admin-library">
-        <div className="text-center p-3 mx-auto">
+        {/* <div className="text-center p-3 mx-auto">
           <a href="http://localhost:3000/unilib/admin/add-books">
             <Button variant="success" type="submit" align="center">
               + ADD BOOKS
             </Button>
           </a>
-        </div>
+        </div> */}
         <div class="mx-auto">
           <ShowBookList />
         </div>

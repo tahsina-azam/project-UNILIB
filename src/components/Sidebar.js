@@ -158,7 +158,7 @@ const Sidebar = ({ user_id, type, pageid }) => {
                 className="nav-item align-middle px-0 py-1 link"
                 to="/verify-teacher"
               >
-                <i className="fas fa-history icon" />
+                <i className="fas fa-user-plus icon" />
                 <span className="ms-1 d-none d-sm-inline inside-text">
                   Register Teacher
                 </span>

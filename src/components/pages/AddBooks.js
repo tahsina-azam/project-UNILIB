@@ -158,8 +158,8 @@ const Elements = ({ onSubmit }) => {
             ></textarea>
           </div>
           <div className="text-center">
-            <button class="btn btn-success" type="submit" align="center">
-              Update
+            <button class="btn btn-success m-2" type="submit" align="center">
+              Upload
             </button>
           </div>
         </form>

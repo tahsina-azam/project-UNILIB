@@ -103,7 +103,7 @@ class App extends React.Component {
     return (
       <div className="wrapper">
         <Sidebar type={this.state.val} pageid={this.state.id} />
-        <CommonProfile className="content" />
+        <CommonProfile className="content pt-5" />
       </div>
     );
   }

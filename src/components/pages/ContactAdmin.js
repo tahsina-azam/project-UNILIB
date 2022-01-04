@@ -32,9 +32,9 @@ const ContactAdmin = (props) => {
   };
 
   return (
-    <div className="text-start">
+    <div className="text-start pt-5">
       <Dropdown
-        className="m-5"
+        className="m-5 pt-5"
         onSelect={(e) => {
           setCategory(e);
           console.log(e);

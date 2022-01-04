@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import selectType from "../popups";
 
@@ -21,7 +20,7 @@ const SendEmail = (props) => {
     const userRef = path.split("/");
     console.log(userRef[2]);
     if (text === "") {
-      alert("please write something first before submitting");
+      alert("Please write something first before submitting");
     } else {
       axios
         .post("http://localhost:4000/api/admin/send-email", {
@@ -43,54 +42,32 @@ const SendEmail = (props) => {
   };
 
   return (
-    <div className="text-start">
-      <div className="m-5">
-        <form>
-          <textarea
-            type="text"
-            className="form-control"
-            placeholder="Please specify a subject... ..."
-            onChange={(e) => {
-              setSubject(e.target.value);
-            }}
-            style={{ height: "200px" }}
-          ></textarea>
-          <textarea
-            type="text"
-            className="form-control"
-            placeholder="write whatever you want to inform this student... ..."
-            onChange={(e) => {
-              setText(e.target.value);
-            }}
-            style={{ height: "200px" }}
-          ></textarea>
-          <div
-            style={{ color: "red", fontSize: "12px" }}
-            className="ml-auto"
-          ></div>
-          <button
-            className="btn btn-success mt-2 ml-auto"
-            style={{ width: "auto", height: "auto" }}
-            type="submit"
-            onClick={onSubmitClick.bind(this, props.email)}
-          >
-            <i class="far fa-share-square" /> Send
-          </button>
-        </form>
-      </div>
-    </div>
+    <form className="text-center" style={{ height: "100%" }}>
+      <textarea
+        type="text"
+        className="form-control mb-5"
+        placeholder="Write the subject of the email"
+        style={{ height: "40px" }}
+        onChange={(e) => {
+          setSubject(e.target.value);
+        }}
+      />
+      <textarea
+        type="text"
+        className="form-control"
+        placeholder="Write the body of the email"
+        onChange={(e) => {
+          setText(e.target.value);
+        }}
+      />
+      <button
+        className="btn btn-success mt-5"
+        type="submit"
+        onClick={onSubmitClick.bind(this, props.email)}
+      >
+        <i class="far fa-share-square" /> Send
+      </button>
+    </form>
   );
 };
 export default SendEmail;
-
-{
-  /*function SendEmail() {
-  return (
-    <div>
-      <h1>send email will go here</h1>
-    </div>
-  );
-}
-
-export default SendEmail;*/
-}

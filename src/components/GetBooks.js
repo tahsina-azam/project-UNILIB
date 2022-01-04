@@ -22,7 +22,7 @@ export const Book = ({
 }) => {
   console.log("Fetch books");
   return (
-    <Card style={{ width: "18rem", height: "25rem" }}>
+    <Card style={{ width: "18rem", height: "25rem" }} className="mt-5">
       <Card.Body>
         <Card.Title
           className="text-success"
@@ -44,11 +44,11 @@ export const Book = ({
           <br />
         </Card.Text>
       </Card.Body>{" "}
-      <Card.Footer className="border-0">
-        {uploaderId === localStorage.getItem("id") && (
+      {uploaderId === localStorage.getItem("id") && (
+        <Card.Footer className="border-0">
           <DeleteBooks id={id} link={link} />
-        )}
-      </Card.Footer>
+        </Card.Footer>
+      )}
     </Card>
   );
 };
@@ -60,7 +60,7 @@ const GetBooks = () => {
   if (loading) return <BoxLoading />;
   if (error) return selectType("error", "please try again");
   return (
-    <div className="content list-forum">
+    <div className="content list-forum mt-5">
       {files.length === 0 ? (
         <div>no books, sorry</div>
       ) : (

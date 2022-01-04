@@ -3,7 +3,6 @@ import axios from "axios";
 import ReportCard from "./ReportCard";
 import "../../styles/Library.css";
 import "./LibrarySearchBar";
-import LibrarySearchBar from "./LibrarySearchBar";
 import selectType from "../popups";
 
 /**

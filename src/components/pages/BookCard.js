@@ -39,7 +39,6 @@ const BookCard = (props) => {
           </Card.Text>
         </Card.Body>
       </Card>
-      <Row className="mb-5"></Row>
     </div>
   );
 };

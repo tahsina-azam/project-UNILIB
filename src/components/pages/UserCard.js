@@ -1,5 +1,7 @@
 import { React, useState } from "react";
 import { Card } from "react-bootstrap";
+import teacherImg from "../../images/teacher.png";
+import studentImg from "../../images/student.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import "../../styles/Fonts.css";
@@ -25,18 +27,28 @@ const UserCard = (props) => {
           <div>
             <Link to={`/send-email/${user.email}`}>
               {" "}
-              <button type="button" className="btn btn-danger btn-lg btn-block">
-                Send Mail
+              <button
+                type="button"
+                className="btn btn-info btn-block m-2"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Click to send an email to the user"
+              >
+                <i class="fas fa-paper-plane" style={{ color: "white" }} />
               </button>
             </Link>
+
+            <button
+              type="button"
+              className="btn btn-danger btn-block m-2"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Click to delete the account of the user"
+              onClick={onDeleteClick.bind(this, user._id)}
+            >
+              <i class="fas fa-trash-alt" style={{ color: "white" }} />
+            </button>
           </div>
-          <button
-            type="button"
-            className="btn btn-danger btn-lg btn-block"
-            onClick={onDeleteClick.bind(this, user._id)}
-          >
-            Delete User
-          </button>
         </div>
       );
     } else if (words[1] === "show-book") {
@@ -89,7 +101,28 @@ const UserCard = (props) => {
 
   return (
     <div>
-      <Card style={{ width: "auto", height: "20rem" }} className="p-2">
+      <Card style={{ height: "22rem" }} className="p-2">
+        <Card.Title className="mt-2">
+          {user.role === "teacher" ? (
+            <img
+              src={teacherImg}
+              style={{ width: "50px", height: "50px" }}
+              alt="teacher"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Teacher Badge"
+            />
+          ) : (
+            <img
+              src={studentImg}
+              style={{ width: "50px", height: "50px" }}
+              alt="student"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Student Badge"
+            />
+          )}
+        </Card.Title>
         <Card.Body className="text-start">
           {/* <Card.Title>
             <Link to={`/show-book/${book._id}`}>{book.bookName}</Link>

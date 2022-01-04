@@ -68,8 +68,8 @@ export const SearchForum = () => {
   // const onClick = (e) => {};
 
   return (
-    <div className="text-center">
-      <div className="radio-buttons m-3">
+    <div className="text-center pt-5">
+      <div className="radio-buttons pt-5">
         <input
           id="Users"
           value="Users"

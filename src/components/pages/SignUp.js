@@ -67,11 +67,11 @@ const Form = ({ onSubmit }) => {
       );
   };
   return (
-    <div className="vh-90 border-0">
+    <div className="vh-75">
       <div className="container">
         <div className="row d-flex justify-content-center align-items-center">
           <div className="col-lg-12 col-xl-11">
-            <div className="card text-black border-0">
+            <div className="card text-black ">
               <div className="card-body p-md-5 regbody">
                 <div className="row justify-content-center">
                   <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
@@ -122,7 +122,7 @@ const Form = ({ onSubmit }) => {
                       <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                         <button
                           type="submit"
-                          className="btn btn-success text-align-center"
+                          className="btn btn-dark text-align-center"
                         >
                           Register
                         </button>

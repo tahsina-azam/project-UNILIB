@@ -67,7 +67,7 @@ export const DeleteBooks = ({ id, link }) => {
   return (
     <>
       <Button
-        className="btn btn-danger border-0 float-child1 mx-1"
+        className="btn btn-danger border-0 float-child1"
         data-toggle="tooltip"
         data-placement="top"
         title="click to delete"
@@ -75,7 +75,7 @@ export const DeleteBooks = ({ id, link }) => {
           setShow(!show);
         }}
       >
-        <i class="fas fa-trash-alt" style={{ color: "white" }} />
+        <i class="fas fa-trash-alt p-1" style={{ color: "white" }} />
       </Button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

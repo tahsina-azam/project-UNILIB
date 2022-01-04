@@ -28,7 +28,7 @@ const ReportCard = (props) => {
 
   return (
     <div>
-      <Card style={{ width: "auto", height: "20rem" }} className="p-2">
+      <Card className="p-2">
         <Card.Body className="text-start">
           <Card.Text className="fnt-showUser text-capitalize">
             <span className="text-success " style={{ fontWeight: "bold" }}>
@@ -38,7 +38,7 @@ const ReportCard = (props) => {
           </Card.Text>
           <Card.Text className="fnt-showUser">
             <span className="text-success" style={{ fontWeight: "bold" }}>
-              category:{" "}
+              Report Type:{" "}
             </span>
             {report.type}
           </Card.Text>
@@ -49,21 +49,28 @@ const ReportCard = (props) => {
             {report.body}
           </Card.Text>
         </Card.Body>
-        <div>
+        <div className="text-end">
           <Link to={`/send-email/${report.user_email}`}>
             {" "}
-            <button type="button" className="btn btn-danger btn-lg btn-block">
-              Give a Reply
+            <button
+              type="button"
+              className="btn btn-info btn-block m-2"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="click to reply"
+            >
+              <i class="fas fa-comment-dots" style={{ color: "white" }} />
             </button>
           </Link>
-        </div>
-        <div>
           <button
             type="button"
-            className="btn btn-danger btn-lg btn-block"
+            className="btn btn-danger btn-block m-2"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Click to delete the report"
             onClick={onDeleteClick.bind(this, report._id)}
           >
-            Delete
+            <i class="fas fa-trash-alt" style={{ color: "white" }} />
           </button>
         </div>
       </Card>

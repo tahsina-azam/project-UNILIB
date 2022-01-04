@@ -64,15 +64,13 @@ class RecentBookList extends Component {
     }
 
     return (
-      <div className="ShowBookList">
-        <div className="container">
-          <div className="row">
-            <LibrarySearchBar
-              books={this.state.books}
-              updateParent={this.updateState}
-            />
-            <div className="list">{bookList}</div>
-          </div>
+      <div className="ShowBookList pt-5 text-center">
+        <div className="row">
+          <LibrarySearchBar
+            books={this.state.books}
+            updateParent={this.updateState}
+          />
+          <div className="list">{bookList}</div>
         </div>
       </div>
     );

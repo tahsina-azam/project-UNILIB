@@ -52,38 +52,38 @@ class CommonProfile extends Component {
   }
   render() {
     return (
-      <div className="content m-10">
-        <div className="text-capitalize">
+      <div className="content pt-5">
+        <div className="text-capitalize pt-5">
           <div>
             <p className="fnt grading text-white">
               <i className="fas fa-user fa-lg me-3 fa-fw"></i>
               Name
             </p>
-            <p className="m-2 fnt-user text-success">{this.state.name}</p>
+            <p className="m-2 fnt-user text-dark">{this.state.name}</p>
           </div>
 
           <p className="fnt grading text-white">
             <i className="fas fa-list-ol fa-lg me-3 fa-fw" />
             Registration Number
           </p>
-          <p className="m-2 fnt-user text-success">{this.state.registration}</p>
+          <p className="m-2 fnt-user text-dark">{this.state.registration}</p>
           <p className="fnt grading text-white">
             <i className="fas fa-book-reader fa-lg me-3 fa-fw" />
             Department
           </p>
-          <p className="m-2 fnt-user text-success">{this.state.department}</p>
+          <p className="m-2 fnt-user text-dark">{this.state.department}</p>
         </div>
         <p className="fnt grading text-white">
           <i className="fas fa-envelope fa-lg me-3 fa-fw" />
           Contact
         </p>
-        <p className="m-2 fnt-user text-success">{this.state.email}</p>
+        <p className="m-2 fnt-user text-dark">{this.state.email}</p>
         <p className="fnt grading text-white">
           <i class="fas fa-calendar-alt fa-lg me-3 fa-fw" />
           Session
         </p>
 
-        <p className="m-2 fnt-user text-success">{this.state.session}</p>
+        <p className="m-2 fnt-user text-dark">{this.state.session}</p>
       </div>
     );
   }

@@ -106,7 +106,7 @@ class UserHistory extends Component {
     this.state = {
       borrowed_books: [],
       show: false,
-      buttonText: "show books",
+      buttonText: "Show issued books",
     };
   }
 
@@ -138,29 +138,27 @@ class UserHistory extends Component {
     }
 
     return (
-      <>
-        <div className="text-success text-center">
-          <div>
-            <button
-              className="btn btn-outline-success buttons btn-block"
-              onClick={() => {
-                this.setState({
-                  show: !this.state.show,
-                  buttonText:
-                    this.state.buttonText === "Hide Books"
-                      ? "Show Books"
-                      : "Hide Books",
-                });
-              }}
-            >
-              {this.state.buttonText}
-            </button>
-            {this.state.show && <div className="list">{issuedBookList}</div>}
-          </div>
-
-          <AllPostsByUser />
+      <div className="text-success text-center pt-5">
+        <div className="pt-5">
+          <button
+            className="btn btn-outline-success buttons btn-block"
+            onClick={() => {
+              this.setState({
+                show: !this.state.show,
+                buttonText:
+                  this.state.buttonText === "Hide issued books"
+                    ? "Show issued books"
+                    : "Hide issued books",
+              });
+            }}
+          >
+            {this.state.buttonText}
+          </button>
+          {this.state.show && <div className="list">{issuedBookList}</div>}
         </div>
-      </>
+
+        <AllPostsByUser />
+      </div>
     );
   }
 }

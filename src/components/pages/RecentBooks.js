@@ -6,7 +6,7 @@ import RecentBookList from "./RecentBookList";
  */
 function RecentBooks() {
   return (
-    <div>
+    <div className="pt-5">
       <RecentBookList />
     </div>
   );

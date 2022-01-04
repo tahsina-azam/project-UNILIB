@@ -40,11 +40,11 @@ function TypePost() {
       <Col className="col-sm-2 m-0 p-0 sidebar">
         <Sidebar type={"1"} />
       </Col>
-      <Col className="col-sm-100 content">
+      <Col className="col-sm-100 content mt-5">
         <form onSubmit={onSubmit}>
           <textarea
             type="text"
-            className="form-control"
+            className="form-control mt-5"
             placeholder="write something..."
             onChange={(e) => {
               setShowWarning("");

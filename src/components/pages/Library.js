@@ -6,8 +6,8 @@ import "../../styles/AdminLibrary.css";
  */
 const App = () => {
   return (
-    <div className="library">
-      <div className="mx-auto">
+    <div className="library pt-5">
+      <div className="mx-auto pt-5">
         <StudentBookList />
       </div>
     </div>

@@ -120,8 +120,8 @@ class EditUser extends Component {
 
   render() {
     return (
-      <div className="vh-90 border-0">
-        <form noValidate onSubmit={this.onSubmit}>
+      <div className="vh-90 mt-4">
+        <form noValidate onSubmit={this.onSubmit} className="p-5">
           <div className="align-items-center mb-4">
             <i className="fas fa-user fa-lg me-1 fa-fw" />
             <label>Name </label>
