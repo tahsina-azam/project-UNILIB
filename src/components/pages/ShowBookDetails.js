@@ -3,6 +3,13 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import ShowUserList from "./ShowUserList";
 
+/**
+ * it is a class for showing all the book details
+ * @class
+ * @constructor
+ * @public
+ */
+
 class showBookDetails extends Component {
   constructor(props) {
     super(props);
@@ -11,6 +18,10 @@ class showBookDetails extends Component {
     };
   }
 
+  /**
+   * lifecycle method in which request is made to the backend for data
+   * @method
+   */
   componentDidMount() {
     //console.log("Print id: " + this.props.match.params.id);
     const path = window.location.pathname;
@@ -28,7 +39,10 @@ class showBookDetails extends Component {
         console.log("Error from ShowBookDetails");
       });
   }
-
+  /**
+   * deletes the report with specified id
+   * @param {String} id
+   */
   onDeleteClick(id) {
     axios
       .delete("http://localhost:4000/api/books/" + id)

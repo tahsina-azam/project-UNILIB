@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import "../../styles/App.css";
 import HeroSection from "../HeroSection";
-
+/**
+ *@description contains all the components of homepage
+ */
 function Home() {
   useEffect(() => {
     const reloadCount = sessionStorage.getItem("reloadCount");

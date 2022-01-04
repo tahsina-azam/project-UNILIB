@@ -4,7 +4,12 @@ import Home from "./Home";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Auth from "../../Auth";
 import selectType from "../popups";
-
+/**
+ * its a class for Logging out the user
+ * @class
+ * @constructor
+ * @public
+ */
 class App extends React.Component {
   componentDidMount() {
     const reloadCount = sessionStorage.getItem("reloadCount");

@@ -6,7 +6,12 @@ import "../../styles/Fonts.css";
 import "../../styles/ManageUser.css";
 import AdminUserSearch from "../AdminUserSearch";
 import selectType from "../popups";
-
+/**
+ * it is a class for showing the list of users
+ * @class
+ * @constructor
+ * @public
+ */
 class ShowUserList extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +22,10 @@ class ShowUserList extends Component {
       buttonText: "Hide users",
     };
   }
+  /**
+   *updates the state variable searchResult if it is passed as props to other components
+   * @param {array} obj result from the searches made by the user
+   */
 
   updateState = (obj) => {
     this.setState({ searchResult: obj }, () =>
@@ -24,6 +33,10 @@ class ShowUserList extends Component {
     );
   };
 
+  /**
+   * lifecycle method in which request is made to the backend for data
+   * @method
+   */
   componentDidMount() {
     axios
       .get("http://localhost:4000/allusers")

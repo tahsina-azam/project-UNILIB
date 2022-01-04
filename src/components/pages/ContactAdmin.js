@@ -1,7 +1,11 @@
 import { Dropdown } from "react-bootstrap";
 import { React, useState } from "react";
 import axios from "axios";
-
+/**
+ * @description for contacting admin
+ * @param {string} props email of the user passed as props
+ * @returns a form through which users can can contact admin
+ */
 const ContactAdmin = (props) => {
   const [category, setCategory] = useState("");
   const [text, setText] = useState("");

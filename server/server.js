@@ -56,7 +56,11 @@ const upload = multer({ storage: storage });
 app.get("/userinfo", (req, res) => {
   res.send("list of all task");
 });
-
+/**
+ * checks param
+ * @param  params user informations
+ * @returns if the params exists or not
+ */
 const checkParamsIfExists = (params) => (req, res, next) => {
   const { body } = req;
   const missingKeys = [];
@@ -75,7 +79,11 @@ const checkParamsIfExists = (params) => (req, res, next) => {
   }
   next();
 };
-
+/**
+ * @description registering user
+ * @route POST
+ * @access public
+ */
 app.post(
   "/register",
   checkParamsIfExists([
@@ -127,7 +135,11 @@ app.post(
     });
   }
 );
-
+/**
+ * @description activating user account by email
+ * @route POST
+ * @access public
+ */
 app.post(
   "/activateAccount",
   checkParamsIfExists(["token"]),
@@ -181,7 +193,11 @@ app.post(
     );
   }
 );
-
+/**
+ * @description logging in the user
+ * @route POST
+ * @access public
+ */
 app.post(
   "/login",
   checkParamsIfExists(["email", "password"]),
@@ -218,7 +234,12 @@ app.post(
     res.json({ token: token, id: user.id });
   }
 );
-
+/**
+ * checks if the token is authorized
+ * @param {*} req token
+ * @param {*} res checks if the token is valid or not
+ * @param {*} next get method gets executed after that
+ */
 const checkTokenMiddleware = (req, res, next) => {
   const { headers } = req;
   const token = req.headers["authorization"];
@@ -234,32 +255,52 @@ const checkTokenMiddleware = (req, res, next) => {
     });
   }
 };
-
+/**
+ * @description for retrieving a specific user
+ * @route GET
+ * @access public
+ */
 app.get("/user", checkTokenMiddleware, async (req, res) => {
   console.log({ user: req.user });
   const data = await User.findOne({ _id: req.user._id });
 
   res.json({ message: "successful", data });
 });
-
+/**
+ * @description for retrieving a specific user's all data
+ * @route GET
+ * @access public
+ */
 app.get("/user/:email", async (req, res) => {
   const data = await User.findOne({ email: req.params.email });
 
   res.json({ message: "successful", data });
 });
-
+/**
+ * @description for retrieving all user data at once
+ * @route GET
+ * @access public
+ */
 app.get("/allusers", (req, res) => {
   User.find()
     .then((users) => res.json(users))
     .catch((err) => res.status(404).json({ nobooksfound: "No Books found" }));
 });
-
+/**
+ * @description for deleting a specific user
+ * @route DELETE
+ * @access public
+ */
 app.delete("/api/delete/user/:id", (req, res) => {
   User.findByIdAndRemove(req.params.id, req.body)
     .then((user) => res.json({ mgs: "User entry deleted successfully" }))
     .catch((err) => res.status(404).json({ error: "No such user" }));
 });
-
+/**
+ * @description for updating a specific user's info
+ * @route PUT
+ * @access public
+ */
 app.put("/api/users/:id", (req, res) => {
   User.findByIdAndUpdate(req.params.id, req.body)
     .then((user) => res.json({ msg: "Updated successfully" }))
@@ -267,20 +308,32 @@ app.put("/api/users/:id", (req, res) => {
       res.status(400).json({ error: "Unable to update the Database" })
     );
 });
-
+/**
+ * @description for retrieving a specific user with id
+ * @route GET
+ * @access public
+ */
 app.get("/api/users/:id", (req, res) => {
   User.findById(req.params.id)
     .then((user) => res.json(user))
     .catch((err) => res.status(404).json({ nobookfound: "No user found" }));
 });
-
+/**
+ * @description for logging out a specific user
+ * @route POST
+ * @access public
+ */
 app.post("/logout", (req, res) => {
   res.cookie("jwt", "", { maxAge: 0 });
   res.send({
     message: "success",
   });
 });
-
+/**
+ * @description for adding books in the library
+ * @route POST
+ * @access public
+ */
 app.post("/addbook", upload.single("image"), async (req, res) => {
   let date_ob = new Date();
   let date = ("0" + date_ob.getDate()).slice(-2);
@@ -334,7 +387,11 @@ app.get("/api/books/:id", (req, res) => {
     .then((book) => res.json(book))
     .catch((err) => res.status(404).json({ nobookfound: "No Book found" }));
 });
-
+/**
+ * @description for updating a book with given id
+ * @route PUT
+ * @access public
+ */
 app.put("/api/books/:id", (req, res) => {
   Book.findByIdAndUpdate(req.params.id, req.body)
     .then((book) => res.json({ msg: "Updated successfully" }))
@@ -351,7 +408,11 @@ app.delete("/api/books/:id", (req, res) => {
     .then((book) => res.json({ mgs: "Book entry deleted successfully" }))
     .catch((err) => res.status(404).json({ error: "No such a book" }));
 });
-
+/**
+ * @description for sending message to the developers or moderators
+ * @route GET
+ * @access public
+ */
 app.post("/messages", async (req, res) => {
   const sentMessage = new Message({
     message: req.body.message,
@@ -359,7 +420,11 @@ app.post("/messages", async (req, res) => {
   const result = await sentMessage.save();
   const { message, ...data } = await result.toJSON();
 });
-
+/**
+ * @description for issuing book to a user
+ * @route POST
+ * @access public
+ */
 app.post("/issue-book", async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
   let date_ob = new Date();
@@ -400,7 +465,11 @@ app.post("/issue-book", async (req, res) => {
   const result = await admin_issue.save();
   const { issue_date, ...data } = await result.toJSON();
 });
-
+/**
+ * @description for saving the reports sent by users
+ * @route POST
+ * @access public
+ */
 app.post("/reports", async (req, res) => {
   const sentReport = new Report({
     type: req.body.type,
@@ -410,7 +479,12 @@ app.post("/reports", async (req, res) => {
   const result = await sentReport.save();
   const { type, ...data } = await result.toJSON();
 });
-
+/**
+ * @description for adding user image
+ * @route POST
+ * @access public
+ * @unused
+ */
 app.post("/addImage", upload.single("image"), async (req, res) => {
   req.body.image = req.file.path;
   const img = new AddImg({
@@ -425,6 +499,12 @@ app.post("/addImage", upload.single("image"), async (req, res) => {
 
   res.send(data);
 });
+/**
+ * @description for retrieving a specific user image by his email
+ * @route GET
+ * @access public
+ * unused
+ */
 app.get("/img/:email", async (req, res) => {
   /*AddImg.findOne({ email: req.params.email })
     .then((data) => res.json(data))
@@ -434,7 +514,11 @@ app.get("/img/:email", async (req, res) => {
     res.status(400).json("not have image");
   } else res.json({ message: "successful", data });
 });
-
+/**
+ * @description for sending email to the users when needed
+ * @route POST
+ * @access public
+ */
 app.post("/api/admin/send-email", async (req, res) => {
   //console.log(req.body.id);
   //const user = User.findById(req.body.id);
@@ -456,19 +540,31 @@ app.post("/api/admin/send-email", async (req, res) => {
     } else res.json({ message: "Email has been sent, kindly activate your account" });
   });
 });
-
+/**
+ * @description for retrieving all reports
+ * @route GET
+ * @access public
+ */
 app.get("/allreports", (req, res) => {
   Report.find()
     .then((reports) => res.json(reports))
     .catch((err) => res.status(404).json({ nobooksfound: "No Books found" }));
 });
-
+/**
+ * @description for deleting a report with specific id
+ * @route DELETE
+ * @access public
+ */
 app.delete("/api/delete/report/:id", (req, res) => {
   Report.findByIdAndRemove(req.params.id, req.body)
     .then((report) => res.json({ mgs: "Report entry deleted successfully" }))
     .catch((err) => res.status(404).json({ error: "No such a report" }));
 });
-
+/**
+ * @description for registering from admin
+ * @route POST
+ * @access public
+ */
 app.post("/register-teacher", async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
@@ -487,7 +583,11 @@ app.post("/register-teacher", async (req, res) => {
 
   res.send(data);
 });
-
+/**
+ * @description for retrieving all the issued books for admin
+ * @route GET
+ * @access public
+ */
 app.get("/admin/allissuedbooks", (req, res) => {
   IssueTrack.find()
     .then((issues) => res.json(issues))
@@ -495,6 +595,11 @@ app.get("/admin/allissuedbooks", (req, res) => {
       res.status(404).json({ nobooksfound: "No Books have been issued" })
     );
 });
+/**
+ * @description changing status for books if returned or not
+ * @route POST
+ * @access public
+ */
 app.post("/admin/changeStatus/:id", async (req, res) => {
   IssueTrack.findOneAndUpdate(
     { _id: req.params.id },

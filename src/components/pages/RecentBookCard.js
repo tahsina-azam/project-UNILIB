@@ -4,7 +4,11 @@ import { Row, Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../styles/Fonts.css";
 import "../../styles/Library.css";
-
+/**
+ * @description creates cards when a book is just added
+ * @param {array} props details of individual books
+ * @returns cards containing book description
+ */
 const RecentBookCard = (props) => {
   const book = props.book;
 

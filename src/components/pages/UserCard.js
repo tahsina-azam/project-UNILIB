@@ -4,11 +4,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import "../../styles/Fonts.css";
 import axios from "axios";
-
+/**
+ * Creates card out of all user data
+ * @param {array} props description of individual users
+ * @returns cards containing user description
+ */
 const UserCard = (props) => {
   const user = props.user;
   let menu;
-
+  /**
+   * checking if the logged in user is admin or if he is in the spefic page we want
+   */
   const requireAuth = () => {
     const path = window.location.pathname;
     const words = path.split("/");

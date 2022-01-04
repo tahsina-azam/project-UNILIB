@@ -4,10 +4,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import "../../styles/Fonts.css";
 import axios from "axios";
-
+/**
+ * @description creates cards when a report is made by the user
+ * @param {array} props details of individual reports
+ * @returns cards containing report description
+ */
 const ReportCard = (props) => {
   const report = props.report;
-
+  /**
+   * deletes the report with specified id
+   * @param {String} id
+   */
   const onDeleteClick = (id) => {
     axios
       .delete("http://localhost:4000/api/delete/report/" + id)

@@ -44,6 +44,10 @@ import { SearchForum } from "./components/pages/SearchForum";
 import VerifyTeacher from "./components/pages/VerifyTeacher.js";
 import AdminIssueList from "./components/pages/AdminIssueList";
 
+/**
+ * Contains all the routes and page links
+ * @returns all the routes of the web app
+ */
 function App() {
   const [state, setState] = useState(false);
   const [role, setRole] = useState("");
@@ -56,6 +60,10 @@ function App() {
   const words = path.split("/");
   console.log(words[0]);
 
+  /**
+   * Checks the path name to Authenticate if the user is logged in
+   * @returns boolean value
+   */
   const requireAuth = () => {
     const path = window.location.pathname;
     const words = path.split("/");
@@ -79,6 +87,9 @@ function App() {
       setState(response);
       await setAuth(Auth.getAuth());
       if (response) {
+        /**
+         * get's the current user information from the server
+         */
         axios.get("http://localhost:4000/user", { withCredentials: true }).then(
           (response) => {
             setRole(response.data.data.role);

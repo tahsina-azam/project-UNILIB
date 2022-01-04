@@ -4,6 +4,11 @@ import axios from "../../utility";
 import selectType from "../popups";
 import { storage } from "../../config/firebase";
 
+/**
+ *
+ * @param {function} param0 does necessary works when admin adds a book
+ * @returns the body of a form to add books
+ */
 const Elements = ({ onSubmit }) => {
   let finalFile, finalFileName, storageref;
   const bookRef = React.useRef();
@@ -13,10 +18,18 @@ const Elements = ({ onSubmit }) => {
   const textRef = React.useRef();
   const [fileName, setFileName] = useState("");
 
+  /**
+   * @description gets called when file is changes
+   * @param {event} e keeps tract of any changes in the file
+   */
   const onChangeFile = (e) => {
     setFileName(e.target.files[0]);
   };
-  //generate file to upload
+
+  /**
+   * generate file to upload
+   * @param {event} e  keeps tract of any changes in the file
+   */
   const onSubmitForm = (e) => {
     e.preventDefault();
     console.log("count");
@@ -26,6 +39,10 @@ const Elements = ({ onSubmit }) => {
       typeof e.target.files[0] === undefined ? "" : e.target.files[0].name;
   };
 
+  /**
+   * handles form submission
+   * @param {event} e  event function
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -151,6 +168,10 @@ const Elements = ({ onSubmit }) => {
   );
 };
 
+/**
+ * handles form data
+ * @returns {Elements}
+ */
 function App() {
   const handleSubmit = (data) => {
     const json = JSON.stringify(data, null, 4);

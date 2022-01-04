@@ -1,3 +1,8 @@
+/**
+ * Checks if the user is logged in
+ * @returns {boolean} the login status of the user
+ */
+
 const isLoggedIn = () => {
   // user info can be loaded after refresh
   console.log(window.localStorage.getItem("token"));

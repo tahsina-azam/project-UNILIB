@@ -2,6 +2,13 @@ import React, { Component } from "react";
 import axios from "axios";
 import "../../../src/styles/App.css";
 import selectType from "../popups";
+
+/**
+ * it is a class for the users to update their account info
+ * @class
+ * @constructor
+ * @public
+ */
 class EditUser extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +22,11 @@ class EditUser extends Component {
       fileName: "",
     };
   }
+
+  /**
+   * @description gets called when file is changes
+   * @param {event} e keeps tract of any changes in the file
+   */
   onChangeFile = (e) => {
     this.setState({
       fileName: e.target.files[0],
@@ -22,6 +34,10 @@ class EditUser extends Component {
     console.log(e.target.files[0]);
   };
 
+  /**
+   * lifecycle method in which request is made to the backend for data
+   * @method
+   */
   componentDidMount() {
     // console.log("Print id: " + this.props.match.params.id);
     const path = window.location.pathname;
@@ -44,11 +60,17 @@ class EditUser extends Component {
         console.log("Error from UpdatUserInfo");
       });
   }
-
+  /**
+   * @description gets called when file is changes
+   * @param {event} e keeps tract of any changes in the file
+   */
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  /**
+   *@description contains action if update button gets clicked
+   */
   handleClick = () => {
     if (this.state.fileName) {
       const formData = new FormData();
@@ -66,6 +88,10 @@ class EditUser extends Component {
     }
   };
 
+  /**
+   * handles form submission
+   * @param {event} e  event function
+   */
   onSubmit = (e) => {
     e.preventDefault();
     const path = window.location.pathname;

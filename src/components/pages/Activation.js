@@ -2,6 +2,10 @@ import axios from "axios";
 import React from "react";
 import { Button } from "react-bootstrap";
 
+/**
+ * @description gets initiated when you click the Activate my account button
+ * @description makes call to the backend to activate a user account
+ */
 function clickMe() {
   //alert('you clicked me!');
   const path = window.location.pathname;
@@ -13,6 +17,10 @@ function clickMe() {
   });
 }
 
+/**
+ *@description contains the button to click for activating account and redirects you to login page
+ * @returns {Button}
+ */
 const App = () => {
   return (
     <div>

@@ -3,7 +3,9 @@ import React from "react";
 import "../../styles/login.css";
 import "../../styles/Fonts.css";
 import selectType from "../popups";
-
+/**
+ * specifying Field component
+ */
 const Field = React.forwardRef(({ label, type }, ref) => {
   return (
     <div className="form-outline flex-fill mb-0">
@@ -12,7 +14,11 @@ const Field = React.forwardRef(({ label, type }, ref) => {
     </div>
   );
 });
-
+/**
+ * specifying login form
+ * @param {function} param0
+ * @returns a login form
+ */
 const Form = ({ onSubmit }) => {
   const nameRef = React.useRef();
   const passwordRef = React.useRef();
@@ -20,7 +26,10 @@ const Form = ({ onSubmit }) => {
   const registrationNumRef = React.useRef();
   const departmentRef = React.useRef();
   const sessionRef = React.useRef();
-
+  /**
+   * handles form submission
+   * @param {event} e  event function
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("in signup");
@@ -138,7 +147,10 @@ const Form = ({ onSubmit }) => {
 };
 
 // Usage example: new axios post part
-
+/**
+ * handles signup of users
+ * @returns signup form
+ */
 const App = () => {
   const handleSubmit = (data) => {
     const json = JSON.stringify(data, null, 4);

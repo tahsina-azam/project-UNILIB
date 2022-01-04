@@ -6,6 +6,13 @@ import "./LibrarySearchBar";
 import LibrarySearchBar from "./LibrarySearchBar";
 import selectType from "../popups";
 import BoxLoading from "react-loadingg/lib/BoxLoading";
+
+/**
+ * it is a class for showing all the books in student library
+ * @class
+ * @constructor
+ * @public
+ */
 class StudentBookList extends Component {
   constructor(props) {
     super(props);
@@ -15,12 +22,20 @@ class StudentBookList extends Component {
     };
   }
 
+  /**
+   *updates the state variable searchResult if it is passed as props to other components
+   * @param {array} obj result from the searches made by the user
+   */
   updateState = (obj) => {
     this.setState({ searchResult: obj }, () =>
       console.log(this.state.searchResult)
     );
   };
 
+  /**
+   * lifecycle method in which request is made to the backend for data
+   * @method
+   */
   componentDidMount() {
     // selectType("success", "requested items");
     axios
