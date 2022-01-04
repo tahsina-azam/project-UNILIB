@@ -11,18 +11,18 @@
 - Then again write <strong>"yarn"</strong> in the terminal, this will save necessary dependencies for backend in your project.
 - Then write <strong>"yarn start"</strong> in that terminal or you can also write "nodemon server.js". This will initiate your backend on port 4000.
 
-#FAQ
+## #FAQ
 
 - <strong>what if while running the frontend your app throws the following error?</br>
-  Error: error:0308010C:digital envelope routines::unsupported </strong>
-  -> just go to package.json in the script you will find:
+  Error: error:0308010C:digital envelope routines::unsupported </strong></br>
+  -> just go to package.json in the script you will find:</br>
   "scripts": {
   "start": "react-scripts start",
   "build": "react-scripts build",
   ...
-  <strong>just change the second line like below and save and run again</strong>
+  <strong>just change the second line like below and save and run again</strong><br>
   "scripts": {
   "start": "react-scripts --openssl-legacy-provider start",
-  "build": "react-scripts build",
-- <strong>What if any dependency library becomes outdated?</strong>
+  "build": "react-scripts build",</br>
+- <strong>What if any dependency library becomes outdated?</strong></br>
   -> just run the command <strong>"yarn add (dependency-name)@(specific version)"</strong> without brackets.
