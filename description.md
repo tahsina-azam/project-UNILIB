@@ -33,7 +33,7 @@ It is not just a conduct system between users and libraries. It is more than tha
 
 Features of Forum:
 1. Users can search for books by title and author. 
-2. They share notes, books, research papers with users. They can delete books uploaded by them.
+2. They can share notes, books, research papers with users. They can delete books uploaded by them.
 3. They can download the pdfs from the library.
 4. They are free to discuss their academic issues. They can search or delete posts.
 ----------
