@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React } from "react";
 import { Card } from "react-bootstrap";
 import teacherImg from "../../images/teacher.png";
 import studentImg from "../../images/student.png";
@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import "../../styles/Fonts.css";
 import axios from "axios";
+
 /**
  * Creates card out of all user data
  * @param {array} props description of individual users

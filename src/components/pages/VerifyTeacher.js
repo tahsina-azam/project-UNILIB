@@ -152,7 +152,7 @@ const Form = ({ onSubmit }) => {
  * admin can register teacher and students too by verifying them
  * @returns a form
  */
-const App = () => {
+const VerifyTeacher = () => {
   const handleSubmit = (data) => {
     const json = JSON.stringify(data, null, 4);
     console.clear();
@@ -161,4 +161,4 @@ const App = () => {
   return <Form onSubmit={handleSubmit} />;
 };
 
-export default App;
+export default VerifyTeacher;

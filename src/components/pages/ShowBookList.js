@@ -68,9 +68,9 @@ class ShowBookList extends Component {
     }
 
     return (
-      <div className="ShowBookList">
-        <div className="container">
-          <div className="row">
+      <div className="ShowBookList mt-5">
+        <div className="container mt-5">
+          <div className="row mt-5">
             <AdminLibrarySearch
               books={this.state.books}
               updateParent={this.updateState}

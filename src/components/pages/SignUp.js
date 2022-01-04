@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import "../../styles/login.css";
 import "../../styles/Fonts.css";
 import selectType from "../popups";
@@ -21,6 +21,7 @@ const Field = React.forwardRef(({ label, type }, ref) => {
  */
 const Form = ({ onSubmit }) => {
   const nameRef = React.useRef();
+  const [error, setError] = useState("");
   const passwordRef = React.useRef();
   const emailRef = React.useRef();
   const registrationNumRef = React.useRef();
@@ -41,6 +42,12 @@ const Form = ({ onSubmit }) => {
       session: sessionRef.current.value,
       password: passwordRef.current.value,
     };
+    const errors = Object.keys(data).filter((e) => data[e] === "");
+    console.log({ errors });
+    if (errors.length > 0) {
+      setError(errors[0]);
+      return;
+    }
     onSubmit(data);
     console.log(data);
     axios
@@ -120,6 +127,7 @@ const Form = ({ onSubmit }) => {
                       </div>
 
                       <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                        {error}
                         <button
                           type="submit"
                           className="btn btn-dark text-align-center"

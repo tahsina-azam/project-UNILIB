@@ -5,7 +5,7 @@ import ShowReports from "./ShowReports.js";
  */
 function CheckReport() {
   return (
-    <div>
+    <div className="mt-5">
       <ShowReports />
     </div>
   );

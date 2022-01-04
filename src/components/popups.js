@@ -18,10 +18,44 @@ const selectType = (type, htmlType) => {
   } else if (type === "invalid") {
     const html = `Error! ${htmlType}. Please try again in <b></b> milliseconds.`;
     return pop("There was an error.", "#FF0000", html, `rgba(255, 0, 0,0.4)`);
+  } else if (type === "small") {
+    const html = `Completing in <b></b> milliseconds.`;
+    return pop1("Yay!", "#32BA7C", html, `rgba(50, 186, 124,0.4)`);
   } else {
     const html = `Please try again to get your ${htmlType} in <b></b> milliseconds.`;
     return pop("There was an error.", "#FF0000", html, `rgba(255, 0, 0,0.4)`);
   }
+};
+const pop1 = (title, textColor, html, backColor) => {
+  let timerInterval;
+  Swal.fire({
+    title: title,
+    width: 400,
+    padding: "3em",
+    color: textColor,
+    backdrop: `
+    ${backColor}
+    left top
+    no-repeat
+    `,
+    html: html,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: () => {
+      Swal.showLoading();
+      const b = Swal.getHtmlContainer().querySelector("b");
+      timerInterval = setInterval(() => {
+        b.textContent = Swal.getTimerLeft();
+      }, 100);
+    },
+    willClose: () => {
+      clearInterval(timerInterval);
+    },
+  }).then((result) => {
+    if (result.dismiss === Swal.DismissReason.timer) {
+      console.log("I was closed by the timer");
+    }
+  });
 };
 const pop = (title, textColor, html, backColor) => {
   let timerInterval;
@@ -36,7 +70,7 @@ const pop = (title, textColor, html, backColor) => {
     no-repeat
     `,
     html: html,
-    timer: 2000,
+    timer: 1000,
     timerProgressBar: true,
     didOpen: () => {
       Swal.showLoading();

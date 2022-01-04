@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import "../../styles/Fonts.css";
 import axios from "axios";
+import selectType from "../popups";
 
 /**
  * @description creates cards when admin issues a book
@@ -40,11 +41,12 @@ const AdminIssueCard = (props) => {
       date: issuedBook.issue_date,
       time: issuedBook.issue_time,
     });
+    selectType("small");
   };
   return (
     <div>
-      <Card style={{ width: "auto", height: "20rem" }} className="p-2">
-        <Card.Body className="text-start">
+      <Card style={{ width: "auto", height: "22rem" }}>
+        <Card.Body>
           <Card.Text className="fnt-showUser text-capitalize">
             <span className="text-success " style={{ fontWeight: "bold" }}>
               User Email:{" "}
@@ -76,16 +78,19 @@ const AdminIssueCard = (props) => {
             {issuedBook.status}
           </Card.Text>
         </Card.Body>
-        <div>
+        <Card.Footer className="border-0">
           {" "}
           <button
             type="button"
-            className="btn btn-danger btn-lg btn-block"
+            className="btn btn-success btn-block"
             onClick={onChangeClick.bind(this, issuedBook._id)}
+            data-toggle="tooltip"
+            data-placement="top"
+            title=" Mark As Returned"
           >
-            Mark As Returned
+            <i class="fas fa-check-circle"></i>
           </button>
-        </div>
+        </Card.Footer>
       </Card>
     </div>
   );

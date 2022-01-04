@@ -45,10 +45,10 @@ class ShowUserList extends Component {
           users: res.data,
           searchResult: res.data,
         });
-        selectType("success", "requested items");
+        // selectType("success", "requested items");
       })
       .catch((err) => {
-        //selectType("waiting", "requested page");
+        selectType("waiting", "requested page");
         console.log("Error from ShowUserList");
       });
   }
@@ -70,10 +70,10 @@ class ShowUserList extends Component {
     }
 
     return (
-      <div className="ShowBookList p-5">
+      <div className="ShowBookList mt-5">
         <div className="container text-center">
           <div>
-            <div className="row">
+            <div className="row mt-5">
               <AdminUserSearch
                 users={this.state.users}
                 updateParent={this.updateState}

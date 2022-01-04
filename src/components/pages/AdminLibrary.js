@@ -1,5 +1,4 @@
 import React from "react";
-import { Row, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ShowBookList from "./ShowBookList";
 import "../../styles/AdminLibrary.css";
@@ -9,7 +8,7 @@ import "../../styles/AdminLibrary.css";
 class App extends React.Component {
   render() {
     return (
-      <div className="admin-library">
+      <div className="admin-library mt-5">
         {/* <div className="text-center p-3 mx-auto">
           <a href="http://localhost:3000/unilib/admin/add-books">
             <Button variant="success" type="submit" align="center">
@@ -17,7 +16,7 @@ class App extends React.Component {
             </Button>
           </a>
         </div> */}
-        <div class="mx-auto">
+        <div class="mx-auto mt-5">
           <ShowBookList />
         </div>
       </div>

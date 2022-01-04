@@ -1,21 +1,15 @@
 import { useEffect, useState } from "react";
-import * as React from "react";
-import Navbar from "./components/Navbar";
-import {
-  Routes,
-  Route,
-  BrowserRouter,
-  Navigate,
-  useNavigate,
-} from "react-router-dom";
+
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
+import { ApolloProvider } from "@apollo/client";
 import "./styles/App.css";
+import Navbar from "./components/Navbar";
 import Home from "./components/pages/Home";
 import Services from "./components/pages/Services";
 import LogIn from "./components/pages/LogIn";
 import SignUp from "./components/pages/SignUp";
 import Activation from "./components/pages/Activation";
 import Forum from "./components/pages/Forum";
-import { ApolloProvider } from "@apollo/client";
 import client from "./config/graphql";
 import UserAccount from "./components/pages/UserAccount";
 import Library from "./components/pages/Library";
@@ -179,55 +173,6 @@ function App() {
               <Route
                 path="/unilib/admin/add-books/"
                 element={auth ? <AddBooks /> : <Navigate to="/" />}
-              />
-
-              <Route
-                path="/edit-book/:id"
-                element={auth ? <UpdateBookInfo /> : <Navigate to="/" />}
-              />
-              <Route
-                path="/show-book/:id"
-                element={auth ? <ShowBookDetails /> : <Navigate to="/" />}
-              />
-              <Route
-                path="/show-book-details/:id"
-                element={auth ? <BookDetails /> : <Navigate to="/" />}
-              />
-              <Route
-                path="/edit-user/:id"
-                element={
-                  auth ? <EditUser email={emailHistory} /> : <Navigate to="/" />
-                }
-              />
-              <Route
-                path="/view-all"
-                element={auth ? <UserViewAll /> : <Navigate to="/" />}
-              />
-              <Route
-                path="/check-report"
-                element={auth ? <CheckReport /> : <Navigate to="/" />}
-              />
-              <Route
-                path="/unilib/admin/manage-users"
-                element={auth ? <ManageUsers /> : <Navigate to="/" />}
-              />
-              <Route
-                path="/user-history"
-                element={
-                  auth ? (
-                    <UserHistory emailHistory={emailHistory} id={id} />
-                  ) : (
-                    <Navigate to="/" />
-                  )
-                }
-              />
-              <Route
-                to=" /show-book/issue"
-                element={auth ? <ShowUserList /> : <Navigate to="/" />}
-              />
-              <Route
-                path="/recently-added-books"
-                element={auth ? <RecentBooks /> : <Navigate to="/" />}
               />
 
               <Route

@@ -42,10 +42,10 @@ const SendEmail = (props) => {
   };
 
   return (
-    <form className="text-center" style={{ height: "100%" }}>
+    <form className="container pt-5" style={{ height: "100%" }}>
       <textarea
         type="text"
-        className="form-control mb-5"
+        className="form-control mb-5 mt-5"
         placeholder="Write the subject of the email"
         style={{ height: "40px" }}
         onChange={(e) => {

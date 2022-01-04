@@ -62,7 +62,6 @@ class AdminIssueList extends Component {
     const issuedBooks = this.state.issuedbooks;
     const searchResult = this.state.searchResult;
     let issuedBookList;
-
     if (!issuedBooks) {
       issuedBookList = "No books have been issued";
     } else if (!searchResult) {
@@ -76,9 +75,9 @@ class AdminIssueList extends Component {
     }
 
     return (
-      <div className="ShowBookList">
-        <div className="container">
-          <div className="row">
+      <div className="ShowBookList mt-5">
+        <div className="container mt-5">
+          <div className="row mt-5">
             <AdminIssueSearchBar
               books={this.state.issuedbooks}
               updateParent={this.updateState}

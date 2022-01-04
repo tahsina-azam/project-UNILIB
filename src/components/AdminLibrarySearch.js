@@ -31,12 +31,12 @@ const AdminLibrarySearch = (props) => {
     searchKeyword(inputBar.current.value);
   };
   return (
-    <div class="input-group mb-3">
+    <div class="input-group mb-3 mt-5">
       <input
         ref={inputBar}
         type="text"
         class="form-control input-text"
-        placeholder="Type here to search"
+        placeholder="Type here to search any book"
         /*onChange={(event) => {
            
           }}*/

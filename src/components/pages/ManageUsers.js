@@ -7,8 +7,8 @@ import ShowUserList from "./ShowUserList";
  */
 const ManageUsers = () => {
   return (
-    <div>
-      <ShowUserList />
+    <div className="mt-5">
+      <ShowUserList className="mt-5" />
     </div>
   );
 };

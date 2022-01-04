@@ -25,10 +25,7 @@ const Navbar = (props) => {
   } else if (props.role === "admin") {
     menu = (
       <div class="navbar-nav ms-auto">
-        <Link
-          class="nav-item nav-link active mx-3"
-          to={`/unilib/user/${props.name}`}
-        >
+        <Link class="nav-item nav-link mx-3" to={`/unilib/user/${props.name}`}>
           Admin
         </Link>
         <Link to="/unilib/admin/library" class="nav-item nav-link mx-3">

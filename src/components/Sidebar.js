@@ -148,7 +148,7 @@ const Sidebar = ({ user_id, type, pageid }) => {
                 className="nav-item align-middle px-0 py-1 link"
                 to="/admin/issued-books"
               >
-                <i className="fas fa-users icon" />
+                <i className="fas fa-list-alt icon" />
                 <span className="ms-1 d-none d-sm-inline inside-text">
                   {" "}
                   Issued Book List
@@ -174,7 +174,7 @@ const Sidebar = ({ user_id, type, pageid }) => {
         </div>
       </div>
     );
-  } else {
+  } else if (type === "3") {
     return (
       <div className="bar">
         <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-success sidebar ">
@@ -227,6 +227,8 @@ const Sidebar = ({ user_id, type, pageid }) => {
         </div>
       </div>
     );
+  } else {
+    return <></>;
   }
 };
 export default Sidebar;
