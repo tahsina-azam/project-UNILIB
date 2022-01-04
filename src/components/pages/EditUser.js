@@ -186,7 +186,7 @@ class EditUser extends Component {
           </div>
           <div className="text-center">
             <button type="submit" className="btn btn-success text-align-center">
-              update
+              Update
             </button>
           </div>
         </form>

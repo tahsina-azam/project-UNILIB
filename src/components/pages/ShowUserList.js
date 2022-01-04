@@ -73,7 +73,7 @@ class ShowUserList extends Component {
       <div className="ShowBookList mt-5">
         <div className="container text-center">
           <div>
-            <div className="row mt-5">
+            <div className="row">
               <AdminUserSearch
                 users={this.state.users}
                 updateParent={this.updateState}

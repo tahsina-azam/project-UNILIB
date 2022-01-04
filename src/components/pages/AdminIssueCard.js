@@ -42,6 +42,7 @@ const AdminIssueCard = (props) => {
       time: issuedBook.issue_time,
     });
     selectType("small");
+    window.location.reload();
   };
   return (
     <div>

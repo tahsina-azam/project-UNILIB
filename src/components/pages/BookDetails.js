@@ -92,12 +92,12 @@ class BookDetails extends Component {
     );
 
     return (
-      <div className="ShowBookDetails">
-        <div className="container">
-          <div className="row">
+      <div className="ShowBookDetails pt-5">
+        <div className="mt-5">
+          <div className="row mt-5">
             <br />
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center text-success">
+            <div className="col-md-8 m-auto mt-5">
+              <h1 className="display-4 text-center text-success mt-5">
                 Book's Informations
               </h1>
               <hr /> <br />

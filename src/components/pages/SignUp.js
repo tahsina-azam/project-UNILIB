@@ -127,7 +127,6 @@ const Form = ({ onSubmit }) => {
                       </div>
 
                       <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                        {error}
                         <button
                           type="submit"
                           className="btn btn-dark text-align-center"
@@ -136,6 +135,9 @@ const Form = ({ onSubmit }) => {
                         </button>
                       </div>
                     </form>
+                    <div style={{ color: "red", fontSize: "12px" }}>
+                      {error === "" ? `Please fill out the ${error} field` : ""}
+                    </div>
                   </div>
                   <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
                     <img

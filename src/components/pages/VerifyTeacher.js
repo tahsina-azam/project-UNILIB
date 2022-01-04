@@ -68,7 +68,7 @@ const Form = ({ onSubmit }) => {
       );
   };
   return (
-    <div className="vh-90 border-0">
+    <div className="vh-90">
       <div className="container">
         <div className="row d-flex justify-content-center align-items-center">
           <div className="col-lg-12 col-xl-11">

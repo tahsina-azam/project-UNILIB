@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import "../../styles/Fonts.css";
 import axios from "axios";
+import selectType from "../popups";
 
 /**
  * Creates card out of all user data
@@ -79,6 +80,7 @@ const UserCard = (props) => {
       })
       .then(
         (success) => {
+          selectType("small");
           console.log("sucessfully issued this book");
         },
         (error) => {
@@ -88,9 +90,11 @@ const UserCard = (props) => {
   };
 
   const onDeleteClick = (id) => {
+    selectType("small");
     axios
       .delete("http://localhost:4000/api/delete/user/" + id)
       .then((res) => {
+        window.location.reload();
         this.props.history.push("/unilib/admin/library");
       })
       .catch((err) => {

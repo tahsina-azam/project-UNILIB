@@ -94,9 +94,9 @@ class showBookDetails extends Component {
     );
 
     return (
-      <div className="ShowBookDetails">
-        <div className="container">
-          <div className="row">
+      <div className="ShowBookDetails mt-5">
+        <div className="container mt-5">
+          <div className="row mt-5">
             {/* <div className="col-md-10 m-auto">
               <br /> <br />
               <Link
@@ -107,8 +107,8 @@ class showBookDetails extends Component {
               </Link>
             </div> */}
             <br />
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center text-success">
+            <div className="col-md-8 m-auto mt-5">
+              <h1 className="display-4 text-center text-success mt-5">
                 Book's Informations
               </h1>
               <hr /> <br />
@@ -116,19 +116,17 @@ class showBookDetails extends Component {
           </div>
           <div className="row">{BookItem}</div>
 
-          <div className="row m-5 text-center">
-            <div className="col-md-6">
+          <div className="row m-5 text-end">
+            <div className="col">
               <Link
                 to={`/edit-book/${book._id}`}
-                className="btn btn-warning btn-block"
+                className="btn btn-warning text-light btn-block m-2"
               >
                 Edit Book
               </Link>
-            </div>
-            <div className="col-md-6">
               <button
                 type="button"
-                className="btn btn-danger btn-block"
+                className="btn btn-danger btn-block m-2"
                 onClick={this.onDeleteClick.bind(this, book._id)}
               >
                 Delete Book
@@ -137,7 +135,7 @@ class showBookDetails extends Component {
           </div>
         </div>
         <div className="col-md-8 m-auto">
-          <h1 className="display-4 text-center text-success mt-3">
+          <h1 className="display-4 text-center text-success mt-5">
             Issue This Book To Users
           </h1>
           <hr /> <br />

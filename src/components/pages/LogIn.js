@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../styles/App.css";
 import "../../styles/login.css";
 import "../../styles/Fonts.css";
@@ -29,6 +29,7 @@ const Field = React.forwardRef(({ label, type, placeholder }, ref) => {
  * @returns a login form
  */
 const Form = ({ onSubmit }) => {
+  const [error, setError] = useState("");
   const emailRef = React.useRef();
   const passwordRef = React.useRef();
   let history = useNavigate();
@@ -43,6 +44,12 @@ const Form = ({ onSubmit }) => {
       email: emailRef.current.value,
       password: passwordRef.current.value,
     };
+    const errors = Object.keys(data).filter((e) => data[e] === "");
+    console.log({ errors });
+    if (errors.length > 0) {
+      setError(errors[0]);
+      return;
+    }
     onSubmit(data);
 
     axios
@@ -106,6 +113,9 @@ const Form = ({ onSubmit }) => {
                         </button>
                       </div>
                     </form>
+                    <div style={{ color: "red", fontSize: "12px" }}>
+                      {error === "" ? "" : `Please fill out the ${error} field`}
+                    </div>
                   </div>
                   <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
                     <img

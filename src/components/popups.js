@@ -19,7 +19,7 @@ const selectType = (type, htmlType) => {
     const html = `Error! ${htmlType}. Please try again in <b></b> milliseconds.`;
     return pop("There was an error.", "#FF0000", html, `rgba(255, 0, 0,0.4)`);
   } else if (type === "small") {
-    const html = `Completing in <b></b> milliseconds.`;
+    const html = `Getting it done in <b></b> milliseconds.`;
     return pop1("Yay!", "#32BA7C", html, `rgba(50, 186, 124,0.4)`);
   } else {
     const html = `Please try again to get your ${htmlType} in <b></b> milliseconds.`;
