@@ -566,6 +566,7 @@ app.delete("/api/delete/report/:id", (req, res) => {
  * @access public
  */
 app.post("/register-teacher", async (req, res) => {
+  const x = Math.floor(Math.random() * 10000 + 1);
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
   const user = new User({
@@ -573,6 +574,7 @@ app.post("/register-teacher", async (req, res) => {
     email: req.body.email,
     role: req.body.role,
     department: req.body.department,
+    registration: x,
     session: req.body.session,
     password: hashedPassword,
   });
