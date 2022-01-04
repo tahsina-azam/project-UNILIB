@@ -4,6 +4,7 @@ import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import { ApolloProvider } from "@apollo/client";
 import "./styles/App.css";
 import Navbar from "./components/Navbar";
+import AboutUs from "./components/pages/AboutUs";
 import Home from "./components/pages/Home";
 import Services from "./components/pages/Services";
 import LogIn from "./components/pages/LogIn";
@@ -135,6 +136,7 @@ function App() {
               />
               <Route path="/" element={<Home />} />
               <Route path="/services" element={<Services />} />
+              <Route path="/aboutus" element={<AboutUs />} />
               <Route path="/log-in" element={<LogIn />} />
               <Route path="/sign-up" element={<SignUp />} />
               <Route

@@ -1,5 +1,4 @@
 import React from "react";
-import "../styles/App.css";
 import "./HeroSection.css";
 import "../styles/Fonts.css";
 import { Link } from "react-router-dom";
@@ -36,8 +35,20 @@ function HeroSection() {
         </Link>
       </div>
       <div class=" ms-2 row text-center mb-2" style={{ width: "100%" }}>
-        <div class="col bdr">Contact with us</div>
-        <div class="col bdr">About us</div>
+        <Link
+          class="col bdr text-success"
+          to="/services"
+          style={{ textDecoration: "none", fontWeight: "bold" }}
+        >
+          Contact with us
+        </Link>
+        <Link
+          class="col bdr text-success"
+          style={{ textDecoration: "none", fontWeight: "bold" }}
+          to="/aboutus"
+        >
+          About us
+        </Link>
         <div class="col bdr">Terms of Use</div>
       </div>
     </div>

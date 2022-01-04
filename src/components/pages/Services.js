@@ -15,6 +15,7 @@ const Field = React.forwardRef(({ label, type, placeholder }, ref) => {
       type={type}
       className="form-control fnt"
       placeholder={placeholder}
+      style={{ height: "500px" }}
     />
   );
 });
@@ -45,49 +46,28 @@ const Form = ({ onSubmit }) => {
       });
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="d-flex justify-content-center flex-row align-items-center">
-        {/* <i className="fas fa-envelope fa-lg me-3 fa-fw"></i> */}
-        <Field ref={messageRef} type="text" placeholder="Leave us a message" />
-      </div>
+    <div className="text-center align-items-center">
+      <form onSubmit={handleSubmit}>
+        <div className="d-flex justify-content-center flex-row align-items-center mt-5">
+          {/* <i className="fas fa-envelope fa-lg me-3 fa-fw"></i> */}
+          <Field
+            ref={messageRef}
+            type="text"
+            placeholder="Leave us a message here"
+          />
+        </div>
 
-      <div className="d-flex justify-content-center">
-        <button
-          type="submit"
-          className="btn btn-success m-2"
-          onSubmit={handleSubmit}
-        >
-          Send
-        </button>
-      </div>
-    </form>
-    // <Row>
-    //   <Col className="col-sm-2 m-0 p-0 sidebar">
-    //     <Sidebar type={"1"} />
-    //   </Col>
-    //   <Col className="col-sm-100 content">
-    //     <form onSubmit={onSubmit}>
-    //       <textarea
-    //         type="text"
-    //         className="form-control"
-    //         placeholder="write something..."
-    //         onChange={(e) => {
-    //           setShowWarning("");
-    //         }}
-    //       />
-    //       <div style={{ color: "red", fontSize: "12px" }} className="ml-auto">
-    //         {showWarning}
-    //       </div>
-    //       <button
-    //         className="btn btn-success mt-2 ml-auto"
-    //         style={{ width: "auto", height: "auto" }}
-    //         type="submit"
-    //       >
-    //         Post now
-    //       </button>
-    //     </form>
-    //   </Col>
-    // </Row>
+        <div className="d-flex justify-content-center">
+          <button
+            type="submit"
+            className="btn btn-success m-2"
+            onSubmit={handleSubmit}
+          >
+            <i class="far fa-share-square" /> Send
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 
