@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "../../utility";
 import Auth from "../../Auth";
-<<<<<<< HEAD
 import selectType from "../popups";
 /**
  * its a class for Logging out the user
@@ -9,10 +8,8 @@ import selectType from "../popups";
  * @constructor
  * @public
  */
-=======
 import HeroSection from "../HeroSection";
 
->>>>>>> 180abd2 (fixed #109 #110 #111 #112 #114 #117)
 class App extends React.Component {
   componentDidMount() {
     const reloadCount = sessionStorage.getItem("reloadCount");

@@ -42,10 +42,7 @@ import RecentBooks from "./components/pages/RecentBooks";
 import Auth from "./Auth";
 import { SearchForum } from "./components/pages/SearchForum";
 import VerifyTeacher from "./components/pages/VerifyTeacher.js";
-<<<<<<< HEAD
 import AdminIssueList from "./components/pages/AdminIssueList";
-=======
->>>>>>> 180abd2 (fixed #109 #110 #111 #112 #114 #117)
 
 /**
  * Contains all the routes and page links
@@ -233,88 +230,55 @@ function App() {
                 element={auth ? <RecentBooks /> : <Navigate to="/" />}
               />
 
-<<<<<<< HEAD
-                <Route
-                  path="/edit-book/:id"
-                  element={auth ? <UpdateBookInfo /> : <Navigate to="/" />}
-                />
-                <Route
-                  path="/show-book/:id"
-                  element={auth ? <ShowBookDetails /> : <Navigate to="/" />}
-                />
-                <Route
-                  path="/show-book-details/:id"
-                  element={auth ? <BookDetails /> : <Navigate to="/" />}
-                />
-                <Route
-                  path="/edit-user/:id"
-                  element={
-                    auth ? (
-                      <EditUser email={emailHistory} />
-                    ) : (
-                      <Navigate to="/" />
-                    )
-                  }
-                />
-                <Route
-                  path="/view-all"
-                  element={auth ? <UserViewAll /> : <Navigate to="/" />}
-                />
-                <Route
-                  path="/check-report"
-                  element={auth ? <CheckReport /> : <Navigate to="/" />}
-                />
-                <Route
-                  path="/unilib/admin/manage-users"
-                  element={auth ? <ManageUsers /> : <Navigate to="/" />}
-                />
-                <Route
-                  path="/user-history"
-                  element={
-                    auth ? (
-                      <UserHistory emailHistory={emailHistory} id={id} />
-                    ) : (
-                      <Navigate to="/" />
-                    )
-                  }
-                />
-                <Route
-                  to=" /show-book/issue"
-                  element={auth ? <ShowUserList /> : <Navigate to="/" />}
-                />
-                <Route
-                  path="/recently-added-books"
-                  element={auth ? <RecentBooks /> : <Navigate to="/" />}
-                />
+              <Route
+                path="/edit-book/:id"
+                element={auth ? <UpdateBookInfo /> : <Navigate to="/" />}
+              />
+              <Route
+                path="/show-book/:id"
+                element={auth ? <ShowBookDetails /> : <Navigate to="/" />}
+              />
+              <Route
+                path="/show-book-details/:id"
+                element={auth ? <BookDetails /> : <Navigate to="/" />}
+              />
+              <Route
+                path="/edit-user/:id"
+                element={
+                  auth ? <EditUser email={emailHistory} /> : <Navigate to="/" />
+                }
+              />
+              <Route
+                path="/view-all"
+                element={auth ? <UserViewAll /> : <Navigate to="/" />}
+              />
+              <Route
+                path="/check-report"
+                element={auth ? <CheckReport /> : <Navigate to="/" />}
+              />
+              <Route
+                path="/unilib/admin/manage-users"
+                element={auth ? <ManageUsers /> : <Navigate to="/" />}
+              />
+              <Route
+                path="/user-history"
+                element={
+                  auth ? (
+                    <UserHistory emailHistory={emailHistory} id={id} />
+                  ) : (
+                    <Navigate to="/" />
+                  )
+                }
+              />
+              <Route
+                to=" /show-book/issue"
+                element={auth ? <ShowUserList /> : <Navigate to="/" />}
+              />
+              <Route
+                path="/recently-added-books"
+                element={auth ? <RecentBooks /> : <Navigate to="/" />}
+              />
 
-                <Route
-                  path="/send-email/:id/"
-                  element={
-                    auth ? (
-                      <SendEmail email={emailHistory} id={id} />
-                    ) : (
-                      <Navigate to="/" />
-                    )
-                  }
-                />
-                <Route
-                  path="/verify-teacher"
-                  element={
-                    auth ? (
-                      <VerifyTeacher email={emailHistory} id={id} />
-                    ) : (
-                      <Navigate to="/" />
-                    )
-                  }
-                />
-                <Route
-                  path="/admin/issued-books"
-                  element={auth ? <AdminIssueList /> : <Navigate to="/" />}
-                />
-                <Route path="/logout/" element={<LogOut />} />
-              </Routes>
-            </div>
-=======
               <Route
                 path="/send-email/:id/"
                 element={
@@ -335,9 +299,12 @@ function App() {
                   )
                 }
               />
+              <Route
+                path="/admin/issued-books"
+                element={auth ? <AdminIssueList /> : <Navigate to="/" />}
+              />
               <Route path="/logout/" element={<LogOut />} />
             </Routes>
->>>>>>> 180abd2 (fixed #109 #110 #111 #112 #114 #117)
           </BrowserRouter>
         </FileProvider>
       </ApolloProvider>
