@@ -20,7 +20,7 @@ Both teachers and students can be users. We can identify the type of user by **_
 
 The features of users:
 1. Make changes to their accounts. 
-2. TSearch or see other user profiles.
+2. Search or see other user profiles.
 3. They'll have a profile that includes a list of books they've rented and returned. It provides the user's history of contribution and participation.
 4. In the case of issuing books, the librarians provide hard copies. So, users can go through the short pdfs uploaded by the admins and get an overview. 
 5.Conduct with admins. They can search, request, recommend, or even report on books or other users. 
@@ -33,7 +33,7 @@ It is not just a conduct system between users and libraries. It is more than tha
 
 Features of Forum:
 1. Users can search for books by title and author. 
-2. They share notes, books, research papers with users. They can delete books uploaded by them.
+2. They can share notes, books, research papers with users. They can delete books uploaded by them.
 3. They can download the pdfs from the library.
 4. They are free to discuss their academic issues. They can search or delete posts.
 ----------
