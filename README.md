@@ -61,4 +61,6 @@
 |  1  | Nowshin Alam Owishi | 2018331022   | +8801682443570 | nalamowishi999@gmail.com |
 |  2  | Tahsina Bintay Azam | 2018331072   | +8801741969665 | tahsina.sheeva@gmail.com |
 
+<p align="center">
 <small>&copy; 2021 - Dept. of CSE, SUST, BD</small>
+</p>
