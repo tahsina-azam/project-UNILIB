@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "../../../src/styles/App.css";
-
 /**
  * its a class for updating book info
  * @class
@@ -76,6 +75,7 @@ class UpdateBookInfo extends Component {
     axios
       .put("http://localhost:4000/api/books/" + bookRef[2], data)
       .then((res) => {
+        window.history.back();
         //this.props.history.push("/show-book/" + bookRef[2]);
       })
       .catch((err) => {
@@ -86,92 +86,74 @@ class UpdateBookInfo extends Component {
 
   render() {
     return (
-      <div className="UpdateBookInfo">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <br />
-              <Link to="/" className="btn btn-outline-warning float-left">
-                Show BooK List
-              </Link>
+      <div className="UpdateBookInfo mt-5">
+        <div className="container mt-5">
+          <form noValidate onSubmit={this.onSubmit}>
+            <div className="form-group pt-5">
+              <label htmlFor="title">Title</label>
+              <input
+                type="text"
+                placeholder="Title of the Book"
+                name="bookName"
+                className="form-control"
+                value={this.state.bookName}
+                onChange={this.onChange}
+              />
             </div>
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Edit Book</h1>
-              <p className="lead text-center">Update Book's Info</p>
+            <br />
+
+            <div className="form-group mb-3">
+              <label htmlFor="isbn">Author</label>
+              <input
+                type="text"
+                placeholder="author"
+                name="writer"
+                className="form-control"
+                value={this.state.writer}
+                onChange={this.onChange}
+              />
             </div>
-          </div>
 
-          <div className="col-md-8 m-auto">
-            <form noValidate onSubmit={this.onSubmit}>
-              <div className="form-group">
-                <label htmlFor="title">Title</label>
-                <input
-                  type="text"
-                  placeholder="Title of the Book"
-                  name="bookName"
-                  className="form-control"
-                  value={this.state.bookName}
-                  onChange={this.onChange}
-                />
-              </div>
-              <br />
+            <div className="form-group mb-3">
+              <label htmlFor="author">Number of Books Available</label>
+              <input
+                type="text"
+                placeholder="number"
+                name="number"
+                className="form-control"
+                value={this.state.number}
+                onChange={this.onChange}
+              />
+            </div>
 
-              <div className="form-group">
-                <label htmlFor="isbn">Author</label>
-                <input
-                  type="text"
-                  placeholder="author"
-                  name="writer"
-                  className="form-control"
-                  value={this.state.writer}
-                  onChange={this.onChange}
-                />
-              </div>
+            <div className="form-group mb-3">
+              <label htmlFor="description">Description</label>
+              <input
+                type="text"
+                placeholder="Describe this book"
+                name="text"
+                className="form-control"
+                value={this.state.text}
+                onChange={this.onChange}
+              />
+            </div>
 
-              <div className="form-group">
-                <label htmlFor="author">Number of Books Available</label>
-                <input
-                  type="text"
-                  placeholder="number"
-                  name="number"
-                  className="form-control"
-                  value={this.state.number}
-                  onChange={this.onChange}
-                />
-              </div>
+            <div className="form-group mb-3">
+              <label htmlFor="published_date">Pdf Link</label>
+              <input
+                type="text"
+                placeholder="pdf link"
+                name="pdfLink"
+                className="form-control"
+                value={this.state.pdfLink}
+                onChange={this.onChange}
+              />
+            </div>
 
-              <div className="form-group">
-                <label htmlFor="description">Description</label>
-                <input
-                  type="text"
-                  placeholder="Describe this book"
-                  name="text"
-                  className="form-control"
-                  value={this.state.text}
-                  onChange={this.onChange}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="published_date">Pdf Link</label>
-                <input
-                  type="text"
-                  placeholder="pdf link"
-                  name="pdfLink"
-                  className="form-control"
-                  value={this.state.pdfLink}
-                  onChange={this.onChange}
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="btn btn-outline-info btn-lg btn-block"
-              >
-                Update Book
-              </button>
-            </form>
-          </div>
+            <button type="submit" className="btn btn-success btn-block">
+              Update Book
+            </button>
+          </form>
         </div>
       </div>
     );

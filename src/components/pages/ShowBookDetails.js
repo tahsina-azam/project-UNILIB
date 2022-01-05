@@ -48,6 +48,7 @@ class showBookDetails extends Component {
       .delete("http://localhost:4000/api/books/" + id)
       .then((res) => {
         this.props.history.push("/unilib/admin/library");
+        // window.history.back(); --->back
       })
       .catch((err) => {
         console.log("Error form ShowBookDetails_deleteClick");
