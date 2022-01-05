@@ -130,12 +130,12 @@ const Elements = ({ onSubmit }) => {
             </div>
           </div>
           <div class="form-group m-3">
-            <label for="inputPassword2">The name of the book</label>
+            <label for="text">The name of the book</label>
             <input ref={bookRef} type="text" class="form-control" />
           </div>
 
           <div class="form-group m-3">
-            <label for="inputPassword2">The name of the writer</label>
+            <label for="text">The name of the writer</label>
             <input ref={writerRef} type="text" class="form-control" />
           </div>
           <div class="form-group m-3">
@@ -168,7 +168,7 @@ const Elements = ({ onSubmit }) => {
             {error !== "" ? `Please fill out the ${error} field` : ""}
           </div>
           <div className="text-center">
-            <button class="btn btn-success m-2" type="submit" align="center">
+            <button type="submit" class="btn btn-success m-2" align="center">
               Upload
             </button>
           </div>
