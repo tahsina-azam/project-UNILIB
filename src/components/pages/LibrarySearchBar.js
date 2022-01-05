@@ -35,7 +35,7 @@ const LibrarySearchBar = (props) => {
         ref={inputBar}
         type="text"
         className="form-control input-text"
-        placeholder="Type here to search"
+        placeholder="Type here to search books"
         onChange={getSearchTerm}
       />
     </div>

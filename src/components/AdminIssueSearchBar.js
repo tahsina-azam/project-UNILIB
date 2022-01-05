@@ -36,7 +36,7 @@ const AdminIssueSearchBar = (props) => {
         ref={inputBar}
         type="text"
         class="form-control input-text"
-        placeholder="Type here to search"
+        placeholder="Type here to search issues"
         /*onChange={(event) => {
            
           }}*/

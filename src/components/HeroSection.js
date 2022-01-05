@@ -36,7 +36,7 @@ function HeroSection() {
       </div>
       <div class=" ms-2 row text-center mb-2" style={{ width: "100%" }}>
         <Link
-          class="col bdr text-success"
+          class="col text-success"
           to="/services"
           style={{ textDecoration: "none", fontWeight: "bold" }}
         >
@@ -49,7 +49,6 @@ function HeroSection() {
         >
           About us
         </Link>
-        <div class="col bdr">Terms of Use</div>
       </div>
     </div>
   );

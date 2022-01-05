@@ -36,7 +36,7 @@ const AdminLibrarySearch = (props) => {
         ref={inputBar}
         type="text"
         class="form-control input-text"
-        placeholder="Type here to search any book"
+        placeholder="Type here to search books"
         /*onChange={(event) => {
            
           }}*/

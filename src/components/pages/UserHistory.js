@@ -1,13 +1,16 @@
 import React, { Component, useState } from "react";
 import axios from "axios";
 import HistoryCard from "./HistoryCard";
+import { Card } from "react-bootstrap";
+import "../../styles/Library.css";
+
 import "../../styles/Fonts.css";
 import selectType from "../popups";
-import { USER_HISTORY } from "../../database/queries";
+import { USER_HISTORY, BOOK_HISTORY } from "../../database/queries";
 import { useQuery } from "@apollo/client";
 import BoxLoading from "react-loadingg/lib/BoxLoading";
 import Time from "../UuidToTime";
-import { DeletePosts } from "../Delete";
+import { DeletePosts, DeleteBooks } from "../Delete";
 import { EditPost } from "./PutPosts";
 import "../../styles/Comment.css";
 const UserPost = ({ message, created_at, postid }) => {
@@ -100,6 +103,88 @@ const AllPostsByUser = () => {
     </div>
   );
 };
+const UserBook = ({
+  name,
+  link,
+  description,
+  cat_name,
+  uploaded_at,
+  bookid,
+}) => {
+  return (
+    <Card style={{ width: "18rem", height: "25rem" }} className="mt-5">
+      <Card.Body>
+        <Card.Title
+          className="text-success"
+          onClick={() => {
+            window.open(link);
+          }}
+        >
+          {name}
+          <br /> <Time time={uploaded_at} caption="uploaded at" />
+        </Card.Title>
+        <Card.Text className="fnt-description mt-3">
+          <span style={{ color: "#198754" }}>Description: {description}</span>
+          <br />
+        </Card.Text>
+      </Card.Body>{" "}
+      <Card.Footer className="border-0">
+        <DeleteBooks id={bookid} link={link} />
+      </Card.Footer>
+    </Card>
+  );
+};
+const AllBooksByUser = () => {
+  const [show, setShow] = useState(false);
+  const [buttonText, setButtonText] = useState("Show Uploaded Books");
+  const { data, loading, error } = useQuery(BOOK_HISTORY, {
+    variables: { id: localStorage.getItem("id") },
+  });
+  console.log(data);
+  if (loading) return <BoxLoading />;
+  if (error) return selectType("error", "please try again");
+  return (
+    <div className="text-left">
+      {" "}
+      {console.log(data)}
+      <br />
+      <br />
+      <button
+        className="btn btn-outline-success"
+        onClick={() => {
+          setShow(!show);
+          setButtonText(
+            buttonText === "Hide Books"
+              ? "Show Uploaded Books"
+              : "Hide Uploaded Books"
+          );
+        }}
+      >
+        {buttonText}
+      </button>
+      {data.BookLinks_aggregate.nodes.count === 0 ? (
+        <div>No books!</div>
+      ) : (
+        <div className="list-user">
+          {data.BookLinks_aggregate.nodes.map(
+            (n) =>
+              show && (
+                <UserBook
+                  key={n.id}
+                  name={n.name}
+                  link={n.link}
+                  uploaded_at={n.uploaded_at}
+                  bookid={n.id}
+                  description={n.description}
+                  cat_name={n.category.name}
+                />
+              )
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
 class UserHistory extends Component {
   constructor(props) {
     super(props);
@@ -158,6 +243,7 @@ class UserHistory extends Component {
         </div>
 
         <AllPostsByUser />
+        <AllBooksByUser className="list-user text-center" />
       </div>
     );
   }

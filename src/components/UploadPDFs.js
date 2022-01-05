@@ -11,7 +11,7 @@ import selectType from "./popups";
 import BoxLoading from "react-loadingg/lib/BoxLoading";
 const UploadPDFs = ({ user_id }) => {
   const [show, setShow] = useState(false);
-  const [val, setVal] = useState({ name: "Select category" });
+  const [val, setVal] = useState({ name: "Select Category" });
   const [showWarning, setShowWarning] = useState("");
   const [description, setDescription] = useState("");
   const [finalFile, setFinalFile] = useState();
@@ -46,7 +46,7 @@ const UploadPDFs = ({ user_id }) => {
     console.log("1");
     console.log(`${val.name} with ${val.id}`);
     const ShowWarningString =
-      val.name === "Select category"
+      val.name === "Select Category"
         ? "Fill the fields correctly"
         : typeof finalFile === undefined
         ? "Fill the fields correctly"
@@ -124,7 +124,7 @@ const UploadPDFs = ({ user_id }) => {
         onClick={handleShow}
         className="text-center"
       >
-        Upload a book
+        Upload Book
       </Button>
       {/* select book*/}
       <Modal show={show} onHide={handleClose}>

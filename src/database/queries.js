@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 export const GET_POSTS_QUERY = gql`
   query MyQuery {
-    posts {
+    posts(order_by: { created_at: desc }) {
       comments {
         commenter {
           name
@@ -104,6 +104,25 @@ export const USER_HISTORY = gql`
           registration
           name
         }
+      }
+      aggregate {
+        count
+      }
+    }
+  }
+`;
+export const BOOK_HISTORY = gql`
+  query MyQuery($id: uuid!) {
+    BookLinks_aggregate(where: { uploader_id: { _eq: $id } }) {
+      nodes {
+        id
+        name
+        link
+        description
+        category {
+          name
+        }
+        uploaded_at
       }
       aggregate {
         count

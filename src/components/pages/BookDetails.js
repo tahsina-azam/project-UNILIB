@@ -92,7 +92,7 @@ class BookDetails extends Component {
     );
 
     return (
-      <div className="ShowBookDetails pt-5">
+      <div className="ShowBookDetails">
         <div className="mt-5">
           <div className="row mt-5">
             <br />

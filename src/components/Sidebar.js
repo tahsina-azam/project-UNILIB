@@ -81,7 +81,7 @@ const Sidebar = ({ user_id, type, pageid }) => {
                   <i className="fas fa-book icon" />
                   <span className="ms-1 d-none d-sm-inline inside-text">
                     {" "}
-                    Book list
+                    Book List
                   </span>{" "}
                 </div>
                 <ul
@@ -168,7 +168,7 @@ const Sidebar = ({ user_id, type, pageid }) => {
               className="btn btn-outline-light shadow-none text-center"
               to="/unilib/admin/add-books/"
             >
-              Upload a book
+              Upload Book
             </Link>
           </div>
         </div>

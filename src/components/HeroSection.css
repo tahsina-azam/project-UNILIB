@@ -29,6 +29,9 @@ video {
 .bdr {
   border-left: 5px solid green;
 }
+.bdrr {
+  border-right: 5px solid green;
+}
 .bg-success9 {
   --bs-bg-opacity: 0.4;
   background-color: rgba(
