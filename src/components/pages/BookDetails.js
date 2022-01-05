@@ -46,8 +46,8 @@ class BookDetails extends Component {
     axios
       .delete("http://localhost:4000/api/books/" + id)
       .then((res) => {
-        this.props.history.push("/");
-        // window.history.back();
+        //this.props.history.push("/");
+        window.history.back();
       })
       .catch((err) => {
         console.log("Error form ShowBookDetails_deleteClick");
