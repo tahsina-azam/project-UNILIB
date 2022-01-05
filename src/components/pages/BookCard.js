@@ -14,7 +14,7 @@ const BookCard = (props) => {
   console.log(book.image);
   return (
     <div>
-      <Card style={{ width: "18rem", height: "30rem" }}>
+      <Card style={{ width: "18rem", height: "auto" }}>
         <div>
           <Card.Img
             variant="top"

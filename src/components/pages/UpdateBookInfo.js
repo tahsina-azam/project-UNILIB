@@ -141,8 +141,9 @@ class UpdateBookInfo extends Component {
             <div className="form-group mb-3">
               <label htmlFor="published_date">Pdf Link</label>
               <input
+                disabled={true}
                 type="text"
-                placeholder="pdf link"
+                placeholder="You cannot overwrite the link"
                 name="pdfLink"
                 className="form-control"
                 value={this.state.pdfLink}

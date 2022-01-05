@@ -52,16 +52,17 @@ export const TypeComment = ({ post, refetch, commenter_id }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     const reply = e.target[0].value;
-    if (e.target[0].value !== "")
+    if (e.target[0].value !== "") {
       postComment({
         variables: {
           post_id: post.id,
           reply: reply,
           commenter_id: commenter_id,
         },
-      });
-    e.target[0].value = "";
-    refetch();
+      }).then(window.location.reload());
+      e.target[0].value = "";
+      refetch();
+    }
   };
   return (
     <div className="p-2 text-center">
@@ -69,7 +70,7 @@ export const TypeComment = ({ post, refetch, commenter_id }) => {
         <textarea
           type="text"
           className="form-control mt-2 border-success"
-          placeholder=" Type here..."
+          placeholder="Write a comment"
         />
         <div className="mt-2 text-right">
           <button
