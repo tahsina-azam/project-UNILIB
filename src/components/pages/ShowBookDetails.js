@@ -108,7 +108,7 @@ class showBookDetails extends Component {
               </Link>
             </div> */}
             <br />
-            <div className="col-md-8 m-auto mt-5">
+            <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center text-success mt-5">
                 Book's Informations
               </h1>

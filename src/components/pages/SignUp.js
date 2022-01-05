@@ -135,9 +135,14 @@ const Form = ({ onSubmit }) => {
                         </button>
                       </div>
                     </form>
-                    <div style={{ color: "red", fontSize: "12px" }}>
-                      {error === "" ? `Please fill out the ${error} field` : ""}
-                    </div>
+
+                    {error !== "" ? (
+                      <div style={{ color: "red", fontSize: "12px" }}>
+                        Please fill out the {error} field
+                      </div>
+                    ) : (
+                      <div></div>
+                    )}
                   </div>
                   <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
                     <img

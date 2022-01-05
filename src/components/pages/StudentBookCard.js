@@ -15,7 +15,7 @@ const StudentBookCard = (props) => {
 
   return (
     <div>
-      <Card style={{ width: "18rem", height: "25rem" }}>
+      <Card style={{ width: "18rem", height: "auto" }}>
         <Card.Img
           variant="top"
           src={window.location.origin + "/images/" + book.image}

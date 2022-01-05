@@ -80,7 +80,7 @@ export function EditPost({ messageBefore, postid }) {
           message: message,
           id: postid,
         },
-      }).then(window.location.reload);
+      }).then(window.location.reload());
       setshowForm(false);
       selectType("success", "post");
     } else {
