@@ -42,7 +42,7 @@
 
 ## #Technologies Used
 
-# Backend:
+## Backend:
 
 - Runtime Environment - Node(v14.18.1) ​
 
@@ -60,7 +60,7 @@
 
 - Storage : (For uploading pdfs) – Firebase(v8.8.1)​
 
-# Frontend:
+## Frontend:
 
 - User interface – React v17.0.2​
 

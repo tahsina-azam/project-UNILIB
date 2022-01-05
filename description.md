@@ -1,6 +1,6 @@
 ## Project Name: Unilib
 
-#### The main aim of Unilib is to make easy sharing of books, notes, research papers, or any other sources for enthusiastic minds. Students and teachers can discuss anything in a single space- Unilib.
+#### The main aim of Unilib is to make easy sharing of books, notes, research papers, or any other resources for enthusiastic minds. Students and teachers can discuss anything in a single space- Unilib. Our main goal was to bring all the study essentials in one place.
 
 ---
 
