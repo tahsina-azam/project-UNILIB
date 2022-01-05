@@ -50,7 +50,9 @@ Features of Forum:
 
 We tried our best to implement all the features perfectly. In the end, Unilib is a user-friendly library and resource management system. It assembles a swift media for academic help for both students and teachers.
 
-### How to use UNILIB?
+## # How to use UNILIB?
+
+---
 
 ## Role:Admin
 
