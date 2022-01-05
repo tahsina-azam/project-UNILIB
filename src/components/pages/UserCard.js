@@ -2,6 +2,7 @@ import { React } from "react";
 import { Card } from "react-bootstrap";
 import teacherImg from "../../images/teacher.png";
 import studentImg from "../../images/student.png";
+import adminImg from "../../images/manager.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import "../../styles/Fonts.css";
@@ -116,6 +117,15 @@ const UserCard = (props) => {
               data-toggle="tooltip"
               data-placement="top"
               title="Teacher Badge"
+            />
+          ) : user.role === "admin" ? (
+            <img
+              src={adminImg}
+              style={{ width: "50px", height: "50px" }}
+              alt="student"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Admin Badge"
             />
           ) : (
             <img
