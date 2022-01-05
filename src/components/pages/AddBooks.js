@@ -11,7 +11,9 @@ import { storage } from "../../config/firebase";
  */
 const Elements = ({ onSubmit }) => {
   const [error, setError] = useState("");
-  let finalFile, finalFileName, storageref;
+  let storageref;
+  const [finalFileName, setFinalFileName] = useState("");
+  const [finalFile, setFinalFile] = useState(undefined);
   const bookRef = React.useRef();
   const writerRef = React.useRef();
   const numRef = React.useRef();
@@ -34,9 +36,9 @@ const Elements = ({ onSubmit }) => {
   const onSubmitForm = (e) => {
     e.preventDefault();
     console.log("count");
-    finalFile = e.target.files[0];
+    setFinalFile(e.target.files[0]);
     console.log(e.target.files[0]);
-    finalFileName = e.target.files[0].name;
+    setFinalFileName(e.target.files[0].name);
   };
 
   /**
@@ -100,7 +102,9 @@ const Elements = ({ onSubmit }) => {
       <div>
         <form enctype="multipart/form-data" onSubmit={handleSubmit}>
           <div class="form-group  mx-sm-3 mb-2">
-            <label className="mt-5">Enter the file:</label>{" "}
+            <label className="mt-5">
+              Enter the file: <span style={{ color: "red" }}>*</span>
+            </label>{" "}
             <div className="input-group">
               <span className="input-group-text border-0">
                 <i className="fa fa-cloud-upload p-0 m-0" />
@@ -168,7 +172,12 @@ const Elements = ({ onSubmit }) => {
             {error !== "" ? `Please fill out the ${error} field` : ""}
           </div>
           <div className="text-center">
-            <button type="submit" class="btn btn-success m-2" align="center">
+            <button
+              type="submit"
+              class="btn btn-success m-2"
+              disabled={finalFile === undefined}
+              align="center"
+            >
               Upload
             </button>
           </div>
