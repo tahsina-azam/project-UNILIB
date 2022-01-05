@@ -49,7 +49,7 @@ const Form = ({ onSubmit }) => {
       return;
     }
     onSubmit(data);
-    console.log(data);
+    // console.log(data);
     axios
       .post("http://localhost:4000/register", {
         name: nameRef.current.value,

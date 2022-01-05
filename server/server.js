@@ -66,7 +66,7 @@ const checkParamsIfExists = (params) => (req, res, next) => {
   const missingKeys = [];
   for (const param of params) {
     if (!(param in body)) {
-      console.log({ param });
+      //console.log({ param });
       missingKeys.push(param);
     }
   }
@@ -205,7 +205,7 @@ app.post(
     const { email } = req.body;
     const user = await User.findOne({ email });
 
-    console.log(user);
+    // console.log(user);
     if (!user) {
       return res.status(404).send({
         message: "user not found",
@@ -243,7 +243,7 @@ app.post(
 const checkTokenMiddleware = (req, res, next) => {
   const { headers } = req;
   const token = req.headers["authorization"];
-  console.log({ token });
+  // console.log({ token });
   // const { token } = req.headers;
   try {
     const data = jwt.verify(token, "secret");
@@ -261,7 +261,7 @@ const checkTokenMiddleware = (req, res, next) => {
  * @access public
  */
 app.get("/user", checkTokenMiddleware, async (req, res) => {
-  console.log({ user: req.user });
+  //console.log({ user: req.user });
   const data = await User.findOne({ _id: req.user._id });
 
   res.json({ message: "successful", data });
@@ -522,7 +522,7 @@ app.get("/img/:email", async (req, res) => {
 app.post("/api/admin/send-email", async (req, res) => {
   //console.log(req.body.id);
   //const user = User.findById(req.body.id);
-  console.log(req.body);
+  // console.log(req.body);
   const dataMail = {
     from: "Noreply@Unilib.com",
     to: req.body.email,

@@ -67,7 +67,7 @@ const Form = ({ onSubmit }) => {
             const email = emailRef.current.value;
             var id = email.split("@");
             selectType("success", "account");
-            console.log(Auth.getAuth() + "from login");
+            //console.log(Auth.getAuth() + "from login");
 
             history(`/unilib/user/${id[0]}`);
           } else {
