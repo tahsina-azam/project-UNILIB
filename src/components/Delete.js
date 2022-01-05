@@ -53,11 +53,11 @@ export const DeleteBooks = ({ id, link }) => {
   const onSubmitButton = () => {
     console.log(`book id: ${id}`);
     console.log(`book link: ${link}`);
-    DeleteBook({ variables: { id: id, link: link } }).then(
-      console.log("deleted"),
-      setShow(false),
-      window.location.reload()
-    );
+    DeleteBook({ variables: { id: id, link: link } }).then(() => {
+      console.log("deleted");
+      setShow(false);
+      window.location.reload();
+    });
   };
   const handleClose = () => {
     setShow(false);
