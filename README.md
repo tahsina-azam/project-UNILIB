@@ -44,11 +44,11 @@
 
 ---
 
-| SL  | Contributors Name | Contribution                                                           |
-| :-: | :---------------- | :--------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-|  1  | Antar Roy         | Thanks to him for helping us with his technical advice time to time    |
-|  2  | Brian Design      | We could understand the basics of react, thanks to his tutorials.      | [his youtube channel link](https://www.youtube.com/channel/UCsKsymTY_4BYR-wytLjex7A) |
-|  3  | Islem Maboud      | Thanks to him as we solved some of our problems by watching his videos | [his youtube channel link](https://www.youtube.com/coderone)                         |
+| SL  | Contributors Name | Contribution                                                                                                                                           |
+| :-: | :---------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
+|  1  | Antar Roy         | Thanks to him for helping us with his technical advice time to time                                                                                    |
+|  2  | Brian Design      | We could understand the basics of react, thanks to his tutorials. [his youtube channel link](https://www.youtube.com/channel/UCsKsymTY_4BYR-wytLjex7A) |
+|  3  | Islem Maboud      | Thanks to him as we solved some of our problems by watching his videos [his youtube channel link](https://www.youtube.com/coderone)                    |
 
 ## #Developers
 
