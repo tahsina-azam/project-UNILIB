@@ -127,7 +127,7 @@ class EditUser extends Component {
             <label>Name </label>
             <input
               type="text"
-              placeholder="Title of the Book"
+              placeholder="name"
               name="name"
               className="form-control"
               value={this.state.name}
