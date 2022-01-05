@@ -1,6 +1,6 @@
 ## Project Name: Unilib
 
-#### The main aim of Unilib is to make easy sharing of books, notes, research papers, or any other sources for enthusiastic minds. Students and teachers can discuss anything in a single space- Unilib.
+#### The main aim of Unilib is to make easy sharing of books, notes, research papers, or any other resources for enthusiastic minds. Students and teachers can discuss anything in a single space- Unilib. Our main goal was to bring all the study essentials in one place.
 
 ---
 
@@ -49,3 +49,31 @@ Features of Forum:
 ---
 
 We tried our best to implement all the features perfectly. In the end, Unilib is a user-friendly library and resource management system. It assembles a swift media for academic help for both students and teachers.
+
+## # How to use UNILIB?
+
+---
+
+## Role:Admin
+
+- There are two ways an admin can register.
+
+1.  adminstrator or the person with database access can register them directly.
+2.  admin can register as a normal user then adminstrator can assign his/her role.
+
+- from Manage Users option admin can see all the users , contact them and even they can delete their accounts.
+- from check reports option they can view all the reports by the users , </br>he can reply to them if necessary and can also delete them.
+- from issued book list option admins can see all the books issued by them, they can even search for the issued book info
+  from the search bar with a specific date.
+- from the Register teacher option they can register a user directly. if the user is a teacher</br> they will be given "teacher" as their role by admin.
+- from upload books option they will be guided to a form where they can upload a book.
+- They can update their account details from Edit Account option.
+- From the library option of Navbar admin can see all the books from the library, search for a specific book , delete or edit them . clicking the book card will lead him to a page where the book info would be and below it there would be the list of students and a button for each saying "ISSUE THIS BOOK" , admin can directly issue book from there.
+
+## Role:User
+
+- Students can register directly from the register page
+- Teachers have to register through admin otherwise they won't get the teacher's badge.
+- Users can see the options to edit their accounts , see all the other users , the list of books they have been issued
+  with time, date and other details.
+- by entering Forum from navbar they can post, comment , update and delete their posts. They can send report to admin. and upload and download books and other resources.

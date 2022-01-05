@@ -24,6 +24,7 @@ class BookDetails extends Component {
     //console.log("Print id: " + this.props.match.params.id);
     const path = window.location.pathname;
     const id = path.split("/");
+
     //console.log(words[0]);
     axios
       .get("http://localhost:4000/api/books/" + id[2])
@@ -45,7 +46,8 @@ class BookDetails extends Component {
     axios
       .delete("http://localhost:4000/api/books/" + id)
       .then((res) => {
-        this.props.history.push("/");
+        //this.props.history.push("/");
+        window.history.back();
       })
       .catch((err) => {
         console.log("Error form ShowBookDetails_deleteClick");
