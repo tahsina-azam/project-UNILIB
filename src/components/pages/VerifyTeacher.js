@@ -59,17 +59,18 @@ const Form = ({ onSubmit }) => {
             "success",
             "activation link which is sent in your email account"
           );
-          // alert("check your email for the activation link");
+          // window.location.reload();
         },
         (error) => {
           selectType("invalid", "Carefully fillout all the fields");
           console.log(error);
         }
       );
+    //
   };
   return (
-    <div className="vh-90">
-      <div className="container">
+    <div className="vh-90 mt-5">
+      <div className="container mt-5">
         <div className="row d-flex justify-content-center align-items-center">
           <div className="col-lg-12 col-xl-11">
             <div className="card text-black border-0">

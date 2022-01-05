@@ -48,56 +48,51 @@ const Elements = ({ onSubmit }) => {
 
     storageref = storage.ref().child(`${finalFileName}`);
     console.log("onSubmitButton " + finalFileName);
-    if (typeof finalFile === "undefined") {
-      console.log("I entered here");
-      setError("Enter the file");
-    }
     console.log(finalFileName);
-    if (Error === "") {
-      try {
-        storageref.put(finalFile).then(() => {
-          storageref.getDownloadURL().then((link) => {
-            e.preventDefault();
-            console.log(`link for library book ${link}`);
-            const formData = new FormData();
-            formData.append("bookName", bookRef.current.value);
-            formData.append("writer", writerRef.current.value);
-            formData.append("number", numRef.current.value);
-            formData.append("image", fileName);
-            formData.append("pdfLink", link);
-            formData.append("text", textRef.current.value);
+    try {
+      storageref.put(finalFile).then(() => {
+        storageref.getDownloadURL().then((link) => {
+          e.preventDefault();
+          console.log(`link for library book ${link}`);
+          const formData = new FormData();
+          formData.append("bookName", bookRef.current.value);
+          formData.append("writer", writerRef.current.value);
+          formData.append("number", numRef.current.value);
+          formData.append("image", fileName);
+          formData.append("pdfLink", link);
+          formData.append("text", textRef.current.value);
 
-            const data = {
-              bookName: bookRef.current.value,
-              writer: writerRef.current.value,
-              number: numRef.current.value,
-              image: fileName,
-              pdfLink: link,
-              text: textRef.current.value,
-            };
-            const errors = Object.keys(data).filter((e) => data[e] === "");
-            console.log({ errors });
-            if (errors.length > 0) {
-              setError(errors[0]);
-              return;
+          const data = {
+            bookName: bookRef.current.value,
+            writer: writerRef.current.value,
+            number: numRef.current.value,
+            image: fileName,
+            pdfLink: link,
+            text: textRef.current.value,
+          };
+          const errors = Object.keys(data).filter((e) => data[e] === "");
+          console.log({ errors });
+          if (errors.length > 0) {
+            setError(errors[0]);
+            return;
+          }
+          onSubmit(data);
+
+          axios.post("http://localhost:4000/addbook", formData).then(
+            (res) => {
+              selectType("success", "book uploaded");
+              console.log(res.data);
+              window.location.reload();
+            },
+            (error) => {
+              selectType("invalid", "Carefully fillout all the fields");
             }
-            onSubmit(data);
-
-            axios.post("http://localhost:4000/addbook", formData).then(
-              (res) => {
-                selectType("success", "book uploaded");
-                console.log(res.data);
-              },
-              (error) => {
-                selectType("invalid", "Carefully fillout all the fields");
-              }
-            );
-          });
+          );
         });
-      } catch (err) {
-        console.log("here");
-        console.log({ err });
-      }
+      });
+    } catch (err) {
+      console.log("here");
+      console.log({ err });
     }
   };
   return (
@@ -170,8 +165,7 @@ const Elements = ({ onSubmit }) => {
             ></textarea>
           </div>
           <div style={{ color: "red", fontSize: "12px" }}>
-            hello
-            {error === "" ? `Please fill out the ${error} field` : ""}
+            {error !== "" ? `Please fill out the ${error} field` : ""}
           </div>
           <div className="text-center">
             <button class="btn btn-success m-2" type="submit" align="center">
